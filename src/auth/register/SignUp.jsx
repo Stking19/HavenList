@@ -28,19 +28,19 @@ const SignUp = () => {
 
           <form>
             <div className="formwrap">
-              {/* Username Field */}
+              
               <div className="signupformwrap">
                 <h2>Full Name</h2>
                 <input className= "signupinputcont" type="text" placeholder="Enter username" />
               </div>
 
-              {/* Email Field */}
+              
               <div className="signupemailformwrap">
                 <h2 style={{marginTop: "25px"}}>Email</h2>
                 <input className= "signupinputcont" type="text" placeholder="Enter email" />
               </div>
 
-              {/* Password Field */}
+              
               <div
                 className="signuppasswordmwrap"
                 style={{ width: "100%", position: "relative", marginTop: "20px" }}
@@ -57,7 +57,7 @@ const SignUp = () => {
                       cursor: "pointer",
                     }}
                   >
-                    {/* <Eye size={20} /> */}
+                    
                   </span>
                 </div>
               </div>
@@ -78,19 +78,17 @@ const SignUp = () => {
                       cursor: "pointer",
                     }}
                   >
-                    {/* <Eye size={20} /> */}
+                    
                   </span>
                 </div>
               </div>
-
-              {/* Signup Button */}
+              
               <div className="main">
                 <button className="btnwrap" type="submit">
                   Register
                 </button>
               </div>
-
-              {/* Login Link */}
+             
               <div className="accountwrap">
                 <h3>Already have an account?</h3>
                 <h3 style={{ cursor: "pointer", textDecoration: "underline", fontWeight: "bold"}}>Login</h3>

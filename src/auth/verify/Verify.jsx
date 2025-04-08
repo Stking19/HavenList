@@ -18,9 +18,8 @@ const Verify = () => {
             </div>
           </div>
           
-
           <div className="formdetailwrap">
-            {/* <form> */}
+           
             <div className="forgotpassworddetailwrapper">
               <h2>Email</h2>
               <input
@@ -34,7 +33,7 @@ const Verify = () => {
               <button className="resetemailbtn">Reset Password</button>
             </div>
 
-            {/* </form> */}
+           
           </div>
         </div>
       </div>

@@ -19,7 +19,7 @@ const ForgotPassword = () => {
         </div>
 
         <div className="formdetailwrap">
-          {/* <form> */}
+          
           <div className="forgotpassworddetailwrapper">
             <h2 style={{ color: "#00bcd4",fontSize: "30px" }}>Password</h2>
             <input
@@ -42,7 +42,7 @@ const ForgotPassword = () => {
           <button className="continuebtn">Continue</button>
           </div>
 
-          {/* </form> */}
+         
         </div>
       </div>
     </div>
