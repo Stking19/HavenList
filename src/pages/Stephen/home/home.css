@@ -28,18 +28,14 @@
   }
 
   & .aboutIc {
-    width: 100%;
+    width: 90%;
     height: 200px;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    justify-content: center;
-
-    & .partL {
-      width: 10%;
-      height: 60%;
-      background-color: red;
-    }
+    background-image: url(../../../../IMG/Frame2.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 7%;
+    margin-top: 20px;
   }
 
   .properties {
@@ -145,17 +141,17 @@
             display: flex;
             align-items: center;
 
-            & .bed{
+            & .bed {
               width: 100%;
               display: flex;
               gap: 10px;
               padding-left: 10px;
 
-              & p{
+              & p {
                 font-size: 25px;
               }
 
-              & span{
+              & span {
                 width: 120px;
                 display: flex;
                 border-right: 1px solid lightgray;
@@ -163,7 +159,7 @@
               }
             }
 
-            & .icon{
+            & .icon {
               font-size: 40px;
               color: rgb(56, 168, 206);
               cursor: pointer;
@@ -184,28 +180,162 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 30px 20px;
+    padding: 30px 30px;
     gap: 50px;
-    margin-top: 100px;
 
     & .our {
       width: 100%;
       height: 90%;
       display: flex;
-      background-color: lightgray;
       justify-content: space-between;
 
-      & .houseImg {
-        width: 47%;
+      & .houseImgWrap {
+        width: 45%;
         height: 100%;
-        background-color: yellow;
+        overflow: hidden;
         border-radius: 10px;
+        margin-left: 40px;
+
+        & .houseImg {
+          width: 100%;
+          height: 100%;
+          background-image: url(../../../../IMG/3ab6cacf46439e8e78113b738deb1bf9.png);
+          background-position: center;
+          background-size: cover;
+          transition: all 250ms ease-in-out;
+
+          & .see {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: end;
+            align-items: end;
+            background-color: rgba(128, 128, 128, 0.301);
+            opacity: 0;
+            transition: all 250ms ease-in-out;
+            padding: 20px 20px;
+
+            & button {
+              width: max-content;
+              height: max-content;
+              padding: 10px 20px;
+              background: rgb(17, 113, 145);
+              color: white;
+              border: none;
+              outline: none;
+              border-radius: 5px;
+              font-size: 16px;
+              z-index: 100;
+              cursor: pointer;
+            }
+          }
+
+          & .see:hover {
+            opacity: 1;
+          }
+        }
+
+        & .houseImg:hover {
+          transform: scale(1.05);
+        }
       }
 
       & .mission {
-        width: 47%;
+        width: 50%;
         height: 100%;
-        background-color: green;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        margin-right: 20px;
+
+        & .design {
+          width: 380px;
+          height: 400px;
+          background-color: lightblue;
+          border-radius: 10px;
+          transform: rotate(40deg);
+        }
+
+        & .upDesign {
+          width: 100%;
+          height: 50%;
+          position: absolute;
+          top: 0;
+          display: flex;
+          justify-content: center;
+          gap: 50px;
+
+          & .cardi {
+            width: 220px;
+            height: 240px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            gap: 20px;
+            text-align: center;
+            font-size: 14px;
+          }
+          & .cardiS {
+            width: 220px;
+            height: 240px;
+            background-color: white;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            gap: 20px;
+            text-align: center;
+            font-size: 14px;
+          }
+        }
+
+        & .downDesign {
+          width: 100%;
+          height: 50%;
+          position: absolute;
+          bottom: 0;
+          display: flex;
+          justify-content: center;
+          gap: 50px;
+
+          & .cardi {
+            width: 220px;
+            height: 240px;
+            background-color: white;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            gap: 20px;
+            text-align: center;
+            font-size: 14px;
+          }
+          & .cardiS {
+            width: 220px;
+            height: 240px;
+            background-color: white;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            border-radius: 15px;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            gap: 20px;
+            text-align: center;
+            font-size: 14px;
+          }
+        }
       }
     }
   }
@@ -218,6 +348,74 @@
     align-items: center;
     background-color: lightblue;
     margin-top: 50px;
+
+    & .num {
+      width: 30%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+
+      & h1 {
+        font-size: 50px;
+      }
+
+      & p {
+        font-weight: 600;
+      }
+    }
+  }
+
+  & .coming {
+    width: 100%;
+    height: 465px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 50px;
+    padding: 20px;
+
+    & h3{
+      margin-left: 38px;
+    }
+
+    & .states {
+      width: 100%;
+      height: 90%;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+
+      & .ekiti {
+        width: 22%;
+        height: 100%;
+        padding: 10px;
+        text-align: right;
+        background-image: url(../../../../IMG/EKITI.png);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      & .osun {
+        width: 50%;
+        height: 100%;
+        background-image: url(../../../../IMG/Frame.png);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      & .ondo {
+        width: 22%;
+        height: 100%;
+        background-image: url(../../../../IMG/Ondo.png);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
   }
 }
 
@@ -256,13 +454,13 @@
     }
   }
 
-  & .butt{
+  & .butt {
     width: 100%;
     display: flex;
     justify-content: end;
     padding-right: 30px;
 
-    & .icon{
+    & .icon {
       font-size: 30px;
       color: rgb(56, 168, 206);
       cursor: pointer;
@@ -270,15 +468,15 @@
       transition: all 250ms ease-in-out;
     }
 
-    & .icon:hover{
+    & .icon:hover {
       transform: rotate(47deg);
     }
   }
 
-  & .Hdetails h3{
-      color: rgb(56, 168, 206);
-      font-size: 20px;
-      text-align: center;
+  & .Hdetails h3 {
+    color: rgb(56, 168, 206);
+    font-size: 20px;
+    text-align: center;
   }
 
   & .Himg:hover {
