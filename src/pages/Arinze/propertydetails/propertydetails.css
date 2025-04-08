@@ -1,0 +1,212 @@
+.propertyDetailMain {
+    height: max-content;
+    width: 100%;
+    position: relative;
+}
+
+.propertyDetailImageWrapper {
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
+    gap: 10px;
+}
+
+
+.propertyDetailImageMain {
+    height: 99%;
+    width: 40%;
+    display: block;
+    background-color: blue;
+
+
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.subImageWrapper {
+    height: 99%;
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+.subImage1 {
+    height: 49%;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+
+
+    span {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        gap: 10px;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.subImage2 {
+    height: 49%;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    
+    span {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        gap: 10px;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.propertyDetailAmenitiesWrapper {
+    height: max-content;
+    width: 50%;
+}
+
+.propertyDetailAmeneties {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+
+
+    section {
+        height: max-content;
+        width: max-content;
+
+
+        span {
+            display: flex;
+            height: max-content;
+            width: max-content;
+            align-items: center;
+            gap: 5px;
+            text-align: center;
+        }
+    }
+}
+
+.propertyDetailSafeTips {
+    height: max-content;
+    width: 50%;
+    background-color: #E6F2F5;
+}
+
+.modalpropertyDetailCard {
+    height: 80vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 23%;
+    background-color: white;
+    right: 30px;
+    bottom: -250px;
+    position: absolute;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+
+.propertyDetailCardDate {
+    height: 32%;
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+.dateWrapper {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+
+
+.propertyDetailCheckIn {
+    height: 100%;
+    width: 50%;
+    border-right: 1px solid black;
+    text-align: center;
+}
+
+.propertyDetailCheckOut {
+    height: 100%;
+    width: 50%;
+    text-align: center;
+}
+
+.propertyDetailCheckOutOption {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+        height: max-content;
+        width: 45%;
+        text-align: center;
+        /* background-color: blanchedalmond; */
+    }
+}
+
+
+.propertyDetailRentBtn{
+    height: 10%;
+    width: 80%;
+    background-color: #00A5CF;
+    border-radius: 20px;
+    border: none;
+}
+
+
+.propertyDetailFeeNot{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+   border-bottom: 1px solid black;
+    
+
+    span{
+        height: max-content;
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+
+.propertyDetailRentTotal{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+}
