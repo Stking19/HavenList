@@ -6,7 +6,6 @@ const PropertyDetails = () => {
   return (
     <>
       <div className='propertyDetailMain'>
-
         <p>cool apartment for you and family</p>
         <div className='propertyDetailImageWrapper'>
           <span className='propertyDetailImageMain'>
