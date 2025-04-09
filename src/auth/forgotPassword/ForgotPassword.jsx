@@ -14,14 +14,14 @@ const ForgotPassword = () => {
         <div className="textwrapper">
           <h1>Enter the new password</h1>
           <p>Your new password must be different</p>
-          <p style={{marginLeft: "70px"}}>from previously used password</p>
+          <p style={{marginLeft: "100px"}}>from previously used password</p>
           </div>
         </div>
 
         <div className="formdetailwrap">
           
           <div className="forgotpassworddetailwrapper">
-            <h2 style={{ color: "#00bcd4",fontSize: "30px" }}>Password</h2>
+            <h2 style={{ color: "#00bcd4",fontSize: "43px" }}>Password</h2>
             <input
               className="resetinputcont"
               type="text"
@@ -30,7 +30,7 @@ const ForgotPassword = () => {
           </div>
 
           <div className="forgotpassworddetailwrapper">
-            <h2 style={{ color: "#00bcd4", fontSize: "30px" }}>Confirm Password</h2>
+            <h2 style={{ color: "#00bcd4", fontSize: "43px" }}>Confirm Password</h2>
             <input
               className="resetinputcont"
               type="text"
@@ -41,13 +41,10 @@ const ForgotPassword = () => {
              <div className='buttoncont1'>
           <button className="continuebtn">Continue</button>
           </div>
-
-         
+          
         </div>
       </div>
     </div>
-      
-
     </div>
   )
 }
