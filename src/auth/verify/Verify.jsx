@@ -33,7 +33,6 @@ const Verify = () => {
               <button className="resetemailbtn">Reset Password</button>
             </div>
 
-           
           </div>
         </div>
       </div>

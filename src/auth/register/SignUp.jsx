@@ -1,11 +1,14 @@
 import React from 'react'
+import signpic from "../../assets/loginImage.png"
 import "./signup.css"
 
 const SignUp = () => {
   return (
     <div className="mainwrap">
     <div className="signupwrapper">
-      <div className="signupImageWrap"></div>
+      <div className="signupImageWrap">
+        <img src={signpic} alt="" />
+      </div>
       <div className="signupContainer">
         <div className="signuptextwrap">
           <h1>Register on HavenList</h1>
@@ -24,7 +27,7 @@ const SignUp = () => {
         </div>
 
         <div className="signupDetails">
-          <h1 style={{marginLeft: "18px", fontSize: "40px"}}>Register</h1>
+          <h1 style={{marginLeft: "18px", fontSize: "50px"}}>Register</h1>
 
           <form>
             <div className="formwrap">
@@ -36,7 +39,7 @@ const SignUp = () => {
 
               
               <div className="signupemailformwrap">
-                <h2 style={{marginTop: "25px"}}>Email</h2>
+                <h2>Email</h2>
                 <input className= "signupinputcont" type="text" placeholder="Enter email" />
               </div>
 
