@@ -18,9 +18,9 @@
 
 
 .listingPropertyImage {
-    height: 95%;
+    height: 100%;
     width: 50%;
-    display: block;
+    /* display: block; */
 
     img{
         height: 100%;
@@ -30,7 +30,7 @@
 }
 
 .listingPropertyDetails {
-    height: 90%;
+    height: 100%;
     width: 45%;
     display: flex;
     flex-direction: column;
@@ -49,7 +49,8 @@
 
     span {
         height: 100%;
-        width: 15%;
+        width: 20%;
+        gap: 10px;
         display: flex;
         align-items: center;
         justify-content: center;

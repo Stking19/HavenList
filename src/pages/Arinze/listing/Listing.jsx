@@ -18,6 +18,9 @@ const Listing = () => {
       <ListingCard/>
       <ListingCard/>
       <ListingCard/>
+      <ListingCard/>
+      <ListingCard/>
+      <ListingCard/>
       </div>
   </div>
     </div>
