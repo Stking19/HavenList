@@ -1,7 +1,10 @@
 import React from "react";
 import './forgotPassword.css'
+import { useNavigate } from "react-router";
 
 const ForgotPassword = () => {
+
+  const navigate = useNavigate()
   return (
     <div>
       <div className="mainbody">
@@ -29,7 +32,7 @@ const ForgotPassword = () => {
             </div>
 
             <div className="buttoncontwrap">
-              <button className="resetemailbtn">Submit</button>
+              <button className="resetemailbtn"  onClick={() => navigate('/reset-password')}>Submit</button>
             </div>
           </div>
         </div>
