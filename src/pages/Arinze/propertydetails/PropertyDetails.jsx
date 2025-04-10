@@ -5,8 +5,9 @@ import { FaAnchor, FaSink, FaAngleRight } from "react-icons/fa6";
 const PropertyDetails = () => {
   return (
     <>
-      <div className='propertyDetailMain'>
-        <p>cool apartment for you and family</p>
+    <div className='propertyDetailMain'>
+    <div className='propertyDetailWrapper'>
+    <p>cool apartment for you and family</p>
         <div className='propertyDetailImageWrapper'>
           <span className='propertyDetailImageMain'>
             <img src="../../../../public/be948c0b628fbdd1e0788117fb2000a1.jpg" alt="" />
@@ -78,10 +79,15 @@ const PropertyDetails = () => {
           <li>The Agent does not represent HevanList and HevanList is not liable for any monetary transaction between you and the Agent.</li>
         </div>
 
-        <h2 style={{ textDecoration: 'underline' }}>Terms Of use</h2>
+    
+        <a style={{fontSize:'20px',marginBottom:'15px'}} href="https://docs.google.com/document/d/18EkarRCZfF9mRuQMsEqgeLB_Nja6LvkJAq8KLMWjNmk/edit?usp=sharing">Terms Of use</a>
       </div>
+    
+     </div>
+       
+      
       <div className='modalpropertyDetailCard'>
-        <h3>N 2,000,000 <small>per Annum</small></h3>
+        <h2>N 2,000,000 <small>per Annum</small></h2>
         <div className='propertyDetailCardDate'>
           <div className='dateWrapper'>
             <span className='propertyDetailCheckIn'>
