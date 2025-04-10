@@ -1,5 +1,5 @@
 import React from 'react'
-import signpic from "../../assets/loginImage.png"
+import signpic from "/IMG/loginImage.png"
 import "./signup.css"
 
 const SignUp = () => {

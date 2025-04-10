@@ -1,15 +1,15 @@
 import React from "react";
-import picture1 from "../../../assets/esther.png";
-import picture2 from "../../../assets/christian.png";
-import picture3 from "../../../assets/josh.png";
-import picture4 from "../../../assets/somto.png";
-import picture5 from "../../../assets/steven.png";
-import picture6 from "../../../assets/ebuka.png";
-import picture7 from "../../../assets/Aboutushouse.png";
-import linkedin from "../../../assets/image.png";
-import twitter from "../../../assets/image1.png";
-import instagram from "../../../assets/image2.png";
-import facebook from "../../../assets/image3.png";
+import picture1 from "/IMG/esther.png";
+import picture2 from "/IMG/christian.png";
+import picture3 from "/IMG/josh.png";
+import picture4 from "/IMG/somto.png";
+import picture5 from "/IMG/steven.png";
+import picture6 from "/IMG/ebuka.png";
+import picture7 from "/IMG/Aboutushouse.png";
+import linkedin from "/IMG/image.png";
+import twitter from "/IMG/image1.png";
+import instagram from "/IMG/image2.png";
+import facebook from "/IMG/image3.png";
 import "./aboutuspage.css";
 
 

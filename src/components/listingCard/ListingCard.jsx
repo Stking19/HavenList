@@ -9,7 +9,7 @@ const ListingCard = () => {
     <div className='listingCardMain'>
         <div className='listingCardContentHolder'>
            <span className='listingPropertyImage'>
-            <img src="../../../public/be948c0b628fbdd1e0788117fb2000a1.jpg" alt="" />
+            <img src="/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg" alt="" />
            </span>
            <div className='listingPropertyDetails'>
             <h2 style={{color:'blue'}}>2 Bedroom Flat For Rent</h2>
