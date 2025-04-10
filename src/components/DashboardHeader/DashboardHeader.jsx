@@ -1,6 +1,6 @@
 import React from "react";
-import icon from "../../assets/icon.png";
-import profilepicture from "../../assets/profilepix.jpg"
+import icon from "/IMG/icon.png";
+import profilepicture from "/IMG/profilepix.jpg"
 import "./dashboardheader.css";
 
 function DashboardHeader() {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { MdOutlineCancel } from "react-icons/md";
-import emailpicture from "../../assets/Emailpix.png";
+import emailpicture from "/IMG/Emailpix.png";
 import "./emailconfirmation.css"
 
 function EmailConfirmation() {
