@@ -6,6 +6,10 @@ import picture4 from "../../../assets/somto.png";
 import picture5 from "../../../assets/steven.png";
 import picture6 from "../../../assets/ebuka.png";
 import picture7 from "../../../assets/Aboutushouse.png";
+import linkedin from "../../../assets/image.png"
+import twitter from "../../../assets/image1.png"
+import instagram from "../../../assets/image2.png"
+import facebook from "../../../assets/image3.png"
 // import picture8 from "../../../assets/Heropagepic.jpg";
 
 import "./aboutuspage.css";
@@ -143,10 +147,10 @@ function AboutUsPage() {
 
               <div className="socialmediawrap">
                 <h2>Social media: </h2>
-                {/* <img src={pix1} alt="" />
-               <img src={pix2} alt="" />
-               <img src={pix3} alt="" />
-               <img src={pix4} alt="" /> */}
+                <img src={linkedin} alt="" />
+               <img src={twitter} alt="" />
+               <img src={instagram} alt="" />
+               <img src={facebook} alt="" />
               </div>
             </div>
           </div>

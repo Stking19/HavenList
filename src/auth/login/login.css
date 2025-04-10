@@ -25,7 +25,6 @@
     width: 60%;
     height: 50%;
     padding: 70px;
-    /* background-color: #00bcd4; */
 
 }
 
@@ -50,9 +49,6 @@
 .loginformwrap{
     width: 100%;
     height: 50%;
-    /* background-color: aquamarine; */
-    /* margin-top: 30px; */
-    
 }
 
 .loginformwrap{
@@ -99,9 +95,6 @@
 .forgotpasswordwrap{
     width: 100%;
     margin-left: 230px;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
     margin-top: -40px;
 }
 
@@ -113,7 +106,6 @@
 
   .usernameormwrap{
     width: 100%;
-    /* margin-left: 20px; */
   }
 
   @media (max-width: 460px) {
@@ -159,7 +151,6 @@
         height: 60px;
         font-size: 25px;
         margin-bottom: -150px;
-        /* margin-top: -5px; */
     }
 
     .main{
