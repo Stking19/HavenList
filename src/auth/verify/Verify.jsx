@@ -14,7 +14,7 @@ const Verify = () => {
           <div className="textwrap">
             <h1>Mail Address Here</h1>
             <p>Enter the email address associated</p>
-            <p className="ptag">to your account </p>
+            <p style={{marginLeft: "80px"}}>to your account </p>
             </div>
           </div>
           
@@ -33,7 +33,6 @@ const Verify = () => {
               <button className="resetemailbtn">Reset Password</button>
             </div>
 
-           
           </div>
         </div>
       </div>

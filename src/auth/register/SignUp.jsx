@@ -1,33 +1,28 @@
 import React from 'react'
+import signpic from "../../assets/loginImage.png"
 import "./signup.css"
 
 const SignUp = () => {
   return (
     <div className="mainwrap">
     <div className="signupwrapper">
-      <div className="signupImageWrap"></div>
+      <div className="signupImageWrap">
+        <img src={signpic} alt="" />
+      </div>
       <div className="signupContainer">
         <div className="signuptextwrap">
           <h1>Register on HavenList</h1>
-          <h1>
-            Lagos for
-            <span style={{ marginLeft: "10px", color: " #00bcd4" }}>
-              Exclusive discount
-            </span>
-          </h1>
-          <h1>
-            on{" "}
-            <span style={{ marginLeft: "3px", color: " #00bcd4" }}>
-              Agents Fees
-            </span>
-          </h1>
+          <h1 style={{marginTop: "-10px", }}>Lagos for <span style={{color: "#00bcd4"}}>Exclusive Discount</span></h1>
+          <h1 style={{marginTop: "-10px", }}>On <span style={{color: "#00bcd4"}}>Agent fees</span></h1>
+            
+        
         </div>
 
         <div className="signupDetails">
-          <h1 style={{marginLeft: "18px", fontSize: "40px"}}>Register</h1>
+          <h1 style={{marginLeft: "18px", fontSize: "20px"}}>Register</h1>
 
           <form>
-            <div className="formwrap">
+            <div className="signupformwrapper">
               
               <div className="signupformwrap">
                 <h2>Full Name</h2>
@@ -36,16 +31,16 @@ const SignUp = () => {
 
               
               <div className="signupemailformwrap">
-                <h2 style={{marginTop: "25px"}}>Email</h2>
+                <h2>Email</h2>
                 <input className= "signupinputcont" type="text" placeholder="Enter email" />
               </div>
 
               
               <div
                 className="signuppasswordmwrap"
-                style={{ width: "100%", position: "relative", marginTop: "20px" }}
+                style={{ width: "100%", position: "relative" }}
               >
-                <h2 style={{color: " #00bcd4", marginTop: "20px"}}>Create Password</h2>
+                <h2 style={{color: " #00bcd4",}}>Create Password</h2>
                 <div style={{ width: "100%", position: "relative" }}>
                   <input className= "signupinputcont" type="password" placeholder="Enter password" />
                   <span

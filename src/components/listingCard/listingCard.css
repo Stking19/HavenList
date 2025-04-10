@@ -1,0 +1,68 @@
+.listingCardMain {
+    min-height: 37vh;
+    width: 45%;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+}
+
+
+.listingCardContentHolder {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.listingPropertyImage {
+    height: 100%;
+    width: 50%;
+    /* display: block; */
+
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.listingPropertyDetails {
+    height: 100%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+}
+
+
+.listingFooter {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    background-color: #E2E7E2;
+    align-items: center;
+    gap: 10px;
+
+    span {
+        height: 100%;
+        width: 20%;
+        gap: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.listingFooterContent {
+    border-right: 1px solid black;
+    height: 100%;
+    width: 20%;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

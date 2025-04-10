@@ -13,9 +13,12 @@ import PropertyDetails from './pages/Arinze/propertydetails/PropertyDetails'
 import Payment from './pages/Joshua/payment/Payment'
 import TermsCondition from './pages/Joshua/T&Cs/TermsCondition'
 import Home from './pages/Stephen/home/Home'
+import AboutUsPage from './pages/Joshua/AboutUsPage/AboutUsPage'
+import DashboardHeader from './components/DashboardHeader/DashboardHeader'
+import ProfilePage from './pages/Joshua/ProfilePage/ProfilePage'
+import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 
 const App = () => {
-  
   return (
     <Router>
       <Routes>
