@@ -1,55 +1,41 @@
-import React from 'react'
-import "./forgotPassword.css"
+import React from "react";
+import './forgotPassword.css'
 
 const ForgotPassword = () => {
   return (
     <div>
       <div className="mainbody">
-      <div className="pageheader">
-        <h1>Forgot Password</h1>
-      </div>
-
-      <div className="forgotpasswordbody">
-        <div className="forgotpasswordtext">
-        <div className="textwrapper">
-          <h1>Enter the new password</h1>
-          <p>Your new password must be different</p>
-          <p style={{marginLeft: "70px"}}>from previously used password</p>
-          </div>
+        <div className="fullpageheader">
+          <h1>Forgot Password</h1>
         </div>
 
-        <div className="formdetailwrap">
-          
-          <div className="forgotpassworddetailwrapper">
-            <h2 style={{ color: "#00bcd4",fontSize: "30px" }}>Password</h2>
-            <input
-              className="resetinputcont"
-              type="text"
-              placeholder="Create password"
-            />
+        <div className="forgotemailbody">
+          <div className="forgotemailtext">
+            <div className="textwrap">
+              <h1>Mail Address Here</h1>
+              <p>Enter the email address associated</p>
+              <p style={{ marginLeft: "80px" }}>to your account </p>
+            </div>
           </div>
 
-          <div className="forgotpassworddetailwrapper">
-            <h2 style={{ color: "#00bcd4", fontSize: "30px" }}>Confirm Password</h2>
-            <input
-              className="resetinputcont"
-              type="text"
-              placeholder="Confirm password"
-            />
-          </div>
-             
-             <div className='buttoncont1'>
-          <button className="continuebtn">Continue</button>
-          </div>
+          <div className="formdetailwrap">
+            <div className="forgotpassworddetailwrapper">
+              <h2>Email</h2>
+              <input
+                className="emailcont"
+                type="text"
+                placeholder="Enter email here"
+              />
+            </div>
 
-         
+            <div className="buttoncontwrap">
+              <button className="resetemailbtn">Submit</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-      
+  );
+};
 
-    </div>
-  )
-}
-
-export default ForgotPassword
+export default ForgotPassword;

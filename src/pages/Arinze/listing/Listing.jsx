@@ -17,9 +17,8 @@ const Listing = () => {
       <div className='listingCardWraper'>
       <ListingCard/>
       </div>
-  </div>
     </div>
-  )
-}
+  );
+};
 
-export default Listing
+export default Listing;
