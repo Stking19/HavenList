@@ -18,6 +18,7 @@ const Listing = () => {
       <ListingCard/>
       </div>
     </div>
+  </div>
   );
 };
 
