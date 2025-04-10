@@ -129,7 +129,7 @@ function AboutUsPage() {
           </div>
         </div>
 
-        <div className="bottomwrap">
+        <div className="bottomwrap" style={{backgroundColor: "blue"}}>
           <div className="innercontainer">
             <div className="rightside">
               <h2>Contact Us</h2>

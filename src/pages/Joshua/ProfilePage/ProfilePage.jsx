@@ -6,7 +6,7 @@ function ProfilePage() {
     <div>
         <div className="informationdetailcont">
 
-            <h1 style={{marginLeft: "30px", marginTop: "20px"}}>My Profile</h1>
+            <h1 style={{marginLeft: "30px", paddingTop: "10px", fontSize: "27px"}}>My Profile</h1>
             <form className="profileform">
               <div className="inforcontainer">
                 <h2>Full Name</h2>
@@ -22,7 +22,7 @@ function ProfilePage() {
                 <input
                   className="containerwrap"
                   type="text"
-                  placeholder="Email email here ..."
+                  placeholder="Enter email here ..."
                 />
               </div>
 
