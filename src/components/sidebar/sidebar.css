@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     position: fixed;
+    justify-content: space-between;
 
     & .navi{
         width: 80%;
@@ -32,6 +33,28 @@
 
         & p:hover{
             color: blue;
+        }
+    }
+
+    & .log-out{
+        width: 80%;
+        height: max-content;
+        padding-left: 50px;
+        margin-bottom: 50px;
+
+        & p{
+            font-weight: 600;
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 250ms ease-in-out;
+            color: red;
+
+            & span{
+                font-size: 18px;
+                color: black;
+            }
         }
     }
 }

@@ -17,7 +17,6 @@ function DashboardHeader() {
                 <img src={profilepicture} alt="" />
             </div>
             <h1 style={{marginLeft: "20px", fontSize: "17px",}}>Hi, Samuel</h1>
-            <button className="signoutbtn">SignOut</button>
           </div>
         </div>
       </div>
