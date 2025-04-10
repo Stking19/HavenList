@@ -21,9 +21,28 @@
       font-weight: 700;
     }
 
-    & h3 {
-      font-size: 22px;
-      font-weight: 700;
+    & .carouselWrap{
+      width: 50%;
+      overflow: hidden;
+    }
+
+    & .carousel-content{
+      display: flex;
+      animation: slideLeft 15s linear infinite;
+
+      & .carouselText{
+        white-space: nowrap;
+        padding-right: 100px;
+        min-width: 100%;
+      }
+
+
+      & h3 {
+        font-size: 22px;
+        font-weight: 700;
+        padding-right: 100px;
+        margin: 0;
+      }
     }
   }
 
@@ -484,4 +503,17 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transition: all 250ms ease-in-out;
   }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  } 
+}
+
+.carouselText::-webkit-scrollbar{
+  display: none;
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router'
+import { HashRouter as Router, Routes, Route } from 'react-router'
 import PrivateRoute from './routes/PrivateRoute'
 import Error from './components/error/Error'
 import LandingPage from './pages/LandingPage'
@@ -19,97 +19,25 @@ import ProfilePage from './pages/Joshua/ProfilePage/ProfilePage'
 import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 
 const App = () => {
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <LandingPage />,
-      children:[
-        { 
-          path: '/',
-          element: <Home />
-        },
-
-        {
-          path: '/propertydetails/:id',
-          element: <PropertyDetails />,
-        },
-
-        {
-          path: '/listings',
-          element: <Listing />,
-        },
-
-        {
-          path: '/T&Cs',
-          element: <TermsCondition />
-        },
-      ]
-    },
-
-    {
-      path: "/sign-in",
-      element: <Login />
-    },
-
-    {
-      path: "/register",
-      element: <SignUp />
-    },
-    
-    {
-      path: "/reset-password",
-      element: <PasswordReset />
-    },
-
-    {
-      path: "/forgot-password",
-      element: <ForgotPassword />
-    },
-
-    {
-      path: "/verify",
-      element: <Verify />
-    },
-
-    {
-      path: '/private',
-      element: <PrivateRoute />
-    },
-
-    {
-      path: '/payment',
-      element: <Payment />
-    },
-
-    {
-      path: '*',
-      element: <Error />
-    },
-
-    {
-      path: "/aboutus",
-      element: <AboutUsPage/>
-    },
-
-    {
-      path: "/dashboardheader",
-      element: <DashboardHeader/>
-    },
-
-    {
-      path: "/profile",
-      element: <ProfilePage/>
-    }, 
-
-    {
-      path: "/email",
-      element: <EmailConfirmation/>
-    } 
-
-    
-  ])
   return (
-    <RouterProvider router={router}/>
+    <Router>
+      <Routes>
+        <Route path='/' element={<LandingPage />}>
+          <Route path='/' element={<Home />} />
+          <Route path='/propertydetails/:id' element={<PropertyDetails />} />
+          <Route path='/listings' element={<Listing />} />
+          <Route path='/T&Cs' element={<TermsCondition />} />
+        </Route>
+        <Route path='/sign-in' element={<Login />}/>
+        <Route path='/register' element={<SignUp />}/>
+        <Route path='/reset-password' element={<PasswordReset />}/>
+        <Route path='/forgot-password' element={<ForgotPassword />}/>
+        <Route path='/verify' element={<Verify />}/>
+        <Route path='/private' element={<PrivateRoute />}/>
+        <Route path='/payment' element={<Payment />}/>
+        <Route path='*' element={<Error />}/>
+      </Routes>
+    </Router>
   )
 }
 
