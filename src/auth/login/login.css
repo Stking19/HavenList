@@ -1,173 +1,183 @@
-.mainwrap{
-    width: 100%;
-    height: 100vh;
+.mainwrap {
+  width: 100%;
+  height: 100vh;
 }
 
-.loginwrapper{
-    width: 100%;
-    height: 98%;
-    display: flex;
+.loginwrapper {
+  width: 100%;
+  height: 98%;
+  display: flex;
 }
 
-.loginImageWrap{
-    width: 50%;
+.loginImageWrap {
+  width: 50%;
+  height: 100%;
+  background-color: darkcyan;
+
+  img {
+    width: 100%;
     height: 100%;
-    background-color: darkcyan;
-
-    img{
-        width: 100%;
-        height: 100%;
-    }
-
+  }
 }
 
-.loginContainer{
-    width: 60%;
-    height: 50%;
-    padding: 70px;
-
+.loginContainer {
+  width: 60%;
+  height: 50%;
+  padding: 70px;
 }
 
-.logintextwrap{
-    width: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 20px;
-    margin-top: -40px;
-    font-size: 15px;
-    
-
+.logintextwrap {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+  margin-top: -40px;
+  font-size: 15px;
 }
 
-.loginDetails{
-    width: 100%;
-    margin-top: 70px;
-   
+.loginDetails {
+  width: 100%;
+  margin-top: 70px;
 }
 
-.loginformwrap{
-    width: 100%;
-    height: 50%;
+.loginformwrapper {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.loginformwrap{
-    width: 100%;
-    height: 90px;
-    margin-top: -30px;
-    margin-left: 20px;
+.loginformwrap {
+  width: 100%;
+  height: 100px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 
-   h2{
+  h2 {
     font-size: 20px;
-   } 
+    font-weight: 400;
+  }
 }
 
-.logininputcont{
-    width: 83%;
-    height: 30px;
-    border-radius: 10px;
-    font-size: 15px;
-    padding: 5px;
+.logininputcont {
+  width: 90%;
+  height: 60px;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 5px;
+  border: 1px solid lightgray;
+  outline: none;
 }
 
-.loginbtnwrap{
-    width: 85%;
-    height: 45px;
-    font-size: 19px;
-    font-weight: bolder;
-    border-radius: 10px;
-    color: white ;
-    background-color:  #00bcd4;
-    border: none;
-    margin-left: 20px;
-    margin-top: 30px;
+.loginbtnwrap {
+  width: 90%;
+  height: 60px;
+  font-size: 20px;
+  font-weight: bolder;
+  border-radius: 10px;
+  color: white;
+  background-color: #00bcd4;
+  border: none;
+  margin-left: 20px;
+  transition: all 250ms ease-in-out;
 }
 
-.loginbtnwrap:hover{
+.loginbtnwrap:hover {
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid #00bcd4;
+  color: #00bcd4;
+}
+
+.wrap {
+  cursor: pointer;
+}
+
+.forgotpasswordwrap {
+  width: 100%;
+  display: flex;
+  height: max-content;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 60px;
+  margin-top: 20px;
+  margin-left: 20px;
+
+  & span {
+    color: #00bcd4;
     cursor: pointer;
-    background-color: #00bbd491;
-}
-
-.wrap{
-    cursor: pointer;
-}
-
-.forgotpasswordwrap{
-    width: 100%;
-    margin-left: 230px;
-    margin-top: -40px;
+  }
 }
 
 .error {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.usernameormwrap {
+  width: 100%;
+}
+
+@media (max-width: 460px) {
+  .loginImageWrap {
+    display: none;
   }
 
-  .usernameormwrap{
+  .loginContainer {
     width: 100%;
   }
 
-  @media (max-width: 460px) {
-     
-    .loginImageWrap{
-        display: none;
+  .logintextwrap {
+    width: 100%;
+    display: flex;
+    text-align: center;
+
+    h1 {
+      margin-left: 60px;
+      font-size: 35px;
     }
 
-    .loginContainer{
-        width: 100%;
+    span {
+      margin-right: 130px;
     }
-
-    .logintextwrap{
-        width: 100%;
-        display: flex;
-        text-align: center;
-
-        h1{
-            margin-left: 60px;
-            font-size: 35px;
-        }
-
-        span{
-            margin-right: 130px;
-        }
-    }
-
-    .logininputcont{
-        height: 50px;
-        font-size: 24px;
-    }
-      
-    .loginformwrap{
-        width: 100%;
-        margin-top: -2px;
-
-        h2{
-            font-size: 30px;
-        }
-    }
-
-    .loginbtnwrap{
-        height: 60px;
-        font-size: 25px;
-        margin-bottom: -150px;
-    }
-
-    .main{
-       width: 100%;
-       height: 30px;
-       background-color: aqua;
-        margin-top: 10px;
-    }
-
-    .loginDetails{
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-    
   }
 
+  .logininputcont {
+    height: 50px;
+    font-size: 24px;
+  }
 
-  
+  .loginformwrap {
+    width: 100%;
+    margin-top: -2px;
+
+    h2 {
+      font-size: 30px;
+    }
+  }
+
+  .loginbtnwrap {
+    height: 60px;
+    font-size: 25px;
+    margin-bottom: -150px;
+  }
+
+  .main {
+    width: 100%;
+    height: 30px;
+    background-color: aqua;
+    margin-top: 10px;
+  }
+
+  .loginDetails {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}

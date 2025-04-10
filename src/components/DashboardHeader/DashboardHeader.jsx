@@ -1,6 +1,6 @@
 import React from "react";
-import icon from "../../assets/icon.png";
-import profilepicture from "../../assets/profilepix.jpg"
+import icon from "/IMG/icon.png";
+import profilepicture from "/IMG/profilepix.jpg"
 import "./dashboardheader.css";
 
 function DashboardHeader() {
@@ -17,7 +17,6 @@ function DashboardHeader() {
                 <img src={profilepicture} alt="" />
             </div>
             <h1 style={{marginLeft: "20px", fontSize: "17px",}}>Hi, Samuel</h1>
-            <button className="signoutbtn">SignOut</button>
           </div>
         </div>
       </div>
