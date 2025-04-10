@@ -1,7 +1,6 @@
 .fullpage{
     width: 100%;
     height: 100vh;
-    /* background-color: black; */
 }
 
 .herosession{
@@ -30,7 +29,7 @@
     display: flex;
     justify-content: space-around;
     margin-top: 50px;
-    /* background-color: blue; */
+   
 }
 
 .imgcont1{
@@ -49,7 +48,6 @@
 .textSession{
     width: 45%;
     height: 50%;
-    /* margin-top: 20px; */
     padding: 10px;
 
     h1{
@@ -90,16 +88,14 @@
     display: flex;
     justify-content: space-around;
     margin-top: 70px;
-    /* background-color: aqua; */
+   
 }
 
 .mission{
     width: 30%;
     height: 80%;
     border-radius: 15px;
-    /* padding: 15px; */
     border: 1px solid #00bcd4;
-    /* background-color: black; */
 
     h1{
         margin-left: 20px;
@@ -121,7 +117,6 @@
     height: 80%;
     border-radius: 15px;
     border: 1px solid #00bcd4;
-    /* background-color: black; */
 
     h1{
         margin-left: 20px;
@@ -145,7 +140,6 @@
     height: 80%;
     border-radius: 15px;
     border: 1px solid #00bcd4;
-    /* background-color: black; */
 
     h1{
         margin-left: 20px;
@@ -166,8 +160,6 @@
 .photowrap{
     width: 100%;
     height: 70%;
-   
-    /* background-color: aqua; */
 }
 
 .picwrapper1{
@@ -178,8 +170,6 @@
     margin-top: 25px;
     margin-left: 130px;
     gap: 20px;
-    /* justify-content: space-around; */
-
 }
 
 .picwrapper2{
@@ -188,14 +178,13 @@
     display: flex;
     gap: 60px;
     margin-left: 140px;
-    /* align-items: center; */
+    
 }
 
 .firstpic{
     width: 22%;
     height: 60%;
     border-radius: 25px;
-    /* background-color: #00bcd4; */
    
     img{
         width: 80%;
@@ -209,7 +198,6 @@
     width: 22%;
     height: 60%;
     border-radius: 25px;
-    /* background-color: blue; */
 
     img{
         width: 80%;
@@ -223,7 +211,6 @@
     width: 22%;
     height: 60%;
     border-radius: 25px;
-    /* background-color: green; */
 
     img{
         width: 80%;
@@ -237,8 +224,7 @@
     width: 22%;
     height: 60%;
     border-radius: 25px;
-    /* background-color: #00bcd4; */
-
+   
     img{
         width: 80%;
         height: 110%;
@@ -253,7 +239,6 @@
     height: 60%;
     border-radius: 25px;
     margin-top: 40px;
-    /* background-color: #00bcd4; */
 
     img{
         width: 93%;
@@ -268,8 +253,7 @@
     height: 60%;
     border-radius: 25px;
     margin-top: 40px;
-    /* background-color: #00bcd4; */
-
+    
     img{
         width: 93%;
         height: 110%;
@@ -292,7 +276,7 @@
     height: 50%;
     background-color: #00bcd4;
     margin-top: 180px;
-    overflow: visible; /* make sure overflow isn't hidden */
+    overflow: visible; 
     background-Image: url("../../../assets/footerpix.png");
     background-Size: cover;
     background-Position: center;
@@ -301,21 +285,19 @@
   
   .innercontainer {
     position: absolute;
-    top: -80px; /* move up */
+    top: -80px;
     left: 50%;
     transform: translateX(-50%);
     width: 35%;
     height: 50%;
     display: flex;
-    /* background-color: #4f46e5; */
-    /* border-radius: 10px; */
+   
   }
 
   .rightside{
     width: 50%;
     height: 100%;
     display: flex;
-    /* margin-top: 20px; */
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -323,7 +305,6 @@
     background-color: rgba(0, 0, 255, 0.692);
 
     h2{
-        /* margin-top: 50px; */
         font-size: 14px;
     }
   }

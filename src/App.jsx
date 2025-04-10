@@ -16,6 +16,7 @@ import Home from './pages/Stephen/home/Home'
 import AboutUsPage from './pages/Joshua/AboutUsPage/AboutUsPage'
 import DashboardHeader from './components/DashboardHeader/DashboardHeader'
 import ProfilePage from './pages/Joshua/ProfilePage/ProfilePage'
+import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -98,7 +99,14 @@ const App = () => {
     {
       path: "/profile",
       element: <ProfilePage/>
-    }
+    }, 
+
+    {
+      path: "/email",
+      element: <EmailConfirmation/>
+    } 
+
+    
   ])
   return (
     <RouterProvider router={router}/>

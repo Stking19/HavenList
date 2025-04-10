@@ -6,13 +6,12 @@ import picture4 from "../../../assets/somto.png";
 import picture5 from "../../../assets/steven.png";
 import picture6 from "../../../assets/ebuka.png";
 import picture7 from "../../../assets/Aboutushouse.png";
-import linkedin from "../../../assets/image.png"
-import twitter from "../../../assets/image1.png"
-import instagram from "../../../assets/image2.png"
-import facebook from "../../../assets/image3.png"
-// import picture8 from "../../../assets/Heropagepic.jpg";
-
+import linkedin from "../../../assets/image.png";
+import twitter from "../../../assets/image1.png";
+import instagram from "../../../assets/image2.png";
+import facebook from "../../../assets/image3.png";
 import "./aboutuspage.css";
+
 
 function AboutUsPage() {
   return (
@@ -80,7 +79,7 @@ function AboutUsPage() {
             <h3>
               5. Combining digital efficiency with personal care and connection.
             </h3>
-            {/* <h3>6. Leading with innovation, service, and simplicity.</h3> */}
+           
           </div>
           <div className="value">
             <h1>Core Values</h1>
