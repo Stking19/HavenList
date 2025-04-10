@@ -1,5 +1,5 @@
 import React from 'react'
-import picture from "../../assets/loginImage.png"
+import picture from "/IMG/loginImage.png"
 import "./login.css"
 
 const Login = () => {
