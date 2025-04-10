@@ -14,8 +14,6 @@ import Payment from './pages/Joshua/payment/Payment'
 import TermsCondition from './pages/Joshua/T&Cs/TermsCondition'
 import Home from './pages/Stephen/home/Home'
 import AboutUsPage from './pages/Joshua/AboutUsPage/AboutUsPage'
-import DashboardHeader from './components/DashboardHeader/DashboardHeader'
-import ProfilePage from './pages/Joshua/ProfilePage/ProfilePage'
 import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 
 const App = () => {
@@ -27,6 +25,7 @@ const App = () => {
           <Route path='/propertydetails/:id' element={<PropertyDetails />} />
           <Route path='/listings' element={<Listing />} />
           <Route path='/T&Cs' element={<TermsCondition />} />
+          <Route path='/about' element={<AboutUsPage />} />
         </Route>
         <Route path='/sign-in' element={<Login />}/>
         <Route path='/register' element={<SignUp />}/>
@@ -35,6 +34,7 @@ const App = () => {
         <Route path='/verify' element={<Verify />}/>
         <Route path='/private' element={<PrivateRoute />}/>
         <Route path='/payment' element={<Payment />}/>
+        <Route path='/confirm-email' element={<EmailConfirmation />}/>
         <Route path='*' element={<Error />}/>
       </Routes>
     </Router>

@@ -4,6 +4,8 @@ import SideBar from "../../../components/sidebar/SideBar";
 import { IoHomeOutline } from "react-icons/io5";
 import { TbHandClick } from "react-icons/tb";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
+import ProfilePage from "../../Joshua/ProfilePage/ProfilePage";
+import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 
 const LandlordDashboard = () => {
   const landlord = [
@@ -51,7 +53,7 @@ const [activeTab, setActiveTab] = useState(0)
     <div className="dashboard">
       <SideBar setActiveTab={setActiveTab}/>
       <div className="dash">
-        <div className="headDa"></div>
+        <DashboardHeader />
         { activeTab === 0 ? <div className="hello">
           <h2>Hello, Samuel</h2>
           <div className="cardsDE">
@@ -100,7 +102,7 @@ const [activeTab, setActiveTab] = useState(0)
             </div>
           </div>
         </div> : null }
-        
+        { activeTab === 3 ? <ProfilePage /> : null}      
       </div>
     </div>
   );
