@@ -1,5 +1,5 @@
 import React from "react";
-import "./forgotpassword.css";
+import './forgotPassword.css'
 
 const ForgotPassword = () => {
   return (

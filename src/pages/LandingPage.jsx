@@ -3,7 +3,6 @@ import Loadscreen from '../loadscreen/Loadscreen'
 import Header from '../components/header/Header'
 import { Outlet } from 'react-router'
 import Footer from '../components/footer/Footer'
-import AboutUsPage from './Joshua/AboutUsPage/AboutUsPage'
 
 const LandingPage = () => {
     const [isLoading, setIsLoading] = useState(true)
@@ -17,8 +16,7 @@ const LandingPage = () => {
   return (
     isLoading ? <Loadscreen /> : <div>
         <Header />
-        <AboutUsPage />
-        {/* <Outlet /> */}
+        <Outlet />
         <Footer />
     </div>
   )
