@@ -24,8 +24,6 @@ const SignUp = () => {
           </div>
 
           <div className="signupDetails">
-            <h1 style={{ fontSize: "20px" }}>Register</h1>
-
             <form>
               <div className="signupformwrapper">
                 <div className="signupformwrap">
