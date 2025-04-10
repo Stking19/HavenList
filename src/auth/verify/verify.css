@@ -83,18 +83,18 @@
     top: -80px;
     
     h2{
-        font-size: 35px;
+        font-size: 50px;
     }
 }
 
 .resetemailbtn{
     width: 46%;
-    height: 95px;
+    height: 120px;
     margin-right: 51px;
     border-radius: 10px;
     margin-top: 33px;
     color: white;
-    font-size: 40px;
+    font-size: 44px;
     font-weight: bolder;
     border: none;
     background-color: #00bcd4;

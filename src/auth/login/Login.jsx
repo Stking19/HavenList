@@ -13,12 +13,12 @@ const Login = () => {
         </div>
         <div className="loginContainer">
           <div className="logintextwrap">
-            <h1>Login in to your <br /><span style={{marginLeft: "125px"}}>Account</span></h1>
+            <h1>Login in to your <br /><span style={{marginLeft: "53px"}}>Account</span></h1>
           </div>
 
           <div className="loginDetails">
             <form>
-              <div className="loginformwrap">
+              <div className="loginformwrapper">
                 <div className="loginformwrap">
                   <h2>Email</h2>
                   <input className='logininputcont' type="text" placeholder="Enter email" />
@@ -35,12 +35,11 @@ const Login = () => {
                   <button className="loginbtnwrap" type="submit">
                    Login
                   </button>
-                </div>
-
-                
+    
                 <div className="forgotpasswordwrap">
-                <h2 style={{textDecoration: "underline", marginTop: "60px", fontSize: "40px", fontFamily: "sans-serif"}}>Forgot password</h2>
+                <h2 style={{textDecoration: "underline", marginTop: "60px", fontSize: "15px", fontFamily: "sans-serif"}}>Forgot password</h2>
                 </div>
+              </div>
               </div>
             </form>
           </div>
