@@ -30,7 +30,7 @@ const Header = () => {
       <div className="nav">
         <p onClick={() => navigate('/')}>Home</p>
         <p onClick={() => navigate("/listings")}>Property</p>
-        <p>Help</p>
+        <p onClick={() => navigate('/about')}>About</p>
       </div>
       <div className="user">
         <p
