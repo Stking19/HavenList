@@ -5,6 +5,9 @@ import { IoBedOutline } from "react-icons/io5";
 import { FiPlus } from "react-icons/fi";
 import { LuBath } from "react-icons/lu";
 import { PiToiletLight } from "react-icons/pi";
+import { useInView } from "react-intersection-observer";
+import CountUp from "react-countup";
+
 
 const Home = () => {
   const houseDetails = [
@@ -39,16 +42,25 @@ const Home = () => {
   ];
 
   const [details, setDetails] = useState(null);
+  const { ref, inView } = useInView({ triggerOnce: true });
+
   return (
     <div className="home">
       <div className="heroPage">
         <h1>FIND YOUR PERFECT HOME</h1>
-        <h3>Verified Listing. Transparent Prices. Happy Homes.</h3>
+        <div className="carouselWrap">
+        <div className="carousel-content">
+          <div className="carouselText">
+            <h3>Verified Listing. Transparent Prices. Happy Homes.</h3>
+          </div>
+          <div className="carouselText">
+            <h3>Verified Listing. Transparent Prices. Happy Homes.</h3>
+          </div>
+        </div>
+        </div>
         <SearchBar />
       </div>
-      <div className="aboutIc">
-        
-      </div>
+      <div className="aboutIc"></div>
       <div className="properties">
         <div className="HouseList">
           <div className="houseWrap">
@@ -170,17 +182,17 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="numbers">
+      <div className="numbers" ref={ref}>
         <div className="num">
-          <h1>17, 813</h1>
+          <h1>{inView && <CountUp end={17813} duration={2} />}</h1>
           <p>Rented Out</p>
         </div>
         <div className="num">
-          <h1>127, 533</h1>
+          <h1>{inView && <CountUp end={127533} duration={2} />}</h1>
           <p>Property Listed</p>
         </div>
         <div className="num">
-          <h1>304</h1>
+          <h1>{inView && <CountUp end={304} duration={2} />}</h1>
           <p>Areas Covered</p>
         </div>
       </div>
@@ -188,8 +200,7 @@ const Home = () => {
         <h3>Coming Soon</h3>
         <div className="states">
           <div className="ekiti"></div>
-          <div className="osun">
-          </div>
+          <div className="osun"></div>
           <div className="ondo"></div>
         </div>
       </div>
