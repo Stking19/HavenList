@@ -15,6 +15,7 @@ import TermsCondition from './pages/Joshua/T&Cs/TermsCondition'
 import Home from './pages/Stephen/home/Home'
 import AboutUsPage from './pages/Joshua/AboutUsPage/AboutUsPage'
 import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
+import LandlordDashboard from './pages/Stephen/landlord/LandlordDashboard'
 
 const App = () => {
   return (
@@ -32,7 +33,9 @@ const App = () => {
         <Route path='/reset-password' element={<PasswordReset />}/>
         <Route path='/forgot-password' element={<ForgotPassword />}/>
         <Route path='/verify' element={<Verify />}/>
-        <Route path='/private' element={<PrivateRoute />}/>
+        <Route path='/private' element={<PrivateRoute />}>
+          <Route path='' element={<LandlordDashboard />} />
+        </Route>
         <Route path='/payment' element={<Payment />}/>
         <Route path='/confirm-email' element={<EmailConfirmation />}/>
         <Route path='*' element={<Error />}/>

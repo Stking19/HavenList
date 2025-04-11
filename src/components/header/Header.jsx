@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./header.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { useNavigate } from "react-router";
+import { FaRegUser } from "react-icons/fa";
 
 const Header = () => {
   const [dropdown, setDropdown] = useState(false);
@@ -33,6 +34,7 @@ const Header = () => {
         <p onClick={() => navigate('/about')}>About</p>
       </div>
       <div className="user">
+        <p onClick={() => navigate('/private')}><FaRegUser /></p>
         <p
           onMouseOver={() => setDropdown(true)}
           onMouseOut={() => setDropdown(false)}
