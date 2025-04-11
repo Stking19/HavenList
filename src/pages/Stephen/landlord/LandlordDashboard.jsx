@@ -6,6 +6,8 @@ import { TbHandClick } from "react-icons/tb";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import ProfilePage from "../../Joshua/ProfilePage/ProfilePage";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
+import LandlordPropertyUpload from "../../Arinze/LandlordPropertyUpload";
+import LandLordListing from "../../Arinze/LandLordListing";
 
 const LandlordDashboard = () => {
   const landlord = [
@@ -101,8 +103,10 @@ const [activeTab, setActiveTab] = useState(0)
               ))}
             </div>
           </div>
-        </div> : null }
-        { activeTab === 3 ? <ProfilePage /> : null}      
+        </div> : null }     
+        { activeTab === 1 ? <LandlordPropertyUpload /> : null}      
+        { activeTab === 2 ? <LandLordListing /> : null}  
+        { activeTab === 3 ? <ProfilePage /> : null}     
       </div>
     </div>
   );

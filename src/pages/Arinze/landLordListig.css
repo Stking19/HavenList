@@ -1,0 +1,28 @@
+.landLordListingMain{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.landLordMainScreen{
+    height: max-content;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.textHeader{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.landlordListingHolder{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}

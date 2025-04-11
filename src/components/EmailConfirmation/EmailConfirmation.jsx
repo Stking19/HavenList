@@ -1,9 +1,11 @@
 import React from 'react'
 import { MdOutlineCancel } from "react-icons/md";
 import emailpicture from "/IMG/Emailpix.png";
+import { useNavigate } from 'react-router';
 import "./emailconfirmation.css"
 
 function EmailConfirmation() {
+  const navigate = useNavigate();
   return (
     <div>
       
@@ -29,7 +31,7 @@ function EmailConfirmation() {
                     
                     <hr style={{width: "75%"}}/>
 
-                    <h3>If you do not recieve any email, <span>Resend Confirmation mail.</span></h3>
+                    <h3>If you do not recieve any email, <span onClick={() => navigate("/forgot-password")}>Resend Confirmation mail.</span></h3>
                 </div>
             </div>
         </div>
