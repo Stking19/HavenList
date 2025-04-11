@@ -7,6 +7,7 @@ import { LuBath } from "react-icons/lu";
 import { PiToiletLight } from "react-icons/pi";
 import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
+import { useNavigate } from "react-router";
 
 
 const Home = () => {
@@ -43,6 +44,7 @@ const Home = () => {
 
   const [details, setDetails] = useState(null);
   const { ref, inView } = useInView({ triggerOnce: true });
+  const navigate = useNavigate()
 
   return (
     <div className="home">
@@ -70,16 +72,15 @@ const Home = () => {
                   <div
                     className="Houses"
                     key={index}
-                    onClick={() => setDetails(null)}
                   >
                     <div className="houseDet">
                       <div className="imgWrap">
-                        <div className="Himg">
+                        <div className="Himg" onClick={() => navigate('/propertydetails')}>
                           <img src={house.Image} alt="" />
                         </div>
                       </div>
                       <div className="Hdetails">
-                        <h3>{house.title}</h3>
+                        <h3 onClick={() => navigate('/propertydetails')}>{house.title}</h3>
                         <p>{house.location}</p>
                         <p>{house.description}</p>
                         <span>
@@ -106,23 +107,23 @@ const Home = () => {
                         </p>
                         <span>3 Toilets</span>
                       </div>
-                      <p className="icon">
+                      <p className="icon" onClick={() => setDetails(null)}>
                         <FiPlus />
                       </p>
                     </div>
                   </div>
                 ) : (
-                  <div className="houseCards" onClick={() => setDetails(index)}>
+                  <div className="houseCards" >
                     <div className="imgWrap">
-                      <div className="Himg">
+                      <div className="Himg" onClick={() => navigate('/propertydetails')}>
                         <img src={house.Image} alt="" />
                       </div>
                     </div>
                     <div className="Hdetails">
-                      <h3>{house.title}</h3>
+                      <h3 onClick={() => navigate('/propertydetails')}>{house.title}</h3>
                     </div>
                     <div className="butt">
-                      <p className="icon">
+                      <p className="icon" onClick={() => setDetails(index)}>
                         <FiPlus />
                       </p>
                     </div>
