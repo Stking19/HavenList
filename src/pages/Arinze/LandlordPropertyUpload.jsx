@@ -1,7 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './LandlordPropertyUpload.css'
 
 const LandlordPropertyUpload = () => {
+
+  const [imgBox, setImgBox] = useState([
+    { id: 1, imgUrl: "" },
+    { id: 2, imgUrl: "" },
+    { id: 3, imgUrl: "" },
+    { id: 4, imgUrl: "" },
+    { id: 5, imgUrl: "" }
+  ]);
+
+  const handleImageUpload = (e, index) => {
+    const file = e.target.files[0];
+    const imgUrl = URL.createObjectURL(file);
+
+    setImgBox((prev) =>
+      prev.map((item, idx) =>
+        idx === index ? { ...item, imgUrl } : item
+      )
+    );
+  };
+
+
   return (
     <div className='LandlordPropertyUploadMain'>
       <div className='asideDashBord'>
@@ -83,13 +104,54 @@ const LandlordPropertyUpload = () => {
             </section>
           </div>
 
-          <div className='imageDetailUpload'> 
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+          <section className='imageDetailUpload'> 
+          {imgBox.map((item, index) => (
+        <div className="uploadImageCont" key={item.id}>
+          <input
+            type="file"
+            name=""
+            id={`img-${item.id}`}
+            hidden
+            onChange={(e) => handleImageUpload(e, index)}
+          />
+          {item.imgUrl ? (
+            <img src={item.imgUrl} alt={`Uploaded ${item.id}`} />
+          ) : (
+            <label htmlFor={`img-${item.id}`}>Click here to upload image</label>
+          )}
+        </div>
+      ))}
+          
+
+            {/* <div className='uploadImageCont'>
+              <input type="file" multiple={true} name="" id="img" hidden onChange={handleImageUpload} />
+              {
+                imageVal === null?<label htmlFor="img">click here to upload image</label>: <img src={imageVal} alt="" />
+              }
+            </div>
+
+            <div className='uploadImageCont'>
+              <input type="file" name="" id="img" hidden onChange={handleImageUpload} />
+              {
+                imageVal === null?<label htmlFor="img">click here to upload image</label>: <img src={imageVal} alt="" />
+              }
+            </div>
+
+            <div className='uploadImageCont'>
+              <input type="file" name="" id="img" hidden onChange={handleImageUpload} />
+              {
+                imageVal === null?<label htmlFor="img">click here to upload image</label>: <img src={imageVal} alt="" />
+              }
+            </div>
+
+            <div className='uploadImageCont'>
+              <input type="file" name="" id="img" hidden onChange={handleImageUpload} />
+              {
+                imageVal === null?<label htmlFor="img">click here to upload image</label>: <img src={imageVal} alt="" />
+              }
+            </div> */}
+
+          </section>
             <button className='propertyUploadBtn'>Upload</button>
         </section>
       </div>

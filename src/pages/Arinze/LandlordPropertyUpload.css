@@ -247,19 +247,23 @@
 
 
 .imageDetailUpload {
-    height: 40%;
-    width: 80%;
+    height: 40vh;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+.uploadImageCont{
+    height: 60%;
+    width: 18%;
+    background-color: blue;
 
 
-
-    span {
-        height: 90%;
-        width: 20%;
-        display: block;
-        background-color: red;
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
     }
 }
 
