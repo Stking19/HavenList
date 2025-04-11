@@ -25,8 +25,6 @@ const LandlordPropertyUpload = () => {
 
   return (
     <div className='LandlordPropertyUploadMain'>
-      <div className='asideDashBord'>
-      </div>
       <div className='landLordUploadMainScreen'>
         <section className='landLordUploadDetail'>
           <h2>Tell us more about this listing</h2>

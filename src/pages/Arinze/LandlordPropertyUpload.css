@@ -7,16 +7,9 @@
 }
 
 
-.asideDashBord {
-    height: 132vh;
-    width: 15%;
-    background-color: rgb(122, 122, 236);
-}
-
-
 .landLordUploadMainScreen {
     height: max-content;
-    width: 83%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
