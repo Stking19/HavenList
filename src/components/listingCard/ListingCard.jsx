@@ -15,7 +15,7 @@ const ListingCard = () => {
       description: "Well gated with up to six cars parking space.",
       price: "N2M",
       frequency: "per annum",
-      image: "../../../public/be948c0b628fbdd1e0788117fb2000a1.jpg"
+      image: "IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
     },
     // {
     //   id: 2,

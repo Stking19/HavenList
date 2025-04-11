@@ -5,6 +5,10 @@ import { IoBedOutline } from "react-icons/io5";
 import { FiPlus } from "react-icons/fi";
 import { LuBath } from "react-icons/lu";
 import { PiToiletLight } from "react-icons/pi";
+import { useInView } from "react-intersection-observer";
+import CountUp from "react-countup";
+import { useNavigate } from "react-router";
+
 
 const Home = () => {
   const houseDetails = [
@@ -39,16 +43,26 @@ const Home = () => {
   ];
 
   const [details, setDetails] = useState(null);
+  const { ref, inView } = useInView({ triggerOnce: true });
+  const navigate = useNavigate()
+
   return (
     <div className="home">
       <div className="heroPage">
         <h1>FIND YOUR PERFECT HOME</h1>
-        <h3>Verified Listing. Transparent Prices. Happy Homes.</h3>
+        <div className="carouselWrap">
+        <div className="carousel-content">
+          <div className="carouselText">
+            <h3>Verified Listing. Transparent Prices. Happy Homes.</h3>
+          </div>
+          <div className="carouselText">
+            <h3>Verified Listing. Transparent Prices. Happy Homes.</h3>
+          </div>
+        </div>
+        </div>
         <SearchBar />
       </div>
-      <div className="aboutIc">
-        
-      </div>
+      <div className="aboutIc"></div>
       <div className="properties">
         <div className="HouseList">
           <div className="houseWrap">
@@ -58,16 +72,15 @@ const Home = () => {
                   <div
                     className="Houses"
                     key={index}
-                    onClick={() => setDetails(null)}
                   >
                     <div className="houseDet">
                       <div className="imgWrap">
-                        <div className="Himg">
+                        <div className="Himg" onClick={() => navigate('/propertydetails')}>
                           <img src={house.Image} alt="" />
                         </div>
                       </div>
                       <div className="Hdetails">
-                        <h3>{house.title}</h3>
+                        <h3 onClick={() => navigate('/propertydetails')}>{house.title}</h3>
                         <p>{house.location}</p>
                         <p>{house.description}</p>
                         <span>
@@ -94,23 +107,23 @@ const Home = () => {
                         </p>
                         <span>3 Toilets</span>
                       </div>
-                      <p className="icon">
+                      <p className="icon" onClick={() => setDetails(null)}>
                         <FiPlus />
                       </p>
                     </div>
                   </div>
                 ) : (
-                  <div className="houseCards" onClick={() => setDetails(index)}>
+                  <div className="houseCards" >
                     <div className="imgWrap">
-                      <div className="Himg">
+                      <div className="Himg" onClick={() => navigate('/propertydetails')}>
                         <img src={house.Image} alt="" />
                       </div>
                     </div>
                     <div className="Hdetails">
-                      <h3>{house.title}</h3>
+                      <h3 onClick={() => navigate('/propertydetails')}>{house.title}</h3>
                     </div>
                     <div className="butt">
-                      <p className="icon">
+                      <p className="icon" onClick={() => setDetails(index)}>
                         <FiPlus />
                       </p>
                     </div>
@@ -170,17 +183,17 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="numbers">
+      <div className="numbers" ref={ref}>
         <div className="num">
-          <h1>17, 813</h1>
+          <h1>{inView && <CountUp end={17813} duration={2} />}</h1>
           <p>Rented Out</p>
         </div>
         <div className="num">
-          <h1>127, 533</h1>
+          <h1>{inView && <CountUp end={127533} duration={2} />}</h1>
           <p>Property Listed</p>
         </div>
         <div className="num">
-          <h1>304</h1>
+          <h1>{inView && <CountUp end={304} duration={2} />}</h1>
           <p>Areas Covered</p>
         </div>
       </div>
@@ -188,8 +201,7 @@ const Home = () => {
         <h3>Coming Soon</h3>
         <div className="states">
           <div className="ekiti"></div>
-          <div className="osun">
-          </div>
+          <div className="osun"></div>
           <div className="ondo"></div>
         </div>
       </div>

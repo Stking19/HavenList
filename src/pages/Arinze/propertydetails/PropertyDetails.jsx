@@ -10,24 +10,24 @@ const PropertyDetails = () => {
     <p>cool apartment for you and family</p>
         <div className='propertyDetailImageWrapper'>
           <span className='propertyDetailImageMain'>
-            <img src="../../../../public/be948c0b628fbdd1e0788117fb2000a1.jpg" alt="" />
+            <img src="/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg" alt="" />
           </span>
           <div className='subImageWrapper'>
             <section className='subImage1'>
               <span>
-                <img src="../../../../public/f1e72efd74f50f435fd26aac95593895 (1).jpg" alt="" />
+                <img src="/IMG/f1e72efd74f50f435fd26aac95593895 (1).jpg" alt="" />
               </span>
               <span>
-                <img src="../../../../public/251d5a5fc1a8245fe0a865f05388083b.jpg" alt="" />
+                <img src="/IMG/251d5a5fc1a8245fe0a865f05388083b.jpg" alt="" />
               </span>
             </section>
 
             <section className='subImage2'>
               <span>
-                <img src="../../../../public/02959aaf05749951f238b1cbc0edcc31.jpg" alt="" />
+                <img src="/IMG/02959aaf05749951f238b1cbc0edcc31.jpg" alt="" />
               </span>
               <span>
-                <img src="../../../../public/f217c589f3dc03cf9e6018c073eb242c.jpg" alt="" />
+                <img src="/IMG/f217c589f3dc03cf9e6018c073eb242c.jpg" alt="" />
               </span>
             </section>
           </div>

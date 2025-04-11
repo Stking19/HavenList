@@ -1,0 +1,75 @@
+.fullemailwrapper{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00bcd4;
+}
+
+.email-card{
+    width: 60%;
+    height: 65vh;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.email-header{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.inneremail-cont{
+    width: 98%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+}
+
+.innerbody-cont{
+    width: 100%;
+    height: 100%;
+}
+
+.emailpix-cont{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+
+    img{
+        width: 130px;
+        height: 130px;
+    }
+}
+
+.emailwriteup-cont{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 60px;
+
+    p{
+        margin-top: -10px;
+    }
+
+    h3{
+        font-size: 15px;
+        font-weight: lighter;
+    }
+
+    span{
+        color: #00bcd4;
+    }
+}

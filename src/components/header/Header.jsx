@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./header.css";
 import { IoIosArrowDown } from "react-icons/io";
+import { useNavigate } from "react-router";
+import { FaRegUser } from "react-icons/fa";
 
 const Header = () => {
   const [dropdown, setDropdown] = useState(false);
@@ -17,6 +19,8 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navigate = useNavigate()
+
   return (
     <div className={`head ${isSticky ? "sticky" : ""}`}>
       <div className="logo">
@@ -25,11 +29,12 @@ const Header = () => {
         </p>
       </div>
       <div className="nav">
-        <p>Home</p>
-        <p>Property</p>
-        <p>Help</p>
+        <p onClick={() => navigate('/')}>Home</p>
+        <p onClick={() => navigate("/listings")}>Property</p>
+        <p onClick={() => navigate('/about')}>About</p>
       </div>
       <div className="user">
+        <p onClick={() => navigate('/private')}><FaRegUser /></p>
         <p
           onMouseOver={() => setDropdown(true)}
           onMouseOut={() => setDropdown(false)}
@@ -39,15 +44,15 @@ const Header = () => {
             <IoIosArrowDown />
           </k>
         </p>
-        <span>Login</span>
+        <span onClick={() => navigate('/sign-in')}>Login</span>
         {dropdown ? (
           <div
             className="dropCard"
             onMouseOver={() => setDropdown(true)}
             onMouseOut={() => setDropdown(false)}
           >
-            <k>Landlord</k>
-            <k>Tenants</k>
+            <k onClick={() => navigate('/register')}>Landlord</k>
+            <k onClick={() => navigate('/register')}>Tenants</k>
           </div>
         ) : null}
       </div>
