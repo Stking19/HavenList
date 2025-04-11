@@ -13,101 +13,22 @@ import PropertyDetails from './pages/Arinze/propertydetails/PropertyDetails'
 import Payment from './pages/Joshua/payment/Payment'
 import TermsCondition from './pages/Joshua/T&Cs/TermsCondition'
 import Home from './pages/Stephen/home/Home'
-<<<<<<< HEAD
 import LandLordListing from './pages/Arinze/LandLordListing'
 import LandlordPropertyUpload from './pages/Arinze/LandlordPropertyUpload'
-
-const App = () => {
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <LandingPage />,
-      children:[
-        { 
-          path: '/',
-          element: <Home />
-        },
-
-        {
-          path: '/propertydetails/:id',
-          element: <PropertyDetails />,
-        },
-
-        {
-          path: '/landlordLisitng',
-          element: <LandLordListing/>,
-        },
-
-        {
-          path:'/landlordPropertyUpload',
-          element:<LandlordPropertyUpload/>
-        },
-
-        {
-          path: '/listings',
-          element: <Listing />,
-        },
-
-        {
-          path: '/T&Cs',
-          element: <TermsCondition />
-        },
-      ]
-    },
-
-    {
-      path: "/sign-in",
-      element: <Login />
-    },
-
-    {
-      path: "/register",
-      element: <SignUp />
-    },
-    
-    {
-      path: "/reset-password",
-      element: <PasswordReset />
-    },
-
-    {
-      path: "/forgot-password",
-      element: <ForgotPassword />
-    },
-
-    {
-      path: "/verify",
-      element: <Verify />
-    },
-
-    {
-      path: '/private',
-      element: <PrivateRoute />
-    },
-
-    {
-      path: '/payment',
-      element: <Payment />
-    },
-
-    {
-      path: '*',
-      element: <Error />
-    }
-  ])
-=======
 import AboutUsPage from './pages/Joshua/AboutUsPage/AboutUsPage'
 import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 import LandlordDashboard from './pages/Stephen/landlord/LandlordDashboard'
 
 const App = () => {
->>>>>>> 36f6dccee947cce3faa31e084436e12bf03ead10
+
   return (
     <Router>
       <Routes>
         <Route path='/' element={<LandingPage />}>
           <Route path='/' element={<Home />} />
           <Route path='/propertydetails' element={<PropertyDetails />} />
+          <Route path='/LandLordListing' element={<LandLordListing />} />
+          <Route path='/LandlordPropertyUpload' element={<LandlordPropertyUpload />} />
           <Route path='/listings' element={<Listing />} />
           <Route path='/T&Cs' element={<TermsCondition />} />
           <Route path='/about' element={<AboutUsPage />} />

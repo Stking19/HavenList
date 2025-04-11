@@ -121,35 +121,7 @@ const LandlordPropertyUpload = () => {
           )}
         </div>
       ))}
-          
-
-            {/* <div className='uploadImageCont'>
-              <input type="file" multiple={true} name="" id="img" hidden onChange={handleImageUpload} />
-              {
-                imageVal === null?<label htmlFor="img">click here to upload image</label>: <img src={imageVal} alt="" />
-              }
-            </div>
-
-            <div className='uploadImageCont'>
-              <input type="file" name="" id="img" hidden onChange={handleImageUpload} />
-              {
-                imageVal === null?<label htmlFor="img">click here to upload image</label>: <img src={imageVal} alt="" />
-              }
-            </div>
-
-            <div className='uploadImageCont'>
-              <input type="file" name="" id="img" hidden onChange={handleImageUpload} />
-              {
-                imageVal === null?<label htmlFor="img">click here to upload image</label>: <img src={imageVal} alt="" />
-              }
-            </div>
-
-            <div className='uploadImageCont'>
-              <input type="file" name="" id="img" hidden onChange={handleImageUpload} />
-              {
-                imageVal === null?<label htmlFor="img">click here to upload image</label>: <img src={imageVal} alt="" />
-              }
-            </div> */}
+        
 
           </section>
             <button className='propertyUploadBtn'>Upload</button>
