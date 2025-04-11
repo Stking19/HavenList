@@ -140,7 +140,7 @@ const Home = () => {
           <div className="houseImgWrap">
             <div className="houseImg">
               <div className="see">
-                <button>See more</button>
+                <button onClick={() => navigate('/listings')}>See more</button>
               </div>
             </div>
           </div>
