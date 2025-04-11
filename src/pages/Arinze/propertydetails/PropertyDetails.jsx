@@ -1,8 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router';
 import './propertydetails.css'
 import { FaAnchor, FaSink, FaAngleRight } from "react-icons/fa6";
 
 const PropertyDetails = () => {
+  const navigate = useNavigate();
   return (
     <>
     <div className='propertyDetailMain'>
@@ -108,7 +110,7 @@ const PropertyDetails = () => {
             <FaAngleRight />
           </section>
         </div>
-        <button className='propertyDetailRentBtn'>Rent</button>
+        <button onClick={() => navigate("/success")} className='propertyDetailRentBtn'>Rent</button>
         <p>You won’t be charged extra</p>
         <div className='propertyDetailFeeNot'>
           <span>

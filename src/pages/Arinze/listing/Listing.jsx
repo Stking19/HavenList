@@ -15,7 +15,7 @@ const Listing = () => {
   </div>
   <div className='listingCardHolder'>
       <div className='listingCardWraper'>
-      <ListingCard/>
+      <ListingCard />
       </div>
     </div>
   </div>
