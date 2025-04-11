@@ -24,10 +24,10 @@ const PropertyDetails = () => {
 
             <section className='subImage2'>
               <span>
-                <img src="/IMG/public/02959aaf05749951f238b1cbc0edcc31.jpg" alt="" />
+                <img src="/IMG/02959aaf05749951f238b1cbc0edcc31.jpg" alt="" />
               </span>
               <span>
-                <img src="/IMG/public/f217c589f3dc03cf9e6018c073eb242c.jpg" alt="" />
+                <img src="/IMG/f217c589f3dc03cf9e6018c073eb242c.jpg" alt="" />
               </span>
             </section>
           </div>
