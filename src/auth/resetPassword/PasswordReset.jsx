@@ -1,7 +1,17 @@
 import React from "react";
 import "./passwordreset.css";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const PasswordReset = () => {
+ const navigate = useNavigate()
+
+  const handleReset = () =>{
+    toast.success("Password Reset successfull")
+    setTimeout(() => {
+      navigate('/sign-in')
+    }, 3000)
+  }
   return (
     <div>
       <div className="mainbody">
@@ -42,7 +52,7 @@ const PasswordReset = () => {
             </div>
 
             <div className="buttoncont1">
-              <button className="continuebtn">Continue</button>
+              <button className="continuebtn" onClick={handleReset}>Continue</button>
             </div>
           </div>
         </div>
