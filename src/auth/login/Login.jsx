@@ -42,7 +42,7 @@ const Login = () => {
                   </div>
 
                   <div className="main">
-                    <button className="loginbtnwrap" type="submit">
+                    <button onClick={()=> navigate("/")} className="loginbtnwrap" type="submit">
                       Login
                     </button>
 

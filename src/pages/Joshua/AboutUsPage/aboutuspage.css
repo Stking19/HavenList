@@ -86,20 +86,21 @@
 
 .valueswrawpper{
     width: 100%;
-    height: 40%;
+    height: 180px;
     display: flex;
     justify-content: space-around;
     margin-top: 70px;
-   
+    
 }
 
 .mission{
     width: 30%;
-    height: 80%;
+    height: 100%;
     border-radius: 15px;
     border: 1px solid #00bcd4;
 
     h1{
+        margin-top: 10px;
         margin-left: 20px;
         font-size: 23px;
         color: #00bcd4;
@@ -116,11 +117,12 @@
 
 .vision{
     width: 30%;
-    height: 80%;
+    height: 100%;
     border-radius: 15px;
     border: 1px solid #00bcd4;
 
     h1{
+        margin-top: 10px;
         margin-left: 20px;
         font-size: 25px;
         color: #00bcd4;
@@ -139,11 +141,12 @@
 
 .value{
     width: 30%;
-    height: 80%;
+    height: 100%;
     border-radius: 15px;
     border: 1px solid #00bcd4;
 
     h1{
+        margin-top: 10px;
         margin-left: 20px;
         font-size: 25px;
         color: #00bcd4;
@@ -272,7 +275,13 @@
     height: 65%;
     border-radius: 25px;
     margin-top: 40px;
-    background-color: #00bcd4;
+
+    img{
+        width: 93%;
+        height: 105%;
+        background: cover;
+        border-radius: 25px;
+    }
 }
 
 .bottomwrap {
@@ -282,7 +291,7 @@
     background-color: red;
     margin-top: 220px;
     overflow: visible; 
-    background-Image: url("../../../assets/footerpix.png");
+    background-Image: url(../../../../IMG/footerpix.png);
     background-Size: cover;
     background-Position: center;
     background-Repeat: no-repeat;
@@ -306,6 +315,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 20px;
     color: white;
     background-color: rgba(0, 0, 255, 0.692);
 
@@ -321,17 +331,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 20px;
     background-color: lightgrey;
 
     h2{
-        font-size: 15px;
-        margin-top: 20px;
-        margin-left: 5px;
+        font-size: 12px;
         color: white;
     }
 
     span{
-        font-size: 14px;
+        font-size: 12px;
         color: black;
     }
   }
@@ -344,7 +353,6 @@
      img{
         width: 16px;
         height: 16px;
-        margin-top: 20px;
      }
   }
   

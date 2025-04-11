@@ -91,7 +91,7 @@ const SignUp = () => {
                 </div>
 
                 <div className="main">
-                  <button className="btnwrap" type="submit">
+                  <button onClick={() => navigate("/")}  className="btnwrap" type="submit">
                     Register
                   </button>
                 </div>
