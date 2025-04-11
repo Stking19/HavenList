@@ -19,11 +19,14 @@ import AboutUsPage from './pages/Joshua/AboutUsPage/AboutUsPage'
 import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 import LandlordDashboard from './pages/Stephen/landlord/LandlordDashboard'
 import SuccessCard from './components/SuccessCard/SuccessCard'
+import ScrollToTop from './components/ScrollToTop'
+
 
 const App = () => {
 
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path='/' element={<LandingPage />}>
           <Route path='/' element={<Home />} />

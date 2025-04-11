@@ -13,13 +13,13 @@
     gap: 15px;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 
 .listingPropertyImage {
     height: 95%;
     width: 45%;
-    /* display: block; */
 
 
     img{

@@ -34,18 +34,21 @@ const LandlordDashboard = () => {
       amount: "# 2,000,000",
       propertyName: "one Bedroom Flat",
       time: "3pm",
+      status: "Failed"
     },
     {
       date: "4, january 2025",
       amount: "# 3,000,000",
       propertyName: "Two Bedroom Flat",
       time: "12pm",
+      status: "Success"
     },
     {
       date: "4, january 2025",
       amount: "# 7,000,000",
       propertyName: "Three Bedroom Flat",
       time: "8am",
+      status: "Success"
     },
   ];
 
@@ -84,6 +87,9 @@ const [activeTab, setActiveTab] = useState(0)
                 <div className="Date">
                   <h3>Time</h3>
                 </div>
+                <div className="Date">
+                  <h3>Status</h3>
+                </div>
               </div>
               {historyData.map((history, index) => (
                 <div className="datas" key={index}>
@@ -98,6 +104,9 @@ const [activeTab, setActiveTab] = useState(0)
                   </div>
                   <div className="Date">
                     <p>{history.time}</p>
+                  </div>
+                  <div className="Date">
+                    <p>{history.status}</p>
                   </div>
                 </div>
               ))}

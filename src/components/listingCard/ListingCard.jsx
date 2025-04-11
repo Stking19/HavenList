@@ -3,6 +3,7 @@ import './listingCard.css'
 import { LiaToiletSolid } from "react-icons/lia";
 import { GiBathtub } from "react-icons/gi";
 import { IoIosBed } from "react-icons/io";
+import { useNavigate } from 'react-router';
 
 const ListingCard = () => {
 
@@ -90,12 +91,13 @@ const ListingCard = () => {
     //   image: "../../../public/be948c0b628fbdd1e0788117fb2000a1.jpg"
     // }
   ];
+  const navigate = useNavigate()
   
   return (
     <div className='listingCardMain'>
       {
         listings.map((items,index)=>(
-          <div key={index} className='listingCardContentHolder'>
+          <div key={index} className='listingCardContentHolder' onClick={()=> navigate('/propertydetails')}>
           <span className='listingPropertyImage'>
            <img src={items.image} alt="" />
           </span>
