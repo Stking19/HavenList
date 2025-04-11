@@ -124,7 +124,9 @@ function AboutUsPage() {
               <div className="sixthpic">
                 <img src={picture6} alt="" />
               </div>
-              <div className="seventhpic"></div>
+              <div className="seventhpic">
+                <img src={picture3} alt="" />
+              </div>
             </div>
           </div>
         </div>
