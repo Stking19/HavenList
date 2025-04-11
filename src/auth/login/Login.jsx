@@ -2,9 +2,17 @@ import React from "react";
 import picture from "/IMG/loginImage.png";
 import "./login.css";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/slices/AuthSlice";
 
 const Login = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const handleLogin = () =>{
+      dispatch(login())
+      navigate('/')
+  }
   return (
     <div>
       <div className="mainwrap">
@@ -42,7 +50,7 @@ const Login = () => {
                   </div>
 
                   <div className="main">
-                    <button className="loginbtnwrap" type="submit">
+                    <button className="loginbtnwrap" type="submit" onClick={handleLogin}>
                       Login
                     </button>
 
