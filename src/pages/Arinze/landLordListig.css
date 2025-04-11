@@ -1,0 +1,35 @@
+.landLordListingMain{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.asideDashBord{
+    height: 100vh;
+    width: 15%;
+    background-color: rgb(122, 122, 236);
+}
+
+
+.landLordMainScreen{
+    height: max-content;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.textHeader{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.landlordListingHolder{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}

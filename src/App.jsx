@@ -13,17 +13,22 @@ import PropertyDetails from './pages/Arinze/propertydetails/PropertyDetails'
 import Payment from './pages/Joshua/payment/Payment'
 import TermsCondition from './pages/Joshua/T&Cs/TermsCondition'
 import Home from './pages/Stephen/home/Home'
+import LandLordListing from './pages/Arinze/LandLordListing'
+import LandlordPropertyUpload from './pages/Arinze/LandlordPropertyUpload'
 import AboutUsPage from './pages/Joshua/AboutUsPage/AboutUsPage'
 import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 import LandlordDashboard from './pages/Stephen/landlord/LandlordDashboard'
 
 const App = () => {
+
   return (
     <Router>
       <Routes>
         <Route path='/' element={<LandingPage />}>
           <Route path='/' element={<Home />} />
           <Route path='/propertydetails' element={<PropertyDetails />} />
+          <Route path='/LandLordListing' element={<LandLordListing />} />
+          <Route path='/LandlordPropertyUpload' element={<LandlordPropertyUpload />} />
           <Route path='/listings' element={<Listing />} />
           <Route path='/T&Cs' element={<TermsCondition />} />
           <Route path='/about' element={<AboutUsPage />} />
