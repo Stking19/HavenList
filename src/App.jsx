@@ -13,6 +13,8 @@ import PropertyDetails from './pages/Arinze/propertydetails/PropertyDetails'
 import Payment from './pages/Joshua/payment/Payment'
 import TermsCondition from './pages/Joshua/T&Cs/TermsCondition'
 import Home from './pages/Stephen/home/Home'
+import LandLordListing from './pages/Arinze/LandLordListing'
+import LandlordPropertyUpload from './pages/Arinze/LandlordPropertyUpload'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -28,6 +30,16 @@ const App = () => {
         {
           path: '/propertydetails/:id',
           element: <PropertyDetails />,
+        },
+
+        {
+          path: '/landlordLisitng',
+          element: <LandLordListing/>,
+        },
+
+        {
+          path:'/landlordPropertyUpload',
+          element:<LandlordPropertyUpload/>
         },
 
         {
