@@ -18,6 +18,7 @@ import LandlordPropertyUpload from './pages/Arinze/LandlordPropertyUpload'
 import AboutUsPage from './pages/Joshua/AboutUsPage/AboutUsPage'
 import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 import LandlordDashboard from './pages/Stephen/landlord/LandlordDashboard'
+import SuccessCard from './components/SuccessCard/SuccessCard'
 
 const App = () => {
 
@@ -43,7 +44,8 @@ const App = () => {
         </Route>
         <Route path='/payment' element={<Payment />}/>
         <Route path='/confirm-email' element={<EmailConfirmation />}/>
-        <Route path='*' element={<Error />}/>
+        <Route path= "/success" element={<SuccessCard/>}/>
+        <Route path= '*' element={<Error />}/>
       </Routes>
     </Router>
   )
