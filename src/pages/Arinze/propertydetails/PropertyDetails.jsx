@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 import './propertydetails.css'
 import { FaAnchor, FaSink, FaAngleRight } from "react-icons/fa6";
 
+
 const PropertyDetails = () => {
   const navigate = useNavigate();
+
+  const [showKora, setShowKora] = useState(false)
   return (
     <>
     <div className='propertyDetailMain'>
@@ -110,7 +113,7 @@ const PropertyDetails = () => {
             <FaAngleRight />
           </section>
         </div>
-        <button onClick={() => navigate("/success")} className='propertyDetailRentBtn'>Rent</button>
+        <button onClick={() => setShowKora(true)} className='propertyDetailRentBtn'>Rent</button>
         <p>You won’t be charged extra</p>
         <div className='propertyDetailFeeNot'>
           <span>
@@ -128,6 +131,13 @@ const PropertyDetails = () => {
           <p>N 2,000,000.00</p>
         </span>
       </div>
+
+{
+  showKora?    
+    <div className='paymentModal'>
+  <img src='../../../../IMG/Frame 2147223675'alt="" />
+</div>:null
+}
     </>
   )
 }
