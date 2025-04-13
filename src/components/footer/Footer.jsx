@@ -7,9 +7,9 @@ const Footer = () => {
       <div className="footLeft">
         <div className="write-up">
           <p>
-            <span>HavenList</span> connects landlords and tenants <br />seamlessly,
-            offering a trusted platform to list, <br />discover, and manage properties
-            with ease. <br />From search to lease, we simplify real estate so <br />you can
+            <span>HavenList</span> connects landlords and tenants seamlessly,
+            offering a trusted platform to list, discover, and manage properties
+            with ease. From search to lease, we simplify real estate so you can
             focus on what matters.
           </p>
         </div>

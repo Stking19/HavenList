@@ -3,6 +3,7 @@ import "./header.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { useNavigate } from "react-router";
 import { FaRegUser } from "react-icons/fa";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Header = () => {
   const [dropdown, setDropdown] = useState(false);
@@ -34,6 +35,7 @@ const Header = () => {
         <p onClick={() => navigate('/about')}>About</p>
       </div>
       <div className="user">
+        <p className="burger"><RxHamburgerMenu /></p>
         <p onClick={() => navigate('/private')}><FaRegUser /></p>
         <p
           onMouseOver={() => setDropdown(true)}
