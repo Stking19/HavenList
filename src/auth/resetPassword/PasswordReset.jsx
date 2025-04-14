@@ -21,16 +21,16 @@ const PasswordReset = () => {
 
         <div className="forgotpasswordbody">
           <div className="forgotpasswordtext">
-            <div className="textwrapper">
+           
               <h1>Enter the new password</h1>
               <p>Your new password must be different</p>
-              <p style={{ marginLeft: "50px" }}>
+              <p className="lasttext">
                 from previously used password
               </p>
-            </div>
+           
           </div>
 
-          <div className="formdetails">
+          <div className="resetformdetails">
             <div className="forgotpassworddetailwrapper">
               <h2 style={{ color: "#00bcd4", fontSize: "20px", fontWeight: "400" }}>Create Password</h2>
               <input
@@ -51,7 +51,7 @@ const PasswordReset = () => {
               />
             </div>
 
-            <div className="buttoncont1">
+            <div className="continuebuttoncont1">
               <button className="continuebtn" onClick={handleReset}>Continue</button>
             </div>
           </div>

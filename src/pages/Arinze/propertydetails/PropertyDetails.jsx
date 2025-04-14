@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import './propertydetails.css'
 import { FaAnchor, FaSink, FaAngleRight, FaChevronLeft, FaChevronRight  } from "react-icons/fa6";
 
+
 const PropertyDetails = () => {
   const images = [
     "/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg",
@@ -13,6 +14,7 @@ const PropertyDetails = () => {
   ];
   const navigate = useNavigate();
 
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
@@ -21,6 +23,7 @@ const PropertyDetails = () => {
   const prevImage = () => {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
+
   return (
     <>
     <div className='propertyDetailMain'>
@@ -135,7 +138,7 @@ const PropertyDetails = () => {
             <FaAngleRight />
           </section>
         </div>
-        <button onClick={() => navigate("/success")} className='propertyDetailRentBtn'>Rent</button>
+        <button onClick={() => setShowKora(true)} className='propertyDetailRentBtn'>Rent</button>
         <p>You won’t be charged extra</p>
         <div className='propertyDetailFeeNot'>
           <span>
@@ -154,10 +157,12 @@ const PropertyDetails = () => {
         </span>
       </div>
 
+
       <div className='modalpropertyDetailCardMobile'>
         <h2>N 2,000,000</h2>
         <button onClick={() => navigate("/success")} className='propertyDetailRentBtn'>Rent</button>
       </div> 
+
     </>
   )
 }
