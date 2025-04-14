@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import signpic from "/IMG/loginImage.png";
 import "./signup.css";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { signup } from "../../config/api"; 
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const {role} = useParams()
+    console.log(role)
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -31,25 +34,29 @@ const SignUp = () => {
 
     if (!fullName || !email || !password || !confirmPassword) {
       setError("Please fill in all fields.");
+      toast.error("Please fill in all fields.")
       return;
     }
 
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
+      toast.error("password do not match")
       return;
     }
+    
 
     try {
       setLoading(true)
-      await signup({ fullName, email, password, confirmPassword });
+      await signup({ fullName, email, password, confirmPassword }, role);
       setLoading(false)
 
       setTimeout(() =>{
-        navigate("/sign-in");
+        navigate(`/sign-in/${role}`);
       },2000)
        
     } catch (err) {
       console.log(err)
+      setLoading(false)
     }
   };
 

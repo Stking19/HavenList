@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import picture from "/IMG/loginImage.png";
 import "./login.css";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/slices/AuthSlice"; 
 import { loginUser } from "../../config/api";
@@ -16,8 +16,7 @@ const Login = () => {
   });
   const [error, setError] = useState("");
   const [loading, setLoading ] = useState(false)
-  const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
+  const {role} = useParams()
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -36,28 +35,12 @@ const Login = () => {
       toast.error("Please input your email and password ")
       return;
     }
-
-    if(!email.includes("@")){
-      toast.error("Email pathern is incorrect")
-      return;
-    }
-
-    if (!strongPasswordRegex.test(password)) {
-      toast.error("Password must include uppercase, lowercase, number, and special character.");
-      return;
-    }
-
-    
-
-   
-
-
     setLoading(true)
    
 
     try {
 
-      const userData = await loginUser({ email, password }); 
+      const userData = await loginUser({ email, password }, role); 
       dispatch(login(userData)); 
       setLoading(false)
       setTimeout(() =>{

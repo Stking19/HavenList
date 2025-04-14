@@ -7,27 +7,25 @@ import { RxHamburgerMenu } from "react-icons/rx";
 
 const Header = () => {
   const [dropdown, setDropdown] = useState(false);
-
   const [isSticky, setIsSticky] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollThreshold = 300;
-      setIsSticky(window.scrollY > scrollThreshold);
+      setIsSticky(window.scrollY > 300);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navigate = useNavigate()
+  const signUpAs = (role) => {
+    navigate(`/register/${role}`);
+  };
 
   return (
     <div className={`head ${isSticky ? "sticky" : ""}`}>
       <div className="logo">
-        <p>
-          <img src="/IMG/Logo.png" alt="" />
-        </p>
+        <p><img src="/IMG/Logo.png" alt="Logo" /></p>
       </div>
       <div className="nav">
         <p onClick={() => navigate('/')}>Home</p>
@@ -41,22 +39,19 @@ const Header = () => {
           onMouseOver={() => setDropdown(true)}
           onMouseOut={() => setDropdown(false)}
         >
-          Sign Up{" "}
-          <k>
-            <IoIosArrowDown />
-          </k>
+          Sign Up <k><IoIosArrowDown /></k>
         </p>
         <span onClick={() => navigate('/sign-in')}>Login</span>
-        {dropdown ? (
+        {dropdown && (
           <div
             className="dropCard"
             onMouseOver={() => setDropdown(true)}
             onMouseOut={() => setDropdown(false)}
           >
-            <k onClick={() => navigate('/register')}>Landlord</k>
-            <k onClick={() => navigate('/register')}>Tenants</k>
+            <k onClick={() => signUpAs("landlord")}>Landlord</k>
+            <k onClick={() => signUpAs("tenant")}>Tenant</k>
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );

@@ -37,11 +37,11 @@ const App = () => {
           <Route path='/T&Cs' element={<TermsCondition />} />
           <Route path='/about' element={<AboutUsPage />} />
         </Route>
-        <Route path='/sign-in' element={<Login />}/>
-        <Route path='/register' element={<SignUp />}/>
+        <Route path='/sign-in/:role' element={<Login />}/>
+        <Route path='/register/:role' element={<SignUp />}/>
         <Route path='/reset-password' element={<PasswordReset />}/>
         <Route path='/forgot-password' element={<ForgotPassword />}/>
-        <Route path='/verify' element={<Verify />}/>
+        <Route path='/verify/:token' element={<Verify />}/>
         <Route path='/private' element={<PrivateRoute />}>
           <Route path='' element={<LandlordDashboard />} />
         </Route>

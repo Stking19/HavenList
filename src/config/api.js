@@ -1,7 +1,7 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const API_URL = "https://heavenlist2-zaz3.onrender.com/api/v1/";
+const API_URL = import.meta.env.VITE_API_URL;;
 
 
 const api = axios.create({
@@ -10,7 +10,6 @@ const api = axios.create({
     "Content-Type": "application/json",
   },
 });
-
 
 api.interceptors.request.use(
   (config) => {
@@ -34,11 +33,12 @@ api.interceptors.response.use(
 );
 
 
-export const loginUser = async (credentials) => {
+export const loginUser = async (credentials, role) => {
   try {
-    const response = await api.post("loginTenant", credentials);
+    const endpoint = role === "landlord" ? "loginlandlord" : "loginTenant"
+    const response = await api.post( endpoint, credentials);
     const { token, data, message } = response.data;
-
+     console.log(response)
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(data));
     toast.success(message);
@@ -50,18 +50,18 @@ export const loginUser = async (credentials) => {
   }
 };
 
-
-export const signup = async (userData) => {
+export const signup = async (userData, role) => {
   try {
-    const response = await api.post("registerTenant", userData);
+    const endpoint = role === "landlord" ? "registerlandlord" : "registerTenant"
+    const response = await api.post(endpoint, userData);
     toast.success(response.data.message);
+    console.log(response)
     return response.data;
   } catch (error) {
-   console.log(response)
+  
     throw error;
   }
 };
 
-// You can keep adding more API functions here.
 
 export default api;
