@@ -2,18 +2,17 @@
     height: max-content;
     width: 100%;
     gap: 20px;
+    padding: 10px;
 }
 
-
 .listingHeroWrapper {
-    height: 55vh;
+    height: 65vh;
     width: 100%;
     background: url('IMG/cca9a1d1550941737e81ed9e4a8e0365.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
-
 
 .listingHero {
     height: 100%;
@@ -27,23 +26,153 @@
     padding-top: 20px;
 }
 
-
 .listingCardHolder {
     min-height: 70vh;
     width: 100%;
-    background-color: white;
     display: flex;
     justify-content: center;
     margin-bottom: 15px;
 }
 
-
 .listingCardWraper {
-    height: max-content;
-    width: 90%;
+    height: 100%;
+    width: 95%;
     margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
-    row-gap: 25px;
-    column-gap: 40px;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+@media only screen and (max-width: 768px) {
+    .listingCardWraper {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .listingHero {
+        font-size: 24px;
+        padding-top: 10px;
+    }
+
+    .listingHeroWrapper {
+        height: 40vh;
+        background-size: cover;
+    }
+
+    .listingMain {
+        padding: 10px;
+    }
+
+    .listingCardHolder {
+        min-height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .listingHero {
+        font-size: 20px;
+        padding-top: 10px;
+    }
+
+    .listingCardWraper {
+        gap: 15px;
+    }
+
+    .listingHeroWrapper {
+        height: 35vh;
+        background-size: contain;
+    }
+
+    .listingCardMain {
+        width: 100%;
+        margin: 10px 0;
+        padding: 12px;
+    }
+
+    .listingCardHolder {
+        min-height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .listingHeroWrapper {
+        height: 40vh;
+        background-size: contain; 
+    }
+
+    .listingHero {
+        font-size: 22px; 
+        padding-top: 10px;
+    }
+
+    .listingCardWraper {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .listingCardMain {
+        width: 100%;
+        margin: 8px 0;
+        padding: 10px;
+    }
+
+    .listingCardHolder {
+        min-height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+
+    .listingMain {
+        padding: 10px; 
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    .listingHeroWrapper {
+        height: 45vh;
+        background-size: cover;
+    }
+
+    .listingHero {
+        font-size: 26px; 
+        padding-top: 15px;
+    }
+
+    .listingCardWraper {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .listingCardMain {
+        width: 100%;
+        margin: 10px 0;
+        padding: 12px;
+    }
+
+    .listingCardHolder {
+        min-height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+
+    .listingMain {
+        padding: 12px; 
+    }
+}
+
+body {
+    overflow-x: hidden;
 }
