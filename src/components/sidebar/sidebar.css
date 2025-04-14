@@ -58,3 +58,10 @@
         }
     }
 }
+
+@media (max-width: 460px) {
+    .side{
+        display: none;
+    }
+    
+}

@@ -5,14 +5,14 @@ import { Outlet } from 'react-router'
 import Footer from '../components/footer/Footer'
 
 const LandingPage = () => {
-    // const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true)
 
 
-    // useEffect(() => {
-    //     setTimeout(() =>{
-    //         setIsLoading(false)
-    //     }, 4000)
-    // }, [])
+    useEffect(() => {
+        setTimeout(() =>{
+            setIsLoading(false)
+        }, 4000)
+    }, [])
   return (
      <div>
         <Header />
