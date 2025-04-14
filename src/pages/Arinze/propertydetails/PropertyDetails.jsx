@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router';
 import './propertydetails.css'
 import { FaAnchor, FaSink, FaAngleRight, FaChevronLeft, FaChevronRight  } from "react-icons/fa6";
 
-
 const PropertyDetails = () => {
   const images = [
     "/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg",
@@ -138,7 +137,7 @@ const PropertyDetails = () => {
             <FaAngleRight />
           </section>
         </div>
-        <button onClick={() => setShowKora(true)} className='propertyDetailRentBtn'>Rent</button>
+        <button onClick={() => navigate("/success")} className='propertyDetailRentBtn'>Rent</button>
         <p>You won’t be charged extra</p>
         <div className='propertyDetailFeeNot'>
           <span>
@@ -156,6 +155,8 @@ const PropertyDetails = () => {
           <p>N 2,000,000.00</p>
         </span>
       </div>
+      
+
 
 
       <div className='modalpropertyDetailCardMobile'>
