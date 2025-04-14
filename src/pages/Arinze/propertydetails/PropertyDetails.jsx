@@ -4,28 +4,29 @@ import './propertydetails.css'
 import { FaAnchor, FaSink, FaAngleRight, FaChevronLeft, FaChevronRight  } from "react-icons/fa6";
 
 const PropertyDetails = () => {
-  // const images = [
-  //   "/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg",
-  //   "/IMG/f1e72efd74f50f435fd26aac95593895 (1).jpg",
-  //   "/IMG/251d5a5fc1a8245fe0a865f05388083b.jpg",
-  //   "/IMG/02959aaf05749951f238b1cbc0edcc31.jpg",
-  //   "/IMG/f217c589f3dc03cf9e6018c073eb242c.jpg"
-  // ];
-  // const navigate = useNavigate();
+  const images = [
+    "/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg",
+    "/IMG/f1e72efd74f50f435fd26aac95593895 (1).jpg",
+    "/IMG/251d5a5fc1a8245fe0a865f05388083b.jpg",
+    "/IMG/02959aaf05749951f238b1cbc0edcc31.jpg",
+    "/IMG/f217c589f3dc03cf9e6018c073eb242c.jpg"
+  ];
+  const navigate = useNavigate();
 
-  // const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  // const nextImage = () => {
-  //   setCurrentImageIndex((prev) => (prev + 1) % images.length);
-  // };
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
 
-  // const prevImage = () => {
-  //   setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-  // };
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
   return (
     <>
     <div className='propertyDetailMain'>
     <div className='propertyDetailWrapper'>
     <p>cool apartment for you and family</p>
+
         <div className='propertyDetailImageWrapper'>
           <span className='propertyDetailImageMain'>
             <img src="/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg" alt="" />
@@ -50,6 +51,15 @@ const PropertyDetails = () => {
             </section>
           </div>
         </div>
+
+        <div className='propertyDetailImageMobile'>
+            <FaChevronLeft onClick={prevImage} className='arrowBtn left' />
+            <span className='mobileImageHolder'>
+            <img src={images[currentImageIndex]} alt="property" />
+            </span>
+            <FaChevronRight onClick={nextImage} className='arrowBtn right' />
+          </div>
+
         <nav>
           <h3>2 Bedroom Flat in 6th Avenue Festac,</h3>
           <h3>festac,Lagos</h3>
@@ -149,18 +159,14 @@ const PropertyDetails = () => {
         <div className='propertyDetailWrapper'>
           <p className='propertyDetailIntro'>cool apartment for you and family</p>
 
-          <div className='propertyDetailImageMobile'>
-            <FaChevronLeft onClick={prevImage} className='arrowBtn left' />
-            <img src={images[currentImageIndex]} alt="property" />
-            <FaChevronRight onClick={nextImage} className='arrowBtn right' />
-          </div>
+          
         </div>
-      </div> */}
+      </div>  */}
 
-      {/* <div className='modalpropertyDetailCard mobileVersion'>
+      <div className='modalpropertyDetailCardMobile'>
         <h2>N 2,000,000</h2>
         <button onClick={() => navigate("/success")} className='propertyDetailRentBtn'>Rent</button>
-      </div> */}
+      </div> 
     </>
   )
 }
