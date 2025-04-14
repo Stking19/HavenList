@@ -14,11 +14,9 @@ const ForgotPassword = () => {
 
         <div className="forgotemailbody">
           <div className="forgotemailtext">
-            <div className="textwrap">
               <h1>Mail Address Here</h1>
               <p>Enter the email address associated</p>
-              <p style={{ marginLeft: "80px" }}>to your account </p>
-            </div>
+              <p>to your account </p>
           </div>
 
           <div className="formdetailwrap">
@@ -30,10 +28,7 @@ const ForgotPassword = () => {
                 placeholder="Enter email here"
               />
             </div>
-
-            <div className="buttoncontwrap">
               <button className="resetemailbtn"  onClick={() => navigate('/reset-password')}>Submit</button>
-            </div>
           </div>
         </div>
       </div>

@@ -23,7 +23,8 @@ function AboutUsPage() {
 
         <div className="secondcont">
           <div className="imgcont1">
-            <img src={picture7} alt="" />
+            <button className="getstartedbtn">Get started now</button>
+           
           </div>
           <div className="textSession">
             <h1>Who We Are</h1>
@@ -106,26 +107,40 @@ function AboutUsPage() {
           <div className="picwrapper1">
             <div className="firstpic">
               <img src={picture1} alt="" />
+              <h2>Afolayan Esther .A.</h2>
+              <p>Product Designer</p>
             </div>
             <div className="secondpic">
               <img src={picture2} alt="" />
+              <h2>Okoro Christian .E</h2>
+              <p>Product Designer</p>
             </div>
             <div className="thirdpic">
               <img src={picture3} alt="" />
+              <h2>Onuoha Joshua .O.</h2>
+              <p>Frontend Developer</p>
             </div>
             <div className="fourthpic">
               <img src={picture4} alt="" />
+              <h2>Urigwe Somto</h2>
+              <p>Backend Developer</p>
             </div>
 
             <div className="picwrapper2">
               <div className="fifthpic">
                 <img src={picture5} alt="" />
+                <h2>Okoli Stephen</h2>
+              <p>Frontend Developer</p>
               </div>
               <div className="sixthpic">
                 <img src={picture6} alt="" />
+                <h2>Alaekeka Ebuka</h2>
+              <p>Backend Developer</p>
               </div>
               <div className="seventhpic">
                 <img src={picture3} alt="" />
+                <h2>Odimgbe Arinze</h2>
+              <p>Frontend Developer</p>
               </div>
             </div>
           </div>
@@ -147,11 +162,13 @@ function AboutUsPage() {
               </h2>
 
               <div className="socialmediawrap">
-                <h2>Social media: </h2>
+                <h2>Socials: </h2>
+                
                 <img src={linkedin} alt="" />
                <img src={twitter} alt="" />
                <img src={instagram} alt="" />
                <img src={facebook} alt="" />
+              
               </div>
             </div>
           </div>

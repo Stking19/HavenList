@@ -7,7 +7,6 @@
 
 .signupwrapper {
   width: 100%;
-  /* height: 100vh; */
   display: flex;
 }
 
@@ -152,5 +151,160 @@
   h2 {
     font-size: 16px;
     font-weight: 400;
+  }
+}
+
+@media (max-width: 460px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body, html {
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .signupwrapper {
+    margin-top: 0;
+  }
+
+  .signupImageWrap {
+    display: none;
+  }
+
+  .signupinputcont,
+  .btnwrap,
+  .signupContainer {
+    width: 100%;
+    padding: 0;
+  }
+
+  .signupContainer {
+    margin: 0;
+  }
+
+  .main {
+    background-color: white;
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  .accountwrap {
+    margin: 0;
+  }
+}
+
+
+@media (max-width: 379px) {
+  .signupwrapper {
+    margin-top: 15px; 
+  }
+
+  .signupImageWrap {
+    display: none;
+  }
+
+  .signupinputcont {
+    width: 100%; 
+  }
+
+  .signupContainer {
+    width: 100%; 
+    padding: 0px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .main {
+    background-color: white;
+    display: block;
+    width: 100%;
+  }
+
+  .btnwrap {
+    width: 100%;
+  }
+
+  .accountwrap {
+    margin-top: 10px;
+    text-align: center; 
+  }
+}
+
+@media (max-width: 480px) {
+  .signupwrapper {
+    margin-top: 20px;
+  }
+
+  .signupImageWrap {
+    display: none; 
+  }
+
+  .signupinputcont {
+    width: 100%;
+  }
+
+  .signupContainer {
+    width: 100%; 
+    padding: 0 15px; 
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .main {
+    background-color: white;
+    display: block;
+    width: 100%;
+  }
+
+  .btnwrap {
+    width: 100%;
+  }
+
+  .accountwrap {
+    margin-top: 15px;
+    text-align: center; 
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 760px) {
+  .signupwrapper {
+    margin-top: 20px;
+  }
+
+  .signupImageWrap {
+    display: none;
+  }
+
+  .signupinputcont {
+    width: 100%; 
+  }
+
+  .signupContainer {
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .main {
+    background-color: white;
+    display: block;
+    width: 100%;
+  }
+
+  .btnwrap {
+    width: 100%;
+  }
+
+  .accountwrap {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 15px;
   }
 }
