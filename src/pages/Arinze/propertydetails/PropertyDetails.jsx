@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 import './propertydetails.css'
-import { FaAnchor, FaSink, FaAngleRight } from "react-icons/fa6";
+import { FaAnchor, FaSink, FaAngleRight, FaChevronLeft, FaChevronRight  } from "react-icons/fa6";
 
 const PropertyDetails = () => {
-  const navigate = useNavigate();
+  // const images = [
+  //   "/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg",
+  //   "/IMG/f1e72efd74f50f435fd26aac95593895 (1).jpg",
+  //   "/IMG/251d5a5fc1a8245fe0a865f05388083b.jpg",
+  //   "/IMG/02959aaf05749951f238b1cbc0edcc31.jpg",
+  //   "/IMG/f217c589f3dc03cf9e6018c073eb242c.jpg"
+  // ];
+  // const navigate = useNavigate();
+
+  // const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  // const nextImage = () => {
+  //   setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  // };
+
+  // const prevImage = () => {
+  //   setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  // };
   return (
     <>
     <div className='propertyDetailMain'>
@@ -78,15 +94,14 @@ const PropertyDetails = () => {
           <li>Do not make any inspection fee without seeing the agent or Landlord.</li>
           <li>Only pay Rental fee, Sales fee or any upfront payment after you verify the Landlord.</li>
           <li>Ensure you meet the Agent in an open location.</li>
-          <li>The Agent does not represent HevanList and HevanList is not liable for any monetary transaction between you and the Agent.</li>
+          <li>The Agent does not represent HevanList and HevanList is not liable for any monetary <br/>transaction between you and the Agent.</li>
         </div>
 
     
         <a style={{fontSize:'20px',marginBottom:'15px'}} href="https://docs.google.com/document/d/18EkarRCZfF9mRuQMsEqgeLB_Nja6LvkJAq8KLMWjNmk/edit?usp=sharing">Terms Of use</a>
       </div>
     
-     </div>
-       
+     </div>    
       
       <div className='modalpropertyDetailCard'>
         <h2>N 2,000,000 <small>per Annum</small></h2>
@@ -128,6 +143,24 @@ const PropertyDetails = () => {
           <p>N 2,000,000.00</p>
         </span>
       </div>
+      
+
+      {/* <div className='propertyDetailMain'>
+        <div className='propertyDetailWrapper'>
+          <p className='propertyDetailIntro'>cool apartment for you and family</p>
+
+          <div className='propertyDetailImageMobile'>
+            <FaChevronLeft onClick={prevImage} className='arrowBtn left' />
+            <img src={images[currentImageIndex]} alt="property" />
+            <FaChevronRight onClick={nextImage} className='arrowBtn right' />
+          </div>
+        </div>
+      </div> */}
+
+      {/* <div className='modalpropertyDetailCard mobileVersion'>
+        <h2>N 2,000,000</h2>
+        <button onClick={() => navigate("/success")} className='propertyDetailRentBtn'>Rent</button>
+      </div> */}
     </>
   )
 }

@@ -135,8 +135,11 @@
 
 .propertyDetailSafeTips {
     height: max-content;
-    width: 50%;
+    width: max-content;
     background-color: #E6F2F5;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -144,8 +147,8 @@
 
 
 .modalpropertyDetailCard {
-    height: 60vh;
-    border-radius: 10px;
+    min-height: 60vh;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -171,8 +174,6 @@
     width: 90%;
     border: 1px solid black;
     border-radius: 15px;
-    margin-bottom: 10px;
-
 }
 
 .dateWrapper {
@@ -204,16 +205,15 @@
     align-items: center;
 
     span {
-        height: max-content;
-        width: 45%;
+        height: 100%;
+        width: 50%;
         text-align: center;
-        /* background-color: blanchedalmond; */
     }
 }
 
 
 .propertyDetailRentBtn{
-    height: 15%;
+    min-height: 45px;
     font-size: 15px;
     font-weight: 600;
     width: 80%;
