@@ -919,12 +919,12 @@
         gap: 10px;
   
         & h1 {
-          font-size: 25px;
+          font-size: 20px;
         }
   
         & p {
           font-weight: 600;
-          font-size: 14px;
+          font-size: 12px;
         }
       }
     }
