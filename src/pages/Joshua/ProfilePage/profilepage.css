@@ -1,6 +1,6 @@
 .informationdetailcont {
   width: 96%;
-  height: 560px;
+  height: 600px;
   background-color: #00a5cf33;
   border: 1px solid #1E1E1E66;
   border-radius: 10px;
@@ -104,16 +104,29 @@
 
 .actionbtn {
   width: 100%;
-  height: 100px;
-  margin-top: 20px;
+  height: 270px;
+  margin-top: 10px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  
 }
 
-.actionbuttonwrapper {
+
+.actionbuttonwrapper1 {
   width: 50%;
+  height: 100%;
   display: flex;
   justify-content: end;
+
+  button{
+    width: 90px;
+    height: 40px;
+    margin-top: 30px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid lightgray;
+  }
 }
 
 .cancelbtn {
@@ -122,6 +135,7 @@
   border-radius: 10px;
   background-color: transparent;
   margin-left: 90px;
+  margin-top: 20px;
   border: 1px solid ;
   transition: all 250ms ease-in-out;
   font-weight: 600;
@@ -138,6 +152,7 @@
   height: 50px;
   border-radius: 10px;
   margin-left: 20px;
+  margin-top: 20px;
   border: none;
   background-color: #00bcd4;
   transition: all 250ms ease-in-out;
@@ -149,3 +164,84 @@
   background-color: #089db1ce;
   color: white;
 }
+
+.profileupload{
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+
+  h4{
+    font-weight: 300;
+  }
+}
+
+
+.imagefilebtncont{
+    width: 160px;
+    height: 40%;
+    cursor: pointer;
+}
+
+@media (max-width: 460px) {
+  .informationdetailcont{
+    width: 390px;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .profileform{
+    width: 100%;
+  }
+
+  .submitbtn{
+    width: 50%;
+    height: 40px;
+    font-size: 13px;
+  }
+
+  .cancelbtn{
+    width: 50px;
+    height: 40px;
+    margin-right: 40px;
+    font-size: 13px;
+
+  }
+
+  .actionbuttonwrapper1{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: center;
+    
+
+    button{
+      width: 80px;
+      height: 40px;
+      border-radius: 15px;
+      margin-top: 40px;
+      margin-left: 20px;
+      cursor: pointer;
+      border: 2px solid lightgray;
+
+    }
+  }
+
+  .profileupload{
+    width: 30%;
+   
+
+    h4{
+      font-size: 13px;
+    }
+  }
+  
+  .imagefilebtncont{
+    width: 120px;
+    height: 30px;
+  }
+}
+

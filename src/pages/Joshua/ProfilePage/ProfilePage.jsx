@@ -68,14 +68,21 @@ function ProfilePage() {
                 placeholder="state"
                 value={details.state}
                 type="text"
-                onChange={(e)=> setDetails({...details, state: e.target.value})}
+                onChange={(e) =>
+                  setDetails({ ...details, state: e.target.value })
+                }
               />
             </div>
           </div>
 
           <div className="actionbtn">
-            <div className="actionbuttonwrapper">
-              <button className="cancelbtn">Cancel</button>
+            <div className="profileupload">
+              <h4>Upload Picture</h4>
+              <button className="imagefilebtncont">Choose  File</button>
+            </div>
+            <div className="actionbuttonwrapper1">
+             
+              <button className="cancelbtn1">Cancel</button>
               <button className="submitbtn">Submit</button>
             </div>
           </div>
