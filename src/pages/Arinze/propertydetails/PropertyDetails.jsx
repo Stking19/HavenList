@@ -153,15 +153,6 @@ const PropertyDetails = () => {
           <p>N 2,000,000.00</p>
         </span>
       </div>
-      
-
-      {/* <div className='propertyDetailMain'>
-        <div className='propertyDetailWrapper'>
-          <p className='propertyDetailIntro'>cool apartment for you and family</p>
-
-          
-        </div>
-      </div>  */}
 
       <div className='modalpropertyDetailCardMobile'>
         <h2>N 2,000,000</h2>
