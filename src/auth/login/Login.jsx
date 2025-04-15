@@ -42,24 +42,15 @@ const Login = () => {
       return;
     }
 
-    if (!strongPasswordRegex.test(password)) {
-      toast.error("Password must include uppercase, lowercase, number, and special character.");
-      return;
-    }
-
-    
-
-   
-
 
     setLoading(true)
    
-
     try {
 
       const userData = await loginUser({ email, password }); 
       dispatch(login(userData)); 
       setLoading(false)
+
       setTimeout(() =>{
         navigate("/");
       },2000)
@@ -114,7 +105,7 @@ const Login = () => {
                 
                 <div className="loginmain">
                   <button className="loginbtnwrap" type="submit">
-                  {loading ? "Loading" : "Login"}
+                  {loading ? "Loading..." : "Login"}
                   </button>
 
                   <div className="forgotpasswordwrap">
