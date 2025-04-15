@@ -211,7 +211,7 @@
   }
 
   .forgotpasswordwrap {
-    width: 80%;
+    width: 70%;
     height: 50px;
     display: flex;
     margin-left: 0px; 
@@ -221,6 +221,16 @@
     h2{
       margin-top: -2px;
       
+    }
+
+    & .signWh{
+      font-size: 16px;
+      width: 100%;
+    }
+
+    & .datSig{
+      width: 280px;
+      display: flex;
     }
   }
 

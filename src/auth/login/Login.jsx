@@ -101,7 +101,31 @@ const Login = () => {
                   </button>
 
                   <div className="forgotpasswordwrap">
-                    
+                    <h2 className="signWh">Don't have an account? register</h2>
+                    <h3 className="datSig">
+                    <h2
+                      onClick={() => navigate("/register/landlord")}
+                      style={{
+                        textDecoration: "underline",
+                        fontSize: "15px",
+                        color: "#00bcd4",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Landlord
+                    </h2>
+                    <h2
+                      onClick={() => navigate("/register/tenant")}
+                      style={{
+                        textDecoration: "underline",
+                        fontSize: "15px",
+                        color: "#00bcd4",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Tenant
+                    </h2>
+                    </h3>
                     <h2
                       onClick={() => navigate("/forgot-password")}
                       style={{
