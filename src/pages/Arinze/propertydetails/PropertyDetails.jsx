@@ -13,6 +13,7 @@ const PropertyDetails = () => {
   ];
   const navigate = useNavigate();
 
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
@@ -21,6 +22,7 @@ const PropertyDetails = () => {
   const prevImage = () => {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
+
   return (
     <>
     <div className='propertyDetailMain'>
@@ -156,10 +158,12 @@ const PropertyDetails = () => {
       
 
 
+
       <div className='modalpropertyDetailCardMobile'>
         <h2>N 2,000,000</h2>
         <button onClick={() => navigate("/success")} className='propertyDetailRentBtn'>Rent</button>
       </div> 
+
     </>
   )
 }

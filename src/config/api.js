@@ -40,12 +40,11 @@ export const loginUser = async (credentials, role) => {
     const { token, data, message } = response.data;
      console.log(response)
     localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(data));
+    localStorage.setItem("user", JSON.stringify(data.fullName));
     toast.success(message);
-
     return data;
   } catch (error) {
-   
+    toast.error(error.response.data.message)
     throw error;
   }
 };
@@ -59,6 +58,33 @@ export const signup = async (userData, role) => {
     return response.data;
   } catch (error) {
   
+    throw error;
+  }
+};
+
+
+export const resetPassword = async (userDetails) => {
+  try {
+    const response = await api.post("TenantResetPassword", userDetails);
+    console.log(response)
+    toast.success(response.data.message);
+    return response.data;
+  } catch (error) {
+   console.log(response)
+   toast.error(response.data.message)
+    throw error;
+  }
+};
+
+export const forgetPassword = async (email) => {
+  try {
+    const response = await api.post("landlordForgotPassword", email);
+    console.log(response)
+    toast.success(response.data.message);
+    return response.data;
+  } catch (error) {
+   console.log(error)
+   toast.error(response.data.message)
     throw error;
   }
 };
