@@ -141,9 +141,9 @@ const SignUp = () => {
                 </div>
 
                 <div className="accountwrap">
-                  <h3>Already have an account?</h3>
+                  <h3>Already have an account? Login</h3>
                   <h3
-                    onClick={() => navigate("/sign-in")}
+                    onClick={() => navigate("/sign-in/landlord")}
                     style={{
                       cursor: "pointer",
                       textDecoration: "underline",
@@ -151,7 +151,19 @@ const SignUp = () => {
                       color: "#00bbd4a9",
                     }}
                   >
-                    Login
+                    Landlord
+                  </h3>
+                  or
+                  <h3
+                    onClick={() => navigate("/sign-in/tenant")}
+                    style={{
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                      fontWeight: "bold",
+                      color: "#00bbd4a9",
+                    }}
+                  >
+                    Tenant
                   </h3>
                 </div>
               </div>
