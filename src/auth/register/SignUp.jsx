@@ -136,7 +136,7 @@ const SignUp = () => {
 
                 <div className="main">
                   <button className="btnwrap" type="submit">
-                   {loading ? "Registering" : "Register"}
+                   {loading ? "Registering..." : "Register"}
                   </button>
                 </div>
 
