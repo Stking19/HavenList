@@ -56,6 +56,8 @@ const [activeTab, setActiveTab] = useState(0)
 const name = JSON.parse(localStorage.getItem("user"))
 const firstName = name.split(" ")[0]
 
+
+
   return (
     <div className="dashboard">
       <SideBar setActiveTab={setActiveTab}/>
