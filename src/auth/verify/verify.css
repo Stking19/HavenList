@@ -1,0 +1,153 @@
+.mainBody {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fullpageheader {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    border-bottom-right-radius: 80%;
+    border-bottom-left-radius: 80%;
+    background-color: #00bcd4;
+    color: white;
+  
+    h1 {
+      font-size: 30px;
+    }
+  }
+
+  .codeGet{
+    width: 70%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    gap: 10px;
+
+    & h2{
+        font-size: 25px;
+    }
+
+    & p{
+        line-height: 30px;
+        text-align: center;
+    }
+
+    & button{
+        background: white;
+        border: none;
+        outline: none;
+        color: #00bcd4;
+        cursor: pointer;
+    }
+  }
+
+  .verify{
+    width: 40%;
+    height: 60px;
+    background: #00A5CF;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 250ms ease-in-out;
+    outline: none;
+  }
+
+  .verify:hover{
+    background: white;
+    color: #00A5CF;
+    border: 1px solid #00A5CF;
+  }
+  
+@media screen and (width <= 500px){
+    .mainBody {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .fullpageheader {
+          width: 100%;
+          height: 150px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 30px;
+          border-bottom-right-radius: 80%;
+          border-bottom-left-radius: 80%;
+          background-color: #00bcd4;
+          color: white;
+        
+          h1 {
+            font-size: 30px;
+          }
+        }
+      
+        .codeGet{
+          width: 70%;
+          height: 50%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding-top: 60px;
+          gap: 10px;
+      
+          & h2{
+              font-size: 25px;
+          }
+      
+          & p{
+              line-height: 30px;
+              text-align: center;
+          }
+      
+          & button{
+              background: white;
+              border: none;
+              outline: none;
+              color: #00bcd4;
+              cursor: pointer;
+          }
+        }
+      
+        .verify{
+          width: 50%;
+          height: 60px;
+          background: #00A5CF;
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 20px;
+          font-weight: 600;
+          border-radius: 5px;
+          border: none;
+          cursor: pointer;
+          transition: all 250ms ease-in-out;
+          outline: none;
+        }
+      
+        .verify:hover{
+          background: white;
+          color: #00A5CF;
+          border: 1px solid #00A5CF;
+        }
+        
+      
+}

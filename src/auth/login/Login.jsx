@@ -3,7 +3,7 @@ import picture from "/IMG/loginImage.png";
 import "./login.css";
 import { useNavigate, useParams } from "react-router";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/slices/AuthSlice"; 
+import { login } from "../../redux/slices/AuthSlice";
 import { loginUser } from "../../config/api";
 import toast from "react-hot-toast";
 
@@ -15,8 +15,8 @@ const Login = () => {
     password: "",
   });
   const [error, setError] = useState("");
-  const [loading, setLoading ] = useState(false)
-  const {role} = useParams()
+  const [loading, setLoading] = useState(false);
+  const { role } = useParams();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -32,25 +32,21 @@ const Login = () => {
     const { email, password } = formData;
 
     if (!email || !password) {
-      toast.error("Please input your email and password ")
+      toast.error("Please input your email and password ");
       return;
     }
-    setLoading(true)
-   
+    setLoading(true);
 
     try {
-
-      const userData = await loginUser({ email, password }, role); 
-      dispatch(login(userData)); 
-      setLoading(false)
-      setTimeout(() =>{
+      const userData = await loginUser({ email, password }, role);
+      dispatch(login(userData));
+      setLoading(false);
+      setTimeout(() => {
         navigate("/");
-      },2000)
-      
+      }, 2000);
     } catch (err) {
-      console.log(err)
-      setLoading(false)
-      
+      console.log(err);
+      setLoading(false);
     }
   };
 
@@ -94,38 +90,40 @@ const Login = () => {
                     onChange={handleChange}
                   />
                 </div>
-                
+
                 <div className="loginmain">
                   <button className="loginbtnwrap" type="submit">
-                  {loading ? "Loading" : "Login"}
+                    {loading ? "Loading" : "Login"}
                   </button>
 
                   <div className="forgotpasswordwrap">
-                    <h2 className="signWh">Don't have an account? register</h2>
-                    <h3 className="datSig">
-                    <h2
-                      onClick={() => navigate("/register/landlord")}
-                      style={{
-                        textDecoration: "underline",
-                        fontSize: "15px",
-                        color: "#00bcd4",
-                        cursor: "pointer",
-                      }}
-                    >
-                      Landlord
+                    <h2 className="signWh">
+                      Don't have an account? register
+                      <h3 className="datSig">
+                        <h2
+                          onClick={() => navigate("/register/landlord")}
+                          style={{
+                            textDecoration: "underline",
+                            fontSize: "15px",
+                            color: "#00bcd4",
+                            cursor: "pointer",
+                          }}
+                        >
+                          Landlord
+                        </h2>
+                        <h2
+                          onClick={() => navigate("/register/tenant")}
+                          style={{
+                            textDecoration: "underline",
+                            fontSize: "15px",
+                            color: "#00bcd4",
+                            cursor: "pointer",
+                          }}
+                        >
+                          Tenant
+                        </h2>
+                      </h3>
                     </h2>
-                    <h2
-                      onClick={() => navigate("/register/tenant")}
-                      style={{
-                        textDecoration: "underline",
-                        fontSize: "15px",
-                        color: "#00bcd4",
-                        cursor: "pointer",
-                      }}
-                    >
-                      Tenant
-                    </h2>
-                    </h3>
                     <h2
                       onClick={() => navigate("/forgot-password")}
                       style={{

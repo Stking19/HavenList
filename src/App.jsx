@@ -11,7 +11,6 @@ import Verify from './auth/verify/Verify'
 import Listing from './pages/Arinze/listing/Listing'
 import PropertyDetails from './pages/Arinze/propertydetails/PropertyDetails'
 import Payment from './pages/Joshua/payment/Payment'
-import TermsCondition from './pages/Joshua/T&Cs/TermsCondition'
 import Home from './pages/Stephen/home/Home'
 import LandLordListing from './pages/Arinze/LandLordListing'
 import LandlordPropertyUpload from './pages/Arinze/LandlordPropertyUpload'
@@ -20,6 +19,7 @@ import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 import LandlordDashboard from './pages/Stephen/landlord/LandlordDashboard'
 import SuccessCard from './components/SuccessCard/SuccessCard'
 import ScrollToTop from './components/ScrollToTop'
+import Help from './pages/Joshua/help/Help'
 
 
 const App = () => {
@@ -34,14 +34,14 @@ const App = () => {
           <Route path='/LandLordListing' element={<LandLordListing />} />
           <Route path='/LandlordPropertyUpload' element={<LandlordPropertyUpload />} />
           <Route path='/listings' element={<Listing />} />
-          <Route path='/T&Cs' element={<TermsCondition />} />
+          <Route path='/help' element={<Help />} />
           <Route path='/about' element={<AboutUsPage />} />
         </Route>
         <Route path='/sign-in/:role' element={<Login />}/>
         <Route path='/register/:role' element={<SignUp />}/>
         <Route path='/reset-password' element={<PasswordReset />}/>
         <Route path='/forgot-password' element={<ForgotPassword />}/>
-        <Route path='/verify/:token' element={<Verify />}/>
+        <Route path='/verify' element={<Verify />}/>
         <Route path='/private' element={<PrivateRoute />}>
           <Route path='' element={<LandlordDashboard />} />
         </Route>

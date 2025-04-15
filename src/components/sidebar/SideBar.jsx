@@ -5,12 +5,10 @@ import { IoHomeOutline } from "react-icons/io5";
 import { CiViewList } from "react-icons/ci";
 import { IoPersonOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
-import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/slices/AuthSlice";
 
 const SideBar = ({ setActiveTab }) => {
-  const navigate = useNavigate();
   const dispatch = useDispatch()
   return (
     <div className="side">
