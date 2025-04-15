@@ -35,14 +35,19 @@ const Login = () => {
       toast.error("Please input your email and password ")
       return;
     }
+
+    if(!email.includes("@")){
+      toast.error("Email pathern is incorrect")
+      return;
+    }
     setLoading(true)
    
-
     try {
 
       const userData = await loginUser({ email, password }, role); 
       dispatch(login(userData)); 
       setLoading(false)
+
       setTimeout(() =>{
         navigate("/");
       },2000)
@@ -97,7 +102,7 @@ const Login = () => {
                 
                 <div className="loginmain">
                   <button className="loginbtnwrap" type="submit">
-                  {loading ? "Loading" : "Login"}
+                  {loading ? "Loading..." : "Login"}
                   </button>
 
                   <div className="forgotpasswordwrap">
