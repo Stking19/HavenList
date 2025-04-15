@@ -40,7 +40,7 @@ export const loginUser = async (credentials, role) => {
     const { token, data, message } = response.data;
      console.log(response)
     localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(data));
+    localStorage.setItem("user", JSON.stringify(data.fullName));
     toast.success(message);
     return data;
   } catch (error) {

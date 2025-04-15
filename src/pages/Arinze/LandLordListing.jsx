@@ -10,7 +10,7 @@ const LandLordListing = () => {
             <h3>My Listings</h3>
         </span>
         <div className='landlordListingHolder'>
-           <ListingCard/>
+           <ListingCard />
         </div>
       </div>
     </div>
