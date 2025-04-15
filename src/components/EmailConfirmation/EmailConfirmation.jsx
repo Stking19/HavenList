@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import emailpicture from "/IMG/Emailpix.png";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import "./emailconfirmation.css";
 import axios from "axios";
 
@@ -17,6 +17,7 @@ const EmailConfirmation =() => {
       try {
         const response = await axios.get(`${API_URL}/landlord-verify/${token}`);
         console.log(response);
+        navigate("/sign-in/landlord");
       }catch (error) {
         console.error("Error verifying email:", error);
       }
