@@ -78,9 +78,9 @@ export const resetPassword = async (userDetails) => {
 
 export const forgetPassword = async (email) => {
   try {
-    const response = await api.post("TenantForgotPassword", email);
+    const response = await api.post("landlordForgotPassword", email);
     console.log(response)
-    // toast.success(response.data.message);
+    toast.success(response.data.message);
     return response.data;
   } catch (error) {
    console.log(error)
