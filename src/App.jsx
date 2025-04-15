@@ -20,6 +20,7 @@ import LandlordDashboard from './pages/Stephen/landlord/LandlordDashboard'
 import SuccessCard from './components/SuccessCard/SuccessCard'
 import ScrollToTop from './components/ScrollToTop'
 import Help from './pages/Joshua/help/Help'
+import VerifyEmail from './auth/verifyemail/VerifyEmail'
 
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
         <Route path='/reset-password' element={<PasswordReset />}/>
         <Route path='/forgot-password' element={<ForgotPassword />}/>
         <Route path='/verify' element={<Verify />}/>
+        <Route path='/api/v1/emailStatus/:token' element={<VerifyEmail />}/>
         <Route path='/private' element={<PrivateRoute />}>
           <Route path='' element={<LandlordDashboard />} />
         </Route>
