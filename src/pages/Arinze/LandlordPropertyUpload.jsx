@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./LandlordPropertyUpload.css";
 import { Modal } from "antd";
 import { CiImageOn } from "react-icons/ci";
+import axios from "axios";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const LandlordPropertyUpload = () => {
   const [imgBox, setImgBox] = useState([
@@ -25,6 +28,18 @@ const LandlordPropertyUpload = () => {
   const scancel = () => {
     setOpen(false);
   };
+
+  const landlord = localStorage.getItem("");
+
+  const handleUpload = async () => {
+
+    try{
+      const response = await axios.post(`${API_URL}/createlisting/${landlord}`,)
+      console.log(response)
+    }catch(err){
+      console.log(err)
+    }
+  }
 
   return (
     <div className="LandlordPropertyUploadMain">
