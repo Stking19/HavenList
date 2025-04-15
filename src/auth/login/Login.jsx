@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import picture from "/IMG/loginImage.png";
 import "./login.css";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/slices/AuthSlice"; 
 import { loginUser } from "../../config/api";
@@ -16,8 +16,7 @@ const Login = () => {
   });
   const [error, setError] = useState("");
   const [loading, setLoading ] = useState(false)
-  const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
+  const {role} = useParams()
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -41,13 +40,11 @@ const Login = () => {
       toast.error("Email pathern is incorrect")
       return;
     }
-
-
     setLoading(true)
    
     try {
 
-      const userData = await loginUser({ email, password }); 
+      const userData = await loginUser({ email, password }, role); 
       dispatch(login(userData)); 
       setLoading(false)
 
@@ -109,7 +106,31 @@ const Login = () => {
                   </button>
 
                   <div className="forgotpasswordwrap">
-                    
+                    <h2 className="signWh">Don't have an account? register</h2>
+                    <h3 className="datSig">
+                    <h2
+                      onClick={() => navigate("/register/landlord")}
+                      style={{
+                        textDecoration: "underline",
+                        fontSize: "15px",
+                        color: "#00bcd4",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Landlord
+                    </h2>
+                    <h2
+                      onClick={() => navigate("/register/tenant")}
+                      style={{
+                        textDecoration: "underline",
+                        fontSize: "15px",
+                        color: "#00bcd4",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Tenant
+                    </h2>
+                    </h3>
                     <h2
                       onClick={() => navigate("/forgot-password")}
                       style={{

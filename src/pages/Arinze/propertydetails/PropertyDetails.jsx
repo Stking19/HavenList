@@ -1,15 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 import './propertydetails.css'
-import { FaAnchor, FaSink, FaAngleRight } from "react-icons/fa6";
+import { FaAnchor, FaSink, FaAngleRight, FaChevronLeft, FaChevronRight  } from "react-icons/fa6";
 
 const PropertyDetails = () => {
+  const images = [
+    "/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg",
+    "/IMG/f1e72efd74f50f435fd26aac95593895 (1).jpg",
+    "/IMG/251d5a5fc1a8245fe0a865f05388083b.jpg",
+    "/IMG/02959aaf05749951f238b1cbc0edcc31.jpg",
+    "/IMG/f217c589f3dc03cf9e6018c073eb242c.jpg"
+  ];
   const navigate = useNavigate();
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
   return (
     <>
     <div className='propertyDetailMain'>
     <div className='propertyDetailWrapper'>
     <p>cool apartment for you and family</p>
+
         <div className='propertyDetailImageWrapper'>
           <span className='propertyDetailImageMain'>
             <img src="/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg" alt="" />
@@ -34,6 +51,15 @@ const PropertyDetails = () => {
             </section>
           </div>
         </div>
+
+        <div className='propertyDetailImageMobile'>
+            <FaChevronLeft onClick={prevImage} className='arrowBtn left' />
+            <span className='mobileImageHolder'>
+            <img src={images[currentImageIndex]} alt="property" />
+            </span>
+            <FaChevronRight onClick={nextImage} className='arrowBtn right' />
+          </div>
+
         <nav>
           <h3>2 Bedroom Flat in 6th Avenue Festac,</h3>
           <h3>festac,Lagos</h3>
@@ -78,15 +104,14 @@ const PropertyDetails = () => {
           <li>Do not make any inspection fee without seeing the agent or Landlord.</li>
           <li>Only pay Rental fee, Sales fee or any upfront payment after you verify the Landlord.</li>
           <li>Ensure you meet the Agent in an open location.</li>
-          <li>The Agent does not represent HevanList and HevanList is not liable for any monetary transaction between you and the Agent.</li>
+          <li>The Agent does not represent HevanList and HevanList is not liable for any monetary <br/>transaction between you and the Agent.</li>
         </div>
 
     
         <a style={{fontSize:'20px',marginBottom:'15px'}} href="https://docs.google.com/document/d/18EkarRCZfF9mRuQMsEqgeLB_Nja6LvkJAq8KLMWjNmk/edit?usp=sharing">Terms Of use</a>
       </div>
     
-     </div>
-       
+     </div>    
       
       <div className='modalpropertyDetailCard'>
         <h2>N 2,000,000 <small>per Annum</small></h2>
@@ -128,6 +153,13 @@ const PropertyDetails = () => {
           <p>N 2,000,000.00</p>
         </span>
       </div>
+      
+
+
+      <div className='modalpropertyDetailCardMobile'>
+        <h2>N 2,000,000</h2>
+        <button onClick={() => navigate("/success")} className='propertyDetailRentBtn'>Rent</button>
+      </div> 
     </>
   )
 }

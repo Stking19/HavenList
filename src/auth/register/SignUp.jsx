@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import signpic from "/IMG/loginImage.png";
 import "./signup.css";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { signup } from "../../config/api"; 
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const {role} = useParams()
+    console.log(role)
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -31,25 +34,29 @@ const SignUp = () => {
 
     if (!fullName || !email || !password || !confirmPassword) {
       setError("Please fill in all fields.");
+      toast.error("Please fill in all fields.")
       return;
     }
 
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
+      toast.error("password do not match")
       return;
     }
+    
 
     try {
       setLoading(true)
-      await signup({ fullName, email, password, confirmPassword });
+      await signup({ fullName, email, password, confirmPassword }, role);
       setLoading(false)
 
       setTimeout(() =>{
-        navigate("/sign-in");
+        navigate(`/sign-in/${role}`);
       },2000)
        
     } catch (err) {
       console.log(err)
+      setLoading(false)
     }
   };
 
@@ -134,9 +141,9 @@ const SignUp = () => {
                 </div>
 
                 <div className="accountwrap">
-                  <h3>Already have an account?</h3>
+                  <h3>Already have an account? Login</h3>
                   <h3
-                    onClick={() => navigate("/sign-in")}
+                    onClick={() => navigate("/sign-in/landlord")}
                     style={{
                       cursor: "pointer",
                       textDecoration: "underline",
@@ -144,7 +151,19 @@ const SignUp = () => {
                       color: "#00bbd4a9",
                     }}
                   >
-                    Login
+                    Landlord
+                  </h3>
+                  or
+                  <h3
+                    onClick={() => navigate("/sign-in/tenant")}
+                    style={{
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                      fontWeight: "bold",
+                      color: "#00bbd4a9",
+                    }}
+                  >
+                    Tenant
                   </h3>
                 </div>
               </div>
