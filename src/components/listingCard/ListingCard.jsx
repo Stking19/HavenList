@@ -4,7 +4,6 @@ import { LiaToiletSolid } from "react-icons/lia";
 import { GiBathtub } from "react-icons/gi";
 import { IoIosBed } from "react-icons/io";
 import { useNavigate } from 'react-router';
-import Listing from '../../pages/Arinze/listing/Listing';
 
 const ListingCard = ({items}) => {
 
@@ -19,10 +18,10 @@ const ListingCard = ({items}) => {
            <img src={items.image} alt="" />
           </span>
           <div className='listingPropertyDetails'>
-           <h2 style={{color:'blue'}}>{items.title}</h2>
+           <h2 style={{color:'#2F80ED'}}>{items.title}</h2>
            <p>{items.address}</p>
            <p>{items.description}</p>
-          <h2 style={{color:'blue',display:'flex',alignItems:'center'}}>{items.price}<small style={{color:'black',fontSize:'12px'}}>{items.frequency}</small></h2>
+          <h2 style={{color:'#2F80ED',display:'flex',alignItems:'center', gap: "5px"}}>{items.price}<small style={{color:'black',fontSize:'12px'}}>{items.frequency}</small></h2>
           </div>
        </div>
         <section className='listingFooter'>

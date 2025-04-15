@@ -21,7 +21,7 @@ const Listing = () => {
       description: "Fully detached with a private compound.",
       price: "N3.5M",
       frequency: "per annum",
-      image: "../../../public/be948c0b628fbdd1e0788117fb2000a1.jpg"
+      image: "IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ const Listing = () => {
       description: "Compact and affordable for young professionals.",
       price: "N800K",
       frequency: "per annum",
-      image:"../../../public/be948c0b628fbdd1e0788117fb2000a1.jpg"
+      image:"IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
     },
     {
       id: 4,
@@ -39,7 +39,7 @@ const Listing = () => {
       description: "Comes with BQ, modern kitchen, and swimming pool.",
       price: "N7M",
       frequency: "per annum",
-      image: "../../../public/be948c0b628fbdd1e0788117fb2000a1.jpg"
+      image: "IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
     },
     {
       id: 5,
@@ -48,7 +48,7 @@ const Listing = () => {
       description: "Clean and close to major tech hubs.",
       price: "N1.2M",
       frequency: "per annum",
-      image: "../../../public/be948c0b628fbdd1e0788117fb2000a1.jpg"
+      image: "IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
     },
     {
       id: 6,
@@ -57,7 +57,7 @@ const Listing = () => {
       description: "Perfect for students or short-term stay.",
       price: "N600K",
       frequency: "per annum",
-      image: "../../../public/be948c0b628fbdd1e0788117fb2000a1.jpg"
+      image: "IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
     },
     {
       id: 7,
@@ -66,7 +66,7 @@ const Listing = () => {
       description: "Spacious rooms and 24/7 power supply.",
       price: "N1.8M",
       frequency: "per annum",
-      image: "../../../public/be948c0b628fbdd1e0788117fb2000a1.jpg"
+      image: "IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
     },
     {
       id: 8,
@@ -75,7 +75,7 @@ const Listing = () => {
       description: "Affordable and secure environment.",
       price: "N500K",
       frequency: "per annum",
-      image: "../../../public/be948c0b628fbdd1e0788117fb2000a1.jpg"
+      image: "IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
     },
     {
       id: 9,
@@ -84,7 +84,7 @@ const Listing = () => {
       description: "Modern finish with good road network.",
       price: "N2.7M",
       frequency: "per annum",
-      image: "../../../public/be948c0b628fbdd1e0788117fb2000a1.jpg"
+      image: "IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
     }
   ];
   return (
