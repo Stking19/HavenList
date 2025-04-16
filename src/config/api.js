@@ -37,6 +37,7 @@ export const loginUser = async (credentials, role) => {
   try {
     const endpoint = role === "landlord" ? "loginlandlord" : "loginTenant"
     const response = await api.post( endpoint, credentials);
+    console.log(endpoint)
     const { token, data, message } = response.data;
      console.log(response)
     localStorage.setItem("token", token);
@@ -58,21 +59,22 @@ export const signup = async (userData, role) => {
     console.log(response)
     return response.data;
   } catch (error) {
-  
+    //  toast.error(error.response.data.message)
     throw error;
   }
 };
 
 
-export const resetPassword = async (userDetails) => {
+export const resetPassword = async ({Password,confirmPassword,otp,role}) => {
   try {
-    const response = await api.post("TenantResetPassword", userDetails);
+    const endpoint = role === "landlord" ? "landlordpassword" : "tenantpassword"
+    const response = await api.post( endpoint, {Password, confirmPassword,otp});
     console.log(response)
     toast.success(response.data.message);
     return response.data;
   } catch (error) {
-   console.log(response)
-   toast.error(response.data.message)
+   console.log(error)
+   toast.error(error.response.data.message)
     throw error;
   }
 };
@@ -89,6 +91,24 @@ export const forgetPassword = async (email) => {
     throw error;
   }
 };
+
+export const profileUpload = () => {
+
+
+  
+  const formData = new FormData();
+  formData.append("fullName", details.fullName);
+  formData.append("email", details.email);
+  formData.append("street", details.street);
+  formData.append("locality", details.locality);
+  formData.append("state", details.state);
+
+  if (image) {
+    formData.append("profileImage", image);
+  }
+
+  
+}
 
 
 export default api;
