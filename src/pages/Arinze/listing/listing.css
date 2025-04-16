@@ -44,73 +44,18 @@
     gap: 15px;
 }
 
-@media only screen and (max-width: 768px) {
-    .listingCardWraper {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .listingHero {
-        font-size: 24px;
-        padding-top: 10px;
-    }
-
-    .listingHeroWrapper {
-        height: 40vh;
-        background-size: cover;
-    }
-
-    .listingMain {
-        padding: 10px;
-    }
-
-    .listingCardHolder {
-        min-height: auto;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 15px;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    .listingHero {
-        font-size: 20px;
-        padding-top: 10px;
-    }
-
-    .listingCardWraper {
-        gap: 15px;
-    }
-
-    .listingHeroWrapper {
-        height: 35vh;
-        background-size: contain;
-    }
-
-    .listingCardMain {
-        width: 100%;
-        margin: 10px 0;
-        padding: 12px;
-    }
-
-    .listingCardHolder {
-        min-height: auto;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 15px;
-    }
-}
 
 @media only screen and (max-width: 375px) {
     .listingHeroWrapper {
         height: 40vh;
-        background-size: contain; 
+        background-image: url('IMG/cca9a1d1550941737e81ed9e4a8e0365.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     .listingHero {
-        font-size: 22px; 
+        font-size: 22px;
         padding-top: 10px;
     }
 
@@ -134,7 +79,7 @@
     }
 
     .listingMain {
-        padding: 10px; 
+        padding: 10px;
     }
 }
 
@@ -143,10 +88,14 @@
         height: 40vh;
         background-size: cover;
         position: relative;
+        background-image: url('IMG/cca9a1d1550941737e81ed9e4a8e0365.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+
     }
 
     .listingHero {
-        font-size: 20px; 
+        font-size: 20px;
         padding-top: 15px;
         display: flex;
         gap: 5px;
@@ -154,7 +103,7 @@
         align-items: center;
         justify-content: center;
 
-        & p{
+        & p {
             font-size: 16px;
         }
     }
@@ -180,9 +129,79 @@
     }
 
     .listingMain {
-        padding: 12px; 
+        padding: 12px;
     }
 }
+
+
+
+@media only screen and (max-width: 480px) {
+    .listingHero {
+        font-size: 20px;
+        padding-top: 10px;
+    }
+
+    .listingCardWraper {
+        gap: 15px;
+    }
+
+    .listingHeroWrapper {
+        height: 35vh;
+        background-image: url('IMG/cca9a1d1550941737e81ed9e4a8e0365.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .listingCardMain {
+        width: 100%;
+        margin: 10px 0;
+        padding: 12px;
+    }
+
+    .listingCardHolder {
+        min-height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    .listingCardWraper {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .listingHero {
+        font-size: 24px;
+        padding-top: 10px;
+    }
+
+    .listingHeroWrapper {
+        height: 40vh;
+        background-image: url('IMG/cca9a1d1550941737e81ed9e4a8e0365.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .listingMain {
+        padding: 10px;
+    }
+
+    .listingCardHolder {
+        min-height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+}
+
+
 
 body {
     overflow-x: hidden;
