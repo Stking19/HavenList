@@ -7,23 +7,25 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const EmailConfirmation =() => {
-
+const EmailConfirmation = () => {
   const navigate = useNavigate();
   const { token } = useParams();
+  const { role } = useParams();
+  console.log(role);
 
   useEffect(() => {
     const handleVerify = async () => {
+      const endpoint = role === "landlord" ? "landlord" : "tenant";
       try {
-        const response = await axios.get(`${API_URL}emailStatus/${token}`);
+        const response = await axios.get(`${API_URL}${endpoint}/${token}`);
         console.log(response);
-        navigate("/sign-in/landlord");
-      }catch (error) {
+        navigate(`/sign-in/${role}`);
+      } catch (error) {
         console.error("Error verifying email:", error);
       }
-    }
+    };
     if (token) {
-      handleVerify()
+      handleVerify();
     }
   }, [token]);
   return (
@@ -46,6 +48,6 @@ const EmailConfirmation =() => {
       </div>
     </div>
   );
-}
+};
 
 export default EmailConfirmation;
