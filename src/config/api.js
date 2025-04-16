@@ -96,20 +96,6 @@ export const forgetPassword = async (email) => {
 
   
   
-  // export const landLordListing = async (setListingHolder)=>{
-  //   const landlordId = localStorage.getItem('id')
-  //   try {
-  //     const res = await axios.get(`${API_URL}/getAllListingsByLandlord`,setListingHolder,{
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization:`Bearer ${landlordId}`
-  //       },
-  //   })
-  //   console.log(res)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
 
 
 

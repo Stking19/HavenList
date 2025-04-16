@@ -110,14 +110,7 @@ const LandLordListing = () => {
   }
 
 
-  // const getLandlordListing = async ()=>{
-  //   try {
-  //     const res = await landLordListing(setListingHolder())
-  //     console.log(res)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+
 
 
   useEffect(()=>{

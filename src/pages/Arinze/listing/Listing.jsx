@@ -92,15 +92,6 @@ const Listing = () => {
 
   const [allListing, setAllListings] = useState([])
 
-  // const getListing = async ()=>{
-  //   try {
-  //     const res = await getAllListing()
-  //     console.log(res)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-  // console.log(allListing)
 
  const getAllListing = async ()=>{
   try {
