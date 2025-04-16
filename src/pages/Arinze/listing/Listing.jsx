@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './listing.css'
 import ListingCard from '../../../components/listingCard/ListingCard'
 import SearchBar from '../../../components/searchbar/SearchBar'
+import { getAllListing } from '../../../config/api';
 
 const Listing = () => {
   
@@ -89,6 +90,24 @@ const Listing = () => {
     }
   ];
 
+  const [allListing, setAllListings] = useState([])
+
+  const getListing = async ()=>{
+    try {
+      const res = await getAllListing(setAllListings())
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  console.log(allListing)
+
+
+  useEffect(()=>{
+    getListing()
+  },[])
+
   return (
     <div className='listingMain'>
   <div className='listingHeroWrapper'>
@@ -101,7 +120,7 @@ const Listing = () => {
   <div className='listingCardHolder'>
       <div className='listingCardWraper'>
       {
-        listings.map((item,index)=>(
+        allListing?.map((item,index)=>(
           <ListingCard key={index} items={item} />
         ))
       }
