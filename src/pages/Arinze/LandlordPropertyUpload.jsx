@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./LandlordPropertyUpload.css";
 import { Modal } from "antd";
 import { CiImageOn } from "react-icons/ci";
+import axios from "axios";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const LandlordPropertyUpload = () => {
   const [imgBox, setImgBox] = useState([
@@ -24,6 +27,22 @@ const LandlordPropertyUpload = () => {
 
   const scancel = () => {
     setOpen(false);
+  };
+
+  const landlord = JSON.parse(localStorage.getItem("id"));
+  const token = localStorage.getItem("token");
+
+  const headers = {Authorization: `landlordBearerAuth ${token}`};
+  console.log(landlord);
+
+  const handleUpload = async () => {
+    try {
+      const response = await axios.post(`${API_URL}createlisting/${landlord}`, {}, { headers });
+      console.log(response);
+      setOpen(true);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -103,13 +122,13 @@ const LandlordPropertyUpload = () => {
               </span>
             </section>
             <span className="uploadTitle">
-                <h3>Description</h3>
-                <input
-                  type="text"
-                  placeholder="e.g newly built 3 bedroom flat in a serene neighbourhood"
-                  className="desc"
-                />
-              </span>
+              <h3>Description</h3>
+              <input
+                type="text"
+                placeholder="e.g newly built 3 bedroom flat in a serene neighbourhood"
+                className="desc"
+              />
+            </span>
           </div>
 
           <div className="addressDetailUpload">
@@ -170,29 +189,29 @@ const LandlordPropertyUpload = () => {
           </div>
 
           <section className="imageDetailUpload">
-          <k>Click to add image</k>
-          <div className="holderIm">
-            {imgBox.map((item, index) => (
-              <div className="uploadImageCont" key={item.id}>
-                <input
-                  type="file"
-                  name=""
-                  id={`img-${item.id}`}
-                  hidden
-                  onChange={(e) => handleImageUpload(e, index)}
-                />
-                {item.imgUrl ? (
-                  <img src={item.imgUrl} alt={`Uploaded ${item.id}`} />
-                ) : (
-                  <label htmlFor={`img-${item.id}`}>
-                    <CiImageOn style={{ cursor: "pointer" }} />
-                  </label>
-                )}
-              </div>
-            ))}
+            <k>Click to add image</k>
+            <div className="holderIm">
+              {imgBox.map((item, index) => (
+                <div className="uploadImageCont" key={item.id}>
+                  <input
+                    type="file"
+                    name=""
+                    id={`img-${item.id}`}
+                    hidden
+                    onChange={(e) => handleImageUpload(e, index)}
+                  />
+                  {item.imgUrl ? (
+                    <img src={item.imgUrl} alt={`Uploaded ${item.id}`} />
+                  ) : (
+                    <label htmlFor={`img-${item.id}`}>
+                      <CiImageOn style={{ cursor: "pointer" }} />
+                    </label>
+                  )}
+                </div>
+              ))}
             </div>
           </section>
-          <button className="propertyUploadBtn" onClick={() => setOpen(true)}>
+          <button className="propertyUploadBtn" onClick={handleUpload}>
             Upload
           </button>
         </section>
