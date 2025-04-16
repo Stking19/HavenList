@@ -92,10 +92,19 @@ export const forgetPassword = async (email) => {
   }
 };
 
-export const profileUpload = () => {
+
+export const getAllListing = async (setAllListings)=>{
+  try {
+    const res = await axios.get(`${ API_URL}/getAllListings`,setAllListings)
+    console.log(res)
+  } catch (error) {
+    console.log(error)
+  }}
 
 
   
+export const profileUpload = () => {
+
   const formData = new FormData();
   formData.append("fullName", details.fullName);
   formData.append("email", details.email);
@@ -107,8 +116,8 @@ export const profileUpload = () => {
     formData.append("profileImage", image);
   }
 
-  
 }
 
 
 export default api;
+ 
