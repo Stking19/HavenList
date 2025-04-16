@@ -93,16 +93,12 @@ export const forgetPassword = async (email) => {
 };
 
 
-export const getAllListing = async (setAllListings)=>{
-  try {
-    const res = await axios.get(`${ API_URL}/getAllListings`,setAllListings)
-    console.log(res)
-  } catch (error) {
-    console.log(error)
-  }}
-
 
   
+  
+
+
+
 export const profileUpload = () => {
 
   const formData = new FormData();
