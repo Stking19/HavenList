@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './listing.css'
 import ListingCard from '../../../components/listingCard/ListingCard'
 import SearchBar from '../../../components/searchbar/SearchBar'
-import { getAllListing } from '../../../config/api';
+
 
 const Listing = () => {
   
@@ -92,20 +92,28 @@ const Listing = () => {
 
   const [allListing, setAllListings] = useState([])
 
-  const getListing = async ()=>{
-    try {
-      const res = await getAllListing(setAllListings())
-      console.log(res)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // const getListing = async ()=>{
+  //   try {
+  //     const res = await getAllListing()
+  //     console.log(res)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+  // console.log(allListing)
 
-  console.log(allListing)
+ const getAllListing = async ()=>{
+  try {
+    const res = await axios.get(`${ API_URL}/getAllListings`)
+ console.log(res)
+  } catch (error) {
+    console.log(error)
+  }}
+  
 
 
   useEffect(()=>{
-    getListing()
+   setAllListings(getAllListing())
   },[])
 
   return (

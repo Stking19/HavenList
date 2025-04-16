@@ -55,7 +55,10 @@ const LandlordPropertyUpload = () => {
   };
   console.log(landlord);
 
+  const [isloading,setIsLoading] = useState(false) 
+
   const handleUpload = async () => {
+    setIsLoading(true)
     try {
       const formData = new FormData();
 
@@ -75,10 +78,11 @@ const LandlordPropertyUpload = () => {
         { headers }
       );
       console.log(response);
-      //setOpen(true);
+      setIsLoading(false)
     } catch (err) {
     
       console.log(err);
+      setIsLoading(false)
     }
   };
 
@@ -327,8 +331,10 @@ const LandlordPropertyUpload = () => {
               ))}
             </div>
           </section>
-          <button className="propertyUploadBtn" onClick={handleUpload}>
-            Upload
+          <button className="propertyUploadBtn" onClick={handleUpload} disabled={!isloading}>
+           {
+              isloading?'Uploading...':'Upload'
+           }
           </button>
         </section>
       </div>
