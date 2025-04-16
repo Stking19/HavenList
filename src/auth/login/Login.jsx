@@ -20,7 +20,6 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { role } = useParams();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
