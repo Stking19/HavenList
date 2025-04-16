@@ -53,14 +53,16 @@ const LandlordDashboard = () => {
   ];
 
 const [activeTab, setActiveTab] = useState(0)
+const name = JSON.parse(localStorage.getItem("user"))
+const firstName = name.split(" ")[0]
 
   return (
     <div className="dashboard">
       <SideBar setActiveTab={setActiveTab}/>
       <div className="dash">
-        <DashboardHeader />
+        <DashboardHeader setActiveTab={setActiveTab}/>
         { activeTab === 0 ? <div className="hello">
-          <h2>Hello, Samuel</h2>
+          <h2>Hello, {firstName}</h2>
           <div className="cardsDE">
             {landlord.map((item, index) => (
               <div className="carde" key={index}>

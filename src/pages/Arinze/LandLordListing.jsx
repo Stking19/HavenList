@@ -88,7 +88,6 @@ const LandLordListing = () => {
     }
   ];
 
-
   return (
     <div className='landLordListingMain'>
       <div className='landLordMainScreen'>
@@ -96,11 +95,13 @@ const LandLordListing = () => {
             <h3>My Listings</h3>
         </span>
         <div className='landlordListingHolder'>
+
            {
                  listings.map((item,index)=>(
                    <ListingCard key={index} items={item} />
                  ))
                }
+
         </div>
       </div>
     </div>

@@ -114,9 +114,9 @@
 
 @media only screen and (max-width: 480px) {
     .listingCardMain {
-        width: 100%;
+        width: 105%;
         min-height: auto;
-        margin: 5px 0;
+        margin: 20px 0;
     }
 
     .listingPropertyImage {
@@ -134,8 +134,8 @@
     }
 
     .listingFooter {
-        height: 30%;
-        gap: 15px;
+        height: 22%;
+        gap: 10px;
     }
 
     .listingFooterContent {
