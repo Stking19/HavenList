@@ -67,7 +67,7 @@ const App = () => {
       element: <Verify />,
     },
     {
-      path: '/api/v1/emailStatus',
+      path: '/api/v1/emailStatus/:token',
       element: <EmailConfirmation />,
     },
     {
