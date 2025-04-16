@@ -4,6 +4,7 @@ import ListingCard from '../../../components/listingCard/ListingCard'
 import SearchBar from '../../../components/searchbar/SearchBar'
 
 const Listing = () => {
+  
   const listings = [
     {
       id: 1,
@@ -87,6 +88,7 @@ const Listing = () => {
       image: "IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
     }
   ];
+
   return (
     <div className='listingMain'>
   <div className='listingHeroWrapper'>

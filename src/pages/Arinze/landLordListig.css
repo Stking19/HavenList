@@ -1,18 +1,18 @@
-.landLordListingMain{
+.landLordListingMain {
     height: max-content;
     width: 100%;
     display: flex;
     gap: 20px;
 }
 
-.landLordMainScreen{
+.landLordMainScreen {
     height: max-content;
     width: 90%;
     display: flex;
     flex-direction: column;
 }
 
-.textHeader{
+.textHeader {
     height: max-content;
     width: 100%;
     display: flex;
@@ -20,9 +20,186 @@
 }
 
 
-.landlordListingHolder{
+.landlordListingHolder {
     height: max-content;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+
+@media screen and (max-width: 361px) {
+    .landlordListingHolder {
+        height: max-content;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .landLordMainScreen {
+        height: max-content;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+
+    .textHeader {
+        height: max-content;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+}
+
+
+@media screen and (max-width: 480px) {
+    .landlordListingHolder {
+        height: max-content;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .landLordMainScreen {
+        height: max-content;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+
+    .textHeader {
+        height: max-content;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .landlordListingHolder {
+        height: max-content;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    .landLordMainScreen {
+        height: max-content;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+
+    .textHeader {
+        height: max-content;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .landlordListingHolder {
+        height: max-content;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    .landLordMainScreen {
+        height: max-content;
+        width: 99%;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .textHeader {
+        height: max-content;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .landlordListingHolder {
+        height: max-content;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    .landLordMainScreen {
+        height: max-content;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+
+    .textHeader {
+        height: max-content;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
