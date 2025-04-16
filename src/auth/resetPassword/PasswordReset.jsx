@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import "./passwordreset.css";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { resetPassword } from "../../config/api";
+import { IoEyeOutline } from "react-icons/io5";
+import { LuEyeOff } from "react-icons/lu";
 
 const PasswordReset = () => {
   const navigate = useNavigate();
+  const { otp, role } = useParams();
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
@@ -26,17 +31,11 @@ const PasswordReset = () => {
       return;
     }
 
-    // if (!strongPasswordRegex.test(password)) {
-    //   toast.error("Password must have uppercase, lowercase, numbers and special characters");
-    //   return;
-    // }
-
     setIsLoading(true);
 
     try {
-      const response = await resetPassword({ password, confirmPassword }); // assuming this function exists
-      toast.success(response.data.message); // assuming proper response
-      console.log(response);
+      const response = await resetPassword({ password, confirmPassword, otp, role });
+      toast.success(response.data.message);
       setTimeout(() => {
         navigate("/sign-in");
       }, 3000);
@@ -61,32 +60,44 @@ const PasswordReset = () => {
           </div>
 
           <div className="resetformdetails">
-            <div className="forgotpassworddetailwrapper">
+            <div className="forgotpassworddetailwrapper" style={{ position: "relative" }}>
               <h2 style={{ color: "#00bcd4", fontSize: "20px", fontWeight: "400" }}>
                 Create Password
               </h2>
               <input
                 className="resetinputcont"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Create password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              <span
+                className="eye-icon"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <IoEyeOutline />: <LuEyeOff />  }
+              </span>
             </div>
 
-            <div className="forgotpassworddetailwrapper">
+            <div className="forgotpassworddetailwrapper" style={{ position: "relative" }}>
               <h2 style={{ color: "#00bcd4", fontSize: "20px", fontWeight: "400" }}>
                 Confirm Password
               </h2>
               <input
                 className="resetinputcont"
-                type="password"
+                type={showConfirmPassword ? "text" : "password"}
                 name="confirmPassword"
                 placeholder="Confirm password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
+              <span
+                className="eye-icon"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? <IoEyeOutline /> :<LuEyeOff />  }
+              </span>
             </div>
 
             <div className="continuebuttoncont1">

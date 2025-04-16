@@ -3,6 +3,7 @@ import './landLordListig.css'
 import ListingCard from '../../components/listingCard/ListingCard'
 
 const LandLordListing = () => {
+
   const listings = [
     {
       id: 1,
@@ -86,7 +87,7 @@ const LandLordListing = () => {
       image: "IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
     }
   ];
-  
+
   return (
     <div className='landLordListingMain'>
       <div className='landLordMainScreen'>
@@ -94,11 +95,13 @@ const LandLordListing = () => {
             <h3>My Listings</h3>
         </span>
         <div className='landlordListingHolder'>
-        {
-        listings.map((item,index)=>(
-          <ListingCard key={index} items={item} />
-        ))
-      }
+
+           {
+                 listings.map((item,index)=>(
+                   <ListingCard key={index} items={item} />
+                 ))
+               }
+
         </div>
       </div>
     </div>

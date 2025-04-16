@@ -3,25 +3,47 @@ import "./profilepage.css";
 
 function ProfilePage() {
   const [details, setDetails] = useState({
+    fullName: "",
+    email: "",
     street: "",
     locality: "",
     state: "",
   });
+
+  const [image, setImage] = useState(null);
+
+  const handleInputChange = (field) => (e) => {
+    setDetails({ ...details, [field]: e.target.value });
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Submitted!");
+    console.log("Details:", details);
+    console.log("Image:", image);
+    
+  };
+
   return (
     <div>
       <div className="informationdetailcont">
-        <h1
-          style={{ marginLeft: "30px", paddingTop: "10px", fontSize: "27px" }}
-        >
+        <h1 style={{ marginLeft: "30px", paddingTop: "10px", fontSize: "27px" }}>
           My Profile
         </h1>
-        <form className="profileform">
+        <form className="profileform" onSubmit={handleSubmit}>
           <div className="inforcontainer">
             <h2>Full Name</h2>
             <input
               className="containerwarpper"
               type="text"
               placeholder="Full name"
+              value={details.fullName}
+              onChange={handleInputChange("fullName")}
             />
           </div>
 
@@ -29,8 +51,10 @@ function ProfilePage() {
             <h2>Email</h2>
             <input
               className="containerwrap"
-              type="text"
+              type="email"
               placeholder="Enter email here ..."
+              value={details.email}
+              onChange={handleInputChange("email")}
             />
           </div>
 
@@ -41,9 +65,7 @@ function ProfilePage() {
               type="text"
               placeholder="Enter address here ..."
               value={details.street}
-              onChange={(e) =>
-                setDetails({ ...details, street: e.target.value })
-              }
+              onChange={handleInputChange("street")}
             />
           </div>
 
@@ -55,9 +77,7 @@ function ProfilePage() {
                 type="text"
                 placeholder="Locality"
                 value={details.locality}
-                onChange={(e) =>
-                  setDetails({ ...details, locality: e.target.value })
-                }
+                onChange={handleInputChange("locality")}
               />
             </div>
 
@@ -65,12 +85,10 @@ function ProfilePage() {
               <h2>State</h2>
               <input
                 className="stateinputwrapper"
-                placeholder="state"
-                value={details.state}
                 type="text"
-                onChange={(e) =>
-                  setDetails({ ...details, state: e.target.value })
-                }
+                placeholder="State"
+                value={details.state}
+                onChange={handleInputChange("state")}
               />
             </div>
           </div>
@@ -78,12 +96,20 @@ function ProfilePage() {
           <div className="actionbtn">
             <div className="profileupload">
               <h4>Upload Picture</h4>
-              <button className="imagefilebtncont">Choose  File</button>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
             </div>
+
             <div className="actionbuttonwrapper1">
-             
-              <button className="cancelbtn1">Cancel</button>
-              <button className="submitbtn">Submit</button>
+              <button type="button" className="cancelbtn1">
+                Cancel
+              </button>
+              <button type="submit" className="submitbtn">
+                Submit
+              </button>
             </div>
           </div>
         </form>
