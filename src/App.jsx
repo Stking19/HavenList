@@ -39,7 +39,7 @@ const App = () => {
         </Route>
         <Route path='/sign-in/:role' element={<Login />}/>
         <Route path='/register/:role' element={<SignUp />}/>
-        <Route path='/reset-password' element={<PasswordReset />}/>
+        <Route path='/reset-password/:otp/:role' element={<PasswordReset />}/>
         <Route path='/forgot-password' element={<ForgotPassword />}/>
         <Route path='/verify/:token' element={<Verify />}/>
         <Route path='/private' element={<PrivateRoute />}>

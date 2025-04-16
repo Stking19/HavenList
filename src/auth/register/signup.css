@@ -154,6 +154,16 @@
   }
 }
 
+.eye-icon {
+  position: absolute;
+  right: 90px;
+  top: 70%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+}
+
 @media (max-width: 460px) {
   * {
     margin: 0;
@@ -196,6 +206,21 @@
   .accountwrap {
     margin: 0;
   }
+
+  .usernameormwrap{
+    position: relative;
+
+   
+  }
+  .eye-icon {
+    /* background-color: aqua; */
+    position: absolute;
+    /* margin-left: 70px; */
+    right: 10px  !important;
+     /* Bring the icon closer to the edge or adjust as needed */
+    font-size: 16px; /* Optional: make it slightly smaller for mobile */
+  }
+  
 }
 
 

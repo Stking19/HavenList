@@ -6,17 +6,21 @@ import { useDispatch } from "react-redux";
 import { login } from "../../redux/slices/AuthSlice"; 
 import { loginUser } from "../../config/api";
 import toast from "react-hot-toast";
-
+import { IoEyeOutline } from "react-icons/io5";
+import { LuEyeOff } from "react-icons/lu";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { role } = useParams();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(false); // 👈 added
   const [error, setError] = useState("");
-  const [loading, setLoading ] = useState(false)
-  const {role} = useParams()
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -32,30 +36,29 @@ const Login = () => {
     const { email, password } = formData;
 
     if (!email || !password) {
-      toast.error("Please input your email and password ")
+      toast.error("Please input your email and password ");
       return;
     }
 
-    if(!email.includes("@")){
-      toast.error("Email pathern is incorrect")
+    if (!email.includes("@")) {
+      toast.error("Email pattern is incorrect");
       return;
     }
-    setLoading(true)
-   
+
+    setLoading(true);
+
     try {
-
       const userData = await loginUser({ email, password }, role); 
       dispatch(login(userData)); 
-      setLoading(false)
+      setLoading(false);
 
-      setTimeout(() =>{
+      setTimeout(() => {
         navigate("/");
-      },2000)
+      }, 2000);
       
     } catch (err) {
-      console.log(err)
-      setLoading(false)
-      
+      console.log(err);
+      setLoading(false);
     }
   };
 
@@ -90,46 +93,55 @@ const Login = () => {
 
                 <div className="loginformwrap">
                   <h2>Password</h2>
-                  <input
-                    className="logininputcont"
-                    type="password"
-                    name="password"
-                    placeholder="Enter password"
-                    value={formData.password}
-                    onChange={handleChange}
-                  />
+                  <div style={{ position: "relative" }}>
+                    <input
+                      className="logininputcont"
+                      type={showPassword ? "text" : "password"}
+                      name="password"
+                      placeholder="Enter password"
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                    <span
+                    className="myeyeicon"
+                      onClick={() => setShowPassword(!showPassword)}
+                      
+                    >
+                      {showPassword ? <IoEyeOutline /> : <LuEyeOff />}
+                    </span>
+                  </div>
                 </div>
                 
                 <div className="loginmain">
                   <button className="loginbtnwrap" type="submit">
-                  {loading ? "Loading..." : "Login"}
+                    {loading ? "Loading..." : "Login"}
                   </button>
 
                   <div className="forgotpasswordwrap">
                     <h2 className="signWh">Don't have an account? register</h2>
                     <h3 className="datSig">
-                    <h2
-                      onClick={() => navigate("/register/landlord")}
-                      style={{
-                        textDecoration: "underline",
-                        fontSize: "15px",
-                        color: "#00bcd4",
-                        cursor: "pointer",
-                      }}
-                    >
-                      Landlord
-                    </h2>
-                    <h2
-                      onClick={() => navigate("/register/tenant")}
-                      style={{
-                        textDecoration: "underline",
-                        fontSize: "15px",
-                        color: "#00bcd4",
-                        cursor: "pointer",
-                      }}
-                    >
-                      Tenant
-                    </h2>
+                      <h2
+                        onClick={() => navigate("/register/landlord")}
+                        style={{
+                          textDecoration: "underline",
+                          fontSize: "15px",
+                          color: "#00bcd4",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Landlord
+                      </h2>
+                      <h2
+                        onClick={() => navigate("/register/tenant")}
+                        style={{
+                          textDecoration: "underline",
+                          fontSize: "15px",
+                          color: "#00bcd4",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Tenant
+                      </h2>
                     </h3>
                     <h2
                       onClick={() => navigate("/forgot-password")}

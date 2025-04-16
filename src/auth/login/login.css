@@ -151,6 +151,16 @@
   flex-direction: column;
 }
 
+.myeyeicon{
+  position: absolute;
+  right: 70px;
+  top: 55%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+}
+
 @media (max-width: 460px) {
   
   .mainwrap {
@@ -259,6 +269,10 @@
   .tag span {
     font-size: 17px;
     margin: 0; 
+  }
+
+  .myeyeicon{
+    right: 10px !important;
   }
   
 }
