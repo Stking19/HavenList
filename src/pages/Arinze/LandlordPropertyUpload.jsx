@@ -29,7 +29,13 @@ const LandlordPropertyUpload = () => {
     setOpen(false);
   };
 
-  const landlord = localStorage.getItem("");
+  const landlord = localStorage.getItem("user");
+
+  const config = {
+    headers : {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    }
+  }
 
   const handleUpload = async () => {
 
