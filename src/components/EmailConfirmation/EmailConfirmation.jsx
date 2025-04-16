@@ -15,7 +15,7 @@ const EmailConfirmation =() => {
   useEffect(() => {
     const handleVerify = async () => {
       try {
-        const response = await axios.get(`${API_URL}landlord-verify/${token}`);
+        const response = await axios.get(`${API_URL}emailStatus/${token}`);
         console.log(response);
         navigate("/sign-in/landlord");
       }catch (error) {
