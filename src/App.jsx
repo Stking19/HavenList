@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter as Router, Routes, Route } from 'react-router'
+import { createBrowserRouter, RouterProvider } from 'react-router'
 import PrivateRoute from './routes/PrivateRoute'
 import Error from './components/error/Error'
 import LandingPage from './pages/LandingPage'
@@ -11,46 +11,91 @@ import Verify from './auth/verify/Verify'
 import Listing from './pages/Arinze/listing/Listing'
 import PropertyDetails from './pages/Arinze/propertydetails/PropertyDetails'
 import Payment from './pages/Joshua/payment/Payment'
-import TermsCondition from './pages/Joshua/T&Cs/TermsCondition'
 import Home from './pages/Stephen/home/Home'
-import LandLordListing from './pages/Arinze/LandLordListing'
-import LandlordPropertyUpload from './pages/Arinze/LandlordPropertyUpload'
 import AboutUsPage from './pages/Joshua/AboutUsPage/AboutUsPage'
 import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 import LandlordDashboard from './pages/Stephen/landlord/LandlordDashboard'
-import SuccessCard from './components/SuccessCard/SuccessCard'
-import ScrollToTop from './components/ScrollToTop'
+import Help from './pages/Joshua/help/Help'
 
 
 const App = () => {
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <LandingPage />,
+      children: [
+        {
+          path: '',
+          element: <Home />
+        },
+        {
+          path: '/propertydetails',
+          element: <PropertyDetails />
+        },
+        {
+          path: '/listings',
+          element: <Listing />
+        },
+        {
+          path: '/help',
+          element: <Help />
+        },
+        {
+          path: '/about',
+          element: <AboutUsPage />
+        },
+      ]
+    },
+    {
+      path: '/sign-in/:role',
+      element: <Login />,
+    },
+    {
+      path: '/register/:role',
+      element: <SignUp />,
+    },
+    {
+      path: '/reset-password',
+      element: <PasswordReset />,
+    },
+    {
+      path: '/forgot-password',
+      element: <ForgotPassword />,
+    },
+    {
+      path: '/verify',
+      element: <Verify />,
+    },
+    {
+      path: '/api/v1/emailStatus/:token',
+      element: <EmailConfirmation />,
+    },
+    {
+      path: '/verify',
+      element: <Verify />,
+    },
+    {
+      path: '/private',
+      element: <PrivateRoute />,
+      children: [
+        {
+          path: '',
+          element: <LandlordDashboard />
+        }
+      ]
+    },
+    {
+      path: '/payment',
+      element: <Payment />
+    },
+    {
+      path: '*',
+      element: <Error />
+    },
+  ])
 
   return (
-    <Router>
-      <ScrollToTop />
-      <Routes>
-        <Route path='/' element={<LandingPage />}>
-          <Route path='/' element={<Home />} />
-          <Route path='/propertydetails' element={<PropertyDetails />} />
-          <Route path='/LandLordListing' element={<LandLordListing />} />
-          <Route path='/LandlordPropertyUpload' element={<LandlordPropertyUpload />} />
-          <Route path='/listings' element={<Listing />} />
-          <Route path='/T&Cs' element={<TermsCondition />} />
-          <Route path='/about' element={<AboutUsPage />} />
-        </Route>
-        <Route path='/sign-in/:role' element={<Login />}/>
-        <Route path='/register/:role' element={<SignUp />}/>
-        <Route path='/reset-password' element={<PasswordReset />}/>
-        <Route path='/forgot-password' element={<ForgotPassword />}/>
-        <Route path='/verify/:token' element={<Verify />}/>
-        <Route path='/private' element={<PrivateRoute />}>
-          <Route path='' element={<LandlordDashboard />} />
-        </Route>
-        <Route path='/payment' element={<Payment />}/>
-        <Route path='/confirm-email' element={<EmailConfirmation />}/>
-        <Route path= "/success" element={<SuccessCard/>}/>
-        <Route path= '*' element={<Error />}/>
-      </Routes>
-    </Router>
+    <RouterProvider router={router} />
   )
 }
 

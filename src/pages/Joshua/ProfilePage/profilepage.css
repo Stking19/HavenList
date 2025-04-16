@@ -185,9 +185,9 @@
     cursor: pointer;
 }
 
-@media (max-width: 460px) {
+@media (max-width: 500px) {
   .informationdetailcont{
-    width: 390px;
+    width: 370px;
     padding: 0px;
     margin: 0px;
   }

@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import emailpicture from "/IMG/Emailpix.png";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import "./emailconfirmation.css";
+import axios from "axios";
 
-function EmailConfirmation() {
+const API_URL = import.meta.env.VITE_API_URL;
+
+const EmailConfirmation =() => {
+
   const navigate = useNavigate();
+  const { token } = useParams();
+
+  useEffect(() => {
+    const handleVerify = async () => {
+      try {
+        const response = await axios.get(`${API_URL}emailStatus/${token}`);
+        console.log(response);
+        navigate("/sign-in/landlord");
+      }catch (error) {
+        console.error("Error verifying email:", error);
+      }
+    }
+    if (token) {
+      handleVerify()
+    }
+  }, [token]);
   return (
     <div>
       <div className="fullemailwrapper">
@@ -19,28 +39,7 @@ function EmailConfirmation() {
           <div className="innerbody-cont">
             <div className="emailpix-cont">
               <img src={emailpicture} alt="" />
-              <h1>Email Confirmation</h1>
-            </div>
-
-            <div className="emailwriteup-cont">
-              <p>
-                We have sent an email to <span>onuohajoshau@gmail.com</span>{" "}
-                to confirm the validity{" "}
-              </p>
-              <p>
-                of our email address. After recieving the email follow the link
-                provided
-              </p>
-              <p>to complete your registration.</p>
-
-              <hr style={{ width: "75%" }} />
-
-              <h3>
-                If you do not recieve any email,{" "}
-                <span onClick={() => navigate("/forgot-password")}>
-                  Resend Confirmation mail.
-                </span>
-              </h3>
+              <h1>Email Verified Successfully</h1>
             </div>
           </div>
         </div>
