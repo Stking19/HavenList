@@ -4,19 +4,26 @@ import "./signup.css";
 import { useNavigate, useParams } from "react-router";
 import { signup } from "../../config/api"; 
 import toast from "react-hot-toast";
+import { IoEyeOutline } from "react-icons/io5";
+import { LuEyeOff } from "react-icons/lu";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const {role} = useParams()
-    console.log(role)
+  const { role } = useParams();
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+
+  // Separate state for each password visibility toggle
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,30 +40,26 @@ const SignUp = () => {
     const { fullName, email, password, confirmPassword } = formData;
 
     if (!fullName || !email || !password || !confirmPassword) {
-      setError("Please fill in all fields.");
-      toast.error("Please fill in all fields.")
+      toast.error("Please fill in all fields.");
       return;
     }
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match.");
-      toast.error("password do not match")
+      toast.error("Passwords do not match.");
       return;
     }
-    
 
     try {
-      setLoading(true)
+      setLoading(true);
       await signup({ fullName, email, password, confirmPassword }, role);
-      setLoading(false)
+      setLoading(false);
 
-      setTimeout(() =>{
+      setTimeout(() => {
         navigate(`/sign-in/${role}`);
-      },2000)
-       
+      }, 2000);
     } catch (err) {
-      console.log(err)
-      setLoading(false)
+      console.log(err);
+      setLoading(false);
     }
   };
 
@@ -106,37 +109,66 @@ const SignUp = () => {
                   />
                 </div>
 
+                {/* Password Field */}
                 <div className="signuppasswordmwrap" style={{ width: "100%", position: "relative" }}>
                   <h2 style={{ color: "#00bcd4" }}>Create Password</h2>
                   <input
                     className="signupinputcont"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     name="password"
                     placeholder="Enter password"
                     value={formData.password}
                     onChange={handleChange}
                     required
                   />
+                  <span className="eye-icon"
+                    onClick={() => setShowPassword(!showPassword)}
+                    // style={{
+                    //   position: "absolute",
+                    //   right: "90px",
+                    //   top: "70%",
+                    //   transform: "translateY(-50%)",
+                    //   cursor: "pointer",
+                    //   fontSize: "18px",
+                    //   color: "#333",
+                    // }}
+                  >
+                    {showPassword ?  <IoEyeOutline />: <LuEyeOff /> }
+                  </span>
                 </div>
 
+                {/* Confirm Password Field */}
                 <div className="usernameormwrap" style={{ width: "100%", position: "relative" }}>
                   <h2 style={{ color: "#00bcd4" }}>Confirm Password</h2>
                   <input
                     className="signupinputcont"
-                    type="password"
+                    type={showConfirmPassword ? "text" : "password"}
                     name="confirmPassword"
                     placeholder="Confirm password"
                     value={formData.confirmPassword}
                     onChange={handleChange}
                     required
                   />
-                </div>
+                  <span className="eye-icon"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    // style={{
+                    //   position: "absolute",
+                    //   right: "90px",
+                    //   top: "70%",
+                    //   transform: "translateY(-50%)",
+                    //   cursor: "pointer",
+                    //   fontSize: "18px",
+                    //   color: "#333",
 
-               
+                    // }}
+                  >
+                    {showConfirmPassword ? <IoEyeOutline />: <LuEyeOff />}
+                  </span>
+                </div>
 
                 <div className="main">
                   <button className="btnwrap" type="submit">
-                   {loading ? "Registering..." : "Register"}
+                    {loading ? "Registering..." : "Register"}
                   </button>
                 </div>
 
