@@ -48,6 +48,9 @@ const Login = () => {
 
     try {
       const userData = await loginUser({ email, password }, role); 
+      const userId = userData.id;
+      localStorage.setItem("id", JSON.stringify(userId));
+      console.log(userData);
       dispatch(login(userData)); 
       setLoading(false);
 
