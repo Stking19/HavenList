@@ -51,7 +51,7 @@ const Verify = () => {
   };
   const { role } = useParams();
 
- const endpoint = role === "landlord" ? "verify-landlordOtp" : "verifyTenantOtp";
+ const endpoint = role === "landlord" ? "verify-landlordOtp" : "verify-tenantOtp";
 
   const handleSubmit = async () => {
     const enteredCode = otp.join("");
@@ -68,6 +68,7 @@ const Verify = () => {
       navigate('/reset-password')
     } catch (error) {
       console.log(error);
+      toast.error(error?.response?.data.error);
     }
   };
 
