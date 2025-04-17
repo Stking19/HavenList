@@ -9,7 +9,7 @@ import axios from 'axios'
 const Listing = () => {
 
   const API_URL = import.meta.env.VITE_API_URL;
-  
+
   const listings = [
     {
       id: 1,
@@ -36,7 +36,7 @@ const Listing = () => {
       description: "Compact and affordable for young professionals.",
       price: "N800K",
       frequency: "per annum",
-      image:"IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
+      image: "IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
     },
     {
       id: 4,
@@ -97,40 +97,43 @@ const Listing = () => {
   const [allListing, setAllListings] = useState([])
 
 
- const getAllListing = async (setallListing)=>{
-  try {
-    const res = await axios.get(`${ API_URL}/getAllListings`)
-    setallListing(res.data)
- console.log(res)
-  } catch (error) {
-    console.log(error)
-  }}
-  
+  const getAllListing = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/getAllListings`)
+      console.log(res.data.data)
+      setAllListings(res.data.data)
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 
-  // useEffect(()=>{
-  //  setAllListings(getAllListing())
-  // },[])
+
+  useEffect(() => {
+    getAllListing()
+  }, [])
 
   return (
     <div className='listingMain'>
-  <div className='listingHeroWrapper'>
-     <div className='listingHero'>
-        <h2>Property Listings</h2>
-        <p>"Explore the Best Properties in Your Area</p>
-        <SearchBar/>
-     </div>
-  </div>
-  <div className='listingCardHolder'>
-      <div className='listingCardWraper'>
-      {
-        allListing?.map((item,index)=>(
-          <ListingCard key={index} items={item} />
-        ))
-      }
+      <div className='listingHeroWrapper'>
+        <div className='listingHero'>
+          <h2>Property Listings</h2>
+          <p>"Explore the Best Properties in Your Area</p>
+          <SearchBar />
+        </div>
+      </div>
+      <div className='listingCardHolder'>
+        <div className='listingCardWraper'>
+          {
+            allListing?.length === 0 ? 'No Listed Property!' :
+              allListing?.map((item, index) => (
+                <ListingCard key={index} items={item} />
+              ))
+          }
+        </div>
       </div>
     </div>
-  </div>
   );
 };
 
