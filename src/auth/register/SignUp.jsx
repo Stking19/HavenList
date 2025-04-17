@@ -32,6 +32,7 @@ const SignUp = () => {
       [name]: value,
     }));
   };
+  const specialCharacterRegex = /[!@#$%^&*(),.?":{}|<>]/;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,8 +45,18 @@ const SignUp = () => {
       return;
     }
 
-    if (password !== confirmPassword) {
+    else if (password !== confirmPassword) {
       toast.error("Passwords do not match.");
+      return;
+    }
+
+    else if (password.length < 8) {
+      toast.error("Password must be at least 8 characters long.");
+      return;
+    }
+
+    else if (!specialCharacterRegex.test(password)) {
+      toast.error("Password must contain at least one special character.");
       return;
     }
 
