@@ -4,7 +4,7 @@ import picture from "/IMG/loginImage.png";
 import { useNavigate, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/slices/AuthSlice";
-import { loginUser } from "../../config/api";
+import { tenantLoginUser } from "../../config/api";
 import toast from "react-hot-toast";
 import { IoEyeOutline } from "react-icons/io5";
 import { LuEyeOff } from "react-icons/lu";
@@ -13,7 +13,6 @@ import { IoCaretBackCircleSharp } from "react-icons/io5";
 const TenantLogin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { role } = useParams();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -50,7 +49,7 @@ const TenantLogin = () => {
     setLoading(true);
 
     try {
-      const userData = await loginUser({ email, password }, role);
+      const userData = await tenantLoginUser({ email, password });
       const userId = userData.id;
       localStorage.setItem("id", JSON.stringify(userId));
       console.log(userData);
