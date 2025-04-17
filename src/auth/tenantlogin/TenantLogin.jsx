@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import "./tenantlogin.css";
 import picture from "/IMG/loginImage.png";
-import "./login.css";
 import { useNavigate, useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/slices/AuthSlice";
@@ -9,7 +9,8 @@ import toast from "react-hot-toast";
 import { IoEyeOutline } from "react-icons/io5";
 import { LuEyeOff } from "react-icons/lu";
 import { IoCaretBackCircleSharp } from "react-icons/io5";
-const Login = () => {
+
+const TenantLogin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { role } = useParams();
@@ -34,7 +35,7 @@ const Login = () => {
     e.preventDefault();
     setError("");
 
-    const { email, password } = formData;  
+    const { email, password } = formData;
 
     if (!email || !password) {
       toast.error("Please input your email and password ");
@@ -49,15 +50,15 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const userData = await loginUser({ email, password }, role); 
+      const userData = await loginUser({ email, password }, role);
       const userId = userData.id;
       localStorage.setItem("id", JSON.stringify(userId));
       console.log(userData);
-      dispatch(login(userData)); 
+      dispatch(login(userData));
       setLoading(false);
 
       setTimeout(() => {
-        navigate("/");
+        navigate("/home");
       }, 2000);
     } catch (err) {
       console.log(err);
@@ -67,7 +68,9 @@ const Login = () => {
 
   return (
     <div className="mainwrap">
-      <p className="goback" onClick={() => navigate(-1)}><IoCaretBackCircleSharp /></p>
+      <p className="goback" onClick={() => navigate(-1)}>
+        <IoCaretBackCircleSharp />
+      </p>
       <div className="loginwrapper">
         <div className="loginImageWrap">
           <img src={picture} alt="Login" />
@@ -107,9 +110,8 @@ const Login = () => {
                       onChange={handleChange}
                     />
                     <span
-                    className="myeyeicon"
+                      className="myeyeicon"
                       onClick={() => setShowPassword(!showPassword)}
-                      
                     >
                       {showPassword ? <IoEyeOutline /> : <LuEyeOff />}
                     </span>
@@ -150,7 +152,7 @@ const Login = () => {
                       </h3>
                     </h2>
                     <h2
-                      onClick={() => navigate(`/forgot-password/landlord`)}
+                      onClick={() => navigate("/forgot-password/tenant")}
                       style={{
                         textDecoration: "underline",
                         fontSize: "15px",
@@ -171,4 +173,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default TenantLogin;
