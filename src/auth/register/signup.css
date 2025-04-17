@@ -3,6 +3,13 @@
   height: 100vh;
   display: flex;
   padding: 10px 30px;
+
+  & .goback {
+    font-size: 40px;
+    position: fixed;
+    color: #00bcd4;
+    cursor: pointer;
+  }
 }
 
 .signupwrapper {
@@ -128,6 +135,16 @@
     font-size: 16px;
     font-weight: 400;
   }
+
+  span {
+    position: absolute;
+    right: 90px;
+    top: 70%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+  }
 }
 
 .signupemailformwrap {
@@ -152,16 +169,16 @@
     font-size: 16px;
     font-weight: 400;
   }
-}
 
-.eye-icon {
-  position: absolute;
-  right: 90px;
-  top: 70%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-size: 18px;
-  color: #333;
+  span {
+    position: absolute;
+    right: 92px;
+    top: 70%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+  }
 }
 
 @media (max-width: 460px) {
@@ -171,7 +188,12 @@
     box-sizing: border-box;
   }
 
-  body, html {
+  .goback {
+    display: none;
+  }
+
+  body,
+  html {
     width: 100vw;
     overflow-x: hidden;
   }
@@ -207,26 +229,26 @@
     margin: 0;
   }
 
-  .usernameormwrap{
-    position: relative;
+  .usernameormwrap {
+    span {
+      right: 10px;
+    }
+  }
 
-   
+  .signuppasswordmwrap {
+    span {
+      right: 10px;
+    }
   }
-  .eye-icon {
-    /* background-color: aqua; */
-    position: absolute;
-    /* margin-left: 70px; */
-    right: 10px  !important;
-     /* Bring the icon closer to the edge or adjust as needed */
-    font-size: 16px; /* Optional: make it slightly smaller for mobile */
-  }
-  
 }
 
-
 @media (max-width: 379px) {
+  .goback {
+    display: none;
+  }
+
   .signupwrapper {
-    margin-top: 15px; 
+    margin-top: 15px;
   }
 
   .signupImageWrap {
@@ -234,11 +256,11 @@
   }
 
   .signupinputcont {
-    width: 100%; 
+    width: 100%;
   }
 
   .signupContainer {
-    width: 100%; 
+    width: 100%;
     padding: 0px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -256,17 +278,21 @@
 
   .accountwrap {
     margin-top: 10px;
-    text-align: center; 
+    text-align: center;
   }
 }
 
 @media (max-width: 480px) {
+  .goback {
+    display: none;
+  }
+
   .signupwrapper {
     margin-top: 20px;
   }
 
   .signupImageWrap {
-    display: none; 
+    display: none;
   }
 
   .signupinputcont {
@@ -274,8 +300,8 @@
   }
 
   .signupContainer {
-    width: 100%; 
-    padding: 0 15px; 
+    width: 100%;
+    padding: 0 15px;
     margin: 0 auto;
     box-sizing: border-box;
   }
@@ -292,7 +318,7 @@
 
   .accountwrap {
     margin-top: 15px;
-    text-align: center; 
+    text-align: center;
     font-size: 14px;
   }
 }
@@ -307,7 +333,7 @@
   }
 
   .signupinputcont {
-    width: 100%; 
+    width: 100%;
   }
 
   .signupContainer {

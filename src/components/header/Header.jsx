@@ -45,8 +45,8 @@ const Header = () => {
   };
 
   const logoust = () => {
-    localStorage.removeItem("token");
     dispatch(logout());
+    window.location.reload();
   }
   return (
     <>
@@ -148,7 +148,7 @@ const Header = () => {
                   <IoIosArrowDown />
                 </k>
               </p>
-              <span onClick={() => navigate(`/sign-in/landlord`)}>Login</span>
+              <span onClick={() => navigate(`/role`)}>Login</span>
               {dropdown && (
                 <div
                   className="dropCard"

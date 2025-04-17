@@ -320,6 +320,19 @@
   color: #00a6cfc0;
 }
 
+.propertyUploadBtn:disabled {
+  background: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.propertyUploadBtn:disabled:hover {
+  background: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 .uploadSuc {
   width: 300px;
   height: 200px;
@@ -329,16 +342,30 @@
   font-size: 20px;
 }
 
+.uploadOverlay{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(168, 165, 165, 0.459);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(2px);
+}
+
 @media screen and (max-width: 361px){
   .landLordUploadDetail {
     min-height: 99vh;
-    width: 95%;
-    padding: 20px 50px;
+    width: 100%;
+    padding: 10px;
     background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
   
     h2 {
       width: 100%;
@@ -416,7 +443,7 @@
 
 .numberOfBedsOpt {
   height: 30%;
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -464,14 +491,14 @@
 
   span {
     height: max-content;
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
 
     input {
       height: 40px;
-      width: 80%;
+      width: 100%;
       font-size: 15px;
       background: none;
       outline: none;
@@ -531,14 +558,14 @@
 
   span {
     height: max-content;
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
 
     input {
       height: 40px;
-      width: 80%;
+      width: 100%;
       font-size: 15px;
       background: none;
       outline: none;
@@ -613,8 +640,8 @@
 }
 
 .uploadImageCont {
-  height: 60%;
-  width: 18%;
+  height: 100%;
+  width: 19%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -645,6 +672,19 @@
   background: transparent;
   border: 1px solid #00a6cfc0;
   color: #00a6cfc0;
+}
+
+.propertyUploadBtn:disabled {
+  background: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.propertyUploadBtn:disabled:hover {
+  background: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .uploadSuc {
@@ -687,6 +727,13 @@
   align-items: center;
   gap: 20px;
   padding: 10px;
+}
+
+.propertyUploadBtn:disabled {
+  background: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .uploadTitle {
@@ -1310,6 +1357,19 @@
     border: 1px solid #00a6cfc0;
     color: #00a6cfc0;
   }
+
+  .propertyUploadBtn:disabled {
+    background: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  .propertyUploadBtn:disabled:hover {
+    background: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
   
   .uploadSuc {
     width: 300px;
@@ -1360,6 +1420,19 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+
+  .propertyUploadBtn:disabled {
+    background: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  .propertyUploadBtn:disabled:hover {
+    background: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.7;
   }
   
   .uploadTitle {
@@ -1977,6 +2050,19 @@
   background: transparent;
   border: 1px solid #00a6cfc0;
   color: #00a6cfc0;
+}
+
+.propertyUploadBtn:disabled {
+  background: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.propertyUploadBtn:disabled:hover {
+  background: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .uploadSuc {

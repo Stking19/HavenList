@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './landLordListig.css'
 import ListingCard from '../../components/listingCard/ListingCard'
+import axios from 'axios';
+
 
 const LandLordListing = () => {
 
@@ -87,6 +89,33 @@ const LandLordListing = () => {
       image: "IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
     }
   ];
+  const API_URL = import.meta.env.VITE_API_URL;
+
+  const [listingHolder,setListingHolder ] = useState([])
+
+
+   const landLordListing = async ()=>{
+    const landlordId = localStorage.getItem('id')
+    try {
+      const res = await axios.get(`${API_URL}/getAllListingsByLandlord`,{
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:`Bearer ${landlordId}`
+        },
+    })
+    console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+
+
+
+  // useEffect(()=>{
+  // setListingHolder(landLordListing())
+  // },[])
 
   return (
     <div className='landLordListingMain'>
@@ -97,7 +126,7 @@ const LandLordListing = () => {
         <div className='landlordListingHolder'>
 
            {
-                 listings.map((item,index)=>(
+                 listingHolder?.map((item,index)=>(
                    <ListingCard key={index} items={item} />
                  ))
                }

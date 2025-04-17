@@ -8,6 +8,7 @@ import { loginUser } from "../../config/api";
 import toast from "react-hot-toast";
 import { IoEyeOutline } from "react-icons/io5";
 import { LuEyeOff } from "react-icons/lu";
+import { IoCaretBackCircleSharp } from "react-icons/io5";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -32,7 +34,7 @@ const Login = () => {
     e.preventDefault();
     setError("");
 
-    const { email, password } = formData;
+    const { email, password } = formData;  
 
     if (!email || !password) {
       toast.error("Please input your email and password ");
@@ -48,6 +50,9 @@ const Login = () => {
 
     try {
       const userData = await loginUser({ email, password }, role); 
+      const userId = userData.id;
+      localStorage.setItem("id", JSON.stringify(userId));
+      console.log(userData);
       dispatch(login(userData)); 
       setLoading(false);
 
@@ -62,6 +67,7 @@ const Login = () => {
 
   return (
     <div className="mainwrap">
+      <p className="goback" onClick={() => navigate(-1)}><IoCaretBackCircleSharp /></p>
       <div className="loginwrapper">
         <div className="loginImageWrap">
           <img src={picture} alt="Login" />
