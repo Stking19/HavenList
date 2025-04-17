@@ -17,6 +17,7 @@ import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 import LandlordDashboard from './pages/Stephen/landlord/LandlordDashboard'
 import Help from './pages/Joshua/help/Help'
 import LandlordPropertyUpload from './pages/Arinze/LandlordPropertyUpload'
+import Role from './components/role/Role'
 
 
 const App = () => {
@@ -58,6 +59,10 @@ const App = () => {
     {
       path: '/register/:role',
       element: <SignUp />,
+    },
+    {
+      path: '/role',
+      element: <Role />,
     },
     {
       path: '/reset-password',

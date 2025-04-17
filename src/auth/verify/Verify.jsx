@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./verify.css";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { IoCaretBackCircleSharp } from "react-icons/io5";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -55,13 +56,15 @@ const Verify = () => {
     }
     console.log("Code sent to backend:", enteredCode);
 
-    try{
-      const response = await axios.post(`${API_URL }/reset-landlordpassword/${enteredCode}`);
-      console.log(response)
-    }catch(error){
-      console.log(error)
-  }
-};
+    try {
+      const response = await axios.post(
+        `${API_URL}/reset-landlordpassword/${enteredCode}`
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleKeyDown = (e, index) => {
     if (e.key === "Backspace" && !otp[index] && index > 0) {
@@ -72,6 +75,9 @@ const Verify = () => {
   return (
     <>
       <div className="mainbody">
+        <p className="goback" onClick={() => navigate(-1)}>
+          <IoCaretBackCircleSharp />
+        </p>
         <div className="fullpageheader">
           <h1>Verify Email</h1>
         </div>
