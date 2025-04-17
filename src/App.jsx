@@ -16,6 +16,7 @@ import AboutUsPage from './pages/Joshua/AboutUsPage/AboutUsPage'
 import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 import LandlordDashboard from './pages/Stephen/landlord/LandlordDashboard'
 import Help from './pages/Joshua/help/Help'
+import LandlordPropertyUpload from './pages/Arinze/LandlordPropertyUpload'
 
 
 const App = () => {
@@ -27,6 +28,10 @@ const App = () => {
         {
           path: '',
           element: <Home />
+        },
+        {
+          path: '/landlordUpload',
+          element: <LandlordPropertyUpload/>
         },
         {
           path: '/propertydetails',
