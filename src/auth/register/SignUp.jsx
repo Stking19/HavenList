@@ -18,7 +18,7 @@ const SignUp = () => {
     confirmPassword: "",
   });
 
-  // Separate state for each password visibility toggle
+  
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -52,11 +52,12 @@ const SignUp = () => {
     try {
       setLoading(true);
       await signup({ fullName, email, password, confirmPassword }, role);
-      setLoading(false);
+      toast.success("A message has been sent to your email for verification")
 
-      setTimeout(() => {
+      setTimeout(() =>{
         navigate(`/sign-in/${role}`);
-      }, 2000);
+      },2000)
+        
     } catch (err) {
       console.log(err);
       setLoading(false);
@@ -109,7 +110,7 @@ const SignUp = () => {
                   />
                 </div>
 
-                {/* Password Field */}
+               
                 <div className="signuppasswordmwrap" style={{ width: "100%", position: "relative" }}>
                   <h2 style={{ color: "#00bcd4" }}>Create Password</h2>
                   <input
@@ -121,23 +122,15 @@ const SignUp = () => {
                     onChange={handleChange}
                     required
                   />
-                  <span className="eye-icon"
+                  <span 
                     onClick={() => setShowPassword(!showPassword)}
-                    // style={{
-                    //   position: "absolute",
-                    //   right: "90px",
-                    //   top: "70%",
-                    //   transform: "translateY(-50%)",
-                    //   cursor: "pointer",
-                    //   fontSize: "18px",
-                    //   color: "#333",
-                    // }}
+                    
                   >
                     {showPassword ?  <IoEyeOutline />: <LuEyeOff /> }
                   </span>
                 </div>
 
-                {/* Confirm Password Field */}
+               
                 <div className="usernameormwrap" style={{ width: "100%", position: "relative" }}>
                   <h2 style={{ color: "#00bcd4" }}>Confirm Password</h2>
                   <input
@@ -149,18 +142,9 @@ const SignUp = () => {
                     onChange={handleChange}
                     required
                   />
-                  <span className="eye-icon"
+                  <span
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    // style={{
-                    //   position: "absolute",
-                    //   right: "90px",
-                    //   top: "70%",
-                    //   transform: "translateY(-50%)",
-                    //   cursor: "pointer",
-                    //   fontSize: "18px",
-                    //   color: "#333",
-
-                    // }}
+                   
                   >
                     {showConfirmPassword ? <IoEyeOutline />: <LuEyeOff />}
                   </span>

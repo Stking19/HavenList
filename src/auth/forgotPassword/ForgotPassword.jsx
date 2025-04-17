@@ -42,10 +42,6 @@ const ForgotPassword = () => {
       
     }
 
-   
-
-
-
   }
 
   
