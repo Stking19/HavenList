@@ -12,7 +12,6 @@ import { IoCaretBackCircleSharp } from "react-icons/io5";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { role } = useParams();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -49,7 +48,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const userData = await loginUser({ email, password }, role); 
+      const userData = await loginUser({ email, password }); 
       const userId = userData.id;
       localStorage.setItem("id", JSON.stringify(userId));
       console.log(userData);
