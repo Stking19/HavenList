@@ -34,10 +34,25 @@ api.interceptors.response.use(
 );
 
 
-export const loginUser = async (credentials, role) => {
+export const loginUser = async (credentials) => {
   try {
-    const endpoint = role === "landlord" ? "loginlandlord" : "loginTenant";
-    const response = await api.post(endpoint, credentials);
+    const response = await api.post("loginlandlord", credentials);
+    const { token, data, message } = response.data;
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(data.fullName));
+    localStorage.setItem("email", JSON.stringify(data.email));
+    localStorage.setItem("id", JSON.stringify(data.id));
+    console.log(data)
+    toast.success(message);
+    return data;
+  } catch (error) {
+    toast.error(error.response.data.message);
+    throw error;
+  }
+};
+export const tenantLoginUser = async (credentials) => {
+  try {
+    const response = await api.post("loginTenant", credentials);
     const { token, data, message } = response.data;
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(data.fullName));
