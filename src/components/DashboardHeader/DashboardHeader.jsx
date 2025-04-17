@@ -12,13 +12,16 @@ import { CiLogout } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/slices/AuthSlice";
 
-function DashboardHeader({ setActiveTab, firstName,profileImage }) {
+
+function DashboardHeader({ setActiveTab, profileImage,}) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const dispatch = useDispatch();
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
+
+  const name = JSON.parse(localStorage.getItem("user"))
 
   return (
     <>
@@ -34,7 +37,6 @@ function DashboardHeader({ setActiveTab, firstName,profileImage }) {
                 <RxHamburgerMenu onClick={toggleCart} />
               </p>
 
-              {/* Conditionally render profile image */}
               <div className="profileimagewrap">
                 {profileImage ? (
                   <img src={profileImage} alt="Profile" className="profile-image" />
@@ -43,8 +45,7 @@ function DashboardHeader({ setActiveTab, firstName,profileImage }) {
                 )}
               </div>
 
-              {/* Display first name */}
-              <h1>Hi, {firstName}</h1>
+              <h1>{name}</h1>
             </div>
           </div>
         </div>

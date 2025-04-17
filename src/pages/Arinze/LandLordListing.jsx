@@ -32,7 +32,7 @@ const LandLordListing = () => {
       description: "Compact and affordable for young professionals.",
       price: "N800K",
       frequency: "per annum",
-      image:"IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
+      image: "IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
     },
     {
       id: 4,
@@ -91,45 +91,42 @@ const LandLordListing = () => {
   ];
   const API_URL = import.meta.env.VITE_API_URL;
 
-  const [listingHolder,setListingHolder ] = useState([])
+  const [listingHolder, setListingHolder] = useState([])
 
 
-   const landLordListing = async ()=>{
+  const landLordListing = async () => {
     const landlordId = localStorage.getItem('id')
     try {
-      const res = await axios.get(`${API_URL}/getAllListingsByLandlord`,{
+      const res = await axios.get(`${API_URL}/getAllListingsByLandlord`, {
         headers: {
           "Content-Type": "application/json",
-          Authorization:`Bearer ${landlordId}`
+          Authorization: `Bearer ${landlordId}`
         },
-    })
-    console.log(res)
+      })
+      console.log(res.data.data)
+      setListingHolder(res.data.data)
     } catch (error) {
       console.log(error)
     }
   }
 
-
-
-
-
-  // useEffect(()=>{
-  // setListingHolder(landLordListing())
-  // },[])
+  useEffect(() => {
+    landLordListing()
+  }, [])
 
   return (
     <div className='landLordListingMain'>
       <div className='landLordMainScreen'>
         <span className='textHeader'>
-            <h3>My Listings</h3>
+          <h3>My Listings</h3>
         </span>
         <div className='landlordListingHolder'>
 
-           {
-                 listingHolder?.map((item,index)=>(
-                   <ListingCard key={index} items={item} />
-                 ))
-               }
+          {listingHolder?.length === 0 ? 'No Listed Property!' :
+            listingHolder?.map((item, index)=>(
+              <ListingCard key={index} items={item} />
+            ))
+          }
 
         </div>
       </div>
