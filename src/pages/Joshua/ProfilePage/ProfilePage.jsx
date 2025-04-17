@@ -262,7 +262,7 @@ function ProfilePage({ setProfileImage, setFirstName }) {
               <button type="submit" className="submitbtn">
                 Submit
               </button>
-              <button type="button" className="submitbtn" onClick={editProfileProfile}>
+              <button type="button" className="submitbtn" onClick={editProfile}>
                 Edit
               </button>
               {/* <button type="button" className="submitbtn" onClick={handleDeleteProfile}>
