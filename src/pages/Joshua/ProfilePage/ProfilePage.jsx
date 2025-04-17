@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import {
   createProfile,
-  updateProfile,
+  // editProfile,
   deleteProfile,
 } from "../../../config/api"; 
 import "./profilepage.css";
@@ -19,11 +19,15 @@ const dataURLtoBlob = (dataURL) => {
   }
   return new Blob([u8arr], { type: mime });
 };
+const mail = JSON.parse(localStorage.getItem("email"))
+console.log(mail)
+const name = JSON.parse(localStorage.getItem("user"))
+
 
 function ProfilePage({ setProfileImage, setFirstName }) {
   const [details, setDetails] = useState({
-    fullName: "",
-    email: "",
+    fullName: name,
+    email: mail,
     street: "",
     locality: "",
     state: "",
@@ -107,7 +111,7 @@ function ProfilePage({ setProfileImage, setFirstName }) {
     }
   };
 
-  const handleUpdateProfile = async (e) => {
+  const editProfile = async (e) => {
     e.preventDefault();
     const { fullName, email, street, locality, state } = details;
 
@@ -177,6 +181,7 @@ function ProfilePage({ setProfileImage, setFirstName }) {
     setImage(null);
   };
 
+  
   return (
     <div>
       <div className="informationdetailcont">
@@ -191,6 +196,7 @@ function ProfilePage({ setProfileImage, setFirstName }) {
               className="containerwarpper"
               type="text"
               placeholder="Full name"
+              disabled = {true}
               value={details.fullName}
               onChange={handleInputChange("fullName")}
             />
@@ -203,6 +209,7 @@ function ProfilePage({ setProfileImage, setFirstName }) {
               type="email"
               placeholder="Enter email here ..."
               value={details.email}
+              disabled = {true}
               onChange={handleInputChange("email")}
             />
           </div>
@@ -255,10 +262,10 @@ function ProfilePage({ setProfileImage, setFirstName }) {
               <button type="submit" className="submitbtn">
                 Submit
               </button>
-              {/* <button type="button" className="submitbtn" onClick={handleUpdateProfile}>
-                Update Profile
+              <button type="button" className="submitbtn" onClick={editProfileProfile}>
+                Edit
               </button>
-              <button type="button" className="submitbtn" onClick={handleDeleteProfile}>
+              {/* <button type="button" className="submitbtn" onClick={handleDeleteProfile}>
                 Delete Profile
               </button> */}
             </div>
