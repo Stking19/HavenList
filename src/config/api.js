@@ -112,9 +112,19 @@ export const createProfile = async (landlordId, formData) => {
     throw error;
   }
 };
+  
+  
 
 
 
+export const profileUpload = () => {
+
+  const formData = new FormData();
+  formData.append("fullName", details.fullName);
+  formData.append("email", details.email);
+  formData.append("street", details.street);
+  formData.append("locality", details.locality);
+  formData.append("state", details.state);
 
 export const updateProfile = async (landlordId, formData) => {
   try {
@@ -129,7 +139,6 @@ export const updateProfile = async (landlordId, formData) => {
     throw error; 
   }
 };
-
 
 export const deleteProfile = async (landlordId) => {
   try {
@@ -148,4 +157,6 @@ export const deleteProfile = async (landlordId) => {
 };
 
 
+
 export default api;
+ 

@@ -15,13 +15,31 @@ const LandlordPropertyUpload = () => {
     { id: 5, imgUrl: "" },
   ]);
   const [open, setOpen] = useState(false);
+  const [userInput, setUserInput] = useState({
+    title: "",
+    type: "",
+    bedrooms: "",
+    bathrooms: "",
+    toilets: "",
+    description: "",
+    street: "",
+    area: "",
+    state: "",
+    minrent: "",
+    maxrent: "",
+    price: "",
+    year: "",
+  });
+  console.log(userInput);
 
   const handleImageUpload = (e, index) => {
     const file = e.target.files[0];
     const imgUrl = URL.createObjectURL(file);
 
     setImgBox((prev) =>
-      prev.map((item, idx) => (idx === index ? { ...item, imgUrl } : item))
+      prev.map((item, idx) =>
+        idx === index ? { ...item, imgUrl, file } : item
+      )
     );
   };
 
@@ -29,19 +47,42 @@ const LandlordPropertyUpload = () => {
     setOpen(false);
   };
 
-  const landlord = JSON.parse(localStorage.getItem("id"));
+  const landlord =JSON.parse(localStorage.getItem("id"));
   const token = localStorage.getItem("token");
 
-  const headers = {Authorization: `landlordBearerAuth ${token}`};
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
   console.log(landlord);
 
+  const [isloading,setIsLoading] = useState(false) 
+
   const handleUpload = async () => {
+    setIsLoading(true)
     try {
-      const response = await axios.post(`${API_URL}createlisting/${landlord}`, {}, { headers });
+      const formData = new FormData();
+
+      Object.entries(userInput).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+
+      imgBox.forEach((item) => {
+        if (item.file) {
+          formData.append("listingImage", item.file);
+        }
+      });
+      // console.log(formData.get("listingimage[]"));
+      const response = await axios.post(
+        `${API_URL}createlisting/${landlord}`,
+        formData,
+        { headers }
+      );
       console.log(response);
-      setOpen(true);
+      setIsLoading(false)
     } catch (err) {
+    
       console.log(err);
+      setIsLoading(false)
     }
   };
 
@@ -74,20 +115,38 @@ const LandlordPropertyUpload = () => {
               <input
                 type="text"
                 placeholder="e.g newly built 3 bedroom flat in a serene neighbourhood"
+                value={userInput.title}
+                onChange={(e) =>
+                  setUserInput({ ...userInput, title: e.target.value })
+                }
               />
             </span>
             <span className="uploadTitle">
-              <select>
+              <select
+                value={userInput.type}
+                onChange={(e) =>
+                  setUserInput({ ...userInput, type: e.target.value })
+                }
+              >
                 <option value="">House Type</option>
-                <option value="">Bungalow</option>
-                <option value="">Flat</option>
-                <option value="">Duplex</option>
+                <option value="Bungalow">Bungalow</option>
+                <option value="Flat/Apartment">Flat/Apartment</option>
+                <option value="Duplex">Duplex</option>
+                <option value="Detached House">Detached House</option>
+                <option value="Semi-Detached House">Semi-Detached House</option>
+                <option value="Terraced House">Terraced House</option>
+                <option value="Town House">Town House</option>
               </select>
             </span>
             <section className="numberOfBedsOpt">
               <span>
                 <h3>BedRooms</h3>
-                <select>
+                <select
+                  value={userInput.bedrooms}
+                  onChange={(e) =>
+                    setUserInput({ ...userInput, bedrooms: e.target.value })
+                  }
+                >
                   <option value="">BedRooms</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -99,7 +158,12 @@ const LandlordPropertyUpload = () => {
 
               <span>
                 <h3>BathRooms</h3>
-                <select>
+                <select
+                  value={userInput.bathrooms}
+                  onChange={(e) =>
+                    setUserInput({ ...userInput, bathrooms: e.target.value })
+                  }
+                >
                   <option>BathRooms</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -111,7 +175,12 @@ const LandlordPropertyUpload = () => {
 
               <span>
                 <h3>Toilet</h3>
-                <select>
+                <select
+                  value={userInput.toilets}
+                  onChange={(e) =>
+                    setUserInput({ ...userInput, toilets: e.target.value })
+                  }
+                >
                   <option value="">Toilet</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -127,6 +196,10 @@ const LandlordPropertyUpload = () => {
                 type="text"
                 placeholder="e.g newly built 3 bedroom flat in a serene neighbourhood"
                 className="desc"
+                value={userInput.description}
+                onChange={(e) =>
+                  setUserInput({ ...userInput, description: e.target.value })
+                }
               />
             </span>
           </div>
@@ -139,18 +212,39 @@ const LandlordPropertyUpload = () => {
               <div className="addressDualInput">
                 <span>
                   <h3>Street</h3>
-                  <input type="text" placeholder="Street" />
+                  <input
+                    type="text"
+                    placeholder="Street"
+                    value={userInput.street}
+                    onChange={(e) =>
+                      setUserInput({ ...userInput, street: e.target.value })
+                    }
+                  />
                 </span>
 
                 <span>
                   <h3>Area</h3>
-                  <input type="text" placeholder="Area" />
+                  <input
+                    type="text"
+                    placeholder="Area"
+                    value={userInput.area}
+                    onChange={(e) =>
+                      setUserInput({ ...userInput, area: e.target.value })
+                    }
+                  />
                 </span>
               </div>
 
               <span>
                 <h3 style={{ fontWeight: "300" }}>State</h3>
-                <input type="text" placeholder="State" />
+                <input
+                  type="text"
+                  placeholder="State"
+                  value={userInput.state}
+                  onChange={(e) =>
+                    setUserInput({ ...userInput, state: e.target.value })
+                  }
+                />
               </span>
             </section>
           </div>
@@ -163,25 +257,51 @@ const LandlordPropertyUpload = () => {
               <div className="paymentDualInput">
                 <span>
                   <h3>Min Price</h3>
-                  <input type="text" placeholder="Price" />
+                  <input
+                    type="number"
+                    placeholder="Price"
+                    value={userInput.minrent}
+                    onChange={(e) =>
+                      setUserInput({ ...userInput, minrent: e.target.value })
+                    }
+                  />
                 </span>
                 <span>
                   <h3>Max Price</h3>
-                  <input type="text" placeholder="Price" />
+                  <input
+                    type="number"
+                    placeholder="Price"
+                    value={userInput.maxrent}
+                    onChange={(e) =>
+                      setUserInput({ ...userInput, maxrent: e.target.value })
+                    }
+                  />
                 </span>
                 <span>
                   <h3>Price</h3>
-                  <input type="text" placeholder="Price" />
+                  <input
+                    type="number"
+                    placeholder="Price"
+                    value={userInput.price}
+                    onChange={(e) =>
+                      setUserInput({ ...userInput, price: e.target.value })
+                    }
+                  />
                 </span>
                 <span>
                   <h3>Year</h3>
-                  <select>
+                  <select
+                    value={userInput.year}
+                    onChange={(e) =>
+                      setUserInput({ ...userInput, year: e.target.value })
+                    }
+                  >
                     <option value="">No of years</option>
-                    <option value="">1</option>
-                    <option value="">2</option>
-                    <option value="">3</option>
-                    <option value="">4</option>
-                    <option value="">5</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                   </select>
                 </span>
               </div>
@@ -211,8 +331,10 @@ const LandlordPropertyUpload = () => {
               ))}
             </div>
           </section>
-          <button className="propertyUploadBtn" onClick={handleUpload}>
-            Upload
+          <button className="propertyUploadBtn" onClick={handleUpload} disabled={!isloading}>
+           {
+              isloading?'Uploading...':'Upload'
+           }
           </button>
         </section>
       </div>

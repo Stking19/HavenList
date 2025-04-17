@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './listing.css'
 import ListingCard from '../../../components/listingCard/ListingCard'
 import SearchBar from '../../../components/searchbar/SearchBar'
+import axios from 'axios'
+
+
 
 const Listing = () => {
+
+  const API_URL = import.meta.env.VITE_API_URL;
   
   const listings = [
     {
@@ -89,6 +94,24 @@ const Listing = () => {
     }
   ];
 
+  const [allListing, setAllListings] = useState([])
+
+
+ const getAllListing = async (setallListing)=>{
+  try {
+    const res = await axios.get(`${ API_URL}/getAllListings`)
+    setallListing(res.data)
+ console.log(res)
+  } catch (error) {
+    console.log(error)
+  }}
+  
+
+
+  // useEffect(()=>{
+  //  setAllListings(getAllListing())
+  // },[])
+
   return (
     <div className='listingMain'>
   <div className='listingHeroWrapper'>
@@ -101,7 +124,7 @@ const Listing = () => {
   <div className='listingCardHolder'>
       <div className='listingCardWraper'>
       {
-        listings.map((item,index)=>(
+        allListing?.map((item,index)=>(
           <ListingCard key={index} items={item} />
         ))
       }

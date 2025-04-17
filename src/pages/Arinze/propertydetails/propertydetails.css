@@ -280,7 +280,7 @@
 
 
 
-@media screen and (max-width: 361px) {
+@media screen and (max-width: 360px) {
 
     .propertyDetailImageWrapper {
         display: none;
@@ -316,7 +316,8 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 20px;
+        padding: 10px;
 
 
 
@@ -324,7 +325,7 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            padding: 20px;
+            padding: 10px;
         }
     }
 
@@ -336,94 +337,7 @@
         gap: 10px;
         display: flex;
         flex-direction: column;
-    }
-
-
-    .modalpropertyDetailCard {
-        display: none;
-    }
-
-    .modalpropertyDetailCardMobile {
-        min-height: 20vh;
-        border-radius: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 95%;
-        background-color: red;
-        right: 40px;
-        bottom: -20px;
-        position: absolute;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        gap: 18px;
-
-
-        h2 {
-            height: max-content;
-            width: 93%;
-        }
-
-    }
-
-}
-
-
-@media screen and (max-width: 480px) {
-
-    .propertyDetailImageWrapper {
-        display: none;
-    }
-
-    .propertyDetailImageMobile {
-        height: 40vh;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-
-    }
-
-    .mobileImageHolder {
-        height: 95%;
-        width: 80%;
-        display: block;
-
-
-        img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-        }
-    }
-
-
-    .propertyDetailWrapper {
-        height: max-content;
-        width: 97%;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-
-
-
-        nav {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding: 20px;
-        }
-    }
-
-
-    .propertyDetailSafeTips {
-        height: max-content;
-        width: max-content;
-        background-color: #E6F2F5;
-        gap: 10px;
-        display: flex;
-        flex-direction: column;
+        font-size: 15px;
     }
 
 
@@ -440,10 +354,12 @@
         width: 95%;
         background-color: white;
         right: 10px;
-        top: 1230px;
+        top: 1270px;
         position: absolute;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         gap: 18px;
+        text-align: center;
+        justify-content: center;
 
 
         h2 {
@@ -452,6 +368,172 @@
         }
 
     }
+
+
+    
+.propertyDetailAmenitiesWrapper {
+    height: max-content;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.propertyDetailAmeneties {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    
+    
+    section {
+        height: max-content;
+        width: max-content;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+
+        
+        span {
+            display: flex;
+            height: max-content;
+            width: max-content;
+            align-items: center;
+            gap: 5px;
+            text-align: center;
+        }
+    }
+}
+
+}
+
+
+@media screen and (max-width: 480px) {
+
+
+    .propertyDetailImageWrapper {
+        display: none;
+    }
+
+    .propertyDetailImageMobile {
+        height: 40vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+    }
+
+    .mobileImageHolder {
+        height: 95%;
+        width: 80%;
+        display: block;
+
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+
+    .propertyDetailWrapper {
+        height: max-content;
+        width: 97%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px;
+
+
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 10px;
+        }
+    }
+
+
+    .propertyDetailSafeTips {
+        height: max-content;
+        width: max-content;
+        background-color: #E6F2F5;
+        gap: 10px;
+        display: flex;
+        flex-direction: column;
+        font-size: 15px;
+    }
+
+
+    .modalpropertyDetailCard {
+        display: none;
+    }
+
+    .modalpropertyDetailCardMobile {
+        min-height: 20vh;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 95%;
+        background-color: white;
+        right: 10px;
+        top: 1270px;
+        position: absolute;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        gap: 18px;
+        text-align: center;
+        justify-content: center;
+
+
+        h2 {
+            height: max-content;
+            width: 93%;
+        }
+
+    }
+
+    
+.propertyDetailAmenitiesWrapper {
+    height: max-content;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.propertyDetailAmeneties {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    
+    
+    section {
+        height: max-content;
+        width: max-content;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+
+        
+        span {
+            display: flex;
+            height: max-content;
+            width: max-content;
+            align-items: center;
+            gap: 5px;
+            text-align: center;
+        }
+    }
+}
 
 }
 
@@ -528,10 +610,12 @@
         width: 95%;
         background-color: white;
         right: 10px;
-        top: 1230px;
+        top: 1270px;
         position: absolute;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         gap: 18px;
+        text-align: center;
+        justify-content: center;
 
 
         h2 {
@@ -540,6 +624,7 @@
         }
 
     }
+
 
 }
 
@@ -636,15 +721,15 @@
     
 
 .modalpropertyDetailCard {
-    min-height: 60vh;
+    min-height: 40vh;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 27%;
+    width: 37%;
     background-color: white;
-    right: 30px;
-    bottom: -200px;
+    right: 10px;
+    bottom: -10px;
     position: absolute;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     gap: 18px;

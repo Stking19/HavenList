@@ -56,7 +56,7 @@ const Verify = () => {
     console.log("Code sent to backend:", enteredCode);
 
     try{
-      const response = await axios.post(`${API_URL }/reset-landlordpassword/${enteredCode}`, { enteredCode });
+      const response = await axios.post(`${API_URL }/reset-landlordpassword/${enteredCode}`);
       console.log(response)
     }catch(error){
       console.log(error)
