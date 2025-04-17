@@ -82,13 +82,16 @@ export const resetPassword = async ({Password, confirmPassword, otp, role}) => {
 };
 
 
-export const forgetPassword = async (email) => {
+export const forgetPassword = async (email, role) => {
   try {
-    const response = await api.post("landlordForgotPassword", email);
-    toast.success(response.data.message);
+    const endpoint = role === "landlord" ? "landlordForgotpassword" : "TenantForgotpassword";
+    const response = await api.post(endpoint, email);
+    console.log(response)
+    toast.success(response?.data?.message);
     return response.data;
   } catch (error) {
-    toast.error(error.data.message);
+    toast.error(error?.response?.data?.message);
+    console.log(error);
     throw error;
   }
 };
