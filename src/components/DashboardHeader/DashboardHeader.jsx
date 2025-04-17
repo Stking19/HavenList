@@ -12,13 +12,15 @@ import { CiLogout } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/slices/AuthSlice";
 
-function DashboardHeader({ setActiveTab, profileImage, firstName }) {
+function DashboardHeader({ setActiveTab, profileImage,}) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const dispatch = useDispatch();
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
+
+  const name = JSON.parse(localStorage.getItem("user"))
 
   return (
     <>
@@ -43,8 +45,7 @@ function DashboardHeader({ setActiveTab, profileImage, firstName }) {
                 )}
               </div>
 
-              {/* Display first name */}
-              <h1>Hi, {firstName}</h1>
+              <h1>{name}</h1>
             </div>
           </div>
         </div>
