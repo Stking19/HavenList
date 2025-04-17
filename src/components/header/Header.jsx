@@ -136,9 +136,6 @@ const Header = () => {
               <p className="burger">
                 <RxHamburgerMenu onClick={toggleCart} />
               </p>
-              <p onClick={() => navigate("/private")}>
-                <FaRegUser />
-              </p>
               <p
                 onMouseOver={() => setDropdown(true)}
                 onMouseOut={() => setDropdown(false)}
