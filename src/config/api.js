@@ -155,6 +155,7 @@ export const deleteProfile = async (landlordId) => {
     throw error;
   }
 };
+}
 
 
 
