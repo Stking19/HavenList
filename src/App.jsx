@@ -34,7 +34,7 @@ const App = () => {
           element: <LandlordPropertyUpload/>
         },
         {
-          path: '/propertydetails',
+          path: '/propertyDetails/:productId',
           element: <PropertyDetails />
         },
         {
