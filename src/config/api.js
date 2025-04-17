@@ -41,7 +41,9 @@ export const loginUser = async (credentials, role) => {
     const { token, data, message } = response.data;
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(data.fullName));
+    localStorage.setItem("email", JSON.stringify(data.email));
     localStorage.setItem("id", JSON.stringify(data.id));
+    console.log(data)
     toast.success(message);
     return data;
   } catch (error) {
@@ -98,7 +100,7 @@ export const forgetPassword = async (email, role) => {
 
 
 export const createProfile = async (landlordId, formData) => {
-  console.log(formData)
+  console.log(formData);
   try {
     const token = localStorage.getItem("token");
     const response = await api.post(`createProfile/${landlordId}`, formData, {
@@ -110,12 +112,17 @@ export const createProfile = async (landlordId, formData) => {
 
     return response.data;
   } catch (error) {
+    if (error.response && error.response.status === 400) {
+      toast.error("Profile already exists");
+    } else {
+      toast.error(error.response?.data?.message || "Something went wrong");
+    }
+
     console.error("Error creating profile:", error);
-    toast.error(error.data.message)
     throw error;
   }
 };
-  
+
 
 export const profileUpload = () => {
 
@@ -126,19 +133,15 @@ export const profileUpload = () => {
   formData.append("locality", details.locality);
   formData.append("state", details.state);
 }
-export const updateProfile = async (landlordId, formData) => {
-  try {
-    const response = await api.put(`updateLandlordProfile/${landlordId}`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data", 
-      },
-    });
-    return response.data; 
-  } catch (error) {
-    console.error("Error updating profile:", error);
-    throw error; 
-  }
-};
+// export const editProfile = async (landlordId) => {
+//   try {
+//     const response = await api.put(`getlandlordprofile/${landlordId}`);
+//     return response.data; 
+//   } catch (error) {
+//     console.error("Error updating profile:", error);
+//     throw error; 
+//   }
+// };
 
 
 export const deleteProfile = async (landlordId) => {
@@ -156,9 +159,6 @@ export const deleteProfile = async (landlordId) => {
     throw error;
   }
 };
-
-
-
 
 export default api;
  

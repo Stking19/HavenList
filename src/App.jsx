@@ -32,7 +32,8 @@ const App = () => {
           element: <Home />
         },
         {
-          path: '/propertydetails',
+        {
+          path: '/propertyDetails/:productId',
           element: <PropertyDetails />
         },
         {
