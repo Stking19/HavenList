@@ -93,12 +93,6 @@ export const forgetPassword = async (email) => {
 };
 
 
-
-  
-  
-
-
-
 export const profileUpload = () => {
 
   const formData = new FormData();
