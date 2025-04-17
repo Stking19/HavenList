@@ -70,7 +70,7 @@ const PropertyDetails = () => {
 
         <p>Hosted by HavenList Homes</p>
 
-        <span>
+        <span className='aboutTexts'>
           <h3>About this place</h3>
 
           <p>Large stylish well en-suited 3 bedrooms, with a very comfortable sitting parlour<br />
