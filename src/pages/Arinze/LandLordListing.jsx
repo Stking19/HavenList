@@ -89,7 +89,7 @@ const LandLordListing = () => {
       image: "IMG/be948c0b628fbdd1e0788117fb2000a1.jpg"
     }
   ];
-
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const [listingHolder,setListingHolder ] = useState([])
 
@@ -113,9 +113,9 @@ const LandLordListing = () => {
 
 
 
-  useEffect(()=>{
-  setListingHolder(landLordListing())
-  },[])
+  // useEffect(()=>{
+  // setListingHolder(landLordListing())
+  // },[])
 
   return (
     <div className='landLordListingMain'>

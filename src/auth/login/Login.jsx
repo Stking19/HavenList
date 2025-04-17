@@ -20,7 +20,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -33,7 +33,7 @@ const Login = () => {
     e.preventDefault();
     setError("");
 
-    const { email, password } = formData;
+    const { email, password } = formData;  
 
     if (!email || !password) {
       toast.error("Please input your email and password ");
