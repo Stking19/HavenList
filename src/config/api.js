@@ -113,9 +113,6 @@ export const createProfile = async (landlordId, formData) => {
   }
 };
   
-  
-
-
 
 export const profileUpload = () => {
 

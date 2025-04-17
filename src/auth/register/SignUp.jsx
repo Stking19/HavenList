@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import signpic from "/IMG/loginImage.png";
 import "./signup.css";
 import { useNavigate, useParams } from "react-router";
-import { signup } from "../../config/api"; 
+import { signup } from "../../config/api";
 import toast from "react-hot-toast";
 import { IoEyeOutline } from "react-icons/io5";
 import { LuEyeOff } from "react-icons/lu";
+import { IoCaretBackCircleSharp } from "react-icons/io5";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -18,7 +19,6 @@ const SignUp = () => {
     confirmPassword: "",
   });
 
-  
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -52,12 +52,11 @@ const SignUp = () => {
     try {
       setLoading(true);
       await signup({ fullName, email, password, confirmPassword }, role);
-      toast.success("A message has been sent to your email for verification")
+      toast.success("A message has been sent to your email for verification");
 
-      setTimeout(() =>{
+      setTimeout(() => {
         navigate(`/sign-in/${role}`);
-      },2000)
-        
+      }, 2000);
     } catch (err) {
       console.log(err);
       setLoading(false);
@@ -66,6 +65,9 @@ const SignUp = () => {
 
   return (
     <div className="mainwrap">
+      <p className="goback" onClick={() => navigate(-1)}>
+        <IoCaretBackCircleSharp />
+      </p>
       <div className="signupwrapper">
         <div className="signupImageWrap">
           <img src={signpic} alt="Sign Up" />
@@ -74,7 +76,8 @@ const SignUp = () => {
           <div className="signuptextwrap">
             <h1>Register on HavenList</h1>
             <h1>
-              Lagos for <span style={{ color: "#00bcd4" }}>Exclusive Discount</span>
+              Lagos for{" "}
+              <span style={{ color: "#00bcd4" }}>Exclusive Discount</span>
             </h1>
             <h1>
               On <span style={{ color: "#00bcd4" }}>Agent fees</span>
@@ -110,8 +113,10 @@ const SignUp = () => {
                   />
                 </div>
 
-               
-                <div className="signuppasswordmwrap" style={{ width: "100%", position: "relative" }}>
+                <div
+                  className="signuppasswordmwrap"
+                  style={{ width: "100%", position: "relative" }}
+                >
                   <h2 style={{ color: "#00bcd4" }}>Create Password</h2>
                   <input
                     className="signupinputcont"
@@ -122,16 +127,15 @@ const SignUp = () => {
                     onChange={handleChange}
                     required
                   />
-                  <span 
-                    onClick={() => setShowPassword(!showPassword)}
-                    
-                  >
-                    {showPassword ?  <IoEyeOutline />: <LuEyeOff /> }
+                  <span onClick={() => setShowPassword(!showPassword)}>
+                    {showPassword ? <IoEyeOutline /> : <LuEyeOff />}
                   </span>
                 </div>
 
-               
-                <div className="usernameormwrap" style={{ width: "100%", position: "relative" }}>
+                <div
+                  className="usernameormwrap"
+                  style={{ width: "100%", position: "relative" }}
+                >
                   <h2 style={{ color: "#00bcd4" }}>Confirm Password</h2>
                   <input
                     className="signupinputcont"
@@ -144,9 +148,8 @@ const SignUp = () => {
                   />
                   <span
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                   
                   >
-                    {showConfirmPassword ? <IoEyeOutline />: <LuEyeOff />}
+                    {showConfirmPassword ? <IoEyeOutline /> : <LuEyeOff />}
                   </span>
                 </div>
 

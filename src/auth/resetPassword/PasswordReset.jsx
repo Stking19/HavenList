@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router";
 import { resetPassword } from "../../config/api";
 import { IoEyeOutline } from "react-icons/io5";
 import { LuEyeOff } from "react-icons/lu";
+import { IoCaretBackCircleSharp } from "react-icons/io5";
 
 const PasswordReset = () => {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ const PasswordReset = () => {
   return (
     <div>
       <div className="mainbody">
+        <p className="goback" onClick={() => navigate(-1)}><IoCaretBackCircleSharp /></p>
         <div className="pageheader">
           <h1>Reset Password</h1>
         </div>

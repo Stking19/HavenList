@@ -8,6 +8,7 @@ import { loginUser } from "../../config/api";
 import toast from "react-hot-toast";
 import { IoEyeOutline } from "react-icons/io5";
 import { LuEyeOff } from "react-icons/lu";
+import { IoCaretBackCircleSharp } from "react-icons/io5";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -66,6 +67,7 @@ const Login = () => {
 
   return (
     <div className="mainwrap">
+      <p className="goback" onClick={() => navigate(-1)}><IoCaretBackCircleSharp /></p>
       <div className="loginwrapper">
         <div className="loginImageWrap">
           <img src={picture} alt="Login" />
