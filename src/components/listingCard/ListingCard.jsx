@@ -15,7 +15,7 @@ const ListingCard = ({items}) => {
     <div className='listingCardMain'>
           <div  className='listingCardContentHolder' onClick={()=> navigate('/propertydetails')}>
           <span className='listingPropertyImage'>
-           <img src={items.image} alt="" />
+           <img src={items.listingImage} alt="" />
           </span>
           <div className='listingPropertyDetails'>
            <h2 style={{color:'#2F80ED'}}>{items.title}</h2>
@@ -25,9 +25,9 @@ const ListingCard = ({items}) => {
           </div>
        </div>
         <section className='listingFooter'>
-          <div className='listingFooterContent'> <IoIosBed size={20}/> 2 bedroom</div>
-          <div className='listingFooterContent'> <GiBathtub size={20}/> 2 bathroom</div>
-          <span ><LiaToiletSolid size={20}/> 3 toilet</span>
+          <div className='listingFooterContent'> <IoIosBed size={20}/> {items.bedrooms}</div>
+          <div className='listingFooterContent'> <GiBathtub size={20}/>{items.bathrooms}</div>
+          <span ><LiaToiletSolid size={20}/>{items.toilets}</span>
         </section>
     </div>
   )
