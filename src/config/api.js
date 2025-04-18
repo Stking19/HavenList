@@ -27,7 +27,7 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     const message = error?.response?.data?.message;
-    // console.log(error);
+    console.log(error);
     // toast.error(message);
     return Promise.reject(error);
   }
@@ -43,7 +43,7 @@ export const loginUser = async (credentials, role) => {
     localStorage.setItem("user", JSON.stringify(data.fullName));
     localStorage.setItem("email", JSON.stringify(data.email));
     localStorage.setItem("id", JSON.stringify(data.id));
-    // localStorage.setItem("id", JSON.stringify(data.id));
+   
     console.log(data)
     toast.success(message);
     return data;
@@ -52,7 +52,6 @@ export const loginUser = async (credentials, role) => {
     throw error;
   }
 };
-
 
 export const signup = async (userData, role) => {
   try {
@@ -97,34 +96,6 @@ export const forgetPassword = async (email) => {
 };
 
 
-// export const createProfile = async (landlordId, formData) => {
-//   console.log(formData);
-//   try {
-//     const token = localStorage.getItem("token");
-//     const response = await api.post(`createProfile/${landlordId}`, formData, {
-//       headers: {
-//         "Content-Type": "multipart/form-data",
-//         Authorization: `Bearer ${token}`,
-//       },
-//     });
-
-//     if(response.status === 201){
-//       toast.success(response?.data?.message)
-//     }
-     
-//     return response.data;
-//   } catch (error) {
-//     if (error.response && error.response.status === 400) {
-//       toast.error("Profile already exists");
-//     } else {
-//       toast.error(error.response?.data?.message || "Something went wrong");
-//     }
-
-//     console.error("Error creating profile:", error);
-//     throw error;
-//   }
-// };
-
 export const createProfile = async (landlordId, formData) => {
   console.log(formData)
   try {
@@ -144,9 +115,8 @@ export const createProfile = async (landlordId, formData) => {
     }
     return data;
   } catch (error) {
-    console.error("Error creating profile:", error);
-    // toast.error(error?.data?.message)
-    throw error;
+    console.log(error)
+    toast.error(error?.response?.data?.message)
   }
 };
 

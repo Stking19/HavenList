@@ -45,14 +45,6 @@ function DashboardHeader({ setActiveTab, profileImage,}) {
                 <RxHamburgerMenu onClick={toggleCart} />
               </p>
 
-              {/* <div className="profileimagewrap">
-                {mystoredImage ? (
-                  <img src={storedImage} alt className="profile-image" />
-                ) : (
-                  <CgProfile size={30} />
-                )}
-              </div> */}
-
               <h1 style={{marginLeft: "130px"}}>Hi, {name}</h1>
             </div>
           </div>

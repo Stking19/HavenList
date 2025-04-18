@@ -55,7 +55,7 @@ const LandlordDashboard = () => {
 const [activeTab, setActiveTab] = useState(0)
 const [profileImage, setprofileImage] = useState(null)
 const name = JSON.parse(localStorage.getItem("user"))
-const image = JSON.parse(localStorage.getItem("profileImage"))
+// const image = JSON.parse(localStorage.getItem("profileImage"))
 const firstName = name.split(" ")[0]
 
   return (

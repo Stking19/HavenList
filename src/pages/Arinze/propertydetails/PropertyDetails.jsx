@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 import './propertydetails.css'
 import { FaAnchor, FaSink, FaAngleRight, FaChevronLeft, FaChevronRight  } from "react-icons/fa6";
+import { Modal } from 'antd';
 
 const PropertyDetails = () => {
   const images = [
@@ -163,6 +164,8 @@ const PropertyDetails = () => {
         <h2>N 2,000,000</h2>
         <button onClick={() => navigate("/success")} className='propertyDetailRentBtn'>Rent</button>
       </div> 
+
+      <Modal></Modal>
 
     </>
   )

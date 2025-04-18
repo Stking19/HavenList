@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import {
-  createProfile,
-  deleteProfile,
-  getLandlordProfile,
-  updateLandlordProfileAsync
+  createProfile
 } from "../../../config/api";
 import { useRef } from "react";
 import "./profilepage.css";
@@ -34,7 +31,6 @@ function ProfilePage({ setProfileImage, setFirstName }) {
   });
   const [image, setImage] = useState(null);
   const [landlordId, setLandlordId] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -57,92 +53,11 @@ function ProfilePage({ setProfileImage, setFirstName }) {
         const base64Image = reader.result;
         console.log(base64Image);
         setImage(base64Image);
-        // setProfileImage(base64Image);
       };
 
       reader.readAsDataURL(file);
     }
   };
-
-  
-
-  const handleEditProfile = async () => {
-    const storedLandlordProfileId = JSON.parse(localStorage.getItem("landlordprofileid"));
-    try {
-      const data = await getLandlordProfile(storedLandlordProfileId);
-      const { fullName, email, street, locality, state, profileImage } = data.profile;
-  
-      setDetails({
-        fullName: fullName || "",
-        email: email || "",
-        street: street || "",
-        locality: locality || "",
-        state: state || "",
-      });
-  
-      if (profileImage) {
-        setImage(profileImage);
-      }
-  
-      setIsEditing(true); // Enable update mode
-    } catch (error) {
-      console.error("Error fetching profile", error);
-      toast.error("Could not load profile data");
-    }
-  };
-
-  const handleUpdateProfile = async (e) => {
-    e.preventDefault();
-    const { fullName, email, street, locality, state } = details;
-  
-    if (!fullName || !email || !street || !locality || !state || !image) {
-      toast.error("Please fill all the fields");
-      return;
-    }
-  
-    if (!email.includes("@")) {
-      toast.error("Email format is incorrect");
-      return;
-    }
-  
-    try {
-      const formData = new FormData();
-      formData.append("fullName", fullName);
-      formData.append("email", email);
-      formData.append("street", street);
-      formData.append("locality", locality);
-      formData.append("state", state);
-  
-      const imageBlob = dataURLtoBlob(image);
-      formData.append("profileImage", imageBlob, "profileImage.jpg");
-  
-      const landlordProfileId = JSON.parse(localStorage.getItem("landlordprofileid"));
-      const data = await updateLandlordProfileAsync(landlordProfileId, formData);
-  
-      toast.success("Profile updated successfully!");
-      const firstNameOnly = fullName.trim().split(" ")[0];
-      setFirstName(firstNameOnly);
-      setIsEditing(false);
-      emptyInputs();
-      setImage(null);
-    } catch (error) {
-      console.error(error);
-      toast.error("Error updating profile");
-    }
-  };
-
-  const emptyInputs = () => {
-    setDetails({
-      fullName: "",
-      email: "",
-      street: "",
-      locality: "",
-      state: "",
-    });
-
-    setImage(null)
-  };
-  
 
   const handleCreateProfile = async (e) => {
     e.preventDefault();
@@ -171,82 +86,18 @@ function ProfilePage({ setProfileImage, setFirstName }) {
       formData.append("profileImage", imageBlob, "profileImage.jpg");
 
       const data = await createProfile(landlordId, formData);
-      // console.log(data);
-      // localStorage.setItem("landlordprofileid", JSON.stringify(id))
-
-      // toast.success("Profile created successfully!");
-
-      // const firstNameOnly = fullName.trim().split(" ")[0];
-      // setFirstName(firstNameOnly);
-      emptyInputs();
+      console.log(data)
+    
 
       setImage(null);
-      // setProfileImage(null);
     } catch (error) {
       console.error(error);
-      // toast.error(error?.response?.data?.message);
+      toast.error(error?.response?.data?.message)
+      
     }
   };
 
-  // const handleUpdateProfile = async (e) => {
-  //   e.preventDefault();
-  //   const { fullName, email, street, locality, state } = details;
 
-  //   if (!fullName || !email || !street || !locality || !state || !image) {
-  //     toast.error("Please fill all the fields");
-  //     return;
-  //   }
-
-  //   if (!email.includes("@")) {
-  //     toast.error("Email format is incorrect");
-  //     return;
-  //   }
-
-  //   try {
-  //     const profileData = {
-  //       fullName,
-  //       email,
-  //       street,
-  //       locality,
-  //       state,
-  //       profileImage: image,
-  //     };
-
-  //     const data = await updateProfile(landlordId, profileData);
-  //     toast.success("Profile updated successfully!");
-
-  //     const firstNameOnly = fullName.trim().split(" ")[0];
-  //     setFirstName(firstNameOnly);
-  //   } catch (error) {
-  //     console.error(error);
-  //     toast.error("Error updating profile");
-  //   }
-  // };
-
-  const handleDeleteProfile = async (storedLandlordId) => {
-    if (!landlordId) {
-      toast.error("Landlord ID is missing");
-      return;
-    }
-
-    try {
-      await deleteProfile(storedLandlordId);
-      toast.success("Profile deleted successfully!");
-
-      setDetails({
-        fullName: "",
-        email: "",
-        street: "",
-        locality: "",
-        state: "",
-      });
-      setProfileImage(null);
-      setFirstName("");
-    } catch (error) {
-      console.error(error);
-      toast.error("Error deleting profile");
-    }
-  };
   const handleCancel = () => {
     setDetails({
       fullName: "",
@@ -257,7 +108,7 @@ function ProfilePage({ setProfileImage, setFirstName }) {
     });
     setImage(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = null; // Clear file input
+      fileInputRef.current.value = null; 
     }
   };
   
@@ -273,7 +124,7 @@ function ProfilePage({ setProfileImage, setFirstName }) {
 
         <form
           className="profileform"
-          onSubmit={isEditing ? handleUpdateProfile : handleCreateProfile}
+          onSubmit={handleCreateProfile}
         >
           <div className="inforcontainer">
             <h2>Full Name</h2>
@@ -281,7 +132,6 @@ function ProfilePage({ setProfileImage, setFirstName }) {
               className="containerwarpper"
               type="text"
               placeholder="Full name"
-              // disabled={true}
               value={details.fullName}
               onChange={handleInputChange("fullName")}
             />
@@ -294,7 +144,6 @@ function ProfilePage({ setProfileImage, setFirstName }) {
               type="email"
               placeholder="Enter email here ..."
               value={details.email}
-              // disabled={true}
               onChange={handleInputChange("email")}
             />
           </div>
@@ -353,20 +202,11 @@ function ProfilePage({ setProfileImage, setFirstName }) {
               >
                 Cancel
               </button>
-              <button type="submit" className="submitbtn">
-                {isEditing ? "Update" : "Create"}
+              <button onClick={handleCreateProfile} type="submit" className="submitbtn">
+               update
               </button>
 
-              {/* <button
-                type="button"
-                className="submitbtn"
-                onClick={handleEditProfile}
-              >
-                Edit
-              </button> */}
-              {/* <button type="button" className="submitbtn" onClick={handleDeleteProfile}>
-                Delete Profile
-              </button> */}
+      
             </div>
           </div>
         </form>
