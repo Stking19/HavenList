@@ -51,7 +51,7 @@ const Verify = () => {
   };
   const { role } = useParams();
 
- const endpoint = role === "landlord" ? "verify-landlordOtp" : "verify-tenantOtp";
+ const endpoint = role === "landlord" ? "landlord" : "tenant";
 
   const handleSubmit = async () => {
     const enteredCode = otp.join("");
@@ -63,7 +63,7 @@ const Verify = () => {
     console.log("Code sent to backend:", enteredCode);
 
     try {
-      const response = await axios.post(`${API_URL}${endpoint}`, {otp:enteredCode});
+      const response = await axios.post(`${API_URL}verify/${endpoint}`, {otp:enteredCode});
       console.log(response);
       toast.success(response?.data?.message);
       navigate(`/reset-password/${role}`)

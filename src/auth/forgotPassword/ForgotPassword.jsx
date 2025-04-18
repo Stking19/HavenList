@@ -30,7 +30,7 @@ const ForgotPassword = () => {
     try {
       const response = await forgetPassword({ email }, role);
       console.log(response);
-      toast.success(response.message)
+      toast.success(response?.message)
       setLoadingScreen(false);
       setTimeout(() => {
         navigate(`/api/v1/verify/${role}`);
@@ -39,7 +39,7 @@ const ForgotPassword = () => {
     } catch (error) {
       console.log(error);
       setLoadingScreen(false);
-      toast.error(response.message)
+      toast.error(response?.message)
     }
   };
 
