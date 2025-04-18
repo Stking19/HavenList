@@ -60,7 +60,7 @@ const firstName = name.split(" ")[0]
     <div className="dashboard">
       <SideBar setActiveTab={setActiveTab}/>
       <div className="dash">
-        <DashboardHeader setActiveTab={setActiveTab}/>
+        <DashboardHeader setActiveTab={setActiveTab} firstName={firstName}/>
         { activeTab === 0 ? <div className="hello">
           <h2>Hello, {firstName}</h2>
           <div className="cardsDE">

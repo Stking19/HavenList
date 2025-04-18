@@ -12,7 +12,7 @@ import { CiLogout } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/slices/AuthSlice";
 
-function DashboardHeader({ setActiveTab, profileImage, firstName }) {
+function DashboardHeader({ setActiveTab, firstName,profileImage }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const dispatch = useDispatch();
 
