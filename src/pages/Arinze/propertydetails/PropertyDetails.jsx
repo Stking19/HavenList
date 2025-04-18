@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa6";
 import axios from "axios";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -20,11 +21,11 @@ const PropertyDetails = () => {
   console.log(productId);
 
   const navigate = useNavigate();
-  const tenantid = localStorage.getItem("id");
+  const tenantid = JSON.parse(localStorage.getItem("id"));
   const token = localStorage.getItem("token");
   const name = JSON.parse(localStorage.getItem("user"));
   const email = JSON.parse(localStorage.getItem("email"));
-  const amount = 2000000;
+  const amount = JSON.parse(localStorage.getItem("amount"));
 
   const userData = {
     amount,
@@ -32,25 +33,22 @@ const PropertyDetails = () => {
     email,
   };
   const landlordid = localStorage.getItem("landlordId");
-  const listingId = localStorage.getItem("listingId");
+  const listingId = localStorage.getItem("listingId");;
+  console.log({ amount });
 
   const handlePayment = async () => {
     try {
       const res = await axios.post(
         `${API_URL}initialize/${tenantid}/${landlordid}/${listingId}`,
-        userData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        userData
       );
       console.log(res);
-      localStorage.setItem("transactionId", res?.data?.refrence);
-      window.location.href = res?.data?.checkout_url;
+      localStorage.setItem("transactionId", res?.data?.data?.refrence);
+      toast.success(res?.data?.data?.message);
+      // window.location.href = res?.data?.checkout_url;
     } catch (error) {
       console.log(error);
+      toast.error(error?.response?.data?.message);
     }
   };
 
@@ -120,10 +118,9 @@ const PropertyDetails = () => {
               </section>
             </div>
           </div>
-
-          <div className="propertyDetailImageMobile">
-            <FaChevronLeft onClick={prevImage} className="arrowBtn left" />
-            <span className="mobileImageHolder">
+          <div className='propertyDetailImageMobile'>
+            <FaChevronLeft onClick={prevImage} className='arrowBtn left' />
+            <span className='mobileImageHolder'>
               <img src={images[currentImageIndex]} alt="property" />
             </span>
             <FaChevronRight onClick={nextImage} className="arrowBtn right" />
