@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import icon from "/IMG/icon.png";
 import { CgProfile } from "react-icons/cg";
@@ -11,25 +11,33 @@ import { IoPersonOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/slices/AuthSlice";
+import { useNavigate } from "react-router";
 
 
 function DashboardHeader({ setActiveTab, profileImage,}) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const [mystoredImage, setMyStoredImage] = useState(false)
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
 
-  const name = JSON.parse(localStorage.getItem("user"))
+  useEffect(()=>{
+     setMyStoredImage(true)
+  },[])
 
+  const name = JSON.parse(localStorage.getItem("user"))
+  const storedImage = localStorage.getItem("profileImage")
+  
   return (
     <>
       <div>
         <div className="profileheader">
           <div className="innerheader">
             <div className="imagewrapper">
-              <img src={icon} alt="" />
+              <img src={icon} alt="" onClick={() => navigate("/")} />
             </div>
 
             <div className="headerside">
@@ -37,15 +45,15 @@ function DashboardHeader({ setActiveTab, profileImage,}) {
                 <RxHamburgerMenu onClick={toggleCart} />
               </p>
 
-              <div className="profileimagewrap">
-                {profileImage ? (
-                  <img src={profileImage} alt="Profile" className="profile-image" />
+              {/* <div className="profileimagewrap">
+                {mystoredImage ? (
+                  <img src={storedImage} alt className="profile-image" />
                 ) : (
                   <CgProfile size={30} />
                 )}
-              </div>
+              </div> */}
 
-              <h1>{name}</h1>
+              <h1 style={{marginLeft: "130px"}}>Hi, {name}</h1>
             </div>
           </div>
         </div>
