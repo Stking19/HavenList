@@ -19,6 +19,7 @@ import Help from './pages/Joshua/help/Help'
 import Role from './components/role/Role'
 import TenantLogin from './auth/tenantlogin/TenantLogin'
 import TenantLandingPage from './pages/Stephen/TenantLandingPage'
+import SuccessCard from './components/SuccessCard/SuccessCard'
 
 
 const App = () => {
@@ -58,7 +59,7 @@ const App = () => {
           element: <Home />
         },
         {
-          path: 'propertydetails',
+          path: 'propertydetails/:productId',
           element: <PropertyDetails />
         },
         {
@@ -74,6 +75,10 @@ const App = () => {
           element: <AboutUsPage />
         },
       ]
+    },
+    {
+      path: '/payment/status',
+      element: <SuccessCard />
     },
     {
       path: '/sign-in/landlord',
@@ -100,7 +105,7 @@ const App = () => {
       element: <ForgotPassword />,
     },
     {
-      path: '/verify/:role',
+      path: '/api/v1/verify/:role',
       element: <Verify />,
     },
     {
