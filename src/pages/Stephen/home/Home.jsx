@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./home.css";
 import SearchBar from "../../../components/searchbar/SearchBar";
 import { IoBedOutline } from "react-icons/io5";
@@ -7,44 +7,41 @@ import { LuBath } from "react-icons/lu";
 import { PiToiletLight } from "react-icons/pi";
 import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import axios from "axios";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 
 const Home = () => {
-  const houseDetails = [
-    {
-      Image: "/IMG/7e97959ce4d2d821a82d31013938681b.png",
-      title: "2 Bedroom Flat For Rent",
-      location: "6th Avenue Amowo-Odofin, Festac, Lagos.",
-      description: "Well gated with up to six cars parking space",
-      price: "2M",
-    },
-    {
-      Image: "/IMG/18a776fbd7b7728623b847ca8f5b2235.png",
-      title: "2 Bedroom Flat For Rent",
-      location: "6th Avenue Amowo-Odofin, Festac, Lagos.",
-      description: "Well gated with up to six cars parking space",
-      price: "2M",
-    },
-    {
-      Image: "/IMG/e3d08db789c3f2e757b389cf48f574d5.png",
-      title: "2 Bedroom Flat For Rent",
-      location: "6th Avenue Amowo-Odofin, Festac, Lagos.",
-      description: "Well gated with up to six cars parking space",
-      price: "2M",
-    },
-    {
-      Image: "/IMG/21532fe72b50be348923d3076f854b57.png",
-      title: "2 Bedroom Flat For Rent",
-      location: "6th Avenue Amowo-Odofin, Festac, Lagos.",
-      description: "Well gated with up to six cars parking space",
-      price: "2M",
-    },
-  ];
-
+  const [allListings, setAllListings] = useState([]);
   const [details, setDetails] = useState(null);
   const { ref, inView } = useInView({ triggerOnce: true });
   const navigate = useNavigate()
+
+  const handleDetails = (house) => {
+    localStorage.setItem('listingId', house.id)
+    localStorage.setItem('landlordId', house.landlordId)
+    localStorage.setItem('amount', house.price)
+    navigate(`/propertydetails/${house.id}`)
+  }
+
+  const getAllListing = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/getAllListings`)
+      console.log("this is what am loking for ",res)
+      setAllListings(res.data.data)
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getAllListing()
+  }, [])
+
+  // console.log(allListings)
 
   return (
     <div className="home">
@@ -66,8 +63,9 @@ const Home = () => {
       <div className="properties">
         <div className="HouseList">
           <div className="houseWrap">
-            {houseDetails.map((house, index) => (
+            {allListings?.map((house, index) => (
               <>
+              {console.log(house.listingImage?.[0]?.imageUrl)}
                 {details === index ? (
                   <div
                     className="Houses"
@@ -75,12 +73,12 @@ const Home = () => {
                   >
                     <div className="houseDet">
                       <div className="imgWrap">
-                        <div className="Himg" onClick={() => navigate('/propertydetails')}>
-                          <img src={house.Image} alt="" />
+                        <div className="Himg" onClick={() => handleDetails(house)}>
+                          <img src={house.listingImage?.[0]?.imageUrl} alt="listing preview" />
                         </div>
                       </div>
                       <div className="Hdetails">
-                        <h3 onClick={() => navigate('/propertydetails')}>{house.title}</h3>
+                        <h3 onClick={() => handleDetails(house)}>{house.title}</h3>
                         <p>{house.location}</p>
                         <p>{house.description}</p>
                         <span>
@@ -115,12 +113,12 @@ const Home = () => {
                 ) : (
                   <div className="houseCards" >
                     <div className="imgWrap">
-                      <div className="Himg" onClick={() => navigate('/propertydetails')}>
+                      <div className="Himg" onClick={() => handleDetails(house)}>
                         <img src={house.Image} alt="" />
                       </div>
                     </div>
                     <div className="Hdetails">
-                      <h3 onClick={() => navigate('/propertydetails')}>{house.title}</h3>
+                      <h3 onClick={() => handleDetails(house)}>{house.title}</h3>
                     </div>
                     <div className="butt">
                       <p className="icon" onClick={() => setDetails(index)}>

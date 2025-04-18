@@ -205,8 +205,6 @@ function ProfilePage({ setProfileImage, setFirstName }) {
               <button onClick={handleCreateProfile} type="submit" className="submitbtn">
                update
               </button>
-
-      
             </div>
           </div>
         </form>
