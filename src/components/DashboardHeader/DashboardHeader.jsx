@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import icon from "/IMG/icon.png";
 import { CgProfile } from "react-icons/cg";
 import "./dashboardheader.css";
@@ -11,14 +12,17 @@ import { CiLogout } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/slices/AuthSlice";
 
-function DashboardHeader({setActiveTab}) {
-  const name = JSON.parse(localStorage.getItem("user"));
+
+function DashboardHeader({ setActiveTab, profileImage,}) {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
+
+  const name = JSON.parse(localStorage.getItem("user"))
+
   return (
     <>
       <div>
@@ -30,12 +34,17 @@ function DashboardHeader({setActiveTab}) {
 
             <div className="headerside">
               <p className="burgers">
-                <RxHamburgerMenu onClick={toggleCart}/>
+                <RxHamburgerMenu onClick={toggleCart} />
               </p>
+
               <div className="profileimagewrap">
-                {/* <img src={""} alt="" /> */}
-                <CgProfile size={30} />
+                {profileImage ? (
+                  <img src={profileImage} alt="Profile" className="profile-image" />
+                ) : (
+                  <CgProfile size={30} />
+                )}
               </div>
+
               <h1>{name}</h1>
             </div>
           </div>
@@ -59,24 +68,24 @@ function DashboardHeader({setActiveTab}) {
             </span>
             Post a Property
           </p>
-            <p onClick={() => setActiveTab(2)}>
-              <span>
-                <CiViewList />
-              </span>
-              My Listings
-            </p>
-            <p onClick={() => setActiveTab(3)}>
-              <span>
-                <IoPersonOutline />
-              </span>
-              Profile
-            </p>
-            <p onClick={() => dispatch(logout())}>
-              <span>
-                <CiLogout />
-              </span>
-              Sign Out
-            </p>
+          <p onClick={() => setActiveTab(2)}>
+            <span>
+              <CiViewList />
+            </span>
+            My Listings
+          </p>
+          <p onClick={() => setActiveTab(3)}>
+            <span>
+              <IoPersonOutline />
+            </span>
+            Profile
+          </p>
+          <p onClick={() => dispatch(logout())}>
+            <span>
+              <CiLogout />
+            </span>
+            Sign Out
+          </p>
         </div>
       </div>
     </>

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./LandlordPropertyUpload.css";
-import { Modal } from "antd";
 import { CiImageOn } from "react-icons/ci";
 import axios from "axios";
+import toast from "react-hot-toast";
+import Loadscreen from "../../../src/loadscreen/Loadscreen";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -14,7 +15,6 @@ const LandlordPropertyUpload = () => {
     { id: 4, imgUrl: "" },
     { id: 5, imgUrl: "" },
   ]);
-  const [open, setOpen] = useState(false);
   const [userInput, setUserInput] = useState({
     title: "",
     type: "",
@@ -43,11 +43,15 @@ const LandlordPropertyUpload = () => {
     );
   };
 
-  const scancel = () => {
-    setOpen(false);
+  const isFormValid = () => {
+    const allFields = Object.values(userInput).every(
+      (value) => value.trim() !== ""
+    );
+    const atLeastOneImage = imgBox.some((item) => item.imgUrl !== "");
+    return allFields && atLeastOneImage;
   };
 
-  const landlord =JSON.parse(localStorage.getItem("id"));
+  const landlord = JSON.parse(localStorage.getItem("id"));
   const token = localStorage.getItem("token");
 
   const headers = {
@@ -55,10 +59,35 @@ const LandlordPropertyUpload = () => {
   };
   console.log(landlord);
 
-  const [isloading,setIsLoading] = useState(false) 
+  const [isloading, setIsLoading] = useState(false);
+
+  const resetInput = () => {
+    setUserInput({
+      title: "",
+      type: "",
+      bedrooms: "",
+      bathrooms: "",
+      toilets: "",
+      description: "",
+      street: "",
+      area: "",
+      state: "",
+      minrent: "",
+      maxrent: "",
+      price: "",
+      year: "",
+    });
+    setImgBox([
+      { id: 1, imgUrl: "" },
+      { id: 2, imgUrl: "" },
+      { id: 3, imgUrl: "" },
+      { id: 4, imgUrl: "" },
+      { id: 5, imgUrl: "" },
+    ]);
+  };
 
   const handleUpload = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       const formData = new FormData();
 
@@ -71,34 +100,35 @@ const LandlordPropertyUpload = () => {
           formData.append("listingImage", item.file);
         }
       });
-      
       const response = await axios.post(
         `${API_URL}createlisting/${landlord}`,
         formData,
         { headers }
       );
       console.log(response);
-      setIsLoading(false)
+      setIsLoading(false);
+      if (response.status === 201) {
+        toast.success(response?.data?.message);
+        resetInput();
+      }
     } catch (err) {
-    
       console.log(err);
-      setIsLoading(false)
+      setIsLoading(false);
+      if (err.response) {
+        toast.error(err.response.data.message);
+      } else {
+        toast.error("An error occurred. Please try again.");
+      }
     }
   };
 
   return (
     <div className="LandlordPropertyUploadMain">
-      <Modal
-        open={open}
-        onCancel={scancel}
-        okButtonProps={{ style: { display: "none" } }}
-        cancelButtonProps={{ style: { display: "none" } }}
-        width={500}
-      >
-        <div className="uploadSuc">
-          <h3>Upload Successfull</h3>
+      {isloading && (
+        <div className="uploadOverlay">
+          <Loadscreen />
         </div>
-      </Modal>
+      )}
       <div className="landLordUploadMainScreen">
         <section className="landLordUploadDetail">
           <h2>Tell us more about this listing</h2>
@@ -331,10 +361,12 @@ const LandlordPropertyUpload = () => {
               ))}
             </div>
           </section>
-          <button className="propertyUploadBtn" onClick={handleUpload} disabled={!isloading}>
-           {
-              isloading?'Uploading...':'Upload'
-           }
+          <button
+            className="propertyUploadBtn"
+            onClick={handleUpload}
+            disabled={!isFormValid() || isloading}
+          >
+            Upload
           </button>
         </section>
       </div>

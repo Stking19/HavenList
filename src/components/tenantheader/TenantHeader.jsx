@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./header.css";
+import "./tenantheader.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { useNavigate } from "react-router";
 import { FaRegUser } from "react-icons/fa";
@@ -13,7 +13,7 @@ import { CiLogout } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { LuNotebookText } from "react-icons/lu";
 
-const Header = () => {
+const TenantHeader = () => {
   const [dropdown, setDropdown] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [isRole, setIsRole] = useState(false);
@@ -68,9 +68,6 @@ const Header = () => {
               <p className="burger">
                 <RxHamburgerMenu onClick={toggleCart} />
               </p>
-              <p onClick={() => navigate("/private")}>
-                <FaRegUser />
-              </p>
               <span onClick={logoust}>Log Out</span>
             </div>
           </div>
@@ -104,12 +101,6 @@ const Header = () => {
                 </span>
                 Help
               </p>
-              <p onClick={() => navigate("/private")}>
-                <span>
-                <FaRegUser />
-                </span>
-                Profile
-              </p>
               <p onClick={logoust}>
                 <span>
                   <CiLogout />
@@ -135,6 +126,9 @@ const Header = () => {
             <div className="user">
               <p className="burger">
                 <RxHamburgerMenu onClick={toggleCart} />
+              </p>
+              <p onClick={() => navigate("/private")}>
+                <FaRegUser />
               </p>
               <p
                 onMouseOver={() => setDropdown(true)}
@@ -218,4 +212,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default TenantHeader;
