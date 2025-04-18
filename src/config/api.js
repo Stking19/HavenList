@@ -74,22 +74,25 @@ export const signup = async (userData, role) => {
     const response = await api.post(endpoint, userData);
     if (response.data?.success || response.status === 201) {
       toast.success(response.data.message || "Signup successful!" || "");
-      return response.data;
+      console.log(response);
+      localStorage.setItem("userId", response?.data?.data?.id);
     } else {
       throw new Error(response.data?.message);
     }
   } catch (error) {
     const message = error?.response?.data?.message;
+    console.log(error)
     toast.error(message);
     throw new Error(message);
   }
 };
 
 
-export const resetPassword = async ({Password, confirmPassword, otp, role}) => {
+export const resetPassword = async ({Password, confirmPassword, role}) => {
+  const landlordId = localStorage.getItem("userId")
   try {
-    const endpoint = role === "landlord" ? "landlordpassword" : "tenantpassword";
-    const response = await api.post(endpoint, { Password, confirmPassword, otp });
+    const endpoint = role === "landlord" ? "reset-landlordpassword" : "reset-tenantpassword";
+    const response = await api.post(`${endpoint}/${landlordId}`, { Password, confirmPassword, });
     toast.success(response.data.message);
     return response.data;
   } catch (error) {

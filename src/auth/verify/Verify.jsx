@@ -65,10 +65,11 @@ const Verify = () => {
     try {
       const response = await axios.post(`${API_URL}${endpoint}`, {otp:enteredCode});
       console.log(response);
-      navigate('/reset-password')
+      toast.success(response?.data?.message);
+      navigate(`/reset-password/${role}`)
     } catch (error) {
       console.log(error);
-      toast.error(error?.response?.data.error);
+      toast.error(error?.response?.data);
     }
   };
 
