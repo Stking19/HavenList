@@ -77,7 +77,7 @@ const App = () => {
       ]
     },
     {
-      path: '/payment/status',
+      path: '/api/v1/payment/status',
       element: <SuccessCard />
     },
     {

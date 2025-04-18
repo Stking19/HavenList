@@ -22,13 +22,14 @@ const Home = () => {
   const handleDetails = (house) => {
     localStorage.setItem('listingId', house.id)
     localStorage.setItem('landlordId', house.landlordId)
+    localStorage.setItem('amount', house.price)
     navigate(`/propertydetails/${house.id}`)
   }
 
   const getAllListing = async () => {
     try {
       const res = await axios.get(`${API_URL}/getAllListings`)
-      console.log(res)
+      console.log("this is what am loking for ",res)
       setAllListings(res.data.data)
       console.log(res)
     } catch (error) {
