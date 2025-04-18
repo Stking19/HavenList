@@ -27,7 +27,7 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     const message = error?.response?.data?.message;
-    // console.log(error);
+    console.log(error);
     // toast.error(message);
     return Promise.reject(error);
   }
@@ -58,6 +58,7 @@ export const tenantLoginUser = async (credentials) => {
     localStorage.setItem("user", JSON.stringify(data.fullName));
     localStorage.setItem("email", JSON.stringify(data.email));
     localStorage.setItem("id", JSON.stringify(data.id));
+   
     console.log(data)
     toast.success(message);
     return data;
@@ -66,7 +67,6 @@ export const tenantLoginUser = async (credentials) => {
     throw error;
   }
 };
-
 
 export const signup = async (userData, role) => {
   try {
@@ -116,7 +116,7 @@ export const forgetPassword = async (email, role) => {
 
 
 export const createProfile = async (landlordId, formData) => {
-  console.log(formData);
+  console.log(formData)
   try {
     const token = localStorage.getItem("token");
     const response = await api.post(`createProfile/${landlordId}`, formData, {
@@ -125,56 +125,20 @@ export const createProfile = async (landlordId, formData) => {
         Authorization: `Bearer ${token}`,
       },
     });
-
-    return response.data;
-  } catch (error) {
-    if (error.response && error.response.status === 400) {
-      toast.error("Profile already exists");
-    } else {
-      toast.error(error.response?.data?.message || "Something went wrong");
+   console.log(response);
+    if(response.status === 201){
+      const {data, message } = response.data;
+      localStorage.setItem("profileImage", JSON.stringify(data.image))
+      localStorage.setItem("landlordprofileid", JSON.stringify(data.id));
+      toast.success(message)
     }
-
-    console.error("Error creating profile:", error);
-    throw error;
-  }
-};
-
-
-export const profileUpload = () => {
-
-  const formData = new FormData();
-  formData.append("fullName", details.fullName);
-  formData.append("email", details.email);
-  formData.append("street", details.street);
-  formData.append("locality", details.locality);
-  formData.append("state", details.state);
-}
-// export const editProfile = async (landlordId) => {
-//   try {
-//     const response = await api.put(`getlandlordprofile/${landlordId}`);
-//     return response.data; 
-//   } catch (error) {
-//     console.error("Error updating profile:", error);
-//     throw error; 
-//   }
-// };
-
-
-export const deleteProfile = async (landlordId) => {
-  try {
-    const token = localStorage.getItem("token");
-    const landlordId = localStorage.getItem("id")
-    const response = await api.delete(`deleteLandlordProfile/${landlordId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    return response.data;
+    return data;
   } catch (error) {
-    console.error("Error deleting profile:", error);
-    throw error;
+    console.log(error)
+    toast.error(error?.response?.data?.message)
   }
 };
+
 
 export default api;
  
