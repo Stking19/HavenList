@@ -71,7 +71,7 @@ const LandlordPropertyUpload = () => {
           formData.append("listingImage", item.file);
         }
       });
-      // console.log(formData.get("listingimage[]"));
+      
       const response = await axios.post(
         `${API_URL}createlisting/${landlord}`,
         formData,
@@ -192,7 +192,7 @@ const LandlordPropertyUpload = () => {
             </section>
             <span className="uploadTitle">
               <h3>Description</h3>
-              <input
+              <textarea
                 type="text"
                 placeholder="e.g newly built 3 bedroom flat in a serene neighbourhood"
                 className="desc"

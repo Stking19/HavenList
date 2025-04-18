@@ -78,7 +78,6 @@ console.log(productId)
               </section>
             </div>
           </div>
-
           <div className='propertyDetailImageMobile'>
             <FaChevronLeft onClick={prevImage} className='arrowBtn left' />
             <span className='mobileImageHolder'>
