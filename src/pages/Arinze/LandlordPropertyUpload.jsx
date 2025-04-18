@@ -26,7 +26,6 @@ const LandlordPropertyUpload = () => {
     state:'' ,
     partPayment:'',
     area: "",
-    state: "",
     price: "",
     year: "",
   });

@@ -12,6 +12,7 @@ const Listing = () => {
 
  
   const [allListing, setAllListings] = useState([])
+  
 
 
   const getAllListing = async () => {
