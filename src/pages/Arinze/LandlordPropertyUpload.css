@@ -138,41 +138,10 @@
 
   span {
     height: max-content;
-    width: 80%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 10px;
-
-    input {
-      height: 40px;
-      width: 80%;
-      font-size: 15px;
-      background: none;
-      outline: none;
-      border-radius: 5px;
-      border: 1px solid gray;
-      padding: 15px;
-    }
-  }
-}
-
-.addressDualInput {
-  height: 60%;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  gap: 10px;
-
-  span {
-    height: max-content;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    & h3 {
-      font-weight: 300;
-    }
 
     input {
       height: 40px;
@@ -185,7 +154,77 @@
       padding: 15px;
     }
   }
+
+
 }
+
+.addressDualInput {
+  height: 60%;
+  width: 100%;
+  display: flex;
+
+  justify-content: space-around;
+  gap: 10px;
+  align-items: center;
+
+  span {
+    height: 40px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+
+    & h3 {
+      font-weight: 300;
+    }
+
+    input {
+      height: 30px;
+      width: 100%;
+      font-size: 15px;
+      background: none;
+      outline: none;
+      border-radius: 5px;
+      border: 1px solid gray;
+      padding: 15px;
+    }
+  }
+}
+
+.areaSelect{
+  height: 40px;
+  width: 45%;
+  font-size: 15px;
+  background: none;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid gray;
+  margin-top: 28px;
+}
+
+.stateSelect{
+  height: 40px;
+  width: 100%;
+  font-size: 15px;
+  background: none;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+
+.partPayment{
+  height: 40px;
+  width: 100%;
+  font-size: 15px;
+  background: none;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+
 
 .paymentDtailUploads {
   height: 30%;
@@ -201,6 +240,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+
 
   span {
     height: max-content;
@@ -228,6 +268,8 @@
   display: flex;
   justify-content: space-around;
   gap: 10px;
+  margin-bottom: 10px;
+
 
   span {
     height: max-content;
@@ -2007,3 +2049,4 @@
 }
 
 }
+ 

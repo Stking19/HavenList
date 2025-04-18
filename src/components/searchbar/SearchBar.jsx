@@ -6,28 +6,28 @@ import axios from "axios";
 const SearchBar = () => {
   const API_URL = import.meta.env.VITE_API_URL;
 
-  
-  const [searchInput,setSearchInput] = useState({
-    area:'',
-    type:'',
-    bedrooms:'',
-    bathrooms:'',
-    minrent:'',
-    maxrent:''
+
+  const [searchInput, setSearchInput] = useState({
+    area: '',
+    type: '',
+    bedrooms: '',
+    bathrooms: '',
+    minrent: '',
+    maxrent: ''
   })
-  
-  const handleOnchange =(e)=>{
-    const {name,value} = e.target
-    setSearchInput((prev)=>({...prev,[name]:value}))
+
+  const handleOnchange = (e) => {
+    const { name, value } = e.target
+    setSearchInput((prev) => ({ ...prev, [name]: value }))
   }
-  
+
   console.log(searchInput)
-  
-  const searchListing = async ()=>{
-    const {area,type,bedrooms,bathrooms,minrent,maxrent} = searchInput
+
+  const searchListing = async () => {
+    const { area, type, bedrooms, bathrooms, minrent, maxrent } = searchInput
     try {
-      const res = await axios.get(`${API_URL}/searchListing`,{
-        params:{
+      const res = await axios.get(`${API_URL}/searchListing`, {
+        params: {
           area,
           type,
           bedrooms,
@@ -45,13 +45,30 @@ const SearchBar = () => {
   return (
     <div className="searchBar">
       <div className="search">
-        <p><FiSearch  /></p>
-        <input type="text"
-        name="area"
-         placeholder="Location"
-         onChange={handleOnchange}
-         value={searchInput.area}
-          />
+        <p><FiSearch /></p>
+        <select name="area"
+        className="search"
+          onChange={handleOnchange}
+          value={searchInput.area}
+        >
+          <option value=""></option>
+          <option value="Ikorodu">Ikorodu</option>
+          <option value="Agege">Agege</option>
+          <option value="Ajeromi ifelodun">Ajeromi ifelodun</option>
+          <option value="Alimosho">Alimosho</option>
+          <option value="Apapa">Apapa</option>
+          <option value="Badagry">Badagry</option>
+          <option value="Epe">Epe</option>
+          <option value="Eti-Osa">Eti-Osa</option>
+          <option value="Ibeju Lekki">Ibeju Lekki</option>
+          <option value="Ikeja">Ikeja</option>
+          <option value="Ikorodun">Ikorodu</option>
+          <option value="Lagos Island">Lagos Island</option>
+          <option value="Mushin">Mushin</option>
+          <option value="Ojo">Ojo</option>
+          <option value="Shomolu">Shomolu</option>
+          <option value="Surulere">Surulere</option>
+        </select>
         <button onClick={searchListing}>Search</button>
       </div>
       <div className="filters">
@@ -68,9 +85,9 @@ const SearchBar = () => {
         </select>
 
         <select
-        name="bedrooms"
-        onChange={handleOnchange}
-        value={searchInput.bedrooms}
+          name="bedrooms"
+          onChange={handleOnchange}
+          value={searchInput.bedrooms}
         >
           <option value=''>Bedroom</option>
           <option value="1">1</option>
@@ -81,9 +98,9 @@ const SearchBar = () => {
         </select>
 
         <select
-        name="bathrooms"
-        onChange={handleOnchange}
-        value={searchInput.bathroom}
+          name="bathrooms"
+          onChange={handleOnchange}
+          value={searchInput.bathroom}
         >
           <option value=''>bathrooms </option>
           <option value="1">1</option>
@@ -93,10 +110,10 @@ const SearchBar = () => {
           <option value="5">5</option>
         </select>
 
-        <select 
-        name="minrent"
-        onChange={handleOnchange}
-        value={searchInput.minrent}
+        <select
+          name="minrent"
+          onChange={handleOnchange}
+          value={searchInput.minrent}
         >
           <option value=''>Min. Rent</option>
           <option value="500,000">500,000</option>
@@ -107,11 +124,11 @@ const SearchBar = () => {
           <option value="1000000">1000000</option>
         </select>
 
-        <select 
-        name="maxrent"
-        onChange={handleOnchange}
-        value={searchInput.maxrent}
-        style={{border: "none"}}
+        <select
+          name="maxrent"
+          onChange={handleOnchange}
+          value={searchInput.maxrent}
+          style={{ border: "none" }}
         >
           <option value=''>Max. Rent</option>
           <option value="1000000">1000000</option>

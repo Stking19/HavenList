@@ -11,7 +11,7 @@ const ListingCard = ({items}) => {
   const navDetails =()=>{
      navigate(`/propertyDetails/${items?.id}`)
   } 
-  console.log(items?.id)
+  // console.log(items?.id)
 
   return (
     <div className='listingCardMain'>

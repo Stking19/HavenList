@@ -31,13 +31,25 @@ console.log(productId)
   
   console.log(productD)
 
-  const images = [
-    "/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg",
-    "/IMG/f1e72efd74f50f435fd26aac95593895 (1).jpg",
-    "/IMG/251d5a5fc1a8245fe0a865f05388083b.jpg",
-    "/IMG/02959aaf05749951f238b1cbc0edcc31.jpg",
-    "/IMG/f217c589f3dc03cf9e6018c073eb242c.jpg"
-  ];
+  const images = 
+    productD.listingImage[
+     {imageUrl},
+     {imageUrl},
+     {imageUrl},
+     {imageUrl}
+    ];
+    // productD.liistingImage[1].imageUrl,
+    // productD.liistingImage[2].imageUrl,
+    // productD.liistingImage[3].imageUrl,
+    // productD.liistingImage[4].imageUrl, -
+    // "/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg",
+    // "/IMG/f1e72efd74f50f435fd26aac95593895 (1).jpg",
+    // "/IMG/251d5a5fc1a8245fe0a865f05388083b.jpg",
+    // "/IMG/02959aaf05749951f238b1cbc0edcc31.jpg",
+    // "/IMG/f217c589f3dc03cf9e6018c073eb242c.jpg"
+  
+
+  console.log(images)
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const nextImage = () => {
@@ -81,7 +93,7 @@ console.log(productId)
           <div className='propertyDetailImageMobile'>
             <FaChevronLeft onClick={prevImage} className='arrowBtn left' />
             <span className='mobileImageHolder'>
-              <img src={images[currentImageIndex]} alt="property" />
+              {/* <img src={images[currentImageIndex]} alt="property" / */}
             </span>
             <FaChevronRight onClick={nextImage} className='arrowBtn right' />
           </div>
@@ -99,27 +111,7 @@ console.log(productId)
             <p>{productD.description}</p>
           </span>
 
-          <div className='propertyDetailAmenitiesWrapper'>
-            <h3>Amenities</h3>
-            <div className='propertyDetailAmeneties'>
-              <section>
-                <span><FaAnchor /><p>Chandelier</p></span>
-                <span> <FaSink /><p>Dishwasher</p></span>
-                <span><FaAnchor /><p>Kitchen</p></span>
-                <span> <FaAnchor /><p>Pop Ceiling</p></span>
-                <span><FaAnchor /><p>Tiled Floor</p></span>
-              </section>
-
-              <section>
-                <span><FaAnchor /><p>Dining Area</p></span>
-                <span><FaAnchor /><p>Hot Water</p></span>
-                <span><FaAnchor /><p>Kitchen Shelf</p></span>
-                <span><FaAnchor /><p>Pre-paid Meter</p></span>
-                <span><FaAnchor /><p>Wardrobe</p></span>
-              </section>
-            </div>
-          </div>
-
+       -
 
           <div className='propertyDetailSafeTips'>
             <h3>Safety Tips</h3>
