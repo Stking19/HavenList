@@ -1,15 +1,15 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const API_URL = import.meta.env.VITE_API_URL;;
-
+const API_URL = "https://heavenlist2-zaz3.onrender.com/api/v1/"
 
 const api = axios.create({
   baseURL: API_URL,
   headers: {
-    "Content-Type": "application/json",
+    "Content-Type": "application/json", 
   },
 });
+
 
 api.interceptors.request.use(
   (config) => {
@@ -27,92 +27,117 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     const message = error?.response?.data?.message;
-    toast.error(message);
+    console.log(error);
+    // toast.error(message);
     return Promise.reject(error);
   }
 );
 
 
-export const loginUser = async (credentials, role) => {
+export const loginUser = async (credentials) => {
   try {
-    const endpoint = role === "landlord" ? "loginlandlord" : "loginTenant"
-    const response = await api.post( endpoint, credentials);
-    console.log(endpoint)
+    const response = await api.post("loginlandlord", credentials);
     const { token, data, message } = response.data;
-     console.log(response)
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(data.fullName));
+    localStorage.setItem("email", JSON.stringify(data.email));
     localStorage.setItem("id", JSON.stringify(data.id));
+    console.log(data)
     toast.success(message);
     return data;
   } catch (error) {
-    toast.error(error.response.data.message)
+    toast.error(error.response.data.message);
+    throw error;
+  }
+};
+export const tenantLoginUser = async (credentials) => {
+  try {
+    const response = await api.post("loginTenant", credentials);
+    const { token, data, message } = response.data;
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(data.fullName));
+    localStorage.setItem("email", JSON.stringify(data.email));
+    localStorage.setItem("id", JSON.stringify(data.id));
+   
+    console.log(data)
+    toast.success(message);
+    return data;
+  } catch (error) {
+    toast.error(error.response.data.message);
     throw error;
   }
 };
 
 export const signup = async (userData, role) => {
   try {
-    const endpoint = role === "landlord" ? "registerlandlord" : "registerTenant"
+    const endpoint = role === "landlord" ? "registerlandlord" : "registerTenant";
     const response = await api.post(endpoint, userData);
-    toast.success(response.data.message);
-    console.log(response)
-    return response.data;
+    if (response.data?.success || response.status === 201) {
+      toast.success(response.data.message || "Signup successful!" || "");
+      console.log(response);
+      localStorage.setItem("userId", response?.data?.data?.id);
+    } else {
+      throw new Error(response.data?.message);
+    }
   } catch (error) {
-    //  toast.error(error.response.data.message)
-    throw error;
+    const message = error?.response?.data?.message;
+    console.log(error)
+    toast.error(message);
+    throw new Error(message);
   }
 };
 
 
-export const resetPassword = async ({Password,confirmPassword,otp,role}) => {
+export const resetPassword = async ({Password, confirmPassword, role}) => {
+  const landlordId = localStorage.getItem("userId")
   try {
-    const endpoint = role === "landlord" ? "landlordpassword" : "tenantpassword"
-    const response = await api.post( endpoint, {Password, confirmPassword,otp});
-    console.log(response)
+    const endpoint = role === "landlord" ? "reset-landlordpassword" : "reset-tenantpassword";
+    const response = await api.post(`${endpoint}/${landlordId}`, { Password, confirmPassword, });
     toast.success(response.data.message);
     return response.data;
   } catch (error) {
-   console.log(error)
-   toast.error(error.response.data.message)
+    toast.error(error.response.data.message);
     throw error;
   }
 };
 
-export const forgetPassword = async (email) => {
+
+export const forgetPassword = async (email, role) => {
   try {
-    const response = await api.post("landlordForgotPassword", email);
+    const endpoint = role === "landlord" ? "landlordForgotpassword" : "TenantForgotpassword";
+    const response = await api.post(endpoint, email);
     console.log(response)
-    toast.success(response.data.message);
     return response.data;
   } catch (error) {
-   console.log(error)
-   toast.error(response.data.message)
+    console.log(error);
     throw error;
   }
 };
 
 
-
-  
-  
-
-
-
-export const profileUpload = () => {
-
-  const formData = new FormData();
-  formData.append("fullName", details.fullName);
-  formData.append("email", details.email);
-  formData.append("street", details.street);
-  formData.append("locality", details.locality);
-  formData.append("state", details.state);
-
-  if (image) {
-    formData.append("profileImage", image);
+export const createProfile = async (landlordId, formData) => {
+  console.log(formData)
+  try {
+    const token = localStorage.getItem("token");
+    const response = await api.post(`createProfile/${landlordId}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+   console.log(response);
+    if(response.status === 201){
+      const {data, message } = response.data;
+      localStorage.setItem("profileImage", JSON.stringify(data.image))
+      localStorage.setItem("landlordprofileid", JSON.stringify(data.id));
+      toast.success(message)
+    }
+    return data;
+  } catch (error) {
+    console.log(error)
+    toast.error(error?.response?.data?.message)
   }
-
-}
+};
 
 
 export default api;

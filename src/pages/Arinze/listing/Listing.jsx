@@ -26,8 +26,6 @@ const Listing = () => {
     }
   }
 
-
-
   useEffect(() => {
     getAllListing()
   }, [])

@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import signpic from "/IMG/loginImage.png";
 import "./signup.css";
 import { useNavigate, useParams } from "react-router";
-import { signup } from "../../config/api"; 
+import { signup } from "../../config/api";
 import toast from "react-hot-toast";
 import { IoEyeOutline } from "react-icons/io5";
 import { LuEyeOff } from "react-icons/lu";
+import { IoCaretBackCircleSharp } from "react-icons/io5";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -18,7 +19,6 @@ const SignUp = () => {
     confirmPassword: "",
   });
 
-  // Separate state for each password visibility toggle
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -32,6 +32,7 @@ const SignUp = () => {
       [name]: value,
     }));
   };
+  const specialCharacterRegex = /[!@#$%^&*(),.?":{}|<>]/;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,15 +45,25 @@ const SignUp = () => {
       return;
     }
 
-    if (password !== confirmPassword) {
+    else if (password !== confirmPassword) {
       toast.error("Passwords do not match.");
+      return;
+    }
+
+    else if (password.length < 8) {
+      toast.error("Password must be at least 8 characters long.");
+      return;
+    }
+
+    else if (!specialCharacterRegex.test(password)) {
+      toast.error("Password must contain at least one special character.");
       return;
     }
 
     try {
       setLoading(true);
       await signup({ fullName, email, password, confirmPassword }, role);
-      setLoading(false);
+      toast.success("A message has been sent to your email for verification");
 
       setTimeout(() => {
         navigate(`/sign-in/${role}`);
@@ -65,6 +76,9 @@ const SignUp = () => {
 
   return (
     <div className="mainwrap">
+      <p className="goback" onClick={() => navigate(-1)}>
+        <IoCaretBackCircleSharp />
+      </p>
       <div className="signupwrapper">
         <div className="signupImageWrap">
           <img src={signpic} alt="Sign Up" />
@@ -73,7 +87,8 @@ const SignUp = () => {
           <div className="signuptextwrap">
             <h1>Register on HavenList</h1>
             <h1>
-              Lagos for <span style={{ color: "#00bcd4" }}>Exclusive Discount</span>
+              Lagos for{" "}
+              <span style={{ color: "#00bcd4" }}>Exclusive Discount</span>
             </h1>
             <h1>
               On <span style={{ color: "#00bcd4" }}>Agent fees</span>
@@ -109,8 +124,10 @@ const SignUp = () => {
                   />
                 </div>
 
-                {/* Password Field */}
-                <div className="signuppasswordmwrap" style={{ width: "100%", position: "relative" }}>
+                <div
+                  className="signuppasswordmwrap"
+                  style={{ width: "100%", position: "relative" }}
+                >
                   <h2 style={{ color: "#00bcd4" }}>Create Password</h2>
                   <input
                     className="signupinputcont"
@@ -121,24 +138,15 @@ const SignUp = () => {
                     onChange={handleChange}
                     required
                   />
-                  <span className="eye-icon"
-                    onClick={() => setShowPassword(!showPassword)}
-                    // style={{
-                    //   position: "absolute",
-                    //   right: "90px",
-                    //   top: "70%",
-                    //   transform: "translateY(-50%)",
-                    //   cursor: "pointer",
-                    //   fontSize: "18px",
-                    //   color: "#333",
-                    // }}
-                  >
-                    {showPassword ?  <IoEyeOutline />: <LuEyeOff /> }
+                  <span onClick={() => setShowPassword(!showPassword)}>
+                    {showPassword ? <IoEyeOutline /> : <LuEyeOff />}
                   </span>
                 </div>
 
-                {/* Confirm Password Field */}
-                <div className="usernameormwrap" style={{ width: "100%", position: "relative" }}>
+                <div
+                  className="usernameormwrap"
+                  style={{ width: "100%", position: "relative" }}
+                >
                   <h2 style={{ color: "#00bcd4" }}>Confirm Password</h2>
                   <input
                     className="signupinputcont"
@@ -149,20 +157,10 @@ const SignUp = () => {
                     onChange={handleChange}
                     required
                   />
-                  <span className="eye-icon"
+                  <span
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    // style={{
-                    //   position: "absolute",
-                    //   right: "90px",
-                    //   top: "70%",
-                    //   transform: "translateY(-50%)",
-                    //   cursor: "pointer",
-                    //   fontSize: "18px",
-                    //   color: "#333",
-
-                    // }}
                   >
-                    {showConfirmPassword ? <IoEyeOutline />: <LuEyeOff />}
+                    {showConfirmPassword ? <IoEyeOutline /> : <LuEyeOff />}
                   </span>
                 </div>
 

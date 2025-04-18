@@ -16,7 +16,10 @@ import AboutUsPage from './pages/Joshua/AboutUsPage/AboutUsPage'
 import EmailConfirmation from './components/EmailConfirmation/EmailConfirmation'
 import LandlordDashboard from './pages/Stephen/landlord/LandlordDashboard'
 import Help from './pages/Joshua/help/Help'
-import LandlordPropertyUpload from './pages/Arinze/LandlordPropertyUpload'
+import Role from './components/role/Role'
+import TenantLogin from './auth/tenantlogin/TenantLogin'
+import TenantLandingPage from './pages/Stephen/TenantLandingPage'
+import SuccessCard from './components/SuccessCard/SuccessCard'
 
 
 const App = () => {
@@ -28,10 +31,6 @@ const App = () => {
         {
           path: '',
           element: <Home />
-        },
-        {
-          path: '/landlordUpload',
-          element: <LandlordPropertyUpload/>
         },
         {
           path: '/propertyDetails/:productId',
@@ -52,32 +51,66 @@ const App = () => {
       ]
     },
     {
-      path: '/sign-in/:role',
+      path: '/home',
+      element: <TenantLandingPage />,
+      children: [
+        {
+          path: '',
+          element: <Home />
+        },
+        {
+          path: 'propertydetails/:productId',
+          element: <PropertyDetails />
+        },
+        {
+          path: 'listings',
+          element: <Listing />
+        },
+        {
+          path: 'help',
+          element: <Help />
+        },
+        {
+          path: 'about',
+          element: <AboutUsPage />
+        },
+      ]
+    },
+    {
+      path: '/api/v1/payment/status',
+      element: <SuccessCard />
+    },
+    {
+      path: '/sign-in/landlord',
       element: <Login />,
+    },
+    {
+      path: '/sign-in/tenant',
+      element: <TenantLogin />,
     },
     {
       path: '/register/:role',
       element: <SignUp />,
     },
     {
-      path: '/reset-password',
+      path: '/role',
+      element: <Role />,
+    },
+    {
+      path: '/reset-password/:role',
       element: <PasswordReset />,
     },
     {
-      path: '/forgot-password',
+      path: '/forgot-password/:role',
       element: <ForgotPassword />,
     },
     {
-      path: '/verify',
+      path: '/api/v1/verify/:role',
       element: <Verify />,
     },
     {
       path: '/api/v1/:role/:token',
       element: <EmailConfirmation />,
-    },
-    {
-      path: '/verify',
-      element: <Verify />,
     },
     {
       path: '/private',
