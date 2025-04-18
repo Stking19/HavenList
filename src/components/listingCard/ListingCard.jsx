@@ -21,9 +21,9 @@ const ListingCard = ({items}) => {
           </span>
           <div className='listingPropertyDetails'>
            <h2 style={{color:'#2F80ED'}}>{items?.title}</h2>
-           <p>{items?.address}</p>
+           <p>{items?.area},{items?.street}</p>
            <p>{items?.description}</p>
-          <h2 style={{color:'#2F80ED',display:'flex',alignItems:'center', gap: "5px"}}>{items?.price}<small style={{color:'black',fontSize:'12px'}}>{items.frequency}</small></h2>
+          <h2 style={{color:'#2F80ED',display:'flex',alignItems:'center', gap: "5px"}}>N{items?.price}<small style={{color:'black',fontSize:'12px'}}>{items.frequency}</small></h2>
           </div>
        </div>
         <section className='listingFooter'>

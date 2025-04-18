@@ -120,10 +120,9 @@ const PropertyDetails = () => {
               </section>
             </div>
           </div>
-
-          <div className="propertyDetailImageMobile">
-            <FaChevronLeft onClick={prevImage} className="arrowBtn left" />
-            <span className="mobileImageHolder">
+          <div className='propertyDetailImageMobile'>
+            <FaChevronLeft onClick={prevImage} className='arrowBtn left' />
+            <span className='mobileImageHolder'>
               <img src={images[currentImageIndex]} alt="property" />
             </span>
             <FaChevronRight onClick={nextImage} className="arrowBtn right" />
