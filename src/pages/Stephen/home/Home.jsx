@@ -41,6 +41,8 @@ const Home = () => {
     getAllListing()
   }, [])
 
+  // console.log(allListings)
+
   return (
     <div className="home">
       <div className="heroPage">
@@ -63,6 +65,7 @@ const Home = () => {
           <div className="houseWrap">
             {allListings?.map((house, index) => (
               <>
+              {console.log(house.listingImage?.[0]?.imageUrl)}
                 {details === index ? (
                   <div
                     className="Houses"
@@ -71,7 +74,7 @@ const Home = () => {
                     <div className="houseDet">
                       <div className="imgWrap">
                         <div className="Himg" onClick={() => handleDetails(house)}>
-                          <img src={house.Image} alt="" />
+                          <img src={house.listingImage?.[0]?.imageUrl} alt="listing preview" />
                         </div>
                       </div>
                       <div className="Hdetails">
