@@ -11,15 +11,16 @@ const LandLordListing = () => {
   const API_URL = import.meta.env.VITE_API_URL;
 
   const [listingHolder, setListingHolder] = useState([])
+  const token = localStorage.getItem('token')
 
 
   const landLordListing = async () => {
     const landlordId = localStorage.getItem('id')
     try {
-      const res = await axios.get(`${API_URL}/getAllListingsByLandlord`, {
+      const res = await axios.get(`${API_URL}getAllListingsByLandlord/${landlordId}`, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${landlordId}`
+          Authorization: `Bearer ${token} `
         },
       })
       console.log(res.data.data)
