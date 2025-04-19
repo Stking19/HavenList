@@ -11,11 +11,13 @@ import { IoPersonOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/slices/AuthSlice";
+import { useNavigate } from "react-router";
 
 
 function DashboardHeader({ setActiveTab, profileImage,}) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
@@ -29,7 +31,7 @@ function DashboardHeader({ setActiveTab, profileImage,}) {
         <div className="profileheader">
           <div className="innerheader">
             <div className="imagewrapper">
-              <img src={icon} alt="" />
+              <img src={icon} alt="" onClick={() => navigate(-1)}/>
             </div>
 
             <div className="headerside">

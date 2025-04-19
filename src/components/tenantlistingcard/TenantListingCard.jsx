@@ -1,15 +1,15 @@
 import React from 'react'
-import './listingCard.css'
+import './tenantlistingCard.css'
 import { LiaToiletSolid } from "react-icons/lia";
 import { GiBathtub } from "react-icons/gi";
 import { IoIosBed } from "react-icons/io";
 import { useNavigate } from 'react-router';
 
-const ListingCard = ({items}) => {
+const TenantListingCard = ({items}) => {
   const navigate = useNavigate()
 
   const navDetails =()=>{
-     navigate(`/propertyDetails/${items?.id}`)
+     navigate(`propertyDetail/${items?.id}`)
   } 
   console.log(items?.id)
 
@@ -35,4 +35,4 @@ const ListingCard = ({items}) => {
   )
 }
 
-export default ListingCard
+export default TenantListingCard

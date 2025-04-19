@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import "./propertydetails.css";
+import "./tenantpropdetails.css";
 import {
   FaAnchor,
   FaSink,
@@ -14,7 +14,7 @@ import toast from "react-hot-toast";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const PropertyDetails = () => {
+const TenantPropDetails = () => {
   const { productId } = useParams();
   const [productD, setProductDetails] = useState({});
 
@@ -285,4 +285,4 @@ const PropertyDetails = () => {
   );
 };
 
-export default PropertyDetails;
+export default TenantPropDetails;
