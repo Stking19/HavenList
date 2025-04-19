@@ -59,10 +59,10 @@ const TenantHeader = () => {
               </p>
             </div>
             <div className="nav">
-              <p onClick={() => navigate("/")}>Home</p>
-              <p onClick={() => navigate("/listings")}>Property</p>
-              <p onClick={() => navigate("/about")}>About Us</p>
-              <p onClick={() => navigate("/help")}>Help</p>
+              <p onClick={() => navigate("/home")}>Home</p>
+              <p onClick={() => navigate("listing")}>Property</p>
+              <p onClick={() => navigate("about")}>About Us</p>
+              <p onClick={() => navigate("help")}>Help</p>
             </div>
             <div className="user">
               <p className="burger">
@@ -77,25 +77,25 @@ const TenantHeader = () => {
               ×
             </button>
             <div className="sideNav">
-              <p onClick={() => navigate("/")}>
+              <p onClick={() => navigate("/home")}>
                 <span>
                   <AiOutlineHome />
                 </span>
                 Home
               </p>
-              <p onClick={() => navigate("/listings")}>
+              <p onClick={() => navigate("listing")}>
                 <span>
                   <TbHomeStats />
                 </span>
                 Property
               </p>
-              <p onClick={() => navigate("/about")}>
+              <p onClick={() => navigate("about")}>
                 <span>
                   <LuNotebookText />
                 </span>
                 About Us
               </p>
-              <p onClick={() => navigate("/help")}>
+              <p onClick={() => navigate("help")}>
                 <span>
                   <FaRegCircleQuestion />
                 </span>
@@ -119,16 +119,13 @@ const TenantHeader = () => {
               </p>
             </div>
             <div className="nav">
-              <p onClick={() => navigate("/")}>Home</p>
-              <p onClick={() => navigate("/listings")}>Property</p>
-              <p onClick={() => navigate("/help")}>Help</p>
+              <p onClick={() => navigate("/home")}>Home</p>
+              <p onClick={() => navigate("listing")}>Property</p>
+              <p onClick={() => navigate("help")}>Help</p>
             </div>
             <div className="user">
               <p className="burger">
                 <RxHamburgerMenu onClick={toggleCart} />
-              </p>
-              <p onClick={() => navigate("/private")}>
-                <FaRegUser />
               </p>
               <p
                 onMouseOver={() => setDropdown(true)}
@@ -164,7 +161,7 @@ const TenantHeader = () => {
                 </span>
                 Home
               </p>
-              <p onClick={() => navigate("/listings")}>
+              <p onClick={() => navigate("listing")}>
                 <span>
                   <TbHomeStats />
                 </span>

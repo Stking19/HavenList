@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import './listing.css'
-import ListingCard from '../../../components/listingCard/ListingCard'
-import SearchBar from '../../../components/searchbar/SearchBar'
+import './tenantlisting.css'
+import ListingCard from '../../../../components/tenantlistingcard/TenantListingCard'
+import SearchBar from '../../../../components/searchbar/SearchBar'
 import axios from 'axios'
 
 
 
 
-const Listing = () => {
+const TenantListing = () => {
   const API_URL = import.meta.env.VITE_API_URL;
 
  
   const [allListing, setAllListings] = useState([])
-  
 
 
   const getAllListing = async () => {
@@ -53,4 +52,4 @@ const Listing = () => {
   );
 };
 
-export default Listing;
+export default TenantListing;

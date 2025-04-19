@@ -20,116 +20,130 @@ import Role from './components/role/Role'
 import TenantLogin from './auth/tenantlogin/TenantLogin'
 import TenantLandingPage from './pages/Stephen/TenantLandingPage'
 import SuccessCard from './components/SuccessCard/SuccessCard'
+import TenantListing from './pages/Stephen/tenant/tenantlisting/TenantListing'
+import TenantPropDetails from './pages/Stephen/tenant/tenantpropdetails/TenantPropDetails'
+import TenantHome from './pages/Stephen/tenant/tenanthome/TenantHome'
+import ScrollToTop from './components/ScrollToTop'
 
 
 const App = () => {
   const router = createBrowserRouter([
     {
-      path: '/',
-      element: <LandingPage />,
+      element: <ScrollToTop />,
       children: [
         {
-          path: '',
-          element: <Home />
+          path: '/',
+          element: <LandingPage />,
+          children: [
+            {
+              path: '',
+              element: <Home />
+            },
+            {
+              path: '/propertyDetails/:productId',
+              element: <PropertyDetails />
+            },
+            {
+              path: '/listings',
+              element: <Listing />
+            },
+            {
+              path: '/help',
+              element: <Help />
+            },
+            {
+              path: '/about',
+              element: <AboutUsPage />
+            },
+          ]
         },
         {
-          path: '/propertyDetails/:productId',
-          element: <PropertyDetails />
+          path: '/home',
+          element: <TenantLandingPage />,
+          children: [
+            {
+              path: '',
+              element: <TenantHome />
+            },
+            {
+              path: 'propertydetail/:productId',
+              element: <TenantPropDetails />
+            },
+            {
+              path: 'listing/propertydetail/:productId',
+              element: <TenantPropDetails />
+            },
+            {
+              path: 'listing',
+              element: <TenantListing />
+            },
+            {
+              path: 'help',
+              element: <Help />
+            },
+            {
+              path: 'about',
+              element: <AboutUsPage />
+            },
+          ]
         },
         {
-          path: '/listings',
-          element: <Listing />
+          path: '/api/v1/payment/status',
+          element: <SuccessCard />
         },
         {
-          path: '/help',
-          element: <Help />
+          path: '/sign-in/landlord',
+          element: <Login />,
         },
         {
-          path: '/about',
-          element: <AboutUsPage />
+          path: '/sign-in/tenant',
+          element: <TenantLogin />,
+        },
+        {
+          path: '/register/:role',
+          element: <SignUp />,
+        },
+        {
+          path: '/role',
+          element: <Role />,
+        },
+        {
+          path: '/reset-password/:role',
+          element: <PasswordReset />,
+        },
+        {
+          path: '/forgot-password/:role',
+          element: <ForgotPassword />,
+        },
+        {
+          path: '/api/v1/verify/:role',
+          element: <Verify />,
+        },
+        {
+          path: '/api/v1/:role/:token',
+          element: <EmailConfirmation />,
+        },
+        {
+          path: '/private',
+          element: <PrivateRoute />,
+          children: [
+            {
+              path: '',
+              element: <LandlordDashboard />
+            }
+          ]
+        },
+        {
+          path: '/payment',
+          element: <Payment />
+        },
+        {
+          path: '*',
+          element: <Error />
         },
       ]
     },
-    {
-      path: '/home',
-      element: <TenantLandingPage />,
-      children: [
-        {
-          path: '',
-          element: <Home />
-        },
-        {
-          path: 'propertydetails/:productId',
-          element: <PropertyDetails />
-        },
-        {
-          path: 'listings',
-          element: <Listing />
-        },
-        {
-          path: 'help',
-          element: <Help />
-        },
-        {
-          path: 'about',
-          element: <AboutUsPage />
-        },
-      ]
-    },
-    {
-      path: '/api/v1/payment/status',
-      element: <SuccessCard />
-    },
-    {
-      path: '/sign-in/landlord',
-      element: <Login />,
-    },
-    {
-      path: '/sign-in/tenant',
-      element: <TenantLogin />,
-    },
-    {
-      path: '/register/:role',
-      element: <SignUp />,
-    },
-    {
-      path: '/role',
-      element: <Role />,
-    },
-    {
-      path: '/reset-password/:role',
-      element: <PasswordReset />,
-    },
-    {
-      path: '/forgot-password/:role',
-      element: <ForgotPassword />,
-    },
-    {
-      path: '/api/v1/verify/:role',
-      element: <Verify />,
-    },
-    {
-      path: '/api/v1/:role/:token',
-      element: <EmailConfirmation />,
-    },
-    {
-      path: '/private',
-      element: <PrivateRoute />,
-      children: [
-        {
-          path: '',
-          element: <LandlordDashboard />
-        }
-      ]
-    },
-    {
-      path: '/payment',
-      element: <Payment />
-    },
-    {
-      path: '*',
-      element: <Error />
-    },
+    
   ])
 
   return (
