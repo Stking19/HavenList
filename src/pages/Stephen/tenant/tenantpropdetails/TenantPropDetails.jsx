@@ -57,7 +57,9 @@ const TenantPropDetails = () => {
       localStorage.setItem("transactionId", res?.data?.data?.reference);
       setLoading(false);
       toast.success(res?.data?.message);
-      // window.location.href = res?.data?.data?.checkout_url;
+      setTimeout(() => {
+        window.location.href = res?.data?.data?.checkout_url;
+      }, 3000);
     } catch (error) {
       console.log(error);
       setLoading(false);
