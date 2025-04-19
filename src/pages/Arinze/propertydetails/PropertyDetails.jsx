@@ -117,11 +117,10 @@ const PropertyDetails = () => {
               </section>
             </div>
           </div>
-
-          <div className="propertyDetailImageMobile">
-            <FaChevronLeft onClick={prevImage} className="arrowBtn left" />
-            <span className="mobileImageHolder">
-              <img src={images[currentImageIndex]} alt="property" />
+          <div className='propertyDetailImageMobile'>
+            <FaChevronLeft onClick={prevImage} className='arrowBtn left' />
+            <span className='mobileImageHolder'>
+              {/* <img src={images[currentImageIndex]} alt="property" / */}
             </span>
             <FaChevronRight onClick={nextImage} className="arrowBtn right" />
           </div>
@@ -147,60 +146,9 @@ const PropertyDetails = () => {
             <p>{productD.description}</p>
           </span>
 
-          <div className="propertyDetailAmenitiesWrapper">
-            <h3>Amenities</h3>
-            <div className="propertyDetailAmeneties">
-              <section>
-                <span>
-                  <FaAnchor />
-                  <p>Chandelier</p>
-                </span>
-                <span>
-                  {" "}
-                  <FaSink />
-                  <p>Dishwasher</p>
-                </span>
-                <span>
-                  <FaAnchor />
-                  <p>Kitchen</p>
-                </span>
-                <span>
-                  {" "}
-                  <FaAnchor />
-                  <p>Pop Ceiling</p>
-                </span>
-                <span>
-                  <FaAnchor />
-                  <p>Tiled Floor</p>
-                </span>
-              </section>
+       
 
-              <section>
-                <span>
-                  <FaAnchor />
-                  <p>Dining Area</p>
-                </span>
-                <span>
-                  <FaAnchor />
-                  <p>Hot Water</p>
-                </span>
-                <span>
-                  <FaAnchor />
-                  <p>Kitchen Shelf</p>
-                </span>
-                <span>
-                  <FaAnchor />
-                  <p>Pre-paid Meter</p>
-                </span>
-                <span>
-                  <FaAnchor />
-                  <p>Wardrobe</p>
-                </span>
-              </section>
-            </div>
-          </div>
-
-          <div className="propertyDetailSafeTips">
+          <div className='propertyDetailSafeTips'>
             <h3>Safety Tips</h3>
             <li>
               Do not make any inspection fee without seeing the agent or
