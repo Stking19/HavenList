@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import "./propertydetails.css";
 import {
-  FaAnchor,
-  FaSink,
   FaAngleRight,
   FaChevronLeft,
   FaChevronRight,
@@ -11,6 +9,7 @@ import {
 import axios from "axios";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { Modal } from "antd";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -32,17 +31,30 @@ const PropertyDetails = () => {
     email,
   };
   const landlordid = localStorage.getItem("landlordId");
-  const listingId = localStorage.getItem("listingId");;
+  const listingId = localStorage.getItem("listingId");
   console.log({ amount });
-  
-  const [toggleInspect,setToggleInspect] = useState(true)
 
+  const [toggleInspect, setToggleInspect] = useState(false);
 
-  const handleInspecctToggle =(e)=>{
-    setToggleInspect(false)
-  }
+  const handleInspect = () => {
+    const isloggedIn = localStorage.getItem("token");
+
+    if (!isloggedIn) {
+      toast.error("Please login to continue");
+      return navigate("/role");
+    }
+    setToggleInspect(true);
+  };
+
+  const handleCancel = () => {
+    setToggleInspect(false);
+  };
 
   const handlePayment = async () => {
+    const payload = {
+      ...userData,
+      schedule: selectedSchedule,
+    };
     try {
       const res = await axios.post(
         `${API_URL}initialize/${tenantid}/${landlordid}/${listingId}`,
@@ -51,12 +63,10 @@ const PropertyDetails = () => {
       console.log(res);
       localStorage.setItem("transactionId", res?.data?.data?.refrence);
       toast.success(res?.data?.message);
-      setToggleInspect(true )
       // window.location.href = res?.data?.data?.checkout_url;
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message);
-      setToggleInspect(true)
     }
   };
 
@@ -93,6 +103,35 @@ const PropertyDetails = () => {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  const [activeTableIndex, setActiveTableIndex] = useState(null);
+  const [selectedSchedule, setSelectedSchedule] = useState(null);
+  const [openPay, setOpenPay] = useState(false);
+
+  const handleCancelPay = () => {
+    setOpenPay(false);
+  }
+
+  const handleOpenPay = () => {
+    setOpenPay(true);
+  }
+
+  const scheduleOptions = [
+    { day: "Monday", time: "10am-4pm" },
+    { day: "Tuesday", time: "10am-4pm" },
+    { day: "Wednesday", time: "10am-4pm" },
+    { day: "Thursday", time: "12am-4pm" },
+    { day: "Friday", time: "10am-4pm" },
+    { day: "Saturday", time: "12am-4pm" },
+  ];
+
+  const handleTableClick = (tabindex) => {
+    setActiveTableIndex((prevIndex) =>
+      prevIndex === tabindex ? null : tabindex
+    );
+    setSelectedSchedule(
+      tabindex !== activeTableIndex ? scheduleOptions[tabindex] : null
+    );
+  };
 
   return (
     <>
@@ -107,10 +146,7 @@ const PropertyDetails = () => {
             <div className="subImageWrapper">
               <section className="subImage1">
                 <span>
-                  <img
-                    src={productD.listingImage?.[1]?.imageUrl}
-                    alt=""
-                  />
+                  <img src={productD.listingImage?.[1]?.imageUrl} alt="" />
                 </span>
                 <span>
                   <img src={productD.listingImage?.[2]?.imageUrl} alt="" />
@@ -127,9 +163,9 @@ const PropertyDetails = () => {
               </section>
             </div>
           </div>
-          <div className='propertyDetailImageMobile'>
-            <FaChevronLeft onClick={prevImage} className='arrowBtn left' />
-            <span className='mobileImageHolder'>
+          <div className="propertyDetailImageMobile">
+            <FaChevronLeft onClick={prevImage} className="arrowBtn left" />
+            <span className="mobileImageHolder">
               {/* <img src={images[currentImageIndex]} alt="property" / */}
             </span>
             <FaChevronRight onClick={nextImage} className="arrowBtn right" />
@@ -156,9 +192,7 @@ const PropertyDetails = () => {
             <p>{productD.description}</p>
           </span>
 
-       
-
-          <div className='propertyDetailSafeTips'>
+          <div className="propertyDetailSafeTips">
             <h3>Safety Tips</h3>
             <li>
               Do not make any inspection fee without seeing the agent or
@@ -184,12 +218,7 @@ const PropertyDetails = () => {
         </div>
       </div>
 
-     
-
-   
-      {
-        toggleInspect? 
-        <div className="modalpropertyDetailCard">
+      <div className="modalpropertyDetailCard">
         <h2>
           N{productD.price}
           <small>per Annum</small>
@@ -214,7 +243,7 @@ const PropertyDetails = () => {
             <FaAngleRight />
           </section>
         </div>
-        <button onClick={handleInspecctToggle} className="propertyDetailRentBtn">
+        <button onClick={handleInspect} className="propertyDetailRentBtn">
           Rent
         </button>
         <p>You won’t be charged extra</p>
@@ -233,45 +262,60 @@ const PropertyDetails = () => {
           <h3>Total before taxes</h3>
           <p>N{productD.price}</p>
         </span>
-      </div>:   
-      <div className="inspectionCard">
-         <h2>SCHEDULE FOR INSPECTION</h2>
-
-         <span>
-          <h2>Monday</h2>
-          <p>10am-4pm</p>
-         </span>
-
-         <span>
-          <h2>Teusday</h2>
-          <p>10am-4pm</p>
-         </span>
-
-         <span>
-          <h2>Wednesday</h2>
-          <p>10am-4pm</p>
-         </span>
-
-         <span>
-          <h2>Thursday</h2>
-          <p>12am-4pm</p>
-         </span>
-
-         <span>
-          <h2>Friday</h2>
-          <p>10am-4pm</p>
-         </span>
-         
-
-         <span>
-          <h2>SaturDay</h2>
-          <p>12am-4pm</p>
-         </span>
-
-          <button className="inspectBtn" onClick={handlePayment}>Inspect</button>
       </div>
 
-      }
+      <Modal
+        open={toggleInspect}
+        onCancel={handleCancel}
+        okButtonProps={{ style: { display: "none" } }}
+        cancelButtonProps={{ style: { display: "none" } }}
+        width={500}
+      >
+        <h2>SCHEDULE FOR INSPECTION</h2>
+        <p style={{ fontWeight: "500" }}>
+          Select a Day and Time you would be available to go for an inspection
+          of the property
+        </p>
+        {scheduleOptions.map((option, index) => (
+          <span
+            key={index}
+            className="inspectText"
+            onClick={() => handleTableClick(index)}
+            style={{
+              backgroundColor: activeTableIndex === index ? "#2F80ED" : "white",
+              color: activeTableIndex === index ? "white" : "#00A5CF",
+              borderRadius: "20px",
+            }}
+          >
+            <h2>{option.day}</h2>
+            <p style={{ fontSize: "16px" }}>{option.time}</p>
+          </span>
+        ))}
+        <button
+          className="inspectBtn"
+          disabled={selectedSchedule === null}
+          onClick={handleOpenPay}
+        >
+          Inspect
+        </button>
+      </Modal>
+
+      <Modal
+        open={openPay}
+        onCancel={handleCancelPay}
+        okButtonProps={{ style: { display: "none" } }}
+        cancelButtonProps={{ style: { display: "none" } }}
+        width={500}
+      >
+        <div className="paymentModal">
+        <h2>Make Payment below</h2>
+        <p>
+          After Making Payment, You Will Receive a Confirmation Mail, to Confirm
+          your Payment and the Inspection Day
+        </p>
+        <button onClick={handlePayment}>Pay With Kora</button>
+        </div>
+      </Modal>
 
       <div className="modalpropertyDetailCardMobile">
         <h2>N{productD.price}</h2>
@@ -282,8 +326,6 @@ const PropertyDetails = () => {
           Rent
         </button>
       </div>
-
-   
     </>
   );
 };

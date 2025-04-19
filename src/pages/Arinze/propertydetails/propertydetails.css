@@ -230,10 +230,16 @@
     background-color: #00A5CF;
     border-radius: 20px;
     border: none;
+    cursor: pointer;
 }
 
-
-
+.propertyDetailRentBtn:hover {
+    background-color: white;
+    color: #00A5CF;
+    font-weight: 600;
+    border: 1px solid #00A5CF;
+    transition: all 250ms ease-in-out;
+}
 
 
 .propertyDetailFeeNot {
@@ -274,51 +280,95 @@
     display: none;
 }
 
-
-.inspectionCard{
-    min-height: 60vh;
-    border-radius: 20px;
+.inspectText{
+    width: 100%;
+    height: 50px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    width: 27%;
-    background-color: white;
-    right: 30px;
-    bottom: -200px;
-    position: absolute;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    gap: 10px;
     color: #00A5CF;
+    padding: 10px; 
+}
 
-
-    span{
-        height: 10%;
-        width: 95%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center ;
-    }
-
-
-    h2 {
-        height: max-content;
-        width: 93%;
-    }
+.inspectText:hover{
+    cursor: pointer;
+    color: white;
+    background: #00A5CF;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all 250ms ease-in-out;
 }
 
 
 .inspectBtn{
     height: 45px;
-    width: 80%;
+    width: 100%;
     background-color: #00A5CF;
     text-align: center;
     border-radius: 20px;
     outline: none;
-    border: none-;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
 }
 
+.inspectBtn:disabled{
+    background-color: #E6F2F5;
+    color: #A0A0A0;
+    cursor: not-allowed;
+}
 
+.inspectBtn:disabled:hover{
+    background-color: #E6F2F5;
+    color: #A0A0A0;
+    cursor: not-allowed;
+    border: none;
+}
 
+.inspectBtn:hover{
+    background-color: white;
+    color: #00A5CF;
+    font-weight: 600;
+    border: 1px solid #00A5CF;
+    transition: all 250ms ease-in-out;
+}
+
+.paymentModal{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    p{
+        font-weight: 500;
+        text-align: center;
+    }
+
+    button {
+        height: 50px;
+        width: 50%;
+        background: #00A5CF;
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover{
+        background: white;
+        color: #00A5CF;
+        font-weight: 600;
+        border: 1px solid #00A5CF;
+        transition: all 250ms ease-in-out;
+    }
+}
 
 
 
