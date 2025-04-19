@@ -37,6 +37,12 @@ const PropertyDetails = () => {
   const [toggleInspect, setToggleInspect] = useState(false);
 
   const handleInspect = () => {
+    const isloggedIn = localStorage.getItem("token");
+
+    if (!isloggedIn) {
+      toast.error("Please login to continue");
+      return navigate("/role");
+    }
     setToggleInspect(true);
   };
 
