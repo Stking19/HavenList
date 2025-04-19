@@ -35,6 +35,13 @@ const PropertyDetails = () => {
   const landlordid = localStorage.getItem("landlordId");
   const listingId = localStorage.getItem("listingId");;
   console.log({ amount });
+  
+  const [toggleInspect,setToggleInspect] = useState(true)
+
+
+  const handleInspecctToggle =(e)=>{
+    setToggleInspect(false)
+  }
 
   const handlePayment = async () => {
     try {
@@ -45,6 +52,7 @@ const PropertyDetails = () => {
       console.log(res);
       localStorage.setItem("transactionId", res?.data?.data?.refrence);
       toast.success(res?.data?.data?.message);
+      setToggleInspect(true )
       // window.location.href = res?.data?.checkout_url;
     } catch (error) {
       console.log(error);
@@ -84,6 +92,7 @@ const PropertyDetails = () => {
   const prevImage = () => {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
+
 
   return (
     <>
@@ -175,7 +184,12 @@ const PropertyDetails = () => {
         </div>
       </div>
 
-      <div className="modalpropertyDetailCard">
+     
+
+   
+      {
+        toggleInspect? 
+        <div className="modalpropertyDetailCard">
         <h2>
           N{productD.price}
           <small>per Annum</small>
@@ -200,7 +214,7 @@ const PropertyDetails = () => {
             <FaAngleRight />
           </section>
         </div>
-        <button onClick={handlePayment} className="propertyDetailRentBtn">
+        <button onClick={handleInspecctToggle} className="propertyDetailRentBtn">
           Rent
         </button>
         <p>You won’t be charged extra</p>
@@ -219,7 +233,45 @@ const PropertyDetails = () => {
           <h3>Total before taxes</h3>
           <p>N{productD.price}</p>
         </span>
+      </div>:   
+      <div className="inspectionCard">
+         <h2>SCHEDULE FOR INSPECTION</h2>
+
+         <span>
+          <h2>Monday</h2>
+          <p>10am-4pm</p>
+         </span>
+
+         <span>
+          <h2>Teusday</h2>
+          <p>10am-4pm</p>
+         </span>
+
+         <span>
+          <h2>Wednesday</h2>
+          <p>10am-4pm</p>
+         </span>
+
+         <span>
+          <h2>Thursday</h2>
+          <p>12am-4pm</p>
+         </span>
+
+         <span>
+          <h2>Friday</h2>
+          <p>10am-4pm</p>
+         </span>
+         
+
+         <span>
+          <h2>SaturDay</h2>
+          <p>12am-4pm</p>
+         </span>
+
+          <button className="inspectBtn" onClick={handlePayment}>Inspect</button>
       </div>
+
+      }
 
       <div className="modalpropertyDetailCardMobile">
         <h2>N{productD.price}</h2>
@@ -230,6 +282,8 @@ const PropertyDetails = () => {
           Rent
         </button>
       </div>
+
+   
     </>
   );
 };
