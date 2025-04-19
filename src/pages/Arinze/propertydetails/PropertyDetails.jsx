@@ -10,12 +10,14 @@ import axios from "axios";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Modal } from "antd";
+import { HashLoader } from "react-spinners";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const PropertyDetails = () => {
   const { productId } = useParams();
   const [productD, setProductDetails] = useState({});
+  const [loading, setLoading] = useState(false);
 
   console.log(productId);
 
@@ -37,12 +39,6 @@ const PropertyDetails = () => {
   const [toggleInspect, setToggleInspect] = useState(false);
 
   const handleInspect = () => {
-    const isloggedIn = localStorage.getItem("token");
-
-    if (!isloggedIn) {
-      toast.error("Please login to continue");
-      return navigate("/role");
-    }
     setToggleInspect(true);
   };
 
@@ -51,10 +47,7 @@ const PropertyDetails = () => {
   };
 
   const handlePayment = async () => {
-    const payload = {
-      ...userData,
-      schedule: selectedSchedule,
-    };
+    setLoading(true);
     try {
       const res = await axios.post(
         `${API_URL}initialize/${tenantid}/${landlordid}/${listingId}`,
@@ -62,10 +55,12 @@ const PropertyDetails = () => {
       );
       console.log(res);
       localStorage.setItem("transactionId", res?.data?.data?.refrence);
+      setLoading(false);
       toast.success(res?.data?.message);
       // window.location.href = res?.data?.data?.checkout_url;
     } catch (error) {
       console.log(error);
+      setLoading(false);
       toast.error(error?.response?.data?.message);
     }
   };
@@ -112,6 +107,11 @@ const PropertyDetails = () => {
   }
 
   const handleOpenPay = () => {
+    const isloggedIn = localStorage.getItem("token");
+    if (!isloggedIn) {
+      toast.error("Please login to continue");
+      return navigate("/role");
+    }
     setOpenPay(true);
   }
 
@@ -243,7 +243,7 @@ const PropertyDetails = () => {
             <FaAngleRight />
           </section>
         </div>
-        <button onClick={handleInspect} className="propertyDetailRentBtn">
+        <button onClick={handleOpenPay} className="propertyDetailRentBtn">
           Rent
         </button>
         <p>You won’t be charged extra</p>
@@ -294,7 +294,7 @@ const PropertyDetails = () => {
         <button
           className="inspectBtn"
           disabled={selectedSchedule === null}
-          onClick={handleOpenPay}
+          onClick={""}
         >
           Inspect
         </button>
@@ -310,10 +310,10 @@ const PropertyDetails = () => {
         <div className="paymentModal">
         <h2>Make Payment below</h2>
         <p>
-          After Making Payment, You Will Receive a Confirmation Mail, to Confirm
-          your Payment and the Inspection Day
+        After Making Payment, You Will Be Asked To Select A Day and Time To
+        Go for an Inspection of the property.
         </p>
-        <button onClick={handlePayment}>Pay With Kora</button>
+        <button onClick={handlePayment}> { loading ? <HashLoader size={30} color="white"/> : "Pay With Kora"}</button>
         </div>
       </Modal>
 

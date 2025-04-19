@@ -21,7 +21,7 @@ const TenantHome = () => {
   const handleDetails = (house) => {
     localStorage.setItem('listingId', house.id)
     localStorage.setItem('landlordId', house.landlordId)
-    localStorage.setItem('amount', house.price)
+    localStorage.setItem('amount', house.partPaymentAmount)
     navigate(`propertydetail/${house.id}`)
   }
 

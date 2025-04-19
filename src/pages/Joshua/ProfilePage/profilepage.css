@@ -185,6 +185,23 @@
     cursor: pointer;
 }
 
+.readonly-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.edit-icon {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #007bff;
+}
+
 @media (max-width: 500px) {
   .informationdetailcont{
     width: 370px;

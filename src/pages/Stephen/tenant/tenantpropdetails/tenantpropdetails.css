@@ -232,9 +232,13 @@
     border: none;
 }
 
-
-
-
+.propertyDetailRentBtn:hover {
+    background-color: white;
+    color: #00A5CF;
+    font-weight: 600;
+    border: 1px solid #00A5CF;
+    transition: all 250ms ease-in-out;
+}
 
 .propertyDetailFeeNot {
     height: 20%;
@@ -274,8 +278,98 @@
     display: none;
 }
 
+.inspectText{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #00A5CF;
+    padding: 10px; 
+}
+
+.inspectText:hover{
+    cursor: pointer;
+    color: white;
+    background: #00A5CF;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all 250ms ease-in-out;
+}
 
 
+.inspectBtn{
+    height: 45px;
+    width: 100%;
+    background-color: #00A5CF;
+    text-align: center;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.inspectBtn:disabled{
+    background-color: #E6F2F5;
+    color: #A0A0A0;
+    cursor: not-allowed;
+}
+
+.inspectBtn:disabled:hover{
+    background-color: #E6F2F5;
+    color: #A0A0A0;
+    cursor: not-allowed;
+    border: none;
+}
+
+.inspectBtn:hover{
+    background-color: white;
+    color: #00A5CF;
+    font-weight: 600;
+    border: 1px solid #00A5CF;
+    transition: all 250ms ease-in-out;
+}
+
+.paymentModal{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    p{
+        font-weight: 500;
+        text-align: center;
+    }
+
+    button {
+        height: 50px;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #00A5CF;
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover{
+        background: white;
+        color: #00A5CF;
+        font-weight: 600;
+        border: 1px solid #00A5CF;
+        transition: all 250ms ease-in-out;
+    }
+}
 
 
 

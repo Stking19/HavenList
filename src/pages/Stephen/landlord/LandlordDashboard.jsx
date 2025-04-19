@@ -14,47 +14,6 @@ import { toast } from "react-toastify";
 const API_URL = import.meta.env.VITE_API_URL;
 
 const LandlordDashboard = () => {
-  const landlord = [
-    {
-      icon: <TbHandClick />,
-      data: "500",
-      detail: "Number of clicks",
-    },
-    {
-      icon: <IoHomeOutline />,
-      data: "14",
-      detail: "Number of property listed",
-    },
-    {
-      icon: <FaRegMoneyBillAlt />,
-      data: "10,000,000",
-      detail: "Amount earn this year",
-    },
-  ];
-
-  // const historyData = [
-  //   {
-  //     date: "4, january 2025",
-  //     amount: "# 2,000,000",
-  //     propertyName: "one Bedroom Flat",
-  //     time: "3pm",
-  //     status: "Failed"
-  //   },
-  //   {
-  //     date: "4, january 2025",
-  //     amount: "# 3,000,000",
-  //     propertyName: "Two Bedroom Flat",
-  //     time: "12pm",
-  //     status: "Success"
-  //   },
-  //   {
-  //     date: "4, january 2025",
-  //     amount: "# 7,000,000",
-  //     propertyName: "Three Bedroom Flat",
-  //     time: "8am",
-  //     status: "Success"
-  //   },
-  // ];
 
   const landlordId = JSON.parse(localStorage.getItem("id"));
   const token = localStorage.getItem("token");
@@ -70,6 +29,7 @@ const name = JSON.parse(localStorage.getItem("user"))
 // const image = JSON.parse(localStorage.getItem("profileImage"))
 const firstName = name.split(" ")[0]
 const [historyData, setHistoryData] = useState([])
+const [landlordDashboard, setLandlordDashboard] = useState(0)
 
 useEffect(() => {
   const handleHistory = async () => {
@@ -96,14 +56,24 @@ useEffect(() => {
         { activeTab === 0 ? <div className="hello">
           <h2>Hello, {firstName}</h2>
           <div className="cardsDE">
-            {landlord.map((item, index) => (
-              <div className="carde" key={index}>
+              <div className="carde">
                 <p>
-                  <span>{item.icon}</span> {item.data}
+                  <span><TbHandClick size={20}/></span> 0
                 </p>
-                <p>{item.detail}</p>
+                <p>Number of clicks</p>
               </div>
-            ))}
+              <div className="carde">
+                <p>
+                  <span><IoHomeOutline size={20}/></span> {landlordDashboard}
+                </p>
+                <p>Number of property listed</p>
+              </div>
+              <div className="carde">
+                <p>
+                  <span><FaRegMoneyBillAlt size={20}/></span> 0
+                </p>
+                <p>Amount earn this year</p>
+              </div>
           </div>
           <div className="history">
             <h2>Transaction List</h2>
@@ -148,7 +118,7 @@ useEffect(() => {
           </div>
         </div> : null }     
         { activeTab === 1 ? <LandlordPropertyUpload /> : null}
-        { activeTab === 2 ? <LandLordListing /> : null}  
+        { activeTab === 2 ? <LandLordListing setLandlordDashboard={setLandlordDashboard}/> : null}  
         { activeTab === 3 ? <ProfilePage /> : null}     
       </div>
     </div>

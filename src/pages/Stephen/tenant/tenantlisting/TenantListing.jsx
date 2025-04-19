@@ -15,6 +15,7 @@ const TenantListing = () => {
     try {
       const res = await axios.get(`${API_URL}/getAllListings`);
       setAllListings(res.data.data);
+      console.log(res)
     } catch (error) {
       console.log(error);
     }
@@ -26,6 +27,7 @@ const TenantListing = () => {
 
   const handleSearchResults = (results) => {
     setAllListings(results);
+    console.log(results)
     setCurrentPage(1);
   };
 

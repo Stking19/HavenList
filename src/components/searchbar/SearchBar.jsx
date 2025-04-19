@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./searchbar.css";
 import { FiSearch } from "react-icons/fi";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const SearchBar = ({ onSearch }) => {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -10,8 +11,7 @@ const SearchBar = ({ onSearch }) => {
     area: '',
     type: '',
     bedrooms: '',
-    bathrooms: '',
-    price: ''
+    bathrooms: ''
   });
 
   const handleOnchange = (e) => {
@@ -20,14 +20,15 @@ const SearchBar = ({ onSearch }) => {
   };
 
   const searchListing = async () => {
-    const { area, type, bedrooms, bathrooms, minrent, maxrent } = searchInput;
+    const { area, type, bedrooms, bathrooms} = searchInput;
     try {
       const res = await axios.get(`${API_URL}/searchListing`, {
-        params: { area, type, bedrooms, bathrooms, minrent, maxrent }
+        params: { area, type, bedrooms, bathrooms}
       });
       onSearch(res.data.data);
     } catch (error) {
       console.log(error);
+      toast.error(error.response.data.message)
     }
   };
 
@@ -73,13 +74,6 @@ const SearchBar = ({ onSearch }) => {
         <select name="bathrooms" onChange={handleOnchange} value={searchInput.bathrooms}>
           <option value=''>Bathrooms</option>
           {[1,2,3,4,5].map(n => <option key={n} value={n}>{n}</option>)}
-        </select>
-
-        <select name="price" onChange={handleOnchange} value={searchInput.price}>
-          <option value=''>Price</option>
-          {[500000,600000,700000,800000,900000,1000000,2000000,3000000,4000000,5000000].map(val => (
-            <option key={val} value={val}>{val.toLocaleString()}</option>
-          ))}
         </select>
       </div>
     </div>
