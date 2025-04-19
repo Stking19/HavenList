@@ -52,12 +52,12 @@ const PropertyDetails = () => {
       console.log(res);
       localStorage.setItem("transactionId", res?.data?.data?.refrence);
       toast.success(res?.data?.data?.message);
-      setToggleInspect(true )
+      setToggleInspect(true );
       // window.location.href = res?.data?.checkout_url;
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message);
-      setToggleInspect(true)
+      setToggleInspect(true)-
     }
   };
 
