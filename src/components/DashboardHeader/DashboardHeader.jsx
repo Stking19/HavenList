@@ -37,7 +37,7 @@ function DashboardHeader({ setActiveTab, profileImage,}) {
         <div className="profileheader">
           <div className="innerheader">
             <div className="imagewrapper">
-              <img src={icon} alt="" onClick={() => navigate("/")} />
+              <img src={icon} alt="" onClick={() => navigate("/")} style={{cursor: "pointer"}}/>
             </div>
 
             <div className="headerside">
