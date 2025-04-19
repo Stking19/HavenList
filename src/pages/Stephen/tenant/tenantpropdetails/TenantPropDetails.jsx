@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import "./propertydetails.css";
+import "./tenantpropdetails.css";
 import {
   FaAnchor,
   FaSink,
@@ -14,7 +14,7 @@ import toast from "react-hot-toast";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const PropertyDetails = () => {
+const TenantPropDetails = () => {
   const { productId } = useParams();
   const [productD, setProductDetails] = useState({});
 
@@ -34,13 +34,6 @@ const PropertyDetails = () => {
   const landlordid = localStorage.getItem("landlordId");
   const listingId = localStorage.getItem("listingId");;
   console.log({ amount });
-  
-  const [toggleInspect,setToggleInspect] = useState(true)
-
-
-  const handleInspecctToggle =(e)=>{
-    setToggleInspect(false)
-  }
 
   const handlePayment = async () => {
     try {
@@ -51,12 +44,10 @@ const PropertyDetails = () => {
       console.log(res);
       localStorage.setItem("transactionId", res?.data?.data?.refrence);
       toast.success(res?.data?.message);
-      setToggleInspect(true )
       // window.location.href = res?.data?.data?.checkout_url;
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message);
-      setToggleInspect(true)
     }
   };
 
@@ -93,7 +84,6 @@ const PropertyDetails = () => {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
-
   return (
     <>
       <div className="propertyDetailMain">
@@ -127,10 +117,11 @@ const PropertyDetails = () => {
               </section>
             </div>
           </div>
-          <div className='propertyDetailImageMobile'>
-            <FaChevronLeft onClick={prevImage} className='arrowBtn left' />
-            <span className='mobileImageHolder'>
-              {/* <img src={images[currentImageIndex]} alt="property" / */}
+
+          <div className="propertyDetailImageMobile">
+            <FaChevronLeft onClick={prevImage} className="arrowBtn left" />
+            <span className="mobileImageHolder">
+              <img src={images[currentImageIndex]} alt="property" />
             </span>
             <FaChevronRight onClick={nextImage} className="arrowBtn right" />
           </div>
@@ -156,9 +147,60 @@ const PropertyDetails = () => {
             <p>{productD.description}</p>
           </span>
 
-       
+          <div className="propertyDetailAmenitiesWrapper">
+            <h3>Amenities</h3>
+            <div className="propertyDetailAmeneties">
+              <section>
+                <span>
+                  <FaAnchor />
+                  <p>Chandelier</p>
+                </span>
+                <span>
+                  {" "}
+                  <FaSink />
+                  <p>Dishwasher</p>
+                </span>
+                <span>
+                  <FaAnchor />
+                  <p>Kitchen</p>
+                </span>
+                <span>
+                  {" "}
+                  <FaAnchor />
+                  <p>Pop Ceiling</p>
+                </span>
+                <span>
+                  <FaAnchor />
+                  <p>Tiled Floor</p>
+                </span>
+              </section>
 
-          <div className='propertyDetailSafeTips'>
+              <section>
+                <span>
+                  <FaAnchor />
+                  <p>Dining Area</p>
+                </span>
+                <span>
+                  <FaAnchor />
+                  <p>Hot Water</p>
+                </span>
+                <span>
+                  <FaAnchor />
+                  <p>Kitchen Shelf</p>
+                </span>
+                <span>
+                  <FaAnchor />
+                  <p>Pre-paid Meter</p>
+                </span>
+                <span>
+                  <FaAnchor />
+                  <p>Wardrobe</p>
+                </span>
+              </section>
+            </div>
+          </div>
+
+          <div className="propertyDetailSafeTips">
             <h3>Safety Tips</h3>
             <li>
               Do not make any inspection fee without seeing the agent or
@@ -184,12 +226,7 @@ const PropertyDetails = () => {
         </div>
       </div>
 
-     
-
-   
-      {
-        toggleInspect? 
-        <div className="modalpropertyDetailCard">
+      <div className="modalpropertyDetailCard">
         <h2>
           N{productD.price}
           <small>per Annum</small>
@@ -214,7 +251,7 @@ const PropertyDetails = () => {
             <FaAngleRight />
           </section>
         </div>
-        <button onClick={handleInspecctToggle} className="propertyDetailRentBtn">
+        <button onClick={handlePayment} className="propertyDetailRentBtn">
           Rent
         </button>
         <p>You won’t be charged extra</p>
@@ -233,45 +270,7 @@ const PropertyDetails = () => {
           <h3>Total before taxes</h3>
           <p>N{productD.price}</p>
         </span>
-      </div>:   
-      <div className="inspectionCard">
-         <h2>SCHEDULE FOR INSPECTION</h2>
-
-         <span>
-          <h2>Monday</h2>
-          <p>10am-4pm</p>
-         </span>
-
-         <span>
-          <h2>Teusday</h2>
-          <p>10am-4pm</p>
-         </span>
-
-         <span>
-          <h2>Wednesday</h2>
-          <p>10am-4pm</p>
-         </span>
-
-         <span>
-          <h2>Thursday</h2>
-          <p>12am-4pm</p>
-         </span>
-
-         <span>
-          <h2>Friday</h2>
-          <p>10am-4pm</p>
-         </span>
-         
-
-         <span>
-          <h2>SaturDay</h2>
-          <p>12am-4pm</p>
-         </span>
-
-          <button className="inspectBtn" onClick={handlePayment}>Inspect</button>
       </div>
-
-      }
 
       <div className="modalpropertyDetailCardMobile">
         <h2>N{productD.price}</h2>
@@ -282,10 +281,8 @@ const PropertyDetails = () => {
           Rent
         </button>
       </div>
-
-   
     </>
   );
 };
 
-export default PropertyDetails;
+export default TenantPropDetails;

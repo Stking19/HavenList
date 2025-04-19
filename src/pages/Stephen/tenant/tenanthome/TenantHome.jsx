@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./home.css";
-import SearchBar from "../../../components/searchbar/SearchBar";
+import "./tenanthome.css";
 import { IoBedOutline } from "react-icons/io5";
 import { FiPlus } from "react-icons/fi";
 import { LuBath } from "react-icons/lu";
@@ -13,7 +12,7 @@ import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
 
 
-const Home = () => {
+const TenantHome = () => {
   const [allListings, setAllListings] = useState([]);
   const [details, setDetails] = useState(null);
   const { ref, inView } = useInView({ triggerOnce: true });
@@ -23,12 +22,12 @@ const Home = () => {
     localStorage.setItem('listingId', house.id)
     localStorage.setItem('landlordId', house.landlordId)
     localStorage.setItem('amount', house.price)
-    navigate(`/propertydetails/${house.id}`)
+    navigate(`propertydetail/${house.id}`)
   }
 
   const getAllListing = async () => {
     try {
-      const res = await axios.get(`${API_URL}/getAllListings`)
+      const res = await axios.get(`${API_URL}getAllListings`)
       console.log("this is what am loking for ",res)
       setAllListings(res.data.data)
       console.log(res)
@@ -72,7 +71,7 @@ const Home = () => {
                     <div className="houseDet">
                       <div className="imgWrap">
                         <div className="kingi" onClick={() => handleDetails(house)}>
-                          <img src={house?.listingImage?.[0]?.imageUrl} alt="listing preview" />
+                          <img src={house.listingImage?.[0]?.imageUrl} alt="listing preview" />
                         </div>
                       </div>
                       <div className="Hdetails">
@@ -205,4 +204,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default TenantHome;
