@@ -34,10 +34,25 @@ api.interceptors.response.use(
 );
 
 
-export const loginUser = async (credentials, role) => {
+export const loginUser = async (credentials) => {
   try {
-    const endpoint = role === "landlord" ? "loginlandlord" : "loginTenant";
-    const response = await api.post(endpoint, credentials);
+    const response = await api.post("loginlandlord", credentials);
+    const { token, data, message } = response.data;
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(data.fullName));
+    localStorage.setItem("email", JSON.stringify(data.email));
+    localStorage.setItem("id", JSON.stringify(data.id));
+    console.log(data)
+    toast.success(message);
+    return data;
+  } catch (error) {
+    toast.error(error.response.data.message);
+    throw error;
+  }
+};
+export const tenantLoginUser = async (credentials) => {
+  try {
+    const response = await api.post("loginTenant", credentials);
     const { token, data, message } = response.data;
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(data.fullName));
@@ -59,22 +74,25 @@ export const signup = async (userData, role) => {
     const response = await api.post(endpoint, userData);
     if (response.data?.success || response.status === 201) {
       toast.success(response.data.message || "Signup successful!" || "");
-      return response.data;
+      console.log(response);
+      localStorage.setItem("userId", response?.data?.data?.id);
     } else {
       throw new Error(response.data?.message);
     }
   } catch (error) {
     const message = error?.response?.data?.message;
+    console.log(error)
     toast.error(message);
     throw new Error(message);
   }
 };
 
 
-export const resetPassword = async ({Password, confirmPassword, otp, role}) => {
+export const resetPassword = async ({Password, confirmPassword, role}) => {
+  const landlordId = localStorage.getItem("userId")
   try {
-    const endpoint = role === "landlord" ? "landlordpassword" : "tenantpassword";
-    const response = await api.post(endpoint, { Password, confirmPassword, otp });
+    const endpoint = role === "landlord" ? "reset-landlordpassword" : "reset-tenantpassword";
+    const response = await api.post(`${endpoint}/${landlordId}`, { Password, confirmPassword, });
     toast.success(response.data.message);
     return response.data;
   } catch (error) {
@@ -84,13 +102,14 @@ export const resetPassword = async ({Password, confirmPassword, otp, role}) => {
 };
 
 
-export const forgetPassword = async (email) => {
+export const forgetPassword = async (email, role) => {
   try {
-    const response = await api.post("landlordForgotPassword", email);
-    toast.success(response.data.message);
+    const endpoint = role === "landlord" ? "landlordForgotpassword" : "TenantForgotpassword";
+    const response = await api.post(endpoint, email);
+    console.log(response)
     return response.data;
   } catch (error) {
-    toast.error(error.data.message);
+    console.log(error);
     throw error;
   }
 };

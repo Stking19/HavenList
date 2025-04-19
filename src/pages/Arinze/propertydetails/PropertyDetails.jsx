@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import "./propertydetails.css";
 import {
   FaAnchor,
@@ -8,9 +8,66 @@ import {
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa6";
-import { Modal } from "antd";
+import axios from "axios";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const PropertyDetails = () => {
+  const { productId } = useParams();
+  const [productD, setProductDetails] = useState({});
+
+  console.log(productId);
+
+  const navigate = useNavigate();
+  const tenantid = JSON.parse(localStorage.getItem("id"));
+  const token = localStorage.getItem("token");
+  const name = JSON.parse(localStorage.getItem("user"));
+  const email = JSON.parse(localStorage.getItem("email"));
+  const amount = JSON.parse(localStorage.getItem("amount"));
+
+  const userData = {
+    amount,
+    name,
+    email,
+  };
+  const landlordid = localStorage.getItem("landlordId");
+  const listingId = localStorage.getItem("listingId");;
+  console.log({ amount });
+
+  const handlePayment = async () => {
+    try {
+      const res = await axios.post(
+        `${API_URL}initialize/${tenantid}/${landlordid}/${listingId}`,
+        userData
+      );
+      console.log(res);
+      localStorage.setItem("transactionId", res?.data?.data?.refrence);
+      toast.success(res?.data?.data?.message);
+      // window.location.href = res?.data?.checkout_url;
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.message);
+    }
+  };
+
+  const getProductDetails = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/getOneListing/${productId}`);
+      console.log(res.data.data);
+      setProductDetails(res.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProductDetails();
+  }, []);
+
+  console.log(productD);
+
   const images = [
     "/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg",
     "/IMG/f1e72efd74f50f435fd26aac95593895 (1).jpg",
@@ -18,7 +75,6 @@ const PropertyDetails = () => {
     "/IMG/02959aaf05749951f238b1cbc0edcc31.jpg",
     "/IMG/f217c589f3dc03cf9e6018c073eb242c.jpg",
   ];
-  const navigate = useNavigate();
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const nextImage = () => {
@@ -62,38 +118,33 @@ const PropertyDetails = () => {
               </section>
             </div>
           </div>
-
-          <div className="propertyDetailImageMobile">
-            <FaChevronLeft onClick={prevImage} className="arrowBtn left" />
-            <span className="mobileImageHolder">
+          <div className='propertyDetailImageMobile'>
+            <FaChevronLeft onClick={prevImage} className='arrowBtn left' />
+            <span className='mobileImageHolder'>
               <img src={images[currentImageIndex]} alt="property" />
             </span>
             <FaChevronRight onClick={nextImage} className="arrowBtn right" />
           </div>
 
           <nav>
-            <h3>2 Bedroom Flat in 6th Avenue Festac,</h3>
-            <h3>festac,Lagos</h3>
-            <p>2 Bedrooms . 2 Bathroom . 3 Toilets</p>
+            <h3>{productD.title}</h3>
+            <h3>
+              {productD.area},{productD.state}
+            </h3>
+            <p>
+              {productD.bedrooms} Bedrooms, {productD.bathrooms} Bathrooms ,{" "}
+              {productD.toilets} Toilets
+            </p>
           </nav>
 
           <p>Hosted by HavenList Homes</p>
 
-          <span className="aboutTexts">
+          <span
+            className="aboutTexts"
+            style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+          >
             <h3>About this place</h3>
-
-            <p>
-              Large stylish well en-suited 3 bedrooms, with a very comfortable
-              sitting parlour
-              <br />
-              space and a very spacious car park. Wonderful dining area for your
-              family. Top
-              <br />
-              italian styled tiles and spacious wardrobes. Kitchen is well
-              arranged with shelf,
-              <br />
-              and a refrigerator angle. Hot water for your warm bath.
-            </p>
+            <p>{productD.description}</p>
           </span>
 
           <div className="propertyDetailAmenitiesWrapper">
@@ -166,7 +217,6 @@ const PropertyDetails = () => {
               transaction between you and the Agent.
             </li>
           </div>
-
           <a
             style={{ fontSize: "20px", marginBottom: "15px" }}
             href="https://docs.google.com/document/d/18EkarRCZfF9mRuQMsEqgeLB_Nja6LvkJAq8KLMWjNmk/edit?usp=sharing"
@@ -178,7 +228,8 @@ const PropertyDetails = () => {
 
       <div className="modalpropertyDetailCard">
         <h2>
-          N 2,000,000 <small>per Annum</small>
+          N{productD.price}
+          <small>per Annum</small>
         </h2>
         <div className="propertyDetailCardDate">
           <div className="dateWrapper">
@@ -200,10 +251,7 @@ const PropertyDetails = () => {
             <FaAngleRight />
           </section>
         </div>
-        <button
-          onClick={() => navigate("/success")}
-          className="propertyDetailRentBtn"
-        >
+        <button onClick={handlePayment} className="propertyDetailRentBtn">
           Rent
         </button>
         <p>You won’t be charged extra</p>
@@ -220,12 +268,12 @@ const PropertyDetails = () => {
         </div>
         <span className="propertyDetailRentTotal">
           <h3>Total before taxes</h3>
-          <p>N 2,000,000.00</p>
+          <p>N{productD.price}</p>
         </span>
       </div>
 
       <div className="modalpropertyDetailCardMobile">
-        <h2>N 2,000,000</h2>
+        <h2>N{productD.price}</h2>
         <button
           onClick={() => navigate("/success")}
           className="propertyDetailRentBtn"
@@ -233,37 +281,6 @@ const PropertyDetails = () => {
           Rent
         </button>
       </div>
-
-      <Modal style={{display:'flex',flexDirection:'column',gap:'15px',color:''}}>
-        <h2>Schedule for inspection</h2>
-
-        <span style={{display:'flex',justifyContent:'space-between'}}>
-          <h2>Monday</h2>
-          <p>10am-4pm</p>
-        </span>
-
-        <span style={{display:'flex',justifyContent:'space-between'}}>
-          <h2>Tuesday</h2>
-          <p>10am-4pm</p>
-        </span>
-
-        <span style={{display:'flex',justifyContent:'space-between'}}>
-          <h2>Wednesday</h2>
-          <p>10am-4pm</p>
-        </span>
-
-        <span style={{display:'flex',justifyContent:'space-between'}}>
-          <h2>Thursday</h2>
-          <p>10am-4pm</p>
-        </span>
-
-        <span style={{display:'flex',justifyContent:'space-between'}}>
-          <h2>friday</h2>
-          <p>10am-4pm</p>
-        </span>
-
-        <button className="inspectBtn">inspect</button>
-      </Modal>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./forgotPassword.css";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { forgetPassword } from "../../config/api";
 import toast from "react-hot-toast";
 import { IoCaretBackCircleSharp } from "react-icons/io5";
@@ -9,6 +9,7 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [loadingScreen, setLoadingScreen] = useState(false);
+  const { role } = useParams();
 
   const handleForgetPassword = async (e) => {
     e.preventDefault();
@@ -27,18 +28,18 @@ const ForgotPassword = () => {
 
     await new Promise((resolve) => setTimeout(resolve, 0));
     try {
-      const response = await forgetPassword({ email });
-      toast.success("Email submitted successfully");
+      const response = await forgetPassword({ email }, role);
       console.log(response);
+      toast.success(response?.message)
       setLoadingScreen(false);
       setTimeout(() => {
-        navigate("/verify");
+        navigate(`/api/v1/verify/${role}`);
       }, 4000);
       console.log(response);
     } catch (error) {
       console.log(error);
-      toast.error("invalid credential");
       setLoadingScreen(false);
+      toast.error(response?.message)
     }
   };
 

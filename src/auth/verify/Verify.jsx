@@ -3,6 +3,7 @@ import "./verify.css";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { IoCaretBackCircleSharp } from "react-icons/io5";
+import { useNavigate, useParams } from "react-router";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -11,7 +12,8 @@ const Verify = () => {
   const [isActive, setIsActive] = useState(true);
   const [otp, setOtp] = useState(["", "", "", ""]);
   const inputRefs = useRef([]);
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     let interval;
     if (isActive) {
@@ -47,6 +49,9 @@ const Verify = () => {
       }
     }
   };
+  const { role } = useParams();
+
+ const endpoint = role === "landlord" ? "landlord" : "tenant";
 
   const handleSubmit = async () => {
     const enteredCode = otp.join("");
@@ -54,15 +59,17 @@ const Verify = () => {
       toast.error("Please enter all 4 digits.");
       return;
     }
+    
     console.log("Code sent to backend:", enteredCode);
 
     try {
-      const response = await axios.post(
-        `${API_URL}/reset-landlordpassword/${enteredCode}`
-      );
+      const response = await axios.post(`${API_URL}verify/${endpoint}`, {otp:enteredCode});
       console.log(response);
+      toast.success(response?.data?.message);
+      navigate(`/reset-password/${role}`)
     } catch (error) {
       console.log(error);
+      toast.error(error?.response?.data);
     }
   };
 
