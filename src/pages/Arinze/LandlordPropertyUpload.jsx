@@ -329,7 +329,7 @@ const LandlordPropertyUpload = () => {
                     onChange={(e) => handleImageUpload(e, index)}
                   />
                   {item.imgUrl ? (
-                    <img src={item.imgUrl} alt={`Uploaded ${item.id}`} />
+                    <img src={item.imgUrl} alt={`Uploaded ${item.id}`} style={{width: "150px", height: "150px", borderRadius: "10px"}}/>
                   ) : (
                     <label htmlFor={`img-${item.id}`}>
                       <CiImageOn style={{ cursor: "pointer" }} />
