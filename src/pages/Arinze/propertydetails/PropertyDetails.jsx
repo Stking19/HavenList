@@ -19,7 +19,6 @@ const PropertyDetails = () => {
     "/IMG/f217c589f3dc03cf9e6018c073eb242c.jpg",
   ];
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const nextImage = () => {
@@ -235,7 +234,7 @@ const PropertyDetails = () => {
         </button>
       </div>
 
-      <Modal style={{display:'flex',flexDirection:'column',gap:'15px',color:'blue'}}>
+      <Modal style={{display:'flex',flexDirection:'column',gap:'15px',color:''}}>
         <h2>Schedule for inspection</h2>
 
         <span style={{display:'flex',justifyContent:'space-between'}}>
