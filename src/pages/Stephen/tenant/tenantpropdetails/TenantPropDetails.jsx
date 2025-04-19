@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import "./propertydetails.css";
+import "./tenantpropdetails.css";
 import {
   FaAngleRight,
   FaChevronLeft,
@@ -13,7 +13,7 @@ import { Modal } from "antd";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const PropertyDetails = () => {
+const TenantPropDetails = () => {
   const { productId } = useParams();
   const [productD, setProductDetails] = useState({});
 
@@ -37,12 +37,6 @@ const PropertyDetails = () => {
   const [toggleInspect, setToggleInspect] = useState(false);
 
   const handleInspect = () => {
-    const isloggedIn = localStorage.getItem("token");
-
-    if (!isloggedIn) {
-      toast.error("Please login to continue");
-      return navigate("/role");
-    }
     setToggleInspect(true);
   };
 
@@ -330,4 +324,4 @@ const PropertyDetails = () => {
   );
 };
 
-export default PropertyDetails;
+export default TenantPropDetails;

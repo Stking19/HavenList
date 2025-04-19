@@ -3,125 +3,84 @@ import "./searchbar.css";
 import { FiSearch } from "react-icons/fi";
 import axios from "axios";
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }) => {
   const API_URL = import.meta.env.VITE_API_URL;
 
-  
-  const [searchInput,setSearchInput] = useState({
-    area:'',
-    type:'',
-    bedrooms:'',
-    bathrooms:'',
-    minrent:'',
-    maxrent:''
-  })
-  
-  const handleOnchange =(e)=>{
-    const {name,value} = e.target
-    setSearchInput((prev)=>({...prev,[name]:value}))
-  }
-  
-  console.log(searchInput)
-  
-  const searchListing = async ()=>{
-    const {area,type,bedrooms,bathrooms,minrent,maxrent} = searchInput
+  const [searchInput, setSearchInput] = useState({
+    area: '',
+    type: '',
+    bedrooms: '',
+    bathrooms: '',
+    price: ''
+  });
+
+  const handleOnchange = (e) => {
+    const { name, value } = e.target;
+    setSearchInput((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const searchListing = async () => {
+    const { area, type, bedrooms, bathrooms, minrent, maxrent } = searchInput;
     try {
-      const res = await axios.get(`${API_URL}/searchListing`,{
-        params:{
-          area,
-          type,
-          bedrooms,
-          bathrooms,
-          minrent,
-          maxrent
-        }
-      })
-      console.log(res)
+      const res = await axios.get(`${API_URL}/searchListing`, {
+        params: { area, type, bedrooms, bathrooms, minrent, maxrent }
+      });
+      onSearch(res.data.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div className="searchBar">
       <div className="search">
-        <p><FiSearch  /></p>
-        <input type="text"
-        name="area"
-         placeholder="Location"
-         onChange={handleOnchange}
-         value={searchInput.area}
-          />
+        <p><FiSearch /></p>
+        <select name="area" className="search" onChange={handleOnchange} value={searchInput.area}>
+          <option value="">Select Area</option>
+          <option value="Ikorodu">Ikorodu</option>
+          <option value="Agege">Agege</option>
+          <option value="Ajeromi ifelodun">Ajeromi ifelodun</option>
+          <option value="Alimosho">Alimosho</option>
+          <option value="Apapa">Apapa</option>
+          <option value="Badagry">Badagry</option>
+          <option value="Epe">Epe</option>
+          <option value="Eti-Osa">Eti-Osa</option>
+          <option value="Ibeju Lekki">Ibeju Lekki</option>
+          <option value="Ikeja">Ikeja</option>
+          <option value="Lagos Island">Lagos Island</option>
+          <option value="Mushin">Mushin</option>
+          <option value="Ojo">Ojo</option>
+          <option value="Shomolu">Shomolu</option>
+          <option value="Surulere">Surulere</option>
+        </select>
         <button onClick={searchListing}>Search</button>
       </div>
+
       <div className="filters">
-        <select
-          name="type"
-          onChange={handleOnchange}
-          value={searchInput.type}
-        >
+        <select name="type" onChange={handleOnchange} value={searchInput.type}>
           <option value=''>Type</option>
-          <option value="flat">flat</option>
-          <option value="bungalow">bungalow</option>
-          <option value="mini-flat">mini-flat</option>
-          <option value="duplex">duplex</option>
+          <option value="flat">Flat</option>
+          <option value="bungalow">Bungalow</option>
+          <option value="mini-flat">Mini-flat</option>
+          <option value="duplex">Duplex</option>
         </select>
 
-        <select
-        name="bedrooms"
-        onChange={handleOnchange}
-        value={searchInput.bedrooms}
-        >
-          <option value=''>Bedroom</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
+        <select name="bedrooms" onChange={handleOnchange} value={searchInput.bedrooms}>
+          <option value=''>Bedrooms</option>
+          {[1,2,3,4,5].map(n => <option key={n} value={n}>{n}</option>)}
         </select>
 
-        <select
-        name="bathrooms"
-        onChange={handleOnchange}
-        value={searchInput.bathroom}
-        >
-          <option value=''>bathrooms </option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
+        <select name="bathrooms" onChange={handleOnchange} value={searchInput.bathrooms}>
+          <option value=''>Bathrooms</option>
+          {[1,2,3,4,5].map(n => <option key={n} value={n}>{n}</option>)}
         </select>
 
-        <select 
-        name="minrent"
-        onChange={handleOnchange}
-        value={searchInput.minrent}
-        >
-          <option value=''>Min. Rent</option>
-          <option value="500,000">500,000</option>
-          <option value="600,000">600,0000</option>
-          <option value="700,000">700,000</option>
-          <option value="800,00">800,000</option>
-          <option value="900,000">900,000</option>
-          <option value="1000000">1000000</option>
+        <select name="price" onChange={handleOnchange} value={searchInput.price}>
+          <option value=''>Price</option>
+          {[500000,600000,700000,800000,900000,1000000,2000000,3000000,4000000,5000000].map(val => (
+            <option key={val} value={val}>{val.toLocaleString()}</option>
+          ))}
         </select>
-
-        <select 
-        name="maxrent"
-        onChange={handleOnchange}
-        value={searchInput.maxrent}
-        style={{border: "none"}}
-        >
-          <option value=''>Max. Rent</option>
-          <option value="1000000">1000000</option>
-          <option value="2000000">2000000</option>
-          <option value="3000000">3000000</option>
-          <option value="4000000">4000000</option>
-          <option value="5000000">5000000</option>
-          <option value="6000000">6000000</option>
-        </select>
-
       </div>
     </div>
   );

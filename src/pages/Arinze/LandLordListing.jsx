@@ -16,6 +16,7 @@ const LandLordListing = () => {
 
   const landLordListing = async () => {
     const landlordId = localStorage.getItem('id')
+    console.log(landlordId)
     try {
       const res = await axios.get(`${API_URL}getAllListingsByLandlord/${landlordId}`, {
         headers: {
@@ -23,7 +24,7 @@ const LandLordListing = () => {
           Authorization: `Bearer ${token} `
         },
       })
-      console.log(res.data.data)
+      console.log(res)
       setListingHolder(res.data.data)
     } catch (error) {
       console.log(error)
@@ -33,6 +34,9 @@ const LandLordListing = () => {
   useEffect(() => {
     landLordListing()
   }, [])
+
+
+  console.log(listingHolder)
 
   return (
     <div className='landLordListingMain'>
