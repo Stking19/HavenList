@@ -1,17 +1,17 @@
 import React from 'react'
-import './listingCard.css'
+import './tenantlistingcard.css'
 import { LiaToiletSolid } from "react-icons/lia";
 import { GiBathtub } from "react-icons/gi";
 import { IoIosBed } from "react-icons/io";
 import { useNavigate } from 'react-router';
 
-const ListingCard = ({items}) => {
+const TenantListingCard = ({items}) => {
   const navigate = useNavigate()
 
   const navDetails =()=>{
-     navigate(`/propertyDetails/${items?.id}`)
+     navigate(`propertyDetail/${items?.id}`)
   } 
-  // console.log(items?.id)
+  console.log(items?.id)
 
   return (
     <div className='listingCardMain'>
@@ -23,7 +23,7 @@ const ListingCard = ({items}) => {
            <h2 style={{color:'#2F80ED'}}>{items?.title}</h2>
            <p>{items?.street} {items.state}</p>
            <p>{items?.description}</p>
-          <h2 style={{color:'#2F80ED',display:'flex',alignItems:'center', gap: "5px"}}>N{items?.price}<small style={{color:'black',fontSize:'12px'}}>{items.frequency}</small></h2>
+          <h2 style={{color:'#2F80ED',display:'flex',alignItems:'center', gap: "5px"}}>{items?.price}<small style={{color:'black',fontSize:'12px'}}>{items.frequency}</small></h2>
           </div>
        </div>
         <section className='listingFooter'>
@@ -35,4 +35,4 @@ const ListingCard = ({items}) => {
   )
 }
 
-export default ListingCard
+export default TenantListingCard
