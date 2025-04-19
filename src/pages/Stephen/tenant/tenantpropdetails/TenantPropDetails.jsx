@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import "./tenantpropdetails.css";
 import {
-  FaAnchor,
-  FaSink,
   FaAngleRight,
   FaChevronLeft,
   FaChevronRight,
@@ -11,6 +9,7 @@ import {
 import axios from "axios";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
+import { Modal } from "antd";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -32,10 +31,24 @@ const TenantPropDetails = () => {
     email,
   };
   const landlordid = localStorage.getItem("landlordId");
-  const listingId = localStorage.getItem("listingId");;
+  const listingId = localStorage.getItem("listingId");
   console.log({ amount });
 
+  const [toggleInspect, setToggleInspect] = useState(false);
+
+  const handleInspect = () => {
+    setToggleInspect(true);
+  };
+
+  const handleCancel = () => {
+    setToggleInspect(false);
+  };
+
   const handlePayment = async () => {
+    const payload = {
+      ...userData,
+      schedule: selectedSchedule,
+    };
     try {
       const res = await axios.post(
         `${API_URL}initialize/${tenantid}/${landlordid}/${listingId}`,
@@ -84,6 +97,36 @@ const TenantPropDetails = () => {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  const [activeTableIndex, setActiveTableIndex] = useState(null);
+  const [selectedSchedule, setSelectedSchedule] = useState(null);
+  const [openPay, setOpenPay] = useState(false);
+
+  const handleCancelPay = () => {
+    setOpenPay(false);
+  }
+
+  const handleOpenPay = () => {
+    setOpenPay(true);
+  }
+
+  const scheduleOptions = [
+    { day: "Monday", time: "10am-4pm" },
+    { day: "Tuesday", time: "10am-4pm" },
+    { day: "Wednesday", time: "10am-4pm" },
+    { day: "Thursday", time: "12am-4pm" },
+    { day: "Friday", time: "10am-4pm" },
+    { day: "Saturday", time: "12am-4pm" },
+  ];
+
+  const handleTableClick = (tabindex) => {
+    setActiveTableIndex((prevIndex) =>
+      prevIndex === tabindex ? null : tabindex
+    );
+    setSelectedSchedule(
+      tabindex !== activeTableIndex ? scheduleOptions[tabindex] : null
+    );
+  };
+
   return (
     <>
       <div className="propertyDetailMain">
@@ -97,10 +140,7 @@ const TenantPropDetails = () => {
             <div className="subImageWrapper">
               <section className="subImage1">
                 <span>
-                  <img
-                    src={productD.listingImage?.[1]?.imageUrl}
-                    alt=""
-                  />
+                  <img src={productD.listingImage?.[1]?.imageUrl} alt="" />
                 </span>
                 <span>
                   <img src={productD.listingImage?.[2]?.imageUrl} alt="" />
@@ -117,11 +157,10 @@ const TenantPropDetails = () => {
               </section>
             </div>
           </div>
-
           <div className="propertyDetailImageMobile">
             <FaChevronLeft onClick={prevImage} className="arrowBtn left" />
             <span className="mobileImageHolder">
-              <img src={images[currentImageIndex]} alt="property" />
+              {/* <img src={images[currentImageIndex]} alt="property" / */}
             </span>
             <FaChevronRight onClick={nextImage} className="arrowBtn right" />
           </div>
@@ -146,59 +185,6 @@ const TenantPropDetails = () => {
             <h3>About this place</h3>
             <p>{productD.description}</p>
           </span>
-
-          <div className="propertyDetailAmenitiesWrapper">
-            <h3>Amenities</h3>
-            <div className="propertyDetailAmeneties">
-              <section>
-                <span>
-                  <FaAnchor />
-                  <p>Chandelier</p>
-                </span>
-                <span>
-                  {" "}
-                  <FaSink />
-                  <p>Dishwasher</p>
-                </span>
-                <span>
-                  <FaAnchor />
-                  <p>Kitchen</p>
-                </span>
-                <span>
-                  {" "}
-                  <FaAnchor />
-                  <p>Pop Ceiling</p>
-                </span>
-                <span>
-                  <FaAnchor />
-                  <p>Tiled Floor</p>
-                </span>
-              </section>
-
-              <section>
-                <span>
-                  <FaAnchor />
-                  <p>Dining Area</p>
-                </span>
-                <span>
-                  <FaAnchor />
-                  <p>Hot Water</p>
-                </span>
-                <span>
-                  <FaAnchor />
-                  <p>Kitchen Shelf</p>
-                </span>
-                <span>
-                  <FaAnchor />
-                  <p>Pre-paid Meter</p>
-                </span>
-                <span>
-                  <FaAnchor />
-                  <p>Wardrobe</p>
-                </span>
-              </section>
-            </div>
-          </div>
 
           <div className="propertyDetailSafeTips">
             <h3>Safety Tips</h3>
@@ -251,7 +237,7 @@ const TenantPropDetails = () => {
             <FaAngleRight />
           </section>
         </div>
-        <button onClick={handlePayment} className="propertyDetailRentBtn">
+        <button onClick={handleInspect} className="propertyDetailRentBtn">
           Rent
         </button>
         <p>You won’t be charged extra</p>
@@ -271,6 +257,59 @@ const TenantPropDetails = () => {
           <p>N{productD.price}</p>
         </span>
       </div>
+
+      <Modal
+        open={toggleInspect}
+        onCancel={handleCancel}
+        okButtonProps={{ style: { display: "none" } }}
+        cancelButtonProps={{ style: { display: "none" } }}
+        width={500}
+      >
+        <h2>SCHEDULE FOR INSPECTION</h2>
+        <p style={{ fontWeight: "500" }}>
+          Select a Day and Time you would be available to go for an inspection
+          of the property
+        </p>
+        {scheduleOptions.map((option, index) => (
+          <span
+            key={index}
+            className="inspectText"
+            onClick={() => handleTableClick(index)}
+            style={{
+              backgroundColor: activeTableIndex === index ? "#2F80ED" : "white",
+              color: activeTableIndex === index ? "white" : "#00A5CF",
+              borderRadius: "20px",
+            }}
+          >
+            <h2>{option.day}</h2>
+            <p style={{ fontSize: "16px" }}>{option.time}</p>
+          </span>
+        ))}
+        <button
+          className="inspectBtn"
+          disabled={selectedSchedule === null}
+          onClick={handleOpenPay}
+        >
+          Inspect
+        </button>
+      </Modal>
+
+      <Modal
+        open={openPay}
+        onCancel={handleCancelPay}
+        okButtonProps={{ style: { display: "none" } }}
+        cancelButtonProps={{ style: { display: "none" } }}
+        width={500}
+      >
+        <div className="paymentModal">
+        <h2>Make Payment below</h2>
+        <p>
+          After Making Payment, You Will Receive a Confirmation Mail, to Confirm
+          your Payment and the Inspection Day
+        </p>
+        <button onClick={handlePayment}>Pay With Kora</button>
+        </div>
+      </Modal>
 
       <div className="modalpropertyDetailCardMobile">
         <h2>N{productD.price}</h2>
