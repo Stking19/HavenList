@@ -9,7 +9,7 @@ import { IoCaretBackCircleSharp } from "react-icons/io5";
 
 const PasswordReset = () => {
   const navigate = useNavigate();
-  const { otp, role } = useParams();
+  const { role } = useParams();
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
