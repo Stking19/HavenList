@@ -300,6 +300,11 @@
             gap: 20px;
             text-align: center;
             font-size: 14px;
+
+            & h3{
+              font-size: 20px;
+              margin-right: 20px;
+            }
           }
           & .cardiS {
             width: 220px;
@@ -315,6 +320,11 @@
             gap: 20px;
             text-align: center;
             font-size: 14px;
+
+            & h3{
+              font-size: 20px;
+              margin-right: 20px;
+            }
           }
         }
 
@@ -340,6 +350,11 @@
             gap: 20px;
             text-align: center;
             font-size: 14px;
+
+            & h3{
+              font-size: 20px;
+              margin-right: 20px;
+            }
           }
           & .cardiS {
             width: 220px;
@@ -355,6 +370,11 @@
             gap: 20px;
             text-align: center;
             font-size: 14px;
+
+            & h3{
+              font-size: 20px;
+              margin-right: 20px;
+            }
           }
         }
       }

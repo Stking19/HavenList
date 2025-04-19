@@ -59,6 +59,29 @@ const LandlordPropertyUpload = () => {
   console.log(landlord);
 
   const [isloading, setIsLoading] = useState(false)
+  const resetInput = () => {
+    setUserInput({
+      title: "",
+      type: "",
+      bedrooms: "",
+      bathrooms: "",
+      toilets: "",
+      description: "",
+      street: "",
+      state:'',
+      partPayment:'',
+      area: "",
+      price: "",
+      year: "",
+    });
+    setImgBox([
+      { id: 1, imgUrl: "" },
+      { id: 2, imgUrl: "" },
+      { id: 3, imgUrl: "" },
+      { id: 4, imgUrl: "" },
+      { id: 5, imgUrl: "" },
+    ]);
+  }
 
   const handleUpload = async () => {
     setIsLoading(true);
@@ -136,10 +159,6 @@ const LandlordPropertyUpload = () => {
                 <option value="Bungalow">Bungalow</option>
                 <option value="Flat/Apartment">Flat/Apartment</option>
                 <option value="Duplex">Duplex</option>
-                <option value="Detached House">Detached House</option>
-                <option value="Semi-Detached House">Semi-Detached House</option>
-                <option value="Terraced House">Terraced House</option>
-                <option value="Town House">Town House</option>
               </select>
             </span>
             <section className="numberOfBedsOpt">

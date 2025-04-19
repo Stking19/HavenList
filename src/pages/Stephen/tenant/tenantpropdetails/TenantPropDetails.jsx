@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import "./tenantpropdetails.css";
-import {
-  FaAngleRight,
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa6";
+import { FaAngleRight, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import axios from "axios";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Modal } from "antd";
+import { HashLoader } from "react-spinners";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const TenantPropDetails = () => {
   const { productId } = useParams();
   const [productD, setProductDetails] = useState({});
+  const [loading, setLoading] = useState(false);
 
   console.log(productId);
 
@@ -32,7 +30,7 @@ const TenantPropDetails = () => {
   };
   const landlordid = localStorage.getItem("landlordId");
   const listingId = localStorage.getItem("listingId");
-  console.log({ amount });
+  console.log({ landlordid, listingId });
 
   const [toggleInspect, setToggleInspect] = useState(false);
 
@@ -45,21 +43,26 @@ const TenantPropDetails = () => {
   };
 
   const handlePayment = async () => {
-    const payload = {
-      ...userData,
-      schedule: selectedSchedule,
-    };
+    // const payload = {
+    //   ...userData,
+    //   schedule: selectedSchedule,
+    // };
+    setLoading(true);
     try {
       const res = await axios.post(
         `${API_URL}initialize/${tenantid}/${landlordid}/${listingId}`,
         userData
       );
       console.log(res);
-      localStorage.setItem("transactionId", res?.data?.data?.refrence);
+      localStorage.setItem("transactionId", res?.data?.data?.reference);
+      setLoading(false);
       toast.success(res?.data?.message);
-      // window.location.href = res?.data?.data?.checkout_url;
+      setTimeout(() => {
+        window.location.href = res?.data?.data?.checkout_url;
+      }, 3000);
     } catch (error) {
       console.log(error);
+      setLoading(false);
       toast.error(error?.response?.data?.message);
     }
   };
@@ -103,11 +106,11 @@ const TenantPropDetails = () => {
 
   const handleCancelPay = () => {
     setOpenPay(false);
-  }
+  };
 
   const handleOpenPay = () => {
     setOpenPay(true);
-  }
+  };
 
   const scheduleOptions = [
     { day: "Monday", time: "10am-4pm" },
@@ -237,7 +240,7 @@ const TenantPropDetails = () => {
             <FaAngleRight />
           </section>
         </div>
-        <button onClick={handleInspect} className="propertyDetailRentBtn">
+        <button onClick={handleOpenPay} className="propertyDetailRentBtn">
           Rent
         </button>
         <p>You won’t be charged extra</p>
@@ -302,12 +305,14 @@ const TenantPropDetails = () => {
         width={500}
       >
         <div className="paymentModal">
-        <h2>Make Payment below</h2>
-        <p>
-          After Making Payment, You Will Receive a Confirmation Mail, to Confirm
-          your Payment and the Inspection Day
-        </p>
-        <button onClick={handlePayment}>Pay With Kora</button>
+          <h2>Make Payment below</h2>
+          <p>
+            After Making Payment, You Will Be Asked To Select A Day and Time To
+            Go for an Inspection of the property.
+          </p>
+          <button onClick={handlePayment}>
+            {loading ? <HashLoader color="white" size={30} /> : "Pay With Kora"}
+          </button>
         </div>
       </Modal>
 

@@ -14,17 +14,18 @@
 }
 
 .listingCardContentHolder {
-    height: 80%;
+    height: max-content;
     width: 100%;
     display: flex;
     gap: 15px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    padding: 10px;
 }
 
 .listingPropertyImage {
-    height: 95%;
+    height: 250px;
     width: 45%;
 }
 

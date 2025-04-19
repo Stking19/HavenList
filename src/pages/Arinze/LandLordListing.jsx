@@ -4,7 +4,7 @@ import ListingCard from '../../components/listingCard/ListingCard'
 import axios from 'axios';
 
 
-const LandLordListing = () => {
+const LandLordListing = ({setLandlordDashboard}) => {
 
 
 
@@ -12,10 +12,11 @@ const LandLordListing = () => {
 
   const [listingHolder, setListingHolder] = useState([])
   const token = localStorage.getItem('token')
+  const landlordId = JSON.parse(localStorage.getItem('id'))
+  console.log(landlordId)
 
-
+  useEffect(() => {
   const landLordListing = async () => {
-    const landlordId = localStorage.getItem('id')
     console.log(landlordId)
     try {
       const res = await axios.get(`${API_URL}getAllListingsByLandlord/${landlordId}`, {
@@ -25,14 +26,15 @@ const LandLordListing = () => {
         },
       })
       console.log(res)
-      setListingHolder(res.data.data)
+      setLandlordDashboard(res?.data?.total)
+      setListingHolder(res?.data?.data)
     } catch (error) {
       console.log(error)
     }
   }
-
-  useEffect(() => {
+  if (landlordId) {
     landLordListing()
+  }
   }, [])
 
 
