@@ -33,6 +33,9 @@ const SignUp = () => {
     }));
   };
   const specialCharacterRegex = /[!@#$%^&*(),.?":{}|<>]/;
+  const hasNumber = /\d/;
+  const hasUpperCase = /[A-Z]/;
+  const hasLowerCase = /[a-z]/;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,6 +55,18 @@ const SignUp = () => {
 
     else if (password.length < 8) {
       toast.error("Password must be at least 8 characters long.");
+      return;
+    }
+    else if (!hasUpperCase.test(password)) {
+      toast.error("Password must contain at least one uppercase letter.");
+      return;
+    }
+    else if (!hasLowerCase.test(password)) {
+      toast.error("Password must contain at least one lowercase letter.");
+      return;
+    }
+    else if (!hasNumber.test(password)) {
+      toast.error("Password must contain at least one number.");
       return;
     }
 
