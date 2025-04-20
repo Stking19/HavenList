@@ -29,8 +29,6 @@ const PropertyDetails = () => {
   const [amount, setAmount] = useState("");
 
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
   useEffect(() => {
     getProductDetails();
     setTenantId(JSON.parse(localStorage.getItem("id")));
@@ -49,16 +47,6 @@ const PropertyDetails = () => {
     userData.schedule = isActive ? null : scheduleOptions[index];
   };
 
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % (productD.listingImage?.length || 1));
-  const prevImage = () => {
-    setCurrentImageIndex((prev) =>
-      (prev - 1 + (productD.listingImage?.length || 1)) %
-      (productD.listingImage?.length || 1))
-      toast.error(error?.response?.data?.message);
-    }
-  };
 
   const getProductDetails = async () => {
     try {
