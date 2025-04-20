@@ -16,8 +16,6 @@ const TenantPropDetails = () => {
   const [loading, setLoading] = useState(false);
 
   console.log(productId);
-
-  const navigate = useNavigate();
   const tenantid = JSON.parse(localStorage.getItem("id"));
   const name = JSON.parse(localStorage.getItem("user"));
   const email = JSON.parse(localStorage.getItem("email"));
@@ -32,21 +30,8 @@ const TenantPropDetails = () => {
   const listingId = localStorage.getItem("listingId");
   console.log({ landlordid, listingId });
 
-  const [toggleInspect, setToggleInspect] = useState(false);
-
-  const handleInspect = () => {
-    setToggleInspect(true);
-  };
-
-  const handleCancel = () => {
-    setToggleInspect(false);
-  };
 
   const handlePayment = async () => {
-    // const payload = {
-    //   ...userData,
-    //   schedule: selectedSchedule,
-    // };
     setLoading(true);
     try {
       const res = await axios.post(
@@ -100,8 +85,6 @@ const TenantPropDetails = () => {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  const [activeTableIndex, setActiveTableIndex] = useState(null);
-  const [selectedSchedule, setSelectedSchedule] = useState(null);
   const [openPay, setOpenPay] = useState(false);
 
   const handleCancelPay = () => {
@@ -110,24 +93,6 @@ const TenantPropDetails = () => {
 
   const handleOpenPay = () => {
     setOpenPay(true);
-  };
-
-  const scheduleOptions = [
-    { day: "Monday", time: "10am-4pm" },
-    { day: "Tuesday", time: "10am-4pm" },
-    { day: "Wednesday", time: "10am-4pm" },
-    { day: "Thursday", time: "12am-4pm" },
-    { day: "Friday", time: "10am-4pm" },
-    { day: "Saturday", time: "12am-4pm" },
-  ];
-
-  const handleTableClick = (tabindex) => {
-    setActiveTableIndex((prevIndex) =>
-      prevIndex === tabindex ? null : tabindex
-    );
-    setSelectedSchedule(
-      tabindex !== activeTableIndex ? scheduleOptions[tabindex] : null
-    );
   };
 
   return (
@@ -186,7 +151,7 @@ const TenantPropDetails = () => {
             style={{ display: "flex", flexDirection: "column", gap: "10px" }}
           >
             <h3>About this place</h3>
-            <p>{productD.description}</p>
+            <p style={{width: "50%"}}>{productD.description}</p>
           </span>
 
           <div className="propertyDetailSafeTips">
@@ -260,42 +225,6 @@ const TenantPropDetails = () => {
           <p>N{productD.price}</p>
         </span>
       </div>
-
-      <Modal
-        open={toggleInspect}
-        onCancel={handleCancel}
-        okButtonProps={{ style: { display: "none" } }}
-        cancelButtonProps={{ style: { display: "none" } }}
-        width={500}
-      >
-        <h2>SCHEDULE FOR INSPECTION</h2>
-        <p style={{ fontWeight: "500" }}>
-          Select a Day and Time you would be available to go for an inspection
-          of the property
-        </p>
-        {scheduleOptions.map((option, index) => (
-          <span
-            key={index}
-            className="inspectText"
-            onClick={() => handleTableClick(index)}
-            style={{
-              backgroundColor: activeTableIndex === index ? "#2F80ED" : "white",
-              color: activeTableIndex === index ? "white" : "#00A5CF",
-              borderRadius: "20px",
-            }}
-          >
-            <h2>{option.day}</h2>
-            <p style={{ fontSize: "16px" }}>{option.time}</p>
-          </span>
-        ))}
-        <button
-          className="inspectBtn"
-          disabled={selectedSchedule === null}
-          onClick={""}
-        >
-          Inspect
-        </button>
-      </Modal>
 
       <Modal
         open={openPay}

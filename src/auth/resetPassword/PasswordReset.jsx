@@ -36,7 +36,7 @@ const PasswordReset = () => {
 
     try {
       const response = await resetPassword({ password, confirmPassword, role });
-      toast.success(response.data.message);
+      console.log(response);
       setTimeout(() => {
         navigate(`/sign-in/${role}`);
       }, 3000);

@@ -189,7 +189,7 @@ const PropertyDetails = () => {
             style={{ display: "flex", flexDirection: "column", gap: "10px" }}
           >
             <h3>About this place</h3>
-            <p>{productD.description}</p>
+            <p style={{width: "50%"}}>{productD.description}</p>
           </span>
 
           <div className="propertyDetailSafeTips">
@@ -204,7 +204,7 @@ const PropertyDetails = () => {
             </li>
             <li>Ensure you meet the Agent in an open location.</li>
             <li>
-              The Agent does not represent HevanList and HevanList is not liable
+              The Agent does not represent HavenList and HavenList is not liable
               for any monetary <br />
               transaction between you and the Agent.
             </li>
@@ -216,52 +216,6 @@ const PropertyDetails = () => {
             Terms Of use
           </a>
         </div>
-      </div>
-
-      <div className="modalpropertyDetailCard">
-        <h2>
-          N{productD.price}
-          <small>per Annum</small>
-        </h2>
-        <div className="propertyDetailCardDate">
-          <div className="dateWrapper">
-            <span className="propertyDetailCheckIn">
-              <p>CHECK-IN</p>
-              <p>4/17/2025</p>
-            </span>
-
-            <span className="propertyDetailCheckOut">
-              <p>CHECK-out</p>
-              <p>4/17/2025</p>
-            </span>
-          </div>
-          <section className="propertyDetailCheckOutOption">
-            <span>
-              <p>CHECK-out</p>
-              <p>4/17/2025</p>
-            </span>
-            <FaAngleRight />
-          </section>
-        </div>
-        <button onClick={handleOpenPay} className="propertyDetailRentBtn">
-          Rent
-        </button>
-        <p>You won’t be charged extra</p>
-        <div className="propertyDetailFeeNot">
-          <span>
-            <h3>No agent fee</h3>
-            <p>N0.00</p>
-          </span>
-
-          <span>
-            <h3>No service fee</h3>
-            <p>N0.00</p>
-          </span>
-        </div>
-        <span className="propertyDetailRentTotal">
-          <h3>Total before taxes</h3>
-          <p>N{productD.price}</p>
-        </span>
       </div>
 
       <Modal
