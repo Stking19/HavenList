@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import "./tenantpropdetails.css";
 import { FaAngleRight, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import axios from "axios";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Modal } from "antd";
 import { HashLoader } from "react-spinners";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const TenantPropDetails = () => {
-  const API_URL = "https://heavenlist2-zaz3.onrender.com/api/v1";
   const { productId } = useParams();
   const [productD, setProductDetails] = useState({});
   const [loading, setLoading] = useState(false);
@@ -28,18 +30,13 @@ const TenantPropDetails = () => {
   const listingId = localStorage.getItem("listingId");
   console.log({ landlordid, listingId });
 
-  const handleInspect = () => setToggleInspect(true);
-  const handleCancel = () => setToggleInspect(false);
-  const handleOpenPay = () => setOpenPay(true);
-  const handleCancelPay = () => setOpenPay(false);
 
   const handlePayment = async () => {
     setLoading(true);
     try {
-      const payload = { ...userData};
       const res = await axios.post(
         `${API_URL}initialize/${tenantid}/${landlordid}/${listingId}`,
-        payload
+        userData
       );
       console.log(res);
       localStorage.setItem("transactionId", res?.data?.data?.reference);
@@ -52,6 +49,15 @@ const TenantPropDetails = () => {
       console.log(error);
       setLoading(false);
       toast.error(error?.response?.data?.message);
+    }
+  };
+
+  const getProductDetails = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/getOneListing/${productId}`);
+      console.log(res.data.data);
+      setProductDetails(res.data.data);
+    } catch (error) {
       console.log(error);
     }
   };
@@ -108,6 +114,7 @@ const TenantPropDetails = () => {
                   <img src={productD.listingImage?.[2]?.imageUrl} alt="" />
                 </span>
               </section>
+
               <section className="subImage2">
                 <span>
                   <img src={productD.listingImage?.[3]?.imageUrl} alt="" />
@@ -118,14 +125,10 @@ const TenantPropDetails = () => {
               </section>
             </div>
           </div>
-
           <div className="propertyDetailImageMobile">
             <FaChevronLeft onClick={prevImage} className="arrowBtn left" />
             <span className="mobileImageHolder">
-              <img
-                src={productD.listingImage?.[currentImageIndex]?.imageUrl}
-                alt="property"
-              />
+              {/* <img src={images[currentImageIndex]} alt="property" / */}
             </span>
             <FaChevronRight onClick={nextImage} className="arrowBtn right" />
           </div>
@@ -133,27 +136,40 @@ const TenantPropDetails = () => {
           <nav>
             <h3>{productD.title}</h3>
             <h3>
-              {productD.area}, {productD.state}
+              {productD.area},{productD.state}
             </h3>
             <p>
-              {productD.bedrooms} Bedrooms, {productD.bathrooms} Bathrooms,{" "}
+              {productD.bedrooms} Bedrooms, {productD.bathrooms} Bathrooms ,{" "}
               {productD.toilets} Toilets
             </p>
           </nav>
 
           <p>Hosted by HavenList Homes</p>
 
-          <div className="aboutTexts">
+          <span
+            className="aboutTexts"
+            style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+          >
             <h3>About this place</h3>
             <p style={{width: "50%"}}>{productD.description}</p>
           </span>
 
           <div className="propertyDetailSafeTips">
             <h3>Safety Tips</h3>
-            <li>Do not make any inspection fee without seeing the agent or Landlord.</li>
-            <li>Only pay Rental fee after you verify the Landlord.</li>
-            <li>Meet the Agent in an open location.</li>
-            <li>HavenList is not liable for any monetary transactions with the Agent.</li>
+            <li>
+              Do not make any inspection fee without seeing the agent or
+              Landlord.
+            </li>
+            <li>
+              Only pay Rental fee, Sales fee or any upfront payment after you
+              verify the Landlord.
+            </li>
+            <li>Ensure you meet the Agent in an open location.</li>
+            <li>
+              The Agent does not represent HevanList and HevanList is not liable
+              for any monetary <br />
+              transaction between you and the Agent.
+            </li>
           </div>
           <a
             style={{ fontSize: "20px", marginBottom: "15px" }}
@@ -167,7 +183,7 @@ const TenantPropDetails = () => {
       <div className="modalpropertyDetailCard">
         <h2>
           N{productD.price}
-          <small> per Annum</small>
+          <small>per Annum</small>
         </h2>
         <div className="propertyDetailCardDate">
           <div className="dateWrapper">
@@ -175,11 +191,19 @@ const TenantPropDetails = () => {
               <p>CHECK-IN</p>
               <p>4/17/2025</p>
             </span>
+
             <span className="propertyDetailCheckOut">
               <p>CHECK-out</p>
               <p>4/17/2025</p>
             </span>
           </div>
+          <section className="propertyDetailCheckOutOption">
+            <span>
+              <p>CHECK-out</p>
+              <p>4/17/2025</p>
+            </span>
+            <FaAngleRight />
+          </section>
         </div>
         <button onClick={handleOpenPay} className="propertyDetailRentBtn">
           Rent
@@ -190,6 +214,7 @@ const TenantPropDetails = () => {
             <h3>No agent fee</h3>
             <p>N0.00</p>
           </span>
+
           <span>
             <h3>No service fee</h3>
             <p>N0.00</p>
