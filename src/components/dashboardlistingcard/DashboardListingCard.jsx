@@ -1,5 +1,5 @@
 import React from 'react'
-import './dashboardlistingCard.css'
+import './dashboardlistingcard.css'
 import { LiaToiletSolid } from "react-icons/lia";
 import { GiBathtub } from "react-icons/gi";
 import { IoIosBed } from "react-icons/io";
