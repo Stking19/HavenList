@@ -1,8 +1,8 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const API_URL = "https://heavenlist2-zaz3.onrender.com/api/v1/";
 
+const API_URL = import.meta.env.VITE_API_URL;
 const api = axios.create({
   baseURL: API_URL,
   headers: {
@@ -131,7 +131,7 @@ export const createProfile = async (landlordId, formData) => {
     console.log(response);
     if (response.status === 201) {
       const { data, message } = response.data;
-      localStorage.setItem("profileImage", JSON.stringify(data.image));
+      localStorage.setItem("profileImage", JSON.stringify(data.profileImage));
       localStorage.setItem("landlordprofileid", JSON.stringify(data.id));
       toast.success(message)
     }
@@ -140,6 +140,7 @@ export const createProfile = async (landlordId, formData) => {
     toast.error(error?.response?.data?.message)
   }
 };
+
 
 export const getProfile = async (landlordId) => {
   const token = localStorage.getItem("token");

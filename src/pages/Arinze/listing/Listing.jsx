@@ -14,6 +14,7 @@ const Listing = () => {
   const getAllListing = async () => {
     try {
       const res = await axios.get(`${API_URL}/getAllListings`);
+      console.log(res.data);
       setAllListings(res.data.data);
     } catch (error) {
       console.log(error);

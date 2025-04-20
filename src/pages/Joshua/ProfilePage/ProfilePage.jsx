@@ -249,7 +249,7 @@ function ProfilePage() {
                 className="cancelbtn1"
                 onClick={handleCancel}
               >
-                Cancel
+                Clear
               </button>
               <button type="submit" className="submitbtn">
                 {profileExists ? "Update" : "Create"}
