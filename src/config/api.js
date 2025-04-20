@@ -154,10 +154,10 @@ export const getProfile = async (landlordId) => {
         },
       }
     );
+    toast.success(response.data.message);
     console.log(response) 
   } catch (error) {
-    toast.error("Failed to fetch profile.");
-    throw error;
+    console.log(error);
   }
 };
 

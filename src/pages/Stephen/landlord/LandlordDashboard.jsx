@@ -117,7 +117,7 @@ useEffect(() => {
             </div>
           </div>
         </div> : null }     
-        { activeTab === 1 ? <LandlordPropertyUpload /> : null}
+        { activeTab === 1 ? <LandlordPropertyUpload setActiveTab={setActiveTab}/> : null}
         { activeTab === 2 ? <LandLordListing setLandlordDashboard={setLandlordDashboard}/> : null}  
         { activeTab === 3 ? <ProfilePage /> : null}     
       </div>

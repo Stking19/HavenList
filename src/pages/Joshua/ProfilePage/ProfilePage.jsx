@@ -18,6 +18,7 @@ const dataURLtoBlob = (dataURL) => {
 const mail = JSON.parse(localStorage.getItem("email"));
 const name = JSON.parse(localStorage.getItem("user"));
 
+
 function ProfilePage({ setProfileImage, setFirstName }) {
   const [details, setDetails] = useState({
     fullName: name || "",
@@ -38,9 +39,10 @@ function ProfilePage({ setProfileImage, setFirstName }) {
   const fileInputRef = useRef(null);
 
   useEffect(() => {
-    const storedLandlordId = localStorage.getItem("id");
+    const storedLandlordId = JSON.parse(localStorage.getItem("id"));
+    const profileId = JSON.parse(localStorage.getItem("landlordprofileid"));
     setLandlordId(storedLandlordId);
-    fetchProfile(storedLandlordId);
+    fetchProfile(profileId);
   }, []);
 
   const fetchProfile = async (id) => {
@@ -55,6 +57,7 @@ function ProfilePage({ setProfileImage, setFirstName }) {
           state: profile.state,
         });
         setProfileExists(true);
+        console.log(profile)
       }
     } catch (err) {
       console.log("No existing profile found.");
