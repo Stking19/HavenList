@@ -50,9 +50,9 @@ const PropertyDetails = () => {
   };
 
 
-  const nextImage = () =>
+  const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % (productD.listingImage?.length || 1));
-  const prevImage = () =>
+  const prevImage = () => {
     setCurrentImageIndex((prev) =>
       (prev - 1 + (productD.listingImage?.length || 1)) %
       (productD.listingImage?.length || 1)
