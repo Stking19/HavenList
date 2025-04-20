@@ -189,8 +189,10 @@
 @media (max-width: 460px) {
   
   .mainwrap {
-    padding: 0px;
-    margin: 0; 
+    width: 50px;
+    /* padding: 0px; */
+    /* margin: 0;  */
+    /* background-color: aqua; */
     box-sizing: border-box;
   }
 
@@ -234,9 +236,10 @@
   }
 
   .loginformwrap {
-    width: 100%;
+    width: 50%;
     margin-left: 0px; 
     margin-right: 0px;
+    /* background-color: aqua; */
   }
 
   .loginbtnwrap {

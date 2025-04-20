@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import "./propertydetails.css";
 import {
@@ -7,34 +7,64 @@ import {
   FaChevronRight,
 } from "react-icons/fa6";
 import axios from "axios";
-import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Modal } from "antd";
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 const PropertyDetails = () => {
+  const API_URL = "https://heavenlist2-zaz3.onrender.com/api/v1";
   const { productId } = useParams();
   const [productD, setProductDetails] = useState({});
 
-  console.log(productId);
-
   const navigate = useNavigate();
-  const tenantid = JSON.parse(localStorage.getItem("id"));
-  const name = JSON.parse(localStorage.getItem("user"));
-  const email = JSON.parse(localStorage.getItem("email"));
-  const amount = JSON.parse(localStorage.getItem("amount"));
+
+  const [tenantid, setTenantId] = useState(null);
+  console.log(tenantid)
+  const [landlordid, setLandlordId] = useState(null);
+  const [listingId, setListingId] = useState(null);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [amount, setAmount] = useState("");
 
   const userData = {
     amount,
     name,
     email,
+    schedule: null, // filled later when user selects
   };
-  const landlordid = localStorage.getItem("landlordId");
-  const listingId = localStorage.getItem("listingId");
-  console.log({ amount });
 
   const [toggleInspect, setToggleInspect] = useState(false);
+  const [openPay, setOpenPay] = useState(false);
+  const [selectedSchedule, setSelectedSchedule] = useState(null);
+  const [activeTableIndex, setActiveTableIndex] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const scheduleOptions = [
+    { day: "Monday", time: "10am-4pm" },
+    { day: "Tuesday", time: "10am-4pm" },
+    { day: "Wednesday", time: "10am-4pm" },
+    { day: "Thursday", time: "12am-4pm" },
+    { day: "Friday", time: "10am-4pm" },
+    { day: "Saturday", time: "12am-4pm" },
+  ];
+
+  useEffect(() => {
+    getProductDetails();
+    setTenantId(JSON.parse(localStorage.getItem("id")));
+    setName(JSON.parse(localStorage.getItem("user")));
+    setEmail(JSON.parse(localStorage.getItem("email")));
+    setAmount(JSON.parse(localStorage.getItem("amount")));
+    setLandlordId(localStorage.getItem("landlordId"));
+    setListingId(localStorage.getItem("listingId"));
+  }, []);
+
+  const getProductDetails = async () => {
+    try {
+      const res = await axios.get(`${API_URL}/getOneListing/${productId}`);
+      setProductDetails(res.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleInspect = () => {
     const isloggedIn = localStorage.getItem("token");
@@ -46,92 +76,42 @@ const PropertyDetails = () => {
     setToggleInspect(true);
   };
 
-  const handleCancel = () => {
-    setToggleInspect(false);
+  const handleCancel = () => setToggleInspect(false);
+  const handleCancelPay = () => setOpenPay(false);
+  const handleOpenPay = () => setOpenPay(true);
+
+  const handleTableClick = (index) => {
+    const isActive = index === activeTableIndex;
+    setActiveTableIndex(isActive ? null : index);
+    setSelectedSchedule(isActive ? null : scheduleOptions[index]);
+    userData.schedule = isActive ? null : scheduleOptions[index];
   };
 
   const handlePayment = async () => {
-    const payload = {
-      ...userData,
-      schedule: selectedSchedule,
-    };
     try {
+      console.log(tenantid)
       const res = await axios.post(
-        `${API_URL}initialize/${tenantid}/${landlordid}/${listingId}`,
+        `${API_URL}/initialize/${tenantid}/${landlordid}/${listingId}`,
         userData
       );
       console.log(res);
       localStorage.setItem("transactionId", res?.data?.data?.refrence);
       toast.success(res?.data?.message);
+      // Uncomment this to redirect:
       // window.location.href = res?.data?.data?.checkout_url;
     } catch (error) {
       console.log(error);
-      toast.error(error?.response?.data?.message);
+      toast.error(error?.response?.data?.message || "Payment failed");
     }
   };
 
-  const getProductDetails = async () => {
-    try {
-      const res = await axios.get(`${API_URL}/getOneListing/${productId}`);
-      console.log(res.data.data);
-      setProductDetails(res.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getProductDetails();
-  }, []);
-
-  console.log(productD);
-
-  const images = [
-    "/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg",
-    "/IMG/f1e72efd74f50f435fd26aac95593895 (1).jpg",
-    "/IMG/251d5a5fc1a8245fe0a865f05388083b.jpg",
-    "/IMG/02959aaf05749951f238b1cbc0edcc31.jpg",
-    "/IMG/f217c589f3dc03cf9e6018c073eb242c.jpg",
-  ];
-
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-
-  const [activeTableIndex, setActiveTableIndex] = useState(null);
-  const [selectedSchedule, setSelectedSchedule] = useState(null);
-  const [openPay, setOpenPay] = useState(false);
-
-  const handleCancelPay = () => {
-    setOpenPay(false);
-  }
-
-  const handleOpenPay = () => {
-    setOpenPay(true);
-  }
-
-  const scheduleOptions = [
-    { day: "Monday", time: "10am-4pm" },
-    { day: "Tuesday", time: "10am-4pm" },
-    { day: "Wednesday", time: "10am-4pm" },
-    { day: "Thursday", time: "12am-4pm" },
-    { day: "Friday", time: "10am-4pm" },
-    { day: "Saturday", time: "12am-4pm" },
-  ];
-
-  const handleTableClick = (tabindex) => {
-    setActiveTableIndex((prevIndex) =>
-      prevIndex === tabindex ? null : tabindex
+  const nextImage = () =>
+    setCurrentImageIndex((prev) => (prev + 1) % (productD.listingImage?.length || 1));
+  const prevImage = () =>
+    setCurrentImageIndex((prev) =>
+      (prev - 1 + (productD.listingImage?.length || 1)) %
+      (productD.listingImage?.length || 1)
     );
-    setSelectedSchedule(
-      tabindex !== activeTableIndex ? scheduleOptions[tabindex] : null
-    );
-  };
 
   return (
     <>
@@ -152,7 +132,6 @@ const PropertyDetails = () => {
                   <img src={productD.listingImage?.[2]?.imageUrl} alt="" />
                 </span>
               </section>
-
               <section className="subImage2">
                 <span>
                   <img src={productD.listingImage?.[3]?.imageUrl} alt="" />
@@ -163,10 +142,14 @@ const PropertyDetails = () => {
               </section>
             </div>
           </div>
+
           <div className="propertyDetailImageMobile">
             <FaChevronLeft onClick={prevImage} className="arrowBtn left" />
             <span className="mobileImageHolder">
-              {/* <img src={images[currentImageIndex]} alt="property" / */}
+              <img
+                src={productD.listingImage?.[currentImageIndex]?.imageUrl}
+                alt="property"
+              />
             </span>
             <FaChevronRight onClick={nextImage} className="arrowBtn right" />
           </div>
@@ -174,10 +157,10 @@ const PropertyDetails = () => {
           <nav>
             <h3>{productD.title}</h3>
             <h3>
-              {productD.area},{productD.state}
+              {productD.area}, {productD.state}
             </h3>
             <p>
-              {productD.bedrooms} Bedrooms, {productD.bathrooms} Bathrooms ,{" "}
+              {productD.bedrooms} Bedrooms, {productD.bathrooms} Bathrooms,{" "}
               {productD.toilets} Toilets
             </p>
           </nav>
@@ -204,16 +187,15 @@ const PropertyDetails = () => {
             </li>
             <li>Ensure you meet the Agent in an open location.</li>
             <li>
-              The Agent does not represent HevanList and HevanList is not liable
-              for any monetary <br />
-              transaction between you and the Agent.
+              The Agent does not represent HavenList and HavenList is not liable
+              for any monetary transaction between you and the Agent.
             </li>
           </div>
           <a
             style={{ fontSize: "20px", marginBottom: "15px" }}
             href="https://docs.google.com/document/d/18EkarRCZfF9mRuQMsEqgeLB_Nja6LvkJAq8KLMWjNmk/edit?usp=sharing"
           >
-            Terms Of use
+            Terms Of Use
           </a>
         </div>
       </div>
@@ -221,7 +203,7 @@ const PropertyDetails = () => {
       <div className="modalpropertyDetailCard">
         <h2>
           N{productD.price}
-          <small>per Annum</small>
+          <small> per Annum</small>
         </h2>
         <div className="propertyDetailCardDate">
           <div className="dateWrapper">
@@ -229,7 +211,6 @@ const PropertyDetails = () => {
               <p>CHECK-IN</p>
               <p>4/17/2025</p>
             </span>
-
             <span className="propertyDetailCheckOut">
               <p>CHECK-out</p>
               <p>4/17/2025</p>
@@ -252,7 +233,6 @@ const PropertyDetails = () => {
             <h3>No agent fee</h3>
             <p>N0.00</p>
           </span>
-
           <span>
             <h3>No service fee</h3>
             <p>N0.00</p>
@@ -282,7 +262,8 @@ const PropertyDetails = () => {
             className="inspectText"
             onClick={() => handleTableClick(index)}
             style={{
-              backgroundColor: activeTableIndex === index ? "#2F80ED" : "white",
+              backgroundColor:
+                activeTableIndex === index ? "#2F80ED" : "white",
               color: activeTableIndex === index ? "white" : "#00A5CF",
               borderRadius: "20px",
             }}
@@ -308,12 +289,12 @@ const PropertyDetails = () => {
         width={500}
       >
         <div className="paymentModal">
-        <h2>Make Payment below</h2>
-        <p>
-          After Making Payment, You Will Receive a Confirmation Mail, to Confirm
-          your Payment and the Inspection Day
-        </p>
-        <button onClick={handlePayment}>Pay With Kora</button>
+          <h2>Make Payment below</h2>
+          <p>
+            After making payment, you will receive a confirmation email to
+            confirm your inspection.
+          </p>
+          <button onClick={handlePayment}>Pay With Kora</button>
         </div>
       </Modal>
 
