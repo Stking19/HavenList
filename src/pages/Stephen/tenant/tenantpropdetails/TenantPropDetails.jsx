@@ -291,7 +291,7 @@ const TenantPropDetails = () => {
         <button
           className="inspectBtn"
           disabled={selectedSchedule === null}
-          onClick={handleOpenPay}
+          onClick={""}
         >
           Inspect
         </button>
@@ -318,9 +318,12 @@ const TenantPropDetails = () => {
 
       <div className="modalpropertyDetailCardMobile">
         <h2>N{productD.price}</h2>
-        <button onClick={handlePayment}>
-            {loading ? <HashLoader color="white" size={30} /> : "Pay With Kora"}
-          </button>
+        <button
+          onClick={handleOpenPay}
+          className="propertyDetailRentBtn"
+        >
+          Rent
+        </button>
       </div>
     </>
   );
