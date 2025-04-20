@@ -7,7 +7,7 @@ import Loadscreen from "../../../src/loadscreen/Loadscreen";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const LandlordPropertyUpload = () => {
+const LandlordPropertyUpload = ({setActiveTab}) => {
   const [imgBox, setImgBox] = useState([
     { id: 1, imgUrl: "" },
     { id: 2, imgUrl: "" },
@@ -106,6 +106,9 @@ const LandlordPropertyUpload = () => {
       if (response.status === 201) {
         toast.success(response?.data?.message);
         resetInput();
+        setTimeout(() => {
+          setActiveTab(2)
+        }, 2000);
       }
     } catch (err) {
       console.log(err);
