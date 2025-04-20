@@ -320,7 +320,7 @@ const PropertyDetails = () => {
       <div className="modalpropertyDetailCardMobile">
         <h2>N{productD.price}</h2>
         <button
-          onClick={() => navigate("/success")}
+          onClick={handleOpenPay}
           className="propertyDetailRentBtn"
         >
           Rent
