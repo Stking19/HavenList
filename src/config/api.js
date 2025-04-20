@@ -88,13 +88,13 @@ export const signup = async (userData, role) => {
   }
 };
 
-export const resetPassword = async ({ Password, confirmPassword, role }) => {
-  const landlordId = localStorage.getItem("userId");
+export const resetPassword = async ({ password, confirmPassword, role }) => {
+  const resetToken = localStorage.getItem("resetToken");
   try {
     const endpoint =
-      role === "landlord" ? "reset-landlordpassword" : "reset-tenantpassword";
-    const response = await api.post(`${endpoint}/${landlordId}`, {
-      Password,
+      role === "landlord" ? "landlord/reset-password" : "tenant/reset-password";
+    const response = await api.post(`${endpoint}/${resetToken}`, {
+      password,
       confirmPassword,
     });
     toast.success(response.data.message);
@@ -154,10 +154,32 @@ export const getProfile = async (landlordId) => {
         },
       }
     );
-    toast.success(response.data.message);
     console.log(response) 
+    return response?.data?.data;
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const updateProfile = async (profileId, formData) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await api.put(
+      `updateLandlordProfile/${profileId}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response) 
+    toast.success(response.data.message)
+    return response?.data?.data;
+  } catch (error) {
+    console.log(error);
+    toast.error(error?.response?.data?.message)
   }
 };
 

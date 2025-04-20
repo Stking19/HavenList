@@ -29,7 +29,6 @@ const LandlordPropertyUpload = ({setActiveTab}) => {
     price: "",
     year: "",
   });
-  console.log(userInput);
 
   const handleImageUpload = (e, index) => {
     const file = e.target.files[0];
@@ -56,7 +55,6 @@ const LandlordPropertyUpload = ({setActiveTab}) => {
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-  console.log(landlord);
 
   const [isloading, setIsLoading] = useState(false)
   const resetInput = () => {
@@ -145,10 +143,12 @@ const LandlordPropertyUpload = ({setActiveTab}) => {
                 type="text"
                 placeholder="e.g newly built 3 bedroom flat in a serene neighbourhood"
                 value={userInput.title}
+                maxLength={30}
                 onChange={(e) =>
                   setUserInput({ ...userInput, title: e.target.value })
                 }
               />
+              <small className="titleLength" >{userInput.title.length}/30</small>
             </span>
 
             <span className="uploadTitle">
@@ -222,11 +222,13 @@ const LandlordPropertyUpload = ({setActiveTab}) => {
                 type="text"
                 placeholder="e.g newly built 3 bedroom flat in a serene neighbourhood"
                 className="desc"
+                maxLength={150}
                 value={userInput.description}
                 onChange={(e) =>
                   setUserInput({ ...userInput, description: e.target.value })
                 }
               />
+              <small className="titleLength" >{userInput.description.length}/150</small>
             </span>
           </div>
 
@@ -241,17 +243,20 @@ const LandlordPropertyUpload = ({setActiveTab}) => {
                   <input
                     type="text"
                     placeholder="Street"
+                    maxLength={30}
                     value={userInput.street}
                     onChange={(e) =>
                       setUserInput({ ...userInput, street: e.target.value })
                     }
                   />
+                  <small className="titleLength" >{userInput.street.length}/30</small>
                 </span>
 
                 <select name="area"
                   placeholder="Area"
                   className="areaSelect"
                   value={userInput.area}
+                  style={{ marginBottom: "20px"}}
                   onChange={(e) =>
                     setUserInput({ ...userInput, area: e.target.value })
                   }

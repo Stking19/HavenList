@@ -1,0 +1,337 @@
+.listingCardMain {
+    min-height: 39vh;
+    width: 45%;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin: 10px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.listingCardMain:hover {
+    transform: translateY(-5px);
+}
+
+.listingCardContentHolder {
+    height: max-content;
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.listingPropertyImage {
+    height: 250px;
+    width: 45%;
+}
+
+.listingPropertyImage img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.listingPropertyDetails {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.listingFooter {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    background-color: #E2E7E2;
+    align-items: center;
+    gap: 10px;
+}
+
+.listingFooterContent {
+    border-right: 1px solid black;
+    height: 100%;
+    width: 25%;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.listingFooter span {
+    height: 100%;
+    width: 25%;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media screen and (max-width: 361px){
+    .listingCardMain {
+        width: 100%;
+        min-height: auto;
+        margin: 5px 0;
+    }
+
+    .listingPropertyImage {
+        width: 100%;
+        height: 150px;
+    }
+
+    .listingPropertyDetails {
+        font-size: 12px;
+        padding: 8px;
+
+        & h2{
+            font-size: 14px;
+        }
+    }
+
+    .listingFooter {
+        height: 30%;
+        gap: 15px;
+    }
+
+    .listingFooterContent {
+        width: max-content;
+        height: 100%;
+        border-right: none;
+    }
+    
+    .listingFooter span {
+        height: 100%;
+        width:max-content;
+        
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .listingCardMain {
+        width: 105%;
+        min-height: auto;
+        margin: 20px 0;
+    }
+
+    .listingPropertyImage {
+        width: 100%;
+        height: 150px;
+    }
+
+    .listingPropertyDetails {
+        font-size: 12px;
+        padding: 8px;
+
+        & h2{
+            font-size: 14px;
+        }
+    }
+
+    .listingFooter {
+        height: 22%;
+        gap: 10px;
+    }
+
+    .listingFooterContent {
+        width: max-content;
+        height: 100%;
+        border-right: none;
+    }
+    
+    .listingFooter span {
+        height: 100%;
+        width:max-content;
+        
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .listingCardMain {
+        width: 90%;
+        min-height: auto;
+    }
+
+    .listingPropertyImage {
+        width: 100%;
+        height: 200px;
+    }
+
+    .listingPropertyDetails {
+        width: 100%;
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .listingFooter {
+        height: 25%;
+    }
+
+    .listingFooterContent {
+        width: 33.33%;
+        border-right: none;
+    }
+
+    .listingFooter span {
+        width: max-content;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px){
+    .listingCardMain {
+        min-height: 39vh;
+        width: 45%;
+        background-color: white;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        margin: 10px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+    
+    .listingCardMain:hover {
+        transform: translateY(-5px);
+    }
+    
+    .listingCardContentHolder {
+        height: 80%;
+        width: 100%;
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    
+    .listingPropertyImage {
+        height: 95%;
+        width: 45%;
+    }
+    
+    .listingPropertyImage img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+    
+    .listingPropertyDetails {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        justify-content: center;
+        font-size: 15px;
+    }
+    
+    .listingFooter {
+        height: 20%;
+        width: 100%;
+        display: flex;
+        background-color: #E2E7E2;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .listingFooterContent {
+        border-right: 1px solid black;
+        height: 100%;
+        width: 25%;
+        gap: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .listingFooter span {
+        height: 100%;
+        width: 25%;
+        gap: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media screen and (min-width:1025) {
+    .listingCardMain {
+        min-height: 39vh;
+        width: 45%;
+        background-color: white;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        margin: 10px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+    
+    .listingCardMain:hover {
+        transform: translateY(-5px);
+    }
+    
+    .listingCardContentHolder {
+        height: 80%;
+        width: 100%;
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    
+    .listingPropertyImage {
+        height: 95%;
+        width: 45%;
+    }
+    
+    .listingPropertyImage img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+    
+    .listingPropertyDetails {
+        height: 100%;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        justify-content: center;
+        font-size: 15px;
+    }
+    
+    .listingFooter {
+        height: 20%;
+        width: 100%;
+        display: flex;
+        background-color: #E2E7E2;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .listingFooterContent {
+        border-right: 1px solid black;
+        height: 100%;
+        width: 25%;
+        gap: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .listingFooter span {
+        height: 100%;
+        width: 25%;
+        gap: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+

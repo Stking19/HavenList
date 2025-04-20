@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { createProfile, getProfile } from "../../../config/api";
+import { createProfile, getProfile, updateProfile } from "../../../config/api";
 import "./profilepage.css";
 import { FiEdit2 } from "react-icons/fi";
+import Loadscreen from "../../../loadscreen/Loadscreen";
 
 const dataURLtoBlob = (dataURL) => {
   const arr = dataURL.split(",");
@@ -18,8 +19,7 @@ const dataURLtoBlob = (dataURL) => {
 const mail = JSON.parse(localStorage.getItem("email"));
 const name = JSON.parse(localStorage.getItem("user"));
 
-
-function ProfilePage({ setProfileImage, setFirstName }) {
+function ProfilePage() {
   const [details, setDetails] = useState({
     fullName: name || "",
     email: mail || "",
@@ -28,6 +28,7 @@ function ProfilePage({ setProfileImage, setFirstName }) {
     state: "",
   });
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [landlordId, setLandlordId] = useState(null);
   const [editMode, setEditMode] = useState({
     fullName: true,
@@ -37,16 +38,19 @@ function ProfilePage({ setProfileImage, setFirstName }) {
   });
   const [profileExists, setProfileExists] = useState(false);
   const fileInputRef = useRef(null);
+  const [profileId, setProfileId] = useState(null);
 
   useEffect(() => {
     const storedLandlordId = JSON.parse(localStorage.getItem("id"));
     const profileId = JSON.parse(localStorage.getItem("landlordprofileid"));
     setLandlordId(storedLandlordId);
+    setProfileId(profileId);
     fetchProfile(profileId);
   }, []);
 
   const fetchProfile = async (id) => {
     try {
+      setLoading(true);
       const profile = await getProfile(id);
       if (profile) {
         setDetails({
@@ -57,7 +61,8 @@ function ProfilePage({ setProfileImage, setFirstName }) {
           state: profile.state,
         });
         setProfileExists(true);
-        console.log(profile)
+        setLoading(false);
+        console.log(profile);
       }
     } catch (err) {
       console.log("No existing profile found.");
@@ -100,7 +105,11 @@ function ProfilePage({ setProfileImage, setFirstName }) {
         formData.append("profileImage", imageBlob, "profileImage.jpg");
       }
 
-      await createProfile(landlordId, formData);
+      if (profileExists) {
+        await updateProfile(profileId, formData);
+      } else {
+        await createProfile(landlordId, formData);
+      }
       setImage(null);
       fetchProfile(landlordId);
       setEditMode({
@@ -116,11 +125,17 @@ function ProfilePage({ setProfileImage, setFirstName }) {
 
   const handleCancel = () => {
     setDetails({
-      fullName: "",
+      fullName: name,
       email: mail,
       street: "",
       locality: "",
       state: "",
+    });
+    setEditMode({
+      fullName: true,
+      street: true,
+      locality: true,
+      state: true,
     });
     setImage(null);
     if (fileInputRef.current) {
@@ -134,10 +149,7 @@ function ProfilePage({ setProfileImage, setFirstName }) {
       {editMode[fieldKey] ? (
         <div className="readonly-field">
           <span>{value || "N/A"}</span>
-          <FiEdit2
-            className="edit-icon"
-            onClick={() => toggleEdit(fieldKey)}
-          />
+          <FiEdit2 className="edit-icon" onClick={() => toggleEdit(fieldKey)} />
         </div>
       ) : (
         <input
@@ -153,8 +165,15 @@ function ProfilePage({ setProfileImage, setFirstName }) {
 
   return (
     <div>
+      {loading && (
+        <div className="uploadOverlay">
+          <Loadscreen />
+        </div>
+      )}
       <div className="informationdetailcont">
-        <h1 style={{ marginLeft: "30px", paddingTop: "10px", fontSize: "27px" }}>
+        <h1
+          style={{ marginLeft: "30px", paddingTop: "10px", fontSize: "27px" }}
+        >
           My Profile
         </h1>
         <form className="profileform" onSubmit={handleSubmitProfile}>
@@ -225,7 +244,11 @@ function ProfilePage({ setProfileImage, setFirstName }) {
             </div>
 
             <div className="actionbuttonwrapper1">
-              <button type="button" className="cancelbtn1" onClick={handleCancel}>
+              <button
+                type="button"
+                className="cancelbtn1"
+                onClick={handleCancel}
+              >
                 Cancel
               </button>
               <button type="submit" className="submitbtn">
