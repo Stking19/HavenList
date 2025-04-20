@@ -318,12 +318,9 @@ const TenantPropDetails = () => {
 
       <div className="modalpropertyDetailCardMobile">
         <h2>N{productD.price}</h2>
-        <button
-          onClick={() => navigate("/success")}
-          className="propertyDetailRentBtn"
-        >
-          Rent
-        </button>
+        <button onClick={handlePayment}>
+            {loading ? <HashLoader color="white" size={30} /> : "Pay With Kora"}
+          </button>
       </div>
     </>
   );
