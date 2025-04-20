@@ -55,8 +55,7 @@ const PropertyDetails = () => {
   const prevImage = () => {
     setCurrentImageIndex((prev) =>
       (prev - 1 + (productD.listingImage?.length || 1)) %
-      (productD.listingImage?.length || 1)
-      setLoading(false);
+      (productD.listingImage?.length || 1))
       toast.error(error?.response?.data?.message);
     }
   };
