@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./searchbar.css";
 import { FiSearch } from "react-icons/fi";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const SearchBar = ({ onSearch }) => {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -10,9 +11,18 @@ const SearchBar = ({ onSearch }) => {
     area: '',
     type: '',
     bedrooms: '',
-    bathrooms: '',
-    price: ''
+    bathrooms: ''
   });
+
+  useEffect(() => {
+    const { area, type, bedrooms, bathrooms } = searchInput;
+    const allEmpty = !area && !type && !bedrooms && !bathrooms;
+    if (allEmpty) {
+      axios.get(`${API_URL}getAllListings`)
+        .then(res => onSearch(res.data.data))
+        .catch(err => console.log(err));
+    }
+  }, [searchInput, API_URL, onSearch]);
 
   const handleOnchange = (e) => {
     const { name, value } = e.target;
@@ -20,14 +30,15 @@ const SearchBar = ({ onSearch }) => {
   };
 
   const searchListing = async () => {
-    const { area, type, bedrooms, bathrooms, minrent, maxrent } = searchInput;
+    const { area, type, bedrooms, bathrooms } = searchInput;
     try {
       const res = await axios.get(`${API_URL}/searchListing`, {
-        params: { area, type, bedrooms, bathrooms, minrent, maxrent }
+        params: { area, type, bedrooms, bathrooms }
       });
       onSearch(res.data.data);
     } catch (error) {
       console.log(error);
+      toast.error(error.response?.data?.message || 'Search failed');
     }
   };
 
@@ -59,27 +70,17 @@ const SearchBar = ({ onSearch }) => {
       <div className="filters">
         <select name="type" onChange={handleOnchange} value={searchInput.type}>
           <option value=''>Type</option>
-          <option value="flat">Flat</option>
-          <option value="bungalow">Bungalow</option>
-          <option value="mini-flat">Mini-flat</option>
-          <option value="duplex">Duplex</option>
+          {/* Other type options */}
         </select>
 
         <select name="bedrooms" onChange={handleOnchange} value={searchInput.bedrooms}>
           <option value=''>Bedrooms</option>
-          {[1,2,3,4,5].map(n => <option key={n} value={n}>{n}</option>)}
+          {[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}
         </select>
 
         <select name="bathrooms" onChange={handleOnchange} value={searchInput.bathrooms}>
           <option value=''>Bathrooms</option>
-          {[1,2,3,4,5].map(n => <option key={n} value={n}>{n}</option>)}
-        </select>
-
-        <select name="price" onChange={handleOnchange} value={searchInput.price}>
-          <option value=''>Price</option>
-          {[500000,600000,700000,800000,900000,1000000,2000000,3000000,4000000,5000000].map(val => (
-            <option key={val} value={val}>{val.toLocaleString()}</option>
-          ))}
+          {[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}
         </select>
       </div>
     </div>

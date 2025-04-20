@@ -5,59 +5,28 @@ import { FaAngleRight, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Modal } from "antd";
+import { HashLoader } from "react-spinners";
 
 const TenantPropDetails = () => {
   const API_URL = "https://heavenlist2-zaz3.onrender.com/api/v1";
   const { productId } = useParams();
-  const navigate = useNavigate();
-
-  // Product details and image slider
   const [productD, setProductDetails] = useState({});
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [loading, setLoading] = useState(false);
 
-  // State for tenant and listing information
-  const [tenantid, setTenantId] = useState(null);
-  const [name, setName] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [amount, setAmount] = useState(null);
-  const [landlordid, setLandlordId] = useState(null);
-  const [listingId, setListingId] = useState(null);
+  console.log(productId);
+  const tenantid = JSON.parse(localStorage.getItem("id"));
+  const name = JSON.parse(localStorage.getItem("user"));
+  const email = JSON.parse(localStorage.getItem("email"));
+  const amount = JSON.parse(localStorage.getItem("amount"));
 
-  const userData = { amount, name, email };
-
-  const [toggleInspect, setToggleInspect] = useState(false);
-  const [openPay, setOpenPay] = useState(false);
-  const [activeTableIndex, setActiveTableIndex] = useState(null);
-  const [selectedSchedule, setSelectedSchedule] = useState(null);
-
-  const scheduleOptions = [
-    { day: "Monday", time: "10am-4pm" },
-    { day: "Tuesday", time: "10am-4pm" },
-    { day: "Wednesday", time: "10am-4pm" },
-    { day: "Thursday", time: "12am-4pm" },
-    { day: "Friday", time: "10am-4pm" },
-    { day: "Saturday", time: "12am-4pm" },
-  ];
-
-  useEffect(() => {
-    getProductDetails();
-
-    setTenantId(JSON.parse(localStorage.getItem("id")));
-    setName(JSON.parse(localStorage.getItem("user")));
-    setEmail(JSON.parse(localStorage.getItem("email")));
-    setAmount(JSON.parse(localStorage.getItem("amount")));
-    setLandlordId(localStorage.getItem("landlordId"));
-    setListingId(localStorage.getItem("listingId"));
-  }, []);
-
-  const getProductDetails = async () => {
-    try {
-      const res = await axios.get(`${API_URL}/getOneListing/${productId}`);
-      setProductDetails(res.data.data);
-    } catch (error) {
-      console.log(error);
-    }
+  const userData = {
+    amount,
+    name,
+    email,
   };
+  const landlordid = localStorage.getItem("landlordId");
+  const listingId = localStorage.getItem("listingId");
+  console.log({ landlordid, listingId });
 
   const handleInspect = () => setToggleInspect(true);
   const handleCancel = () => setToggleInspect(false);
@@ -65,37 +34,59 @@ const TenantPropDetails = () => {
   const handleCancelPay = () => setOpenPay(false);
 
   const handlePayment = async () => {
+    setLoading(true);
     try {
       const payload = { ...userData};
       const res = await axios.post(
         `${API_URL}initialize/${tenantid}/${landlordid}/${listingId}`,
         payload
       );
-      localStorage.setItem("transactionId", res?.data?.data?.refrence);
+      console.log(res);
+      localStorage.setItem("transactionId", res?.data?.data?.reference);
+      setLoading(false);
       toast.success(res?.data?.message);
-      // window.location.href = res?.data?.data?.checkout_url;
+      setTimeout(() => {
+        window.location.href = res?.data?.data?.checkout_url;
+      }, 3000);
     } catch (error) {
+      console.log(error);
+      setLoading(false);
       toast.error(error?.response?.data?.message);
       console.log(error);
     }
   };
 
-  const nextImage = () =>
-    setCurrentImageIndex((prev) => (prev + 1) % productD.listingImage?.length);
-  const prevImage = () =>
-    setCurrentImageIndex(
-      (prev) =>
-        (prev - 1 + productD.listingImage?.length) %
-        productD.listingImage?.length
-    );
+  useEffect(() => {
+    getProductDetails();
+  }, []);
 
-  const handleTableClick = (tabindex) => {
-    setActiveTableIndex((prevIndex) =>
-      prevIndex === tabindex ? null : tabindex
-    );
-    setSelectedSchedule(
-      tabindex !== activeTableIndex ? scheduleOptions[tabindex] : null
-    );
+  console.log(productD);
+
+  const images = [
+    "/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg",
+    "/IMG/f1e72efd74f50f435fd26aac95593895 (1).jpg",
+    "/IMG/251d5a5fc1a8245fe0a865f05388083b.jpg",
+    "/IMG/02959aaf05749951f238b1cbc0edcc31.jpg",
+    "/IMG/f217c589f3dc03cf9e6018c073eb242c.jpg",
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const [openPay, setOpenPay] = useState(false);
+
+  const handleCancelPay = () => {
+    setOpenPay(false);
+  };
+
+  const handleOpenPay = () => {
+    setOpenPay(true);
   };
 
   return (
@@ -154,8 +145,8 @@ const TenantPropDetails = () => {
 
           <div className="aboutTexts">
             <h3>About this place</h3>
-            <p>{productD.description}</p>
-          </div>
+            <p style={{width: "50%"}}>{productD.description}</p>
+          </span>
 
           <div className="propertyDetailSafeTips">
             <h3>Safety Tips</h3>
@@ -190,7 +181,7 @@ const TenantPropDetails = () => {
             </span>
           </div>
         </div>
-        <button onClick={handleInspect} className="propertyDetailRentBtn">
+        <button onClick={handleOpenPay} className="propertyDetailRentBtn">
           Rent
         </button>
         <p>You won’t be charged extra</p>
@@ -211,41 +202,6 @@ const TenantPropDetails = () => {
       </div>
 
       <Modal
-        open={toggleInspect}
-        onCancel={handleCancel}
-        okButtonProps={{ style: { display: "none" } }}
-        cancelButtonProps={{ style: { display: "none" } }}
-        width={500}
-      >
-        <h2>SCHEDULE FOR INSPECTION</h2>
-        <p style={{ fontWeight: "500" }}>
-          Select a Day and Time you would be available to go for an inspection
-        </p>
-        {scheduleOptions.map((option, index) => (
-          <span
-            key={index}
-            className="inspectText"
-            onClick={() => handleTableClick(index)}
-            style={{
-              backgroundColor: activeTableIndex === index ? "#2F80ED" : "white",
-              color: activeTableIndex === index ? "white" : "#00A5CF",
-              borderRadius: "20px",
-            }}
-          >
-            <h2>{option.day}</h2>
-            <p style={{ fontSize: "16px" }}>{option.time}</p>
-          </span>
-        ))}
-        <button
-          className="inspectBtn"
-          disabled={selectedSchedule === null}
-          onClick={handleOpenPay}
-        >
-          Inspect
-        </button>
-      </Modal>
-
-      <Modal
         open={openPay}
         onCancel={handleCancelPay}
         okButtonProps={{ style: { display: "none" } }}
@@ -255,17 +211,19 @@ const TenantPropDetails = () => {
         <div className="paymentModal">
           <h2>Make Payment below</h2>
           <p>
-            After Making Payment, You Will Receive a Confirmation Mail, to
-            confirm your Payment and the Inspection Day
+            After Making Payment, You Will Be Asked To Select A Day and Time To
+            Go for an Inspection of the property.
           </p>
-          <button onClick={handlePayment}>Pay With Kora</button>
+          <button onClick={handlePayment}>
+            {loading ? <HashLoader color="white" size={30} /> : "Pay With Kora"}
+          </button>
         </div>
       </Modal>
 
       <div className="modalpropertyDetailCardMobile">
         <h2>N{productD.price}</h2>
         <button
-          onClick={() => navigate("/success")}
+          onClick={handleOpenPay}
           className="propertyDetailRentBtn"
         >
           Rent

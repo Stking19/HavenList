@@ -1,22 +1,41 @@
 import React, { useEffect, useState } from 'react'
 import './landLordListig.css'
-import ListingCard from '../../components/listingCard/ListingCard'
 import axios from 'axios';
+import DashboardListingCard from '../../components/dashboardlistingcard/DashboardListingCard';
+import toast from 'react-hot-toast';
 
 
-const LandLordListing = () => {
-
-
+const LandLordListing = ({setLandlordDashboard}) => {
 
   const API_URL = import.meta.env.VITE_API_URL;
 
   const [listingHolder, setListingHolder] = useState([])
   const token = localStorage.getItem('token')
+  const landlordId = JSON.parse(localStorage.getItem('id'))
 
+  const deleteListing = async (item) => {
+    console.log(item, "this is the item")
+    const confirm = window.confirm("Are you sure you want to delete this listing?");
+    if (!confirm) return;
+    try {
+      const res = await axios.delete(`${API_URL}deleteListing/${landlordId}/${item}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token} `
+        },
+      })
+      console.log(res)
+      toast.success(res?.data?.message)
+      setLandlordDashboard(res?.data?.total)
+      setListingHolder((prev) => prev.filter((listing) => listing.id !== item))
+    } catch (error) {
+      console.log(error)
+      toast.error(error?.response?.data?.message || 'Failed to delete listing')
+    }
+  }
 
+  useEffect(() => {
   const landLordListing = async () => {
-    const landlordId = localStorage.getItem('id')
-    console.log(landlordId)
     try {
       const res = await axios.get(`${API_URL}getAllListingsByLandlord/${landlordId}`, {
         headers: {
@@ -24,19 +43,16 @@ const LandLordListing = () => {
           Authorization: `Bearer ${token} `
         },
       })
-      console.log(res)
-      setListingHolder(res.data.data)
+      setLandlordDashboard(res?.data?.total)
+      setListingHolder(res?.data?.data)
     } catch (error) {
-      console.log(error)
+      // console.log(error)
     }
   }
-
-  useEffect(() => {
+  if (landlordId) {
     landLordListing()
+  }
   }, [])
-
-
-  console.log(listingHolder)
 
   return (
     <div className='landLordListingMain'>
@@ -47,11 +63,10 @@ const LandLordListing = () => {
         <div className='landlordListingHolder'>
 
           {listingHolder?.length === 0 ? 'No Listed Property!' :
-            listingHolder?.map((item, index)=>(
-              <ListingCard  key={index} items={item} />
+            listingHolder?.map((item)=>(
+              <DashboardListingCard  key={item?.id} items={item} onDelete={() => deleteListing(item?.id)}/>
             ))
           }
-
         </div>
       </div>
     </div>

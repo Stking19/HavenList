@@ -9,7 +9,7 @@ import { IoCaretBackCircleSharp } from "react-icons/io5";
 
 const PasswordReset = () => {
   const navigate = useNavigate();
-  const { otp, role } = useParams();
+  const { role } = useParams();
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -36,7 +36,7 @@ const PasswordReset = () => {
 
     try {
       const response = await resetPassword({ password, confirmPassword, role });
-      toast.success(response.data.message);
+      console.log(response);
       setTimeout(() => {
         navigate(`/sign-in/${role}`);
       }, 3000);
