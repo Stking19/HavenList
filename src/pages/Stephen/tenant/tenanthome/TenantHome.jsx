@@ -13,7 +13,9 @@ import axios from "axios";
 
 
 const TenantHome = () => {
-  const API_URL = "https://heavenlist2-zaz3.onrender.com/api/v1";
+  const API_URL = import.meta.env.VITE_API_URL;
+  
+
   const [allListings, setAllListings] = useState([]);
   const [details, setDetails] = useState(null);
   const { ref, inView } = useInView({ triggerOnce: true });

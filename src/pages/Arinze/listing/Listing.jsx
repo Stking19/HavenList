@@ -5,8 +5,7 @@ import SearchBar from '../../../components/searchbar/SearchBar';
 import axios from 'axios';
 
 const Listing = () => {
-  // const API_URL = import.meta.env.VITE_API_URL;
-  const API_URL = "https://heavenlist2-zaz3.onrender.com/api/v1";
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const [allListing, setAllListings] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);

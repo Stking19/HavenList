@@ -11,7 +11,8 @@ import toast from "react-hot-toast";
 import { Modal } from "antd";
 
 const PropertyDetails = () => {
-  const API_URL = "https://heavenlist2-zaz3.onrender.com/api/v1";
+  const API_URL = import.meta.env.VITE_API_URL;
+  
   const { productId } = useParams();
   const [productD, setProductDetails] = useState({});
 

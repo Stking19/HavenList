@@ -1,10 +1,10 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const API_URL = "https://heavenlist2-zaz3.onrender.com/api/v1/"
-
+// const API_URL = "https://heavenlist2-zaz3.onrender.com/api/v1/"
+const apiUrl = import.meta.env.VITE_API_URL;
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: apiUrl,
   headers: {
     "Content-Type": "application/json", 
   },
@@ -138,52 +138,6 @@ export const createProfile = async (landlordId, formData) => {
     toast.error(error?.response?.data?.message)
   }
 };
-
-export const getLandlordProfile = async (landlordProfileId) => {
-  try {
-    const token = localStorage.getItem("token");
-    const response = await api.get(`getlandlordprofile/${landlordProfileId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    if (response.status === 200) {
-      const { data, message } = response.data;
-      toast.success("Profile fetched successfully");
-      return { profile: data, message };
-    }
-  } catch (error) {
-    console.log(error);
-    toast.error(error?.response?.data?.message || "Failed to fetch profile");
-  }
-};
-
-export const updateLandlordProfileAsync = async (landlordProfileId, formData) => {
-  try {
-    const token = localStorage.getItem("token");
-
-    const response = await api.put(`updateLandlordProfile/${landlordProfileId}`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    if (response.status === 200) {
-      const { data, message } = response.data;
-      localStorage.setItem("profileImage", JSON.stringify(data.image));
-      toast.success(message || "Profile updated successfully");
-      return data;
-    }
-  } catch (error) {
-    console.log(error);
-    toast.error(error?.response?.data?.message || "Failed to update profile");
-  }
-};
-
-
-
 
 export default api;
  

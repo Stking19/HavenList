@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import {
-  createProfile,
-  getLandlordProfile,
-  updateLandlordProfileAsync,
+  createProfile
 } from "../../../config/api";
+import { useRef } from "react";
 import "./profilepage.css";
 
 const dataURLtoBlob = (dataURL) => {
@@ -18,8 +17,8 @@ const dataURLtoBlob = (dataURL) => {
   }
   return new Blob([u8arr], { type: mime });
 };
-
 const mail = JSON.parse(localStorage.getItem("email"));
+console.log(mail);
 const name = JSON.parse(localStorage.getItem("user"));
 
 function ProfilePage({ setProfileImage, setFirstName }) {
@@ -30,18 +29,14 @@ function ProfilePage({ setProfileImage, setFirstName }) {
     locality: "",
     state: "",
   });
-
   const [image, setImage] = useState(null);
   const [landlordId, setLandlordId] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [landlordProfileId, setLandlordProfileId] = useState(null);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
     const storedLandlordId = JSON.parse(localStorage.getItem("id"));
-    const storedProfileId = JSON.parse(localStorage.getItem("landlordprofileid"));
+    console.log(storedLandlordId);
     setLandlordId(storedLandlordId);
-    setLandlordProfileId(storedProfileId);
   }, []);
 
   const handleInputChange = (field) => (e) => {
@@ -56,6 +51,7 @@ function ProfilePage({ setProfileImage, setFirstName }) {
 
       reader.onloadend = () => {
         const base64Image = reader.result;
+        console.log(base64Image);
         setImage(base64Image);
       };
 
@@ -63,22 +59,7 @@ function ProfilePage({ setProfileImage, setFirstName }) {
     }
   };
 
-  const emptyForm = () => {
-    setDetails({
-      fullName: "",
-      email: "",
-      street: "",
-      locality: "",
-      state: "",
-    });
-    setImage(null);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = null;
-    }
-    setIsEditing(false);
-  };
-
-  const handleSubmit = async (e) => {
+  const handleCreateProfile = async (e) => {
     e.preventDefault();
     const { fullName, email, street, locality, state } = details;
 
@@ -92,71 +73,59 @@ function ProfilePage({ setProfileImage, setFirstName }) {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("fullName", fullName);
-    formData.append("email", email);
-    formData.append("street", street);
-    formData.append("locality", locality);
-    formData.append("state", state);
-
-    const imageBlob = dataURLtoBlob(image);
-    formData.append("profileImage", imageBlob, "profileImage.jpg");
-
     try {
-      if (isEditing) {
-        await updateLandlordProfileAsync(landlordProfileId, formData);
-        toast.success("Profile updated successfully!");
-      } else {
-        const data = await createProfile(landlordId, formData);
-        // console.log(data)
-        // localStorage.setItem("landlordprofileid", JSON.stringify(data.id));
-        // toast.success("Profile created successfully!");
-      }
+      const formData = new FormData();
+      formData.append("fullName", fullName);
+      formData.append("email", email);
+      formData.append("street", street);
+      formData.append("locality", locality);
+      formData.append("state", state);
 
-      const firstNameOnly = fullName.trim().split(" ")[0];
-      setFirstName(firstNameOnly);
-      emptyForm();
+      const imageBlob = dataURLtoBlob(image);
+      console.log(imageBlob);
+      formData.append("profileImage", imageBlob, "profileImage.jpg");
+
+      const data = await createProfile(landlordId, formData);
+      console.log(data)
+    
+
+      setImage(null);
     } catch (error) {
       console.error(error);
-      toast.error("Error submitting profile");
+      toast.error(error?.response?.data?.message)
+      
     }
   };
 
-  const handleEditProfile = async () => {
-    try {
-      const profileId = JSON.parse(localStorage.getItem("landlordprofileid"));
-      console.log(profileId)
-      const response = await getLandlordProfile(profileId);
-      const { fullName, email, street, locality, state, profileImage } = response.profile;
 
-      setDetails({
-        fullName,
-        email,
-        street,
-        locality,
-        state,
-      });
-
-      if (profileImage) {
-        setImage(profileImage);
-      }
-
-      setIsEditing(true);
-      toast.success("Profile loaded for editing");
-    } catch (error) {
-      console.error("Failed to load profile for editing", error);
-      toast.error("Error loading profile");
+  const handleCancel = () => {
+    setDetails({
+      fullName: "",
+      email: "",
+      street: "",
+      locality: "",
+      state: "",
+    });
+    setImage(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = null; 
     }
   };
+  
 
   return (
     <div>
       <div className="informationdetailcont">
-        <h1 style={{ marginLeft: "30px", paddingTop: "10px", fontSize: "27px" }}>
+        <h1
+          style={{ marginLeft: "30px", paddingTop: "10px", fontSize: "27px" }}
+        >
           My Profile
         </h1>
 
-        <form className="profileform" onSubmit={handleSubmit}>
+        <form
+          className="profileform"
+          onSubmit={handleCreateProfile}
+        >
           <div className="inforcontainer">
             <h2>Full Name</h2>
             <input
@@ -220,27 +189,25 @@ function ProfilePage({ setProfileImage, setFirstName }) {
               <input
                 type="file"
                 accept="image/*"
-                ref={fileInputRef}
+                ref={fileInputRef} 
                 onChange={handleImageChange}
               />
             </div>
 
             <div className="actionbuttonwrapper1">
-              <button type="button" className="cancelbtn1" onClick={emptyForm}>
+              <button
+                type="button"
+                className="cancelbtn1"
+                onClick={handleCancel}
+              >
                 Clear
               </button>
-              <button type="submit" className="submitbtn">
-                {isEditing ? "Update" : "Create"}
+              <button onClick={handleCreateProfile} type="submit" className="submitbtn">
+               update
               </button>
             </div>
           </div>
         </form>
-
-        <div style={{ marginTop: "10px" }}>
-          <button type="button" className="submitbtn" onClick={handleEditProfile}>
-            Edit Existing Profile
-          </button>
-        </div>
       </div>
     </div>
   );
