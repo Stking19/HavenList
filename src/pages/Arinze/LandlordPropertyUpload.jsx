@@ -7,7 +7,7 @@ import Loadscreen from "../../../src/loadscreen/Loadscreen";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const LandlordPropertyUpload = () => {
+const LandlordPropertyUpload = ({setActiveTab}) => {
   const [imgBox, setImgBox] = useState([
     { id: 1, imgUrl: "" },
     { id: 2, imgUrl: "" },
@@ -29,7 +29,6 @@ const LandlordPropertyUpload = () => {
     price: "",
     year: "",
   });
-  console.log(userInput);
 
   const handleImageUpload = (e, index) => {
     const file = e.target.files[0];
@@ -56,9 +55,31 @@ const LandlordPropertyUpload = () => {
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-  console.log(landlord);
 
   const [isloading, setIsLoading] = useState(false)
+  const resetInput = () => {
+    setUserInput({
+      title: "",
+      type: "",
+      bedrooms: "",
+      bathrooms: "",
+      toilets: "",
+      description: "",
+      street: "",
+      state:'',
+      partPayment:'',
+      area: "",
+      price: "",
+      year: "",
+    });
+    setImgBox([
+      { id: 1, imgUrl: "" },
+      { id: 2, imgUrl: "" },
+      { id: 3, imgUrl: "" },
+      { id: 4, imgUrl: "" },
+      { id: 5, imgUrl: "" },
+    ]);
+  }
 
   const handleUpload = async () => {
     setIsLoading(true);
@@ -83,6 +104,9 @@ const LandlordPropertyUpload = () => {
       if (response.status === 201) {
         toast.success(response?.data?.message);
         resetInput();
+        setTimeout(() => {
+          setActiveTab(2)
+        }, 2000);
       }
     } catch (err) {
       console.log(err);
@@ -119,10 +143,12 @@ const LandlordPropertyUpload = () => {
                 type="text"
                 placeholder="e.g newly built 3 bedroom flat in a serene neighbourhood"
                 value={userInput.title}
+                maxLength={30}
                 onChange={(e) =>
                   setUserInput({ ...userInput, title: e.target.value })
                 }
               />
+              <small className="titleLength" >{userInput.title.length}/30</small>
             </span>
 
             <span className="uploadTitle">
@@ -136,10 +162,6 @@ const LandlordPropertyUpload = () => {
                 <option value="Bungalow">Bungalow</option>
                 <option value="Flat/Apartment">Flat/Apartment</option>
                 <option value="Duplex">Duplex</option>
-                <option value="Detached House">Detached House</option>
-                <option value="Semi-Detached House">Semi-Detached House</option>
-                <option value="Terraced House">Terraced House</option>
-                <option value="Town House">Town House</option>
               </select>
             </span>
             <section className="numberOfBedsOpt">
@@ -200,11 +222,13 @@ const LandlordPropertyUpload = () => {
                 type="text"
                 placeholder="e.g newly built 3 bedroom flat in a serene neighbourhood"
                 className="desc"
+                maxLength={150}
                 value={userInput.description}
                 onChange={(e) =>
                   setUserInput({ ...userInput, description: e.target.value })
                 }
               />
+              <small className="titleLength" >{userInput.description.length}/150</small>
             </span>
           </div>
 
@@ -219,17 +243,20 @@ const LandlordPropertyUpload = () => {
                   <input
                     type="text"
                     placeholder="Street"
+                    maxLength={30}
                     value={userInput.street}
                     onChange={(e) =>
                       setUserInput({ ...userInput, street: e.target.value })
                     }
                   />
+                  <small className="titleLength" >{userInput.street.length}/30</small>
                 </span>
 
                 <select name="area"
                   placeholder="Area"
                   className="areaSelect"
                   value={userInput.area}
+                  style={{ marginBottom: "20px"}}
                   onChange={(e) =>
                     setUserInput({ ...userInput, area: e.target.value })
                   }

@@ -429,6 +429,169 @@
     font-size: 11px;
   }
 
+
+  @media (max-width: 390px) {
+    .fullpage {
+      width: 100%;
+      height: max-content;
+    }
+  
+    .herosession {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .secondcont {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .imgcont1 {
+      width: 95%;
+      margin: 0 auto;
+      height: 200px;
+    }
+  
+    .getstartedbtn {
+      display: block;
+      width: 100px;
+      font-weight: 500;
+      margin: 10px auto;
+      height: 38px;
+    }
+  
+    .buttonwrapper {
+      display: none;
+    }
+  
+    .textSession {
+      width: 95%;
+      margin: 10px auto 0;
+      height: auto;
+    }
+  
+    .valueswrawpper {
+      width: 95%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 0 10px;
+      margin: 60px auto 0;
+    }
+  
+    .mission,
+    .vision,
+    .value {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  
+      h1 {
+        font-size: 30px;
+      }
+  
+      h3 {
+        font-size: 18px;
+        font-weight: lighter;
+      }
+    }
+  
+    .photowrap {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .picwrapper1 {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin: 50px auto 0;
+    }
+  
+    .firstpic,
+    .secondpic,
+    .thirdpic,
+    .fourthpic {
+      width: 90%;
+      margin: 0 auto;
+    }
+  
+    .picwrapper2 {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: -30px;
+    }
+  
+    .fifthpic,
+    .sixthpic,
+    .seventhpic {
+      width: 90%;
+      height: 300px;
+      margin-top: 35px;
+    }
+  
+    .innercontainer {
+      width: 90%;
+      height: 100px;
+      margin: 0 auto;
+    }
+  
+    .bottomwrap {
+      margin-top: 120px;
+      margin-bottom: -180px;
+    }
+  
+    .rightside {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+  
+      h2 {
+        font-size: 12px;
+      }
+    }
+  
+    .leftside {
+      width: 140px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      margin-right: 10px;
+  
+      h2 {
+        font-size: 11px;
+      }
+  
+      span {
+        font-size: 10px;
+      }
+    }
+  
+    .socialmediawrap {
+      display: flex;
+      gap: 8px;
+  
+      h2 {
+        font-size: 13px;
+      }
+    }
+  }
+  
+
   @media (max-width: 460px) {
 
     .fullpage{
@@ -436,7 +599,12 @@
         height: max-content;
     }
     .herosession{
-        width: 400px;
+        width: 360px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+       
     }
 
     .secondcont{
@@ -445,12 +613,13 @@
         display: flex;
         flex-direction: column;
         
+        
     }
 
     .imgcont1{
-        width: 95%;
+        width: 87%;
         margin-left: 5px;
-        height: 250px;
+        height: 220px;
     }
 
     .getstartedbtn{
@@ -466,30 +635,30 @@
     }
 
     .textSession{
-        width: 400px;
+        width: 375px;
         height: 40%;
         margin-top: 10px;
-
-       
-
+        margin-left: 5px;
     }
 
     .valueswrawpper{
-        width: 380px;
-        height: 1270px;
+        width: 390px;
+        height: 1290px;
         display: flex;
         gap: 20px;
-        padding: 0px 0px 5px 5px;
+        padding: 0px 0px 5px 8px;
         flex-direction: column;
         margin-top: 90px;
+       
        
     }
 
     .mission{
-        width: 100%;
+        width: 88%;
         display: flex;
         flex-direction: column;
         gap: 10px;
+        /* background-color: aqua; */
        
 
         h1{
@@ -503,7 +672,7 @@
     }
 
     .vision{
-        width: 100%;
+        width: 88%;
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -519,7 +688,7 @@
     }
 
     .value{
-        width: 100%;
+        width: 88%;
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -544,9 +713,10 @@
     .picwrapper1{
         width: 100%;
         display: flex;
-        margin-right: 20px;
+        margin-left: 15px;
         flex-direction: column;
         gap: 40px;
+        margin-top: 60px;
     }
     
     .firstpic{
@@ -570,7 +740,7 @@
     display: flex;
     margin-top: -40px;
     flex-direction: column;
-    margin-left: 48px;
+    margin-left: 78px;
     
 }
 
@@ -586,12 +756,13 @@
 .innercontainer{
     width: 300px;
     height: 110px;
-    background-color: aqua;
+    margin-left: -10px;
 
 }
 
 .bottomwrap{
    margin-top: 150px;
+   margin-bottom: -199px;
 }
 
 .rightside{
@@ -609,6 +780,7 @@
 .leftside{
     width: 150px;
     display: flex;
+    margin-right: 20px;
     justify-content: center;
     align-items: center;
     flex-direction: column;

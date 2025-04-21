@@ -1,39 +1,70 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MdOutlineCancel } from "react-icons/md";
 import "./successcard.css";
 import Loadscreen from "../../loadscreen/Loadscreen";
+import { Modal } from "antd";
 
 function SuccessCard() {
   const navigate = useNavigate();
   const reff = localStorage.getItem("transactionId");
   const token = localStorage.getItem("token");
+  const [toggleInspect, setToggleInspect] = useState(false);
+
+  const scheduleOptions = [
+    { day: "Monday", time: "10am-4pm" },
+    { day: "Tuesday", time: "10am-4pm" },
+    { day: "Wednesday", time: "10am-4pm" },
+    { day: "Thursday", time: "12am-4pm" },
+    { day: "Friday", time: "10am-4pm" },
+    { day: "Saturday", time: "12am-4pm" },
+  ];
+
+  const handleInspect = () => {
+    setToggleInspect(true);
+  };
+
+  const handleCancel = () => {
+    setToggleInspect(false);
+  };
+
+  const [activeTableIndex, setActiveTableIndex] = useState(null);
+  const [selectedSchedule, setSelectedSchedule] = useState(null);
+
+  const handleTableClick = (tabindex) => {
+    setActiveTableIndex((prevIndex) =>
+      prevIndex === tabindex ? null : tabindex
+    );
+    setSelectedSchedule(
+      tabindex !== activeTableIndex ? scheduleOptions[tabindex] : null
+    );
+  };
 
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   };
   const [loading, setLoading] = useState(true);
+  const [loadings, setLoadings] = useState(true);
 
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const handlePaymentStatus = async () => {
-        setLoading(true);
+      setLoading(true);
       try {
         const res = await axios.get(`${API_URL}charges/${reff}`, { headers });
-        console.log(res.data.data);
+        console.log(res);
         if (res.data.status === "success") {
-           setLoading(false);
-          setTimeout(() => {
-            navigate("/home");
-          }, 3000);
-        } else {
-          toast.error("Payment Failed");
+          setLoading(false);
+          setLoadings(true);
         }
       } catch (error) {
         console.log(error);
         setLoading(false);
+        setLoadings(false);
+        setTimeout(() => {
+          navigate(-2)
+        }, 3000)
       }
     };
     if (reff) {
@@ -45,29 +76,62 @@ function SuccessCard() {
     <div className="successcardwrapper">
       {loading ? (
         <div className="uploadOverlay">
-            <Loadscreen />
+          <Loadscreen />
+        </div>
+      ) : null}
+      {loadings ? (
+        <div>
+          <h2>Payment Successfull</h2>{" "}
+          <p>
+            Thank you for your payment, please click{" "}
+            <span
+              onClick={handleInspect}
+              style={{ color: "blue", cursor: "pointer" }}
+            >
+              here
+            </span>{" "}
+            to select a time day for inspection of the property
+          </p>
         </div>
       ) : (
-        <div className="cardwrap">
-          <div className="cardheader">
-            <div className="innerheadercardwrap">
-              <MdOutlineCancel
-                style={{ cursor: "pointer" }}
-                onClick={() => navigate("/")}
-                size={30}
-              />
-            </div>
-          </div>
-
-          <div className="successicon">
-            <img src="/IMG/successcard.png" alt="Success" />
-          </div>
-
-          <div className="paymenttextwarp">
-            <h4>Payment Successful</h4>
-          </div>
-        </div>
+        <h2>Payments Failed</h2>
       )}
+
+      <Modal
+        open={toggleInspect}
+        onCancel={handleCancel}
+        okButtonProps={{ style: { display: "none" } }}
+        cancelButtonProps={{ style: { display: "none" } }}
+        width={500}
+      >
+        <h2>SCHEDULE FOR INSPECTION</h2>
+        <p style={{ fontWeight: "500" }}>
+          Select a Day and Time you would be available to go for an inspection
+          of the property
+        </p>
+        {scheduleOptions.map((option, index) => (
+          <span
+            key={index}
+            className="inspectText"
+            onClick={() => handleTableClick(index)}
+            style={{
+              backgroundColor: activeTableIndex === index ? "#2F80ED" : "white",
+              color: activeTableIndex === index ? "white" : "#00A5CF",
+              borderRadius: "20px",
+            }}
+          >
+            <h2>{option.day}</h2>
+            <p style={{ fontSize: "16px" }}>{option.time}</p>
+          </span>
+        ))}
+        <button
+          className="inspectBtn"
+          disabled={selectedSchedule === null}
+          onClick={""}
+        >
+          Inspect
+        </button>
+      </Modal>
     </div>
   );
 }

@@ -1,25 +1,21 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import "./tenantpropdetails.css";
-import {
-  FaAngleRight,
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa6";
+import { FaAngleRight, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import axios from "axios";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Modal } from "antd";
+import { HashLoader } from "react-spinners";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const TenantPropDetails = () => {
   const { productId } = useParams();
   const [productD, setProductDetails] = useState({});
+  const [loading, setLoading] = useState(false);
 
   console.log(productId);
-
-  const navigate = useNavigate();
   const tenantid = JSON.parse(localStorage.getItem("id"));
   const name = JSON.parse(localStorage.getItem("user"));
   const email = JSON.parse(localStorage.getItem("email"));
@@ -32,34 +28,26 @@ const TenantPropDetails = () => {
   };
   const landlordid = localStorage.getItem("landlordId");
   const listingId = localStorage.getItem("listingId");
-  console.log({ amount });
+  console.log({ landlordid, listingId });
 
-  const [toggleInspect, setToggleInspect] = useState(false);
-
-  const handleInspect = () => {
-    setToggleInspect(true);
-  };
-
-  const handleCancel = () => {
-    setToggleInspect(false);
-  };
 
   const handlePayment = async () => {
-    const payload = {
-      ...userData,
-      schedule: selectedSchedule,
-    };
+    setLoading(true);
     try {
       const res = await axios.post(
         `${API_URL}initialize/${tenantid}/${landlordid}/${listingId}`,
         userData
       );
       console.log(res);
-      localStorage.setItem("transactionId", res?.data?.data?.refrence);
+      localStorage.setItem("transactionId", res?.data?.data?.reference);
+      setLoading(false);
       toast.success(res?.data?.message);
-      // window.location.href = res?.data?.data?.checkout_url;
+      setTimeout(() => {
+        window.location.href = res?.data?.data?.checkout_url;
+      }, 3000);
     } catch (error) {
       console.log(error);
+      setLoading(false);
       toast.error(error?.response?.data?.message);
     }
   };
@@ -97,34 +85,14 @@ const TenantPropDetails = () => {
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  const [activeTableIndex, setActiveTableIndex] = useState(null);
-  const [selectedSchedule, setSelectedSchedule] = useState(null);
   const [openPay, setOpenPay] = useState(false);
 
   const handleCancelPay = () => {
     setOpenPay(false);
-  }
+  };
 
   const handleOpenPay = () => {
     setOpenPay(true);
-  }
-
-  const scheduleOptions = [
-    { day: "Monday", time: "10am-4pm" },
-    { day: "Tuesday", time: "10am-4pm" },
-    { day: "Wednesday", time: "10am-4pm" },
-    { day: "Thursday", time: "12am-4pm" },
-    { day: "Friday", time: "10am-4pm" },
-    { day: "Saturday", time: "12am-4pm" },
-  ];
-
-  const handleTableClick = (tabindex) => {
-    setActiveTableIndex((prevIndex) =>
-      prevIndex === tabindex ? null : tabindex
-    );
-    setSelectedSchedule(
-      tabindex !== activeTableIndex ? scheduleOptions[tabindex] : null
-    );
   };
 
   return (
@@ -183,7 +151,7 @@ const TenantPropDetails = () => {
             style={{ display: "flex", flexDirection: "column", gap: "10px" }}
           >
             <h3>About this place</h3>
-            <p>{productD.description}</p>
+            <p style={{width: "50%"}}>{productD.description}</p>
           </span>
 
           <div className="propertyDetailSafeTips">
@@ -237,7 +205,7 @@ const TenantPropDetails = () => {
             <FaAngleRight />
           </section>
         </div>
-        <button onClick={handleInspect} className="propertyDetailRentBtn">
+        <button onClick={handleOpenPay} className="propertyDetailRentBtn">
           Rent
         </button>
         <p>You won’t be charged extra</p>
@@ -259,42 +227,6 @@ const TenantPropDetails = () => {
       </div>
 
       <Modal
-        open={toggleInspect}
-        onCancel={handleCancel}
-        okButtonProps={{ style: { display: "none" } }}
-        cancelButtonProps={{ style: { display: "none" } }}
-        width={500}
-      >
-        <h2>SCHEDULE FOR INSPECTION</h2>
-        <p style={{ fontWeight: "500" }}>
-          Select a Day and Time you would be available to go for an inspection
-          of the property
-        </p>
-        {scheduleOptions.map((option, index) => (
-          <span
-            key={index}
-            className="inspectText"
-            onClick={() => handleTableClick(index)}
-            style={{
-              backgroundColor: activeTableIndex === index ? "#2F80ED" : "white",
-              color: activeTableIndex === index ? "white" : "#00A5CF",
-              borderRadius: "20px",
-            }}
-          >
-            <h2>{option.day}</h2>
-            <p style={{ fontSize: "16px" }}>{option.time}</p>
-          </span>
-        ))}
-        <button
-          className="inspectBtn"
-          disabled={selectedSchedule === null}
-          onClick={handleOpenPay}
-        >
-          Inspect
-        </button>
-      </Modal>
-
-      <Modal
         open={openPay}
         onCancel={handleCancelPay}
         okButtonProps={{ style: { display: "none" } }}
@@ -302,19 +234,21 @@ const TenantPropDetails = () => {
         width={500}
       >
         <div className="paymentModal">
-        <h2>Make Payment below</h2>
-        <p>
-          After Making Payment, You Will Receive a Confirmation Mail, to Confirm
-          your Payment and the Inspection Day
-        </p>
-        <button onClick={handlePayment}>Pay With Kora</button>
+          <h2>Make Payment below</h2>
+          <p>
+            After Making Payment, You Will Be Asked To Select A Day and Time To
+            Go for an Inspection of the property.
+          </p>
+          <button onClick={handlePayment}>
+            {loading ? <HashLoader color="white" size={30} /> : "Pay With Kora"}
+          </button>
         </div>
       </Modal>
 
       <div className="modalpropertyDetailCardMobile">
         <h2>N{productD.price}</h2>
         <button
-          onClick={() => navigate("/success")}
+          onClick={handleOpenPay}
           className="propertyDetailRentBtn"
         >
           Rent

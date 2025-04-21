@@ -1,15 +1,14 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const API_URL = "https://heavenlist2-zaz3.onrender.com/api/v1/"
 
+const API_URL = import.meta.env.VITE_API_URL;
 const api = axios.create({
   baseURL: API_URL,
   headers: {
-    "Content-Type": "application/json", 
+    "Content-Type": "application/json",
   },
 });
-
 
 api.interceptors.request.use(
   (config) => {
@@ -22,7 +21,6 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-
 api.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -33,7 +31,7 @@ api.interceptors.response.use(
   }
 );
 
-
+// LANDLORD LOGIN
 export const loginUser = async (credentials) => {
   try {
     const response = await api.post("loginlandlord", credentials);
@@ -42,7 +40,7 @@ export const loginUser = async (credentials) => {
     localStorage.setItem("user", JSON.stringify(data.fullName));
     localStorage.setItem("email", JSON.stringify(data.email));
     localStorage.setItem("id", JSON.stringify(data.id));
-    console.log(data)
+    console.log(data);
     toast.success(message);
     return data;
   } catch (error) {
@@ -50,6 +48,8 @@ export const loginUser = async (credentials) => {
     throw error;
   }
 };
+
+// TENANT LOGIN
 export const tenantLoginUser = async (credentials) => {
   try {
     const response = await api.post("loginTenant", credentials);
@@ -58,8 +58,7 @@ export const tenantLoginUser = async (credentials) => {
     localStorage.setItem("user", JSON.stringify(data.fullName));
     localStorage.setItem("email", JSON.stringify(data.email));
     localStorage.setItem("id", JSON.stringify(data.id));
-   
-    console.log(data)
+    console.log(data);
     toast.success(message);
     return data;
   } catch (error) {
@@ -68,12 +67,14 @@ export const tenantLoginUser = async (credentials) => {
   }
 };
 
+// SIGNUP
 export const signup = async (userData, role) => {
   try {
-    const endpoint = role === "landlord" ? "registerlandlord" : "registerTenant";
+    const endpoint =
+      role === "landlord" ? "registerlandlord" : "registerTenant";
     const response = await api.post(endpoint, userData);
     if (response.data?.success || response.status === 201) {
-      toast.success(response.data.message || "Signup successful!" || "");
+      toast.success(response.data.message || "Signup successful!");
       console.log(response);
       localStorage.setItem("userId", response?.data?.data?.id);
     } else {
@@ -81,18 +82,21 @@ export const signup = async (userData, role) => {
     }
   } catch (error) {
     const message = error?.response?.data?.message;
-    console.log(error)
+    console.log(error);
     toast.error(message);
     throw new Error(message);
   }
 };
 
-
-export const resetPassword = async ({Password, confirmPassword, role}) => {
-  const landlordId = localStorage.getItem("userId")
+export const resetPassword = async ({ password, confirmPassword, role }) => {
+  const resetToken = localStorage.getItem("resetToken");
   try {
-    const endpoint = role === "landlord" ? "reset-landlordpassword" : "reset-tenantpassword";
-    const response = await api.post(`${endpoint}/${landlordId}`, { Password, confirmPassword, });
+    const endpoint =
+      role === "landlord" ? "landlord/reset-password" : "tenant/reset-password";
+    const response = await api.post(`${endpoint}/${resetToken}`, {
+      password,
+      confirmPassword,
+    });
     toast.success(response.data.message);
     return response.data;
   } catch (error) {
@@ -101,12 +105,12 @@ export const resetPassword = async ({Password, confirmPassword, role}) => {
   }
 };
 
-
 export const forgetPassword = async (email, role) => {
   try {
-    const endpoint = role === "landlord" ? "landlordForgotpassword" : "TenantForgotpassword";
+    const endpoint =
+      role === "landlord" ? "landlordForgotpassword" : "TenantForgotpassword";
     const response = await api.post(endpoint, email);
-    console.log(response)
+    console.log(response);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -114,9 +118,8 @@ export const forgetPassword = async (email, role) => {
   }
 };
 
-
 export const createProfile = async (landlordId, formData) => {
-  console.log(formData)
+  console.log(formData);
   try {
     const token = localStorage.getItem("token");
     const response = await api.post(`createProfile/${landlordId}`, formData, {
@@ -125,20 +128,60 @@ export const createProfile = async (landlordId, formData) => {
         Authorization: `Bearer ${token}`,
       },
     });
-   console.log(response);
-    if(response.status === 201){
-      const {data, message } = response.data;
-      localStorage.setItem("profileImage", JSON.stringify(data.image))
+    console.log(response);
+    if (response.status === 201) {
+      const { data, message } = response.data;
+      localStorage.setItem("profileImage", JSON.stringify(data.profileImage));
       localStorage.setItem("landlordprofileid", JSON.stringify(data.id));
       toast.success(message)
     }
-    return data;
   } catch (error) {
-    console.log(error)
+    console.log(error);
     toast.error(error?.response?.data?.message)
   }
 };
 
 
+export const getProfile = async (landlordId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await api.get(
+      `getlandlordprofile/${landlordId}`,
+      {},
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response) 
+    return response?.data?.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateProfile = async (profileId, formData) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await api.put(
+      `updateLandlordProfile/${profileId}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response) 
+    toast.success(response.data.message)
+    return response?.data?.data;
+  } catch (error) {
+    console.log(error);
+    toast.error(error?.response?.data?.message)
+  }
+};
+
 export default api;
- 

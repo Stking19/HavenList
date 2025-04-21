@@ -1,509 +1,313 @@
 .mainwrap {
+  width: 100%;
+  height: 100vh;
+}
+
+.goback{
+  font-size: 40px;
+  position: fixed;
+  color: #00bcd4;
+  cursor: pointer;
+}
+
+.loginwrapper {
+  width: 100%;
+  height: 98%;
+  display: flex;
+}
+
+.loginImageWrap {
+  width: 50%;
+  height: 100%;
+  background-color: darkcyan;
+
+  img {
     width: 100%;
-    height: 100vh;
-  }
-  
-  .goback{
-    font-size: 40px;
-    position: fixed;
-    color: #00bcd4;
-    cursor: pointer;
-  }
-  
-  .loginwrapper {
-    width: 100%;
-    height: 98%;
-    display: flex;
-  }
-  
-  .loginImageWrap {
-    width: 50%;
     height: 100%;
-    background-color: darkcyan;
-  
-    img {
-      width: 100%;
-      height: 100%;
-    }
   }
-  
-  .loginContainer {
-    width: 60%;
-    height: 50%;
-    padding: 70px;
+}
+
+.loginContainer {
+  width: 60%;
+  height: 50%;
+  padding: 70px;
+}
+
+.logintextwrap {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+  margin-top: -40px;
+  font-size: 15px;
+
+  span{
+    margin-left: 60px;
   }
-  
-  .logintextwrap {
-    width: 90%;
+}
+
+.loginDetails {
+  width: 100%;
+  margin-top: 70px;
+ 
+}
+
+.loginformwrapper {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.loginformwrap {
+  width: 100%;
+  height: 100px;
+  margin-left: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 400;
+  }
+}
+
+.logininputcont {
+  width: 90%;
+  height: 60px;
+  border-radius: 5px;
+  font-size: 15px;
+  padding: 5px;
+  border: 1px solid lightgray;
+  outline: none;
+}
+
+.loginbtnwrap {
+  width: 90%;
+  height: 60px;
+  font-size: 20px;
+  font-weight: bolder;
+  border-radius: 10px;
+  color: white;
+  background-color: #00bcd4;
+  border: none;
+  margin-left: 0;
+  box-sizing: border-box;
+  transition: all 250ms ease-in-out;
+}
+
+.loginbtnwrap:hover {
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid #00bcd4;
+  color: #00bcd4;
+}
+
+.wrap {
+  cursor: pointer;
+}
+
+.forgotpasswordwrap {
+  width: 100%;
+  display: flex;
+  height: max-content;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 60px;
+  margin-left: 0;
+  box-sizing: border-box;
+  margin-left: 20px;
+
+  h2{
+    margin-top: 10px;
+  }
+
+  & .signWh{
+    font-size: 16px;
+    width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-left: 20px;
-    margin-top: -40px;
-    font-size: 15px;
-  
-    span{
-      margin-left: 60px;
-    }
-  }
-  
-  .loginDetails {
-    width: 100%;
-    margin-top: 70px;
-   
-  }
-  
-  .loginformwrapper {
-    width: 100%;
-    height: 40%;
-    display: flex;
-    flex-direction: column;
     gap: 20px;
   }
-  
-  .loginformwrap {
-    width: 100%;
-    height: 100px;
-    margin-left: 20px;
+
+  & .datSig{
+    width: 150px;
+    height: 50px;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-  
-    h2 {
-      font-size: 20px;
-      font-weight: 400;
-    }
+    align-items: start;
+    padding-top: 5px;
+    gap: 20px;
+    margin-top: 0;
   }
-  
-  .logininputcont {
-    width: 90%;
-    height: 60px;
-    border-radius: 5px;
-    font-size: 15px;
-    padding: 5px;
-    border: 1px solid lightgray;
-    outline: none;
-  }
-  
-  .loginbtnwrap {
-    width: 90%;
-    height: 60px;
-    font-size: 20px;
-    font-weight: bolder;
-    border-radius: 10px;
-    color: white;
-    background-color: #00bcd4;
-    border: none;
-    margin-left: 20px;
-    transition: all 250ms ease-in-out;
-  }
-  
-  .loginbtnwrap:hover {
-    cursor: pointer;
-    background-color: white;
-    border: 1px solid #00bcd4;
+
+  span{
     color: #00bcd4;
-  }
-  
-  .wrap {
     cursor: pointer;
   }
-  
-  .forgotpasswordwrap {
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.usernameormwrap {
+  width: 100%;
+}
+
+.tag{
+  width: 100%;
+  display: flex;
+  gap: 5px;
+
+  h1{
+    font-size: 15px;
+    font-weight: 400;
+    gap: 10px;
+  }
+}
+
+.loginmain{
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.myeyeicon{
+  position: absolute;
+  right: 90px;
+  top: 55%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+}
+
+@media (max-width: 390px) {
+  .mainwrap {
+    width: 100%;
+    padding: 0px;
+    height: auto;
+  }
+
+  .loginwrapper {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .loginImageWrap {
+    display: none;
+  }
+
+  .loginContainer {
+    width: 100%;
+    padding: 20px;
+    margin-top: 90px;
+    box-sizing: border-box;
+  }
+
+  .logintextwrap{
     width: 100%;
     display: flex;
-    height: max-content;
     align-items: center;
     flex-direction: column;
-    justify-content: space-between;
-    padding-right: 60px;
-    margin-top: 20px;
-    margin-left: 20px;
-  
-    h2{
-      margin-top: 10px;
-    }
-  
-    & .signWh{
-      font-size: 16px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-  
-    & .datSig{
-      width: 150px;
-      height: 50px;
-      display: flex;
-      align-items: start;
-      padding-top: 5px;
-      gap: 20px;
-      margin-top: 0;
-    }
-  
-    span{
-      color: #00bcd4;
-      cursor: pointer;
-    }
+    padding: 0px;
+    
   }
-  
-  .error {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
+  .loginDetails{
+    margin-top: 80px;
   }
-  
-  .usernameormwrap {
+  .loginformwrapper,
+  .loginformwrap,
+  .loginbtnwrap,
+  .forgotpasswordwrap {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .logininputcont {
     width: 100%;
   }
-  
-  .tag{
-    width: 100%;
-    display: flex;
-    gap: 5px;
-  
-    h1{
-      font-size: 15px;
-      font-weight: 400;
-      gap: 10px;
-    }
+
+  .loginbtnwrap {
+    height: 50px;
+    font-size: 16px;
   }
-  
-  .loginmain{
-    margin-top: 0px;
-    display: flex;
+
+  .myeyeicon {
+    right: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainwrap {
+    width: 100%;
+    padding: 0px;
+    height: auto;
+  }
+
+  .loginwrapper {
     flex-direction: column;
+    height: auto;
   }
-  
-  .myeyeicon{
-    position: absolute;
-    right: 90px;
-    top: 55%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 18px;
-    color: #333;
+
+  .loginImageWrap {
+    display: none;
   }
-  
-  @media (max-width: 460px) {
-    
-    .mainwrap {
-      padding: 0px;
-      margin: 0; 
-      box-sizing: border-box;
-    }
-  
-    .goback{
-      display: none;
-    }
-    .loginImageWrap {
-      display: none;
-    }
-  
-    .loginwrapper {
-      padding: 0px;
-      margin: 0; 
-    }
-  
-    .loginContainer {
-      width: 100%;
-      padding: 0px;
-      margin: 0; 
-      box-sizing: border-box;
-    }
-  
-    .logintextwrap {
-      width: 100%;
-      margin-top: 20px;
-      margin-left: 0; 
-      padding-top: 20px; 
-      text-align: center;
-  
-      span {
-            margin-right: 40px;
-      }
-    }
-  
-    .logininputcont {
-      width: 99%;
-      height: 50px;
-      font-size: 18px;
-      margin-right: 0px; 
-      margin-left: 0px;
-    }
-  
-    .loginformwrap {
-      width: 100%;
-      margin-left: 0px; 
-      margin-right: 0px;
-    }
-  
-    .loginbtnwrap {
-      width: 99%;
-      height: 50px;
-      font-size: 24px;
-      margin-left: 0px; 
-      margin-bottom: 20px;
-      
-    }
-  
-    .forgotpasswordwrap {
-      width: 70%;
-      height: 50px;
-      display: flex;
-      margin-left: 0px; 
-      padding: 0px;
-      
-  
-      h2{
-        margin-top: -2px;
-        
-      }
-  
-      & .signWh{
-        font-size: 12px;
-        width: 300px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0px;
-      }
-    
-      & .datSig{
-        width: 300px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding-right: 70px;
-        gap: 0px;
-        margin-top: 0;
-  
-        & h2 {
-          font-size: 12px;
-        }
-      }
-    }
-  
-    .loginmain {
-      width: 100%;
-      margin-top: 10px;
-    }
-  
-    .tag {
-      width: 120%;
-      height: 100%;
-      margin-top: -10px;
-      display: flex;
-      gap: 10px;
-      justify-content: flex-start; 
-      align-items: center;
-      padding: 0;
-      margin-left: 0;
-    }
-    
-    .tag h1 {
-      font-size: 20px;
-      margin-right: 50; 
-    }
-    
-    .tag span {
-      font-size: 17px;
-      margin: 0; 
-    }
-  
-    .myeyeicon{
-      right: 10px !important;
-    }
-    
+
+  .loginContainer {
+    width: 100%;
+    padding: 20px;
+    margin-top: 70px;
+    box-sizing: border-box;
   }
-  
-  @media (max-width: 379px) {
-  
-    .mainwrap {
-      padding: 0px;
-      margin: 0; 
-      box-sizing: border-box; 
-    }
-  
-    .loginImageWrap {
-      display: none;
-    }
-  
-    .goback{
-      display: none;
-    }
-  
-    .loginwrapper {
-      padding: 0px;
-      margin: 0; 
-    }
-  
-    .loginContainer {
-      width: 100%;
-      padding: 0px;
-      margin: 0; 
-      box-sizing: border-box;
-    }
-  
-    .logintextwrap {
-      width: 100%;
-      display: flex;
-      margin-top: 20px;
-      margin-left: 0;
-      padding-top: 15px; 
-      text-align: center;
-  
-     
-    }
-  
-    .logininputcont {
-      width: 99%;
-      height: 50px;
-      font-size: 16px; 
-      margin-right: 0px;
-      margin-left: 0px; 
-    }
-  
-    .loginformwrap {
-      width: 100%;
-      margin-left: 0px; 
-      margin-right: 0px; 
-    }
-  
-    .loginbtnwrap {
-      width: 99%;
-      height: 50px;
-      font-size: 20px; 
-      margin-left: 0px;
-      margin-bottom: 15px; 
-    }
-  
-    .forgotpasswordwrap {
-      gap: 3px; 
-      margin-top: 5px;
-      margin-left: 0px; 
-    
-      h2{
-        margin-top: 10px;
-      }
-    }
-    
-  
-    .loginmain {
-      width: 100%;
-      margin-top: 10px;
-    }
-  
-    .tag{
-      width: 100%;
-      display: flex;
-      gap: 10px;
-      
-  
-      h1{
-        font-size: 14px;
-      }
-  
-      span{
-        font-size: 17px;
-      }
-    }
+
+  .logintextwrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0px;
+    display: flex;
+
+  h1{
+    margin-right: 20px;
   }
-  
-  
-  @media (max-width: 760px) {
-   
-    .mainwrap {
-      padding: 0px;
-      margin: 0;
-      box-sizing: border-box;
-    }
-  
-    .loginImageWrap {
-      display: none;
-    }
-  
-    .loginwrapper {
-      padding: 0px;
-      margin: 0;
-    }
-  
-    .loginContainer {
-      width: 100%;
-      padding: 0px;
-      margin: 0;
-      box-sizing: border-box;
-    }
-  
-    .logintextwrap {
-      width: 100%;
-      margin-top: 20px;
-      margin-left: 0;
-      padding-top: 20px;
-      text-align: center;
-  
-      span {
-        margin-right: 40px;
-      }
-    }
-  
-    .logininputcont {
-      width: 99%;
-      height: 50px;
-      font-size: 18px;
-      margin-left: 0px;
-      margin-right: 0px;
-    }
-  
-    .loginformwrap {
-      width: 100%;
-      margin-left: 0px;
-      margin-right: 0px;
-    }
-  
-    .loginbtnwrap {
-      width: 99%;
-      height: 50px;
-      font-size: 24px;
-      margin-left: 0px;
-      margin-bottom: 20px;
-    }
-  
-    .forgotpasswordwrap {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 30px;
-      margin-left: 0px;
-  
-      h2 {
-        margin-top: -2px;
-        margin-left: 80px;
-      }
-    }
-  
-    .loginmain {
-      width: 100%;
-      margin-top: 10px;
-    }
-  
-    .tag {
-      width: 100%;
-      margin-top: -10px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-  
-      h1 {
-        font-size: 14px;
-      }
-  
-      span {
-        font-size: 17px;
-      }
-    }
   }
-  
-  
+
+  .loginDetails {
+    margin-top: 60px;
+  }
+
+  .loginformwrapper,
+  .loginformwrap,
+  .loginbtnwrap,
+  .forgotpasswordwrap {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .logininputcont {
+    width: 100%;
+  }
+
+  .loginbtnwrap {
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .myeyeicon {
+    right: 30px;
+  }
+}
+

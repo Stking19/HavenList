@@ -1,5 +1,5 @@
 .listingCardMain {
-    min-height: 39vh;
+    min-height: 54vh;
     width: 45%;
     background-color: white;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -14,17 +14,18 @@
 }
 
 .listingCardContentHolder {
-    height: 80%;
+    height: max-content;
     width: 100%;
     display: flex;
     gap: 15px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    padding: 10px;
 }
 
 .listingPropertyImage {
-    height: 95%;
+    height: 250px;
     width: 45%;
 }
 
@@ -41,7 +42,11 @@
     flex-direction: column;
     gap: 15px;
     justify-content: center;
-    font-size: 15px;
+    font-size: 10px;
+
+    p{
+        font-size: 11px;
+    }
 }
 
 .listingFooter {

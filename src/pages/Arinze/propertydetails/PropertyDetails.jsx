@@ -10,12 +10,14 @@ import axios from "axios";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Modal } from "antd";
+import { HashLoader } from "react-spinners";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const PropertyDetails = () => {
   const { productId } = useParams();
   const [productD, setProductDetails] = useState({});
+  const [loading, setLoading] = useState(false);
 
   console.log(productId);
 
@@ -37,12 +39,6 @@ const PropertyDetails = () => {
   const [toggleInspect, setToggleInspect] = useState(false);
 
   const handleInspect = () => {
-    const isloggedIn = localStorage.getItem("token");
-
-    if (!isloggedIn) {
-      toast.error("Please login to continue");
-      return navigate("/role");
-    }
     setToggleInspect(true);
   };
 
@@ -51,10 +47,7 @@ const PropertyDetails = () => {
   };
 
   const handlePayment = async () => {
-    const payload = {
-      ...userData,
-      schedule: selectedSchedule,
-    };
+    setLoading(true);
     try {
       const res = await axios.post(
         `${API_URL}initialize/${tenantid}/${landlordid}/${listingId}`,
@@ -62,10 +55,12 @@ const PropertyDetails = () => {
       );
       console.log(res);
       localStorage.setItem("transactionId", res?.data?.data?.refrence);
+      setLoading(false);
       toast.success(res?.data?.message);
       // window.location.href = res?.data?.data?.checkout_url;
     } catch (error) {
       console.log(error);
+      setLoading(false);
       toast.error(error?.response?.data?.message);
     }
   };
@@ -112,6 +107,11 @@ const PropertyDetails = () => {
   }
 
   const handleOpenPay = () => {
+    const isloggedIn = localStorage.getItem("token");
+    if (!isloggedIn) {
+      toast.error("Please login to continue");
+      return navigate("/role");
+    }
     setOpenPay(true);
   }
 
@@ -189,7 +189,7 @@ const PropertyDetails = () => {
             style={{ display: "flex", flexDirection: "column", gap: "10px" }}
           >
             <h3>About this place</h3>
-            <p>{productD.description}</p>
+            <p style={{width: "50%"}}>{productD.description}</p>
           </span>
 
           <div className="propertyDetailSafeTips">
@@ -204,7 +204,7 @@ const PropertyDetails = () => {
             </li>
             <li>Ensure you meet the Agent in an open location.</li>
             <li>
-              The Agent does not represent HevanList and HevanList is not liable
+              The Agent does not represent HavenList and HavenList is not liable
               for any monetary <br />
               transaction between you and the Agent.
             </li>
@@ -216,52 +216,6 @@ const PropertyDetails = () => {
             Terms Of use
           </a>
         </div>
-      </div>
-
-      <div className="modalpropertyDetailCard">
-        <h2>
-          N{productD.price}
-          <small>per Annum</small>
-        </h2>
-        <div className="propertyDetailCardDate">
-          <div className="dateWrapper">
-            <span className="propertyDetailCheckIn">
-              <p>CHECK-IN</p>
-              <p>4/17/2025</p>
-            </span>
-
-            <span className="propertyDetailCheckOut">
-              <p>CHECK-out</p>
-              <p>4/17/2025</p>
-            </span>
-          </div>
-          <section className="propertyDetailCheckOutOption">
-            <span>
-              <p>CHECK-out</p>
-              <p>4/17/2025</p>
-            </span>
-            <FaAngleRight />
-          </section>
-        </div>
-        <button onClick={handleInspect} className="propertyDetailRentBtn">
-          Rent
-        </button>
-        <p>You won’t be charged extra</p>
-        <div className="propertyDetailFeeNot">
-          <span>
-            <h3>No agent fee</h3>
-            <p>N0.00</p>
-          </span>
-
-          <span>
-            <h3>No service fee</h3>
-            <p>N0.00</p>
-          </span>
-        </div>
-        <span className="propertyDetailRentTotal">
-          <h3>Total before taxes</h3>
-          <p>N{productD.price}</p>
-        </span>
       </div>
 
       <Modal
@@ -294,7 +248,7 @@ const PropertyDetails = () => {
         <button
           className="inspectBtn"
           disabled={selectedSchedule === null}
-          onClick={handleOpenPay}
+          onClick={""}
         >
           Inspect
         </button>
@@ -310,17 +264,17 @@ const PropertyDetails = () => {
         <div className="paymentModal">
         <h2>Make Payment below</h2>
         <p>
-          After Making Payment, You Will Receive a Confirmation Mail, to Confirm
-          your Payment and the Inspection Day
+        After Making Payment, You Will Be Asked To Select A Day and Time To
+        Go for an Inspection of the property.
         </p>
-        <button onClick={handlePayment}>Pay With Kora</button>
+        <button onClick={handlePayment}> { loading ? <HashLoader size={30} color="white"/> : "Pay With Kora"}</button>
         </div>
       </Modal>
 
       <div className="modalpropertyDetailCardMobile">
         <h2>N{productD.price}</h2>
         <button
-          onClick={() => navigate("/success")}
+          onClick={handleOpenPay}
           className="propertyDetailRentBtn"
         >
           Rent
