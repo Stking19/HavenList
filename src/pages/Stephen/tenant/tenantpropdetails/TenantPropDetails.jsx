@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import "./tenantpropdetails.css";
 import { FaAngleRight, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import axios from "axios";
@@ -48,7 +48,7 @@ const TenantPropDetails = () => {
     } catch (error) {
       console.log(error);
       setLoading(false);
-      toast.error(error?.response?.data?.message);
+      toast.error(error?.response?.data?.error);
     }
   };
 

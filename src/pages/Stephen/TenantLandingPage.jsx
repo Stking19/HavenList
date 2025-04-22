@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 // import Loadscreen from '../loadscreen/Loadscreen'
 import { Outlet } from 'react-router'
-import Footer from '../../components/footer/Footer'
 import TenantHeader from '../../components/tenantheader/TenantHeader'
+import TenantFooter from '../../components/tenantfooter/TenantFooter'
 
 const TenantLandingPage = () => {
     const [isLoading, setIsLoading] = useState(true)
@@ -17,7 +17,7 @@ const TenantLandingPage = () => {
      <div>
         <TenantHeader />
         <Outlet />
-        <Footer />
+        <TenantFooter />
     </div>
   )
 }

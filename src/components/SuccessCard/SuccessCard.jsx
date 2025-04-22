@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import "./successcard.css";
 import Loadscreen from "../../loadscreen/Loadscreen";
 import { Modal } from "antd";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 function SuccessCard() {
   const navigate = useNavigate();
-  const reff = localStorage.getItem("transactionId");
+  const [searchParams] = useSearchParams();
+  const reff = searchParams.get("reference");
   const token = localStorage.getItem("token");
   const [toggleInspect, setToggleInspect] = useState(false);
 
   const scheduleOptions = [
-    { day: "Monday", time: "10am-4pm" },
-    { day: "Tuesday", time: "10am-4pm" },
-    { day: "Wednesday", time: "10am-4pm" },
-    { day: "Thursday", time: "12am-4pm" },
-    { day: "Friday", time: "10am-4pm" },
-    { day: "Saturday", time: "12am-4pm" },
+    { days: "Monday", timeRange: "10am-4pm" },
+    { days: "Tuesday", timeRange: "10am-4pm" },
+    { days: "Wednesday", timeRange: "10am-4pm" },
+    { days: "Thursday", timeRange: "12am-4pm" },
+    { days: "Friday", timeRange: "10am-4pm" },
+    { days: "Saturday", timeRange: "12am-4pm" },
   ];
 
   const handleInspect = () => {
@@ -43,28 +46,64 @@ function SuccessCard() {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   };
-  const [loading, setLoading] = useState(true);
-  const [loadings, setLoadings] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [loadings, setLoadings] = useState(false);
+  const [inspect, setInspect] = useState(false);
 
   const API_URL = import.meta.env.VITE_API_URL;
 
+  const tenantId = JSON.parse(localStorage.getItem("id"));
+  const listingId = localStorage.getItem("listingId");
+
+
+  const scheduleListing = async () => {
+    setInspect(true)
+    try {
+      const response = await axios.post(
+        `${API_URL}schedule/${tenantId}/${listingId}`,
+        selectedSchedule,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response);
+      toast.success(response?.data?.message)
+      setInspect(false)
+      setTimeout(() => {
+        navigate("/home")
+      },3000)
+    } catch (error) {
+      console.log(error);
+      setInspect(false)
+      toast.error(error?.response?.data?.message)
+    }
+  };
+
   useEffect(() => {
+    if (!reff) {
+      toast.error("Refrence not found");
+    }
     const handlePaymentStatus = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`${API_URL}charges/${reff}`, { headers });
+        const res = await axios.get(`${API_URL}charges?reference=${reff}`, {
+          headers,
+        });
         console.log(res);
-        if (res.data.status === "success") {
           setLoading(false);
           setLoadings(true);
-        }
+          setTimeout(() => {
+            handleInspect()
+          })
       } catch (error) {
         console.log(error);
         setLoading(false);
         setLoadings(false);
-        setTimeout(() => {
-          navigate(-2)
-        }, 3000)
+        // setTimeout(() => {
+        //   navigate(-2)
+        // }, 3000)
       }
     };
     if (reff) {
@@ -120,16 +159,16 @@ function SuccessCard() {
               borderRadius: "20px",
             }}
           >
-            <h2>{option.day}</h2>
-            <p style={{ fontSize: "16px" }}>{option.time}</p>
+            <h2>{option.days}</h2>
+            <p style={{ fontSize: "16px" }}>{option.timeRange}</p>
           </span>
         ))}
         <button
           className="inspectBtn"
           disabled={selectedSchedule === null}
-          onClick={""}
+          onClick={() => scheduleListing(selectedSchedule)}
         >
-          Inspect
+          {inspect ? "confirming..." : "Inspect"}
         </button>
       </Modal>
     </div>
