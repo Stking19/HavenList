@@ -1,4 +1,4 @@
-.fullpage{
+ .fullpage{
     width: 100%;
     height: max-content;
 }
@@ -429,14 +429,160 @@
     font-size: 11px;
   }
 
+
+  @media (max-width: 361px) {
+    .fullpage {
+      width: 100%;
+      height: max-content;
+    }
+  
+    .herosession {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .secondcont {
+      width: 100%;
+      flex-direction: column;
+    }
+  
+    .imgcont1 {
+      width: 95%;
+      margin: 0 auto;
+      height: 180px; 
+    }
+  
+    .getstartedbtn {
+      display: block;
+      width: 90px;
+      font-weight: 500;
+      margin: 10px auto;
+      height: 36px;
+    }
+  
+    .buttonwrapper {
+      display: none;
+    }
+  
+    .textSession {
+      width: 95%;
+      margin: 10px auto 0;
+    }
+  
+    .valueswrawpper {
+      width: 100%;
+      flex-direction: column;
+      gap: 16px;
+    }
+  
+    .mission,
+    .vision,
+    .value {
+      width: 100%;
+      gap: 6px;
+  
+      h1 {
+        font-size: 24px;
+      }
+  
+      h3 {
+        font-size: 16px;
+      }
+    }
+  
+    .photowrap,
+    .picwrapper1 {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-top: 70px;
+    }
+
+  
+    .firstpic,
+    .secondpic,
+    .thirdpic,
+    .fourthpic{
+      width: 92%;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    .picwrapper2{
+        width: 100%;
+        margin-top: -20px;
+    }
+
+    .fifthpic,
+    .sixthpic,
+    .seventhpic{
+        width: 92%;
+        margin-right: 30px;
+    }
+  
+    .innercontainer {
+      width: 95%;
+      height: auto;
+      margin-right: 20px;
+    }
+  
+    .bottomwrap {
+      margin-top: 80px;
+      margin-bottom: -180px;
+    }
+  
+    .rightside {
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+  
+      h2 {
+        font-size: 11px;
+      }
+    }
+  
+    .leftside {
+      width: 90px;
+      flex-direction: column;
+      gap: 8px;
+      margin-right: 8px;
+  
+      h2 {
+        font-size: 10px;
+      }
+  
+      span {
+        font-size: 9px;
+      }
+    }
+  
+    .socialmediawrap {
+      gap: 6px;
+  
+      h2 {
+        font-size: 12px;
+      }
+    }
+  }
+  
+  
+
   @media (max-width: 460px) {
 
     .fullpage{
-        width: 400px;
+        width: 100%;
         height: max-content;
     }
     .herosession{
-        width: 400px;
+        width: 360px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+       
     }
 
     .secondcont{
@@ -445,12 +591,13 @@
         display: flex;
         flex-direction: column;
         
+        
     }
 
     .imgcont1{
-        width: 95%;
+        width: 87%;
         margin-left: 5px;
-        height: 250px;
+        height: 220px;
     }
 
     .getstartedbtn{
@@ -466,30 +613,30 @@
     }
 
     .textSession{
-        width: 400px;
+        width: 375px;
         height: 40%;
         margin-top: 10px;
-
-       
-
+        margin-left: 5px;
     }
 
     .valueswrawpper{
-        width: 380px;
-        height: 1270px;
+        width: 395px;
+        height: 1290px;
         display: flex;
         gap: 20px;
-        padding: 0px 0px 5px 5px;
+        padding: 0px 0px 5px 8px;
         flex-direction: column;
         margin-top: 90px;
+       
        
     }
 
     .mission{
-        width: 100%;
+        width: 88%;
         display: flex;
         flex-direction: column;
         gap: 10px;
+       
        
 
         h1{
@@ -503,7 +650,7 @@
     }
 
     .vision{
-        width: 100%;
+        width: 88%;
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -519,7 +666,7 @@
     }
 
     .value{
-        width: 100%;
+        width: 88%;
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -544,54 +691,68 @@
     .picwrapper1{
         width: 100%;
         display: flex;
-        margin-right: 20px;
+        margin-left: 15px;
         flex-direction: column;
-        gap: 40px;
     }
     
     .firstpic{
         width: 340px;
+        height: 320px;
+        margin-left: 27px;
+        margin-bottom: 50px;
+
     }
 
     .secondpic{
         width: 340px;
+        height: 320px;
+        margin-left: 27px;
+        margin-bottom: 50px;
+
     }
 
     .thirdpic{
         width: 340px;
+        height: 320px;
+        margin-left: 27px;
+        margin-bottom: 50px;
+
     }
 
     .fourthpic{
         width: 340px;
+        height: 320px;
+        margin-left: 27px;
+        margin-bottom: 50px;
     }
 
    .picwrapper2 {
     width: 50%;
     display: flex;
-    margin-top: -40px;
+    height: 90%;
     flex-direction: column;
-    margin-left: 48px;
+    margin-left: 78px;
     
 }
 
 .fifthpic,
 .sixthpic,
 .seventhpic {
-    width: 300px;
-    height: 330px;
-    margin-top: 45px;
+    width: 340px;
+    height: 370px;
+    margin-top: 35px;
     
 }
 
 .innercontainer{
     width: 300px;
     height: 110px;
-    background-color: aqua;
 
 }
 
 .bottomwrap{
    margin-top: 150px;
+   margin-bottom: -199px;
 }
 
 .rightside{
@@ -599,6 +760,7 @@
     flex-direction: column;
     gap: 10px;
     align-items: center;
+    margin-left: 30px;
 
     h2{
         font-size: 12px;
@@ -609,6 +771,7 @@
 .leftside{
     width: 150px;
     display: flex;
+    margin-right: 20px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -635,7 +798,163 @@
 
     
   }
+
+  @media (max-width: 480px) {
+    .fullpage {
+      width: 100%;
+      height: max-content;
+    }
   
-
-
-
+    .herosession {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+     
+    }
+  
+    .secondcont {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .imgcont1 {
+      width: 90%;
+      margin: 0 auto;
+      height: 220px;
+    }
+  
+    .getstartedbtn {
+      display: none;
+      width: 110px;
+      font-weight: 500;
+      margin: 20px auto 0;
+      height: 40px;
+    }
+  
+    .buttonwrapper {
+      display: none;
+    }
+  
+    .textSession {
+      width: 95%;
+      height: auto;
+      margin: 10px auto 0;
+    }
+  
+    .valueswrawpper {
+      width: 95%;
+      display: flex;
+      gap: 20px;
+      padding: 0 10px;
+      flex-direction: column;
+      margin: 60px auto 0;
+    }
+  
+    .mission,
+    .vision,
+    .value {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  
+      h1 {
+        font-size: 30px;
+      }
+  
+      h3 {
+        font-size: 18px;
+        font-weight: normal;
+      }
+    }
+  
+    .photowrap {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .picwrapper1 {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      margin: 50px auto 0;
+      align-items: center;
+    }
+  
+    .firstpic,
+    .secondpic,
+    .thirdpic,
+    .fourthpic {
+      width: 98%;
+      margin-right: 126px;
+    }
+  
+    .picwrapper2 {
+      width: 100%;
+      
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: -20;
+    }
+  
+    .fifthpic,
+    .sixthpic,
+    .seventhpic {
+      width: 85%;
+      height: 330px;
+      margin-top: 40px;
+      margin-right: 130px;
+    }
+  
+    .innercontainer {
+      width: 100%;
+      height: 95px;
+      margin-top: 20px;
+      margin-left: 10px;
+    }
+  
+    .bottomwrap {
+      margin-top: 150px;
+      margin-bottom: -55%;
+    }
+  
+    .rightside{
+        width: 120px;
+    }
+    .leftside {
+       width: 160px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .rightside h2 {
+      font-size: 12px;
+    }
+  
+    .leftside h2 {
+      font-size: 11px;
+    }
+  
+    .leftside span {
+      font-size: 10px;
+    }
+  
+    .socialmediawrap {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+  
+      h2 {
+        font-size: 13px;
+      }
+    }
+  }

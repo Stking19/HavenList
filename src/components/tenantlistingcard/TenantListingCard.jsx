@@ -8,20 +8,23 @@ import { useNavigate } from 'react-router';
 const TenantListingCard = ({items}) => {
   const navigate = useNavigate()
 
-  const navDetails =()=>{
+  const navDetails =(items)=>{
+    localStorage.setItem('listingId', items.id)
+    localStorage.setItem('landlordId', items.landlordId)
+    localStorage.setItem('amount', items.price)
      navigate(`propertyDetail/${items?.id}`)
   } 
   console.log(items?.id)
 
   return (
     <div className='listingCardMain'>
-          <div  className='listingCardContentHolder' onClick={navDetails}>
+          <div  className='listingCardContentHolder' onClick={navDetails(items)}>
           <span className='listingPropertyImage'>
            <img src={items?.listingImage?.[0]?.imageUrl} alt="" />
           </span>
           <div className='listingPropertyDetails'>
            <h2 style={{color:'#2F80ED'}}>{items?.title}</h2>
-           <p>{items?.street} {items.state}</p>
+           <p>{items?.area} {items.state}</p>
            <p>{items?.description}</p>
           <h2 style={{color:'#2F80ED',display:'flex',alignItems:'center', gap: "5px"}}>{items?.price}<small style={{color:'black',fontSize:'12px'}}>{items.frequency}</small></h2>
           </div>

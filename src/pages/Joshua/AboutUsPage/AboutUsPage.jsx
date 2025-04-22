@@ -5,15 +5,17 @@ import picture3 from "/IMG/josh.png";
 import picture4 from "/IMG/somto.png";
 import picture5 from "/IMG/steven.png";
 import picture6 from "/IMG/ebuka.png";
-import picture7 from "/IMG/Aboutushouse.png";
+// import picture7 from "/IMG/Aboutushouse.png";
 import linkedin from "/IMG/image.png";
 import twitter from "/IMG/image1.png";
 import instagram from "/IMG/image2.png";
 import facebook from "/IMG/image3.png";
 import "./aboutuspage.css";
+import { useNavigate } from "react-router";
 
 
 function AboutUsPage() {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="fullpage">
@@ -23,7 +25,7 @@ function AboutUsPage() {
 
         <div className="secondcont">
           <div className="imgcont1">
-            <button className="getstartedbtn">Get started now</button>
+            <button className="getstartedbtn" onClick={() => navigate("/home")}>Get started now</button>
            
           </div>
           <div className="textSession">

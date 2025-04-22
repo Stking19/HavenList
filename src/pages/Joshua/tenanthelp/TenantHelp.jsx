@@ -1,8 +1,8 @@
 import React from "react";
-import "./help.css";
+import "./tenanthelp.css";
 import { useNavigate } from "react-router";
 
-const Help = () => {
+const TenantHelp = () => {
   const navigate = useNavigate()
   return (
     <div className="helpfulwrap">
@@ -23,7 +23,7 @@ const Help = () => {
           </div>
 
           <div className="helpbuttonwrap">
-            <button className="helpbtn" onClick={()=> navigate('/')}>Home</button>
+            <button className="helpbtn" onClick={()=> navigate('/home')}>Home</button>
           </div>
         </div>
       </div>
@@ -31,4 +31,4 @@ const Help = () => {
   );
 };
 
-export default Help;
+export default TenantHelp;

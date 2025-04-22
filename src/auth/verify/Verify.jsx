@@ -66,6 +66,7 @@ const Verify = () => {
       const response = await axios.post(`${API_URL}verify/${endpoint}`, {otp:enteredCode});
       console.log(response);
       toast.success(response?.data?.message);
+      localStorage.setItem("resetToken", response?.data?.token);
       navigate(`/reset-password/${role}`)
     } catch (error) {
       console.log(error);

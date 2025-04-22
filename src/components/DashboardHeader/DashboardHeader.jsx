@@ -1,52 +1,77 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import icon from "/IMG/icon.png";
-import { CgProfile } from "react-icons/cg";
-import "./dashboardheader.css";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { RxDashboard } from "react-icons/rx";
-import { IoHomeOutline } from "react-icons/io5";
-import { CiViewList } from "react-icons/ci";
-import { IoPersonOutline } from "react-icons/io5";
-import { CiLogout } from "react-icons/ci";
+import { RxHamburgerMenu, RxDashboard } from "react-icons/rx";
+import { IoHomeOutline, IoPersonOutline } from "react-icons/io5";
+import { CiViewList, CiLogout } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux/slices/AuthSlice";
 import { useNavigate } from "react-router";
+import "./dashboardheader.css";
 
-
-function DashboardHeader({ setActiveTab, profileImage,}) {
+function DashboardHeader({ setActiveTab }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [mystoredImage, setMyStoredImage] = useState(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-  const [mystoredImage, setMyStoredImage] = useState(false)
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedImage = localStorage.getItem("profileImage");
+    if (storedImage) {
+      setMyStoredImage(storedImage);
+    }else {
+      setMyStoredImage("/IMG/profile-icon.png")
+    }
+  }, []);
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
 
-  useEffect(()=>{
-     setMyStoredImage(true)
-  },[])
+  const name = JSON.parse(localStorage.getItem("user"));
 
-  const name = JSON.parse(localStorage.getItem("user"))
-  const storedImage = localStorage.getItem("profileImage")
-  
   return (
     <>
-      <div>
-        <div className="profileheader">
-          <div className="innerheader">
-            <div className="imagewrapper">
-              <img src={icon} alt="" onClick={() => navigate("/")} style={{cursor: "pointer"}}/>
+      <div className="profileheader">
+        <div className="innerheader">
+          <div className="imagewrapper">
+            <img
+              src={icon}
+              alt="Logo"
+              onClick={() => navigate("/")}
+              style={{ cursor: "pointer" }}
+            />
+          </div>
+
+          <div className="headerside">
+            <p className="burgers">
+              <RxHamburgerMenu onClick={toggleCart} />
+            </p>
+
+            <div
+              style={{
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+                backgroundColor: "#ccc",
+                overflow: "hidden",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginLeft: "100px",
+              }}
+            >
+              {mystoredImage ? (
+                <img
+                  src={mystoredImage}
+                  alt=""
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              ) : (
+                <p style={{ fontSize: "12px", color: "#333" }}>No Image</p>
+              )}
             </div>
 
-            <div className="headerside">
-              <p className="burgers">
-                <RxHamburgerMenu onClick={toggleCart} />
-              </p>
-
-              <h1 style={{marginLeft: "130px"}}>Hi, {name}</h1>
-            </div>
+            <h1 style={{ marginLeft: "30px" }}>Hi, {name}</h1>
           </div>
         </div>
       </div>

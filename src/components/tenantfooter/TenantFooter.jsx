@@ -1,8 +1,8 @@
 import React from "react";
-import "./footer.css";
+import "./tenantfooter.css";
 import { useNavigate } from "react-router";
 
-const Footer = () => {
+const TenantFooter = () => {
   const navigate = useNavigate()
   return (
     <div className="footer">
@@ -23,10 +23,10 @@ const Footer = () => {
         <div className="links">
           <div className="Qlinks">
             <h3>Quick Links</h3>
-            <p onClick={() => navigate("/")}>Home</p>
-            <p onClick={() => navigate("/listings")}>Property Listing</p>
+            <p onClick={() => navigate("/home")}>Home</p>
+            <p onClick={() => navigate("listing")}>Property Listing</p>
             <p>How it Works</p>
-            <p onClick={() => navigate("/about")}>Contacts Us</p>
+            <p onClick={() => navigate("about")}>Contacts Us</p>
           </div>
           <div className="Llinks">
             <h3>Legal</h3>
@@ -37,7 +37,7 @@ const Footer = () => {
           <div className="Slinks">
             <h3>Support</h3>
             <p onClick={() => navigate()}>FAQs</p>
-            <p onClick={() => navigate("/help ")}>Help Center</p>
+            <p onClick={() => navigate("help")}>Help Center</p>
           </div>
         </div>
         <div className="news">
@@ -63,4 +63,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default TenantFooter;

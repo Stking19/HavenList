@@ -1,8 +1,8 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const API_URL = "https://heavenlist2-zaz3.onrender.com/api/v1/";
 
+const API_URL = import.meta.env.VITE_API_URL;
 const api = axios.create({
   baseURL: API_URL,
   headers: {
@@ -35,16 +35,19 @@ api.interceptors.response.use(
 export const loginUser = async (credentials) => {
   try {
     const response = await api.post("loginlandlord", credentials);
-    const { token, data, message } = response.data;
+    const { token, data, message, landlordProfile } = response.data;
     localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(data.fullName));
-    localStorage.setItem("email", JSON.stringify(data.email));
-    localStorage.setItem("id", JSON.stringify(data.id));
-    console.log(data);
+    localStorage.setItem("user", JSON.stringify(data?.fullName));
+    localStorage.setItem("email", JSON.stringify(data?.email));
+    localStorage.setItem("id", JSON.stringify(data?.id));
+    localStorage.setItem("landlordprofileid", landlordProfile?.id);
+    localStorage.setItem("profileImage", landlordProfile?.profileImage);
+    localStorage.setItem("role", "landlord");  // Add this line
+    console.log(response);
     toast.success(message);
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
     throw error;
   }
 };
@@ -58,7 +61,8 @@ export const tenantLoginUser = async (credentials) => {
     localStorage.setItem("user", JSON.stringify(data.fullName));
     localStorage.setItem("email", JSON.stringify(data.email));
     localStorage.setItem("id", JSON.stringify(data.id));
-    console.log(data);
+    localStorage.setItem("role", "tenant");  // Add this line
+    console.log(response);
     toast.success(message);
     return data;
   } catch (error) {
@@ -76,7 +80,6 @@ export const signup = async (userData, role) => {
     if (response.data?.success || response.status === 201) {
       toast.success(response.data.message || "Signup successful!");
       console.log(response);
-      localStorage.setItem("userId", response?.data?.data?.id);
     } else {
       throw new Error(response.data?.message);
     }
@@ -88,13 +91,13 @@ export const signup = async (userData, role) => {
   }
 };
 
-export const resetPassword = async ({ Password, confirmPassword, role }) => {
-  const landlordId = localStorage.getItem("userId");
+export const resetPassword = async ({ password, confirmPassword, role }) => {
+  const resetToken = localStorage.getItem("resetToken");
   try {
     const endpoint =
-      role === "landlord" ? "reset-landlordpassword" : "reset-tenantpassword";
-    const response = await api.post(`${endpoint}/${landlordId}`, {
-      Password,
+      role === "landlord" ? "landlord/reset-password" : "tenant/reset-password";
+    const response = await api.post(`${endpoint}/${resetToken}`, {
+      password,
       confirmPassword,
     });
     toast.success(response.data.message);
@@ -131,8 +134,8 @@ export const createProfile = async (landlordId, formData) => {
     console.log(response);
     if (response.status === 201) {
       const { data, message } = response.data;
-      localStorage.setItem("profileImage", JSON.stringify(data.image));
-      localStorage.setItem("landlordprofileid", JSON.stringify(data.id));
+      localStorage.setItem("profileImage", data.profileImage);
+      localStorage.setItem("landlordprofileid", data.id);
       toast.success(message)
     }
   } catch (error) {
@@ -141,7 +144,8 @@ export const createProfile = async (landlordId, formData) => {
   }
 };
 
-export const getProfile = async (landlordId) => {
+
+export const getProfile = async (landlordId, state) => {
   const token = localStorage.getItem("token");
   try {
     const response = await api.get(
@@ -154,10 +158,35 @@ export const getProfile = async (landlordId) => {
         },
       }
     );
-    toast.success(response.data.message);
     console.log(response) 
+    const { data } = response.data;
+    localStorage.setItem("profileImage", JSON.stringify(data.profileImage));
+    return response?.data?.data;
   } catch (error) {
     console.log(error);
+    state(false)
+  }
+};
+
+export const updateProfile = async (profileId, formData) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await api.put(
+      `updateLandlordProfile/${profileId}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response) 
+    toast.success(response.data.message)
+    return response?.data?.data;
+  } catch (error) {
+    console.log(error);
+    toast.error(error?.response?.data?.message)
   }
 };
 
