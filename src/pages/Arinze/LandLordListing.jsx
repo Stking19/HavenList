@@ -33,7 +33,7 @@ const LandLordListing = ({setLandlordDashboard}) => {
       toast.error(error?.response?.data?.message || 'Failed to delete listing')
     }
   }
-
+-
   useEffect(() => {
   const landLordListing = async () => {
     try {

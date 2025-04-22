@@ -77,25 +77,17 @@ const PropertyDetails = () => {
 
   useEffect(() => {
     getProductDetails();
-  }, []);
+  }, [productD]);
 
   console.log(productD);
 
-  const images = [
-    "/IMG/be948c0b628fbdd1e0788117fb2000a1.jpg",
-    "/IMG/f1e72efd74f50f435fd26aac95593895 (1).jpg",
-    "/IMG/251d5a5fc1a8245fe0a865f05388083b.jpg",
-    "/IMG/02959aaf05749951f238b1cbc0edcc31.jpg",
-    "/IMG/f217c589f3dc03cf9e6018c073eb242c.jpg",
-  ];
-
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    setCurrentImageIndex((prev) => (prev + 1) % productD.listingImage.length);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+    setCurrentImageIndex((prev) => (prev - 1 + productD.listingImage.length) % productD.listingImage.length);
   };
 
   const [activeTableIndex, setActiveTableIndex] = useState(null);
@@ -137,7 +129,7 @@ const PropertyDetails = () => {
     <>
       <div className="propertyDetailMain">
         <div className="propertyDetailWrapper">
-          <h2>COOL APARTMENT FOR YOU AND FAMILY</h2>
+          <p>COOL APARTMENT FOR YOU AND YOUR FAMILY</p>
 
           <div className="propertyDetailImageWrapper">
             <span className="propertyDetailImageMain">
@@ -163,10 +155,11 @@ const PropertyDetails = () => {
               </section>
             </div>
           </div>
+
           <div className="propertyDetailImageMobile">
             <FaChevronLeft onClick={prevImage} className="arrowBtn left" />
             <span className="mobileImageHolder">
-              {/* <img src={images[currentImageIndex]} alt="property" / */}
+              <img src={productD.listingImage?.[currentImageIndex]?.imageUrl} alt="property" />
             </span>
             <FaChevronRight onClick={nextImage} className="arrowBtn right" />
           </div>
