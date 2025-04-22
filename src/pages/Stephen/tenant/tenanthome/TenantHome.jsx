@@ -80,7 +80,7 @@ const TenantHome = () => {
                         <div className="Hdetails">
                           <h3 onClick={() => handleDetails(house)}>{house.title}</h3>
                           <p>
-                            {house.street}, {house.area}, {house.state}
+                              {house.area}, {house.state}
                           </p>
                           <p>{house.description}</p>
                           <span>
