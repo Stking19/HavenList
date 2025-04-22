@@ -71,8 +71,8 @@
 }
  @media screen and (max-width:360px){
   .searchBar {
-    width: 300px;
-    height: 100px;
+    width: 350px;
+    height: 150px;
     background-color: lightgray;
     border-radius: 5px;
     display: flex;
@@ -143,10 +143,10 @@
   }
 } 
 
-@media  screen and (max-width:430) {
+@media  screen and (max-width:500) {
   .searchBar {
     width: 310;
-    height: 100px;
+    height: 150px;
     background-color: lightgray;
     border-radius: 5px;
     display: flex;
