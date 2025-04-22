@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import "./tenantpropdetails.css";
 import { FaAngleRight, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import axios from "axios";

@@ -35,16 +35,19 @@ api.interceptors.response.use(
 export const loginUser = async (credentials) => {
   try {
     const response = await api.post("loginlandlord", credentials);
-    const { token, data, message } = response.data;
+    const { token, data, message, landlordProfile } = response.data;
     localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(data.fullName));
-    localStorage.setItem("email", JSON.stringify(data.email));
-    localStorage.setItem("id", JSON.stringify(data.id));
-    console.log(data);
+    localStorage.setItem("user", JSON.stringify(data?.fullName));
+    localStorage.setItem("email", JSON.stringify(data?.email));
+    localStorage.setItem("id", JSON.stringify(data?.id));
+    localStorage.setItem("landlordprofileid", landlordProfile?.id);
+    localStorage.setItem("profileImage", landlordProfile?.profileImage);
+    localStorage.setItem("role", "landlord");  // Add this line
+    console.log(response);
     toast.success(message);
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message);
     throw error;
   }
 };
@@ -58,7 +61,8 @@ export const tenantLoginUser = async (credentials) => {
     localStorage.setItem("user", JSON.stringify(data.fullName));
     localStorage.setItem("email", JSON.stringify(data.email));
     localStorage.setItem("id", JSON.stringify(data.id));
-    console.log(data);
+    localStorage.setItem("role", "tenant");  // Add this line
+    console.log(response);
     toast.success(message);
     return data;
   } catch (error) {
@@ -76,7 +80,6 @@ export const signup = async (userData, role) => {
     if (response.data?.success || response.status === 201) {
       toast.success(response.data.message || "Signup successful!");
       console.log(response);
-      localStorage.setItem("userId", response?.data?.data?.id);
     } else {
       throw new Error(response.data?.message);
     }
@@ -131,8 +134,8 @@ export const createProfile = async (landlordId, formData) => {
     console.log(response);
     if (response.status === 201) {
       const { data, message } = response.data;
-      localStorage.setItem("profileImage", JSON.stringify(data.profileImage));
-      localStorage.setItem("landlordprofileid", JSON.stringify(data.id));
+      localStorage.setItem("profileImage", data.profileImage);
+      localStorage.setItem("landlordprofileid", data.id);
       toast.success(message)
     }
   } catch (error) {
@@ -142,7 +145,7 @@ export const createProfile = async (landlordId, formData) => {
 };
 
 
-export const getProfile = async (landlordId) => {
+export const getProfile = async (landlordId, state) => {
   const token = localStorage.getItem("token");
   try {
     const response = await api.get(
@@ -156,9 +159,12 @@ export const getProfile = async (landlordId) => {
       }
     );
     console.log(response) 
+    const { data } = response.data;
+    localStorage.setItem("profileImage", JSON.stringify(data.profileImage));
     return response?.data?.data;
   } catch (error) {
     console.log(error);
+    state(false)
   }
 };
 
