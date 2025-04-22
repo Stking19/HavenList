@@ -14,12 +14,12 @@ function SuccessCard() {
   const [toggleInspect, setToggleInspect] = useState(false);
 
   const scheduleOptions = [
-    { day: "Monday", time: "10am-4pm" },
-    { day: "Tuesday", time: "10am-4pm" },
-    { day: "Wednesday", time: "10am-4pm" },
-    { day: "Thursday", time: "12am-4pm" },
-    { day: "Friday", time: "10am-4pm" },
-    { day: "Saturday", time: "12am-4pm" },
+    { days: "Monday", timeRange: "10am-4pm" },
+    { days: "Tuesday", timeRange: "10am-4pm" },
+    { days: "Wednesday", timeRange: "10am-4pm" },
+    { days: "Thursday", timeRange: "12am-4pm" },
+    { days: "Friday", timeRange: "10am-4pm" },
+    { days: "Saturday", timeRange: "12am-4pm" },
   ];
 
   const handleInspect = () => {
@@ -55,12 +55,13 @@ function SuccessCard() {
   const tenantId = JSON.parse(localStorage.getItem("id"));
   const listingId = localStorage.getItem("listingId");
 
-  const scheduleListing = async (schedule) => {
+
+  const scheduleListing = async () => {
     setInspect(true)
     try {
       const response = await axios.post(
-        `${API_URL}${tenantId}/${listingId}?days=${schedule.day}&timeRange=${schedule.time}`,
-        {},
+        `${API_URL}schedule/${tenantId}/${listingId}`,
+        selectedSchedule,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -68,10 +69,15 @@ function SuccessCard() {
         }
       );
       console.log(response);
+      toast.success(response?.data?.message)
       setInspect(false)
+      setTimeout(() => {
+        navigate("/home")
+      },3000)
     } catch (error) {
       console.log(error);
       setInspect(false)
+      toast.error(error?.response?.data?.message)
     }
   };
 
@@ -82,19 +88,19 @@ function SuccessCard() {
     const handlePaymentStatus = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`${API_URL}/charges?reference=${reff}`, {
+        const res = await axios.get(`${API_URL}charges?reference=${reff}`, {
           headers,
         });
         console.log(res);
-        if (res.data.status === "success") {
           setLoading(false);
           setLoadings(true);
-        }
+          setTimeout(() => {
+            handleInspect()
+          })
       } catch (error) {
         console.log(error);
         setLoading(false);
         setLoadings(false);
-        handleInspect()
         // setTimeout(() => {
         //   navigate(-2)
         // }, 3000)
@@ -153,8 +159,8 @@ function SuccessCard() {
               borderRadius: "20px",
             }}
           >
-            <h2>{option.day}</h2>
-            <p style={{ fontSize: "16px" }}>{option.time}</p>
+            <h2>{option.days}</h2>
+            <p style={{ fontSize: "16px" }}>{option.timeRange}</p>
           </span>
         ))}
         <button

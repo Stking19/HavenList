@@ -80,10 +80,6 @@ const Home = () => {
                             {house.street}, {house.area}, {house.state}
                           </p>
                           <p>{house.description}</p>
-                          <p>Type: {house.type}</p>
-                          <p>Year: {house.year}</p>
-                          <p>Status: <strong>{house.status}</strong></p>
-                          <p>Landlord: {house.landlord?.fullName}</p>
                           <span>
                             ₦{Number(house.price).toLocaleString()} <p>per annum</p>
                           </span>
