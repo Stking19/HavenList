@@ -80,7 +80,7 @@
     padding: 15px 10px;
     gap: 20px;
     position: absolute;
-    top: 190px;
+    top: 210px;
   
     & .search {
       width: 100%;
@@ -142,7 +142,7 @@
     }
   }
 }
-
+/* 
 @media  screen and (min-width:430) {
   .searchBar {
     width: 310;
@@ -215,4 +215,4 @@
       }
     }
   }
-} 
+}  */
