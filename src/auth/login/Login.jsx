@@ -32,7 +32,7 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
+    setError(error);
 
     const { email, password } = formData;  
 

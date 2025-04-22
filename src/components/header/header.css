@@ -170,7 +170,7 @@
     display: none;
 }
 
-@media screen and (width <= 500px){
+@media screen and (max-width:360){
     .head{
         width: 97%;
         height: 45px;
@@ -181,7 +181,7 @@
         position: absolute;
         z-index: 1000;
         margin-left: 5px;
-        top: 30px;
+        top: 0px;
         background: white;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     
