@@ -69,7 +69,7 @@
     }
   }
 }
-@media screen and (min-width:360px){
+ @media screen and (max-width:360px){
   .searchBar {
     width: 300px;
     height: 100px;
@@ -80,7 +80,7 @@
     padding: 15px 10px;
     gap: 20px;
     position: absolute;
-    top: 190px;
+    top: 210px;
   
     & .search {
       width: 100%;
@@ -141,9 +141,9 @@
       }
     }
   }
-}
+} 
 
-@media  screen and (min-width:430) {
+@media  screen and (max-width:430) {
   .searchBar {
     width: 310;
     height: 100px;
@@ -167,7 +167,7 @@
       gap: 10px;
   
       & p {
-        font-size: 16px;
+        font-size: 12px;
         color: rgb(133, 130, 130);
         margin-top: 3px;
       }

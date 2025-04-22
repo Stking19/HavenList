@@ -57,12 +57,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        overflow-x: auto;
         gap: 30px;
     }
 
     .listingHeroWrapper {
-        height: 40vh;
+        height: 45vh;
         width: 100%;
         background-image: url(../../../../IMG/cca9a1d1550941737e81ed9e4a8e0365.jpg);
         background-position: center;
@@ -85,7 +84,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        overflow-x: auto;
         gap: 30px;
     }
 
