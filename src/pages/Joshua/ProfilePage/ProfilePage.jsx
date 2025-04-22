@@ -42,16 +42,18 @@ function ProfilePage() {
 
   useEffect(() => {
     const storedLandlordId = JSON.parse(localStorage.getItem("id"));
-    const profileId = JSON.parse(localStorage.getItem("landlordprofileid"));
+    const profileId = localStorage.getItem("landlordprofileid");
     setLandlordId(storedLandlordId);
+    if (profileId){
     setProfileId(profileId);
+    }
     fetchProfile(profileId);
   }, []);
 
   const fetchProfile = async (id) => {
     try {
       setLoading(true);
-      const profile = await getProfile(id);
+      const profile = await getProfile(id, setLoading);
       if (profile) {
         setDetails({
           fullName: profile.fullName,
@@ -66,6 +68,7 @@ function ProfilePage() {
       }
     } catch (err) {
       console.log("No existing profile found.");
+      setLoading(false)
     }
   };
 
@@ -107,6 +110,7 @@ function ProfilePage() {
 
       if (profileExists) {
         await updateProfile(profileId, formData);
+        setLoading(false)
       } else {
         await createProfile(landlordId, formData);
       }

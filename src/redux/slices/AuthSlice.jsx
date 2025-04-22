@@ -23,14 +23,7 @@ const authSlice = createSlice({
             state.isAuthenticated = false;
             state.user = null;
             state.profileId = null;
-            localStorage.removeItem("token");
-            localStorage.removeItem("listingId");
-            localStorage.removeItem("landlordId")
-            localStorage.removeItem("email")
-            localStorage.removeItem("id")
-            localStorage.removeItem("user")
-            localStorage.removeItem("resetToken")
-            localStorage.removeItem("user")
+            localStorage.clear()
         },
         setProfileId: (state, action) => {
             state.profileId = action.payload;

@@ -15,8 +15,12 @@ function DashboardHeader({ setActiveTab }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedImage = JSON.parse(localStorage.getItem("profileImage"));
-    setMyStoredImage(storedImage);
+    const storedImage = localStorage.getItem("profileImage");
+    if (storedImage) {
+      setMyStoredImage(storedImage);
+    }else {
+      setMyStoredImage("/IMG/profile-icon.png")
+    }
   }, []);
 
   const toggleCart = () => {
@@ -53,13 +57,13 @@ function DashboardHeader({ setActiveTab }) {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                marginLeft: "100px"
+                marginLeft: "100px",
               }}
             >
               {mystoredImage ? (
                 <img
                   src={mystoredImage}
-                  alt="Profile"
+                  alt=""
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               ) : (

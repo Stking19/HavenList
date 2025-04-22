@@ -24,7 +24,7 @@ const TenantListingCard = ({items}) => {
           </span>
           <div className='listingPropertyDetails'>
            <h2 style={{color:'#2F80ED'}}>{items?.title}</h2>
-           <p>{items?.street} {items.state}</p>
+           <p>{items?.area} {items.state}</p>
            <p>{items?.description}</p>
           <h2 style={{color:'#2F80ED',display:'flex',alignItems:'center', gap: "5px"}}>{items?.price}<small style={{color:'black',fontSize:'12px'}}>{items.frequency}</small></h2>
           </div>
