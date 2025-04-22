@@ -58,15 +58,15 @@ export const tenantLoginUser = async (credentials) => {
     const response = await api.post("loginTenant", credentials);
     const { token, data, message } = response.data;
     localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(data.fullName));
-    localStorage.setItem("email", JSON.stringify(data.email));
-    localStorage.setItem("id", JSON.stringify(data.id));
+    localStorage.setItem("user", JSON.stringify(data?.fullName));
+    localStorage.setItem("email", JSON.stringify(data?.email));
+    localStorage.setItem("id", JSON.stringify(data?.id));
     localStorage.setItem("role", "tenant");  // Add this line
     console.log(response);
     toast.success(message);
     return data;
   } catch (error) {
-    toast.error(error.response.data.message);
+    toast.error(error?.response?.data?.message || "Network Error");
     throw error;
   }
 };

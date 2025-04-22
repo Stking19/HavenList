@@ -47,9 +47,9 @@ const App = () => {
           element: <TenantLandingPage />,
           children: [
             { path: "", element: <TenantHome /> },
+            { path: "listing", element: <TenantListing /> },
             { path: "propertydetail/:productId", element: <TenantPropDetails /> },
             { path: "listing/propertydetail/:productId", element: <TenantPropDetails /> },
-            { path: "listing", element: <TenantListing /> },
             { path: "help", element: <TenantHelp /> },
             { path: "about", element: <AboutUsPage /> },
           ],

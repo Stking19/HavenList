@@ -18,7 +18,7 @@ const TenantListingCard = ({items}) => {
 
   return (
     <div className='listingCardMain'>
-          <div  className='listingCardContentHolder' onClick={navDetails(items)}>
+          <div  className='listingCardContentHolder' onClick={() => navDetails(items)}>
           <span className='listingPropertyImage'>
            <img src={items?.listingImage?.[0]?.imageUrl} alt="" />
           </span>
