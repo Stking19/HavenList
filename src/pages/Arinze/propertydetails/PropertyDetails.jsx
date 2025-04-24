@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import "./propertydetails.css";
 import {
-  FaAngleRight,
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa6";
@@ -17,53 +16,11 @@ const API_URL = import.meta.env.VITE_API_URL;
 const PropertyDetails = () => {
   const { productId } = useParams();
   const [productD, setProductDetails] = useState({});
-  const [loading, setLoading] = useState(false);
 
   console.log(productId);
 
   const navigate = useNavigate();
-  const tenantid = JSON.parse(localStorage.getItem("id"));
-  const name = JSON.parse(localStorage.getItem("user"));
-  const email = JSON.parse(localStorage.getItem("email"));
-  const amount = JSON.parse(localStorage.getItem("amount"));
 
-  const userData = {
-    amount,
-    name,
-    email,
-  };
-  const landlordid = localStorage.getItem("landlordId");
-  const listingId = localStorage.getItem("listingId");
-  console.log({ amount });
-
-  const [toggleInspect, setToggleInspect] = useState(false);
-
-  const handleInspect = () => {
-    setToggleInspect(true);
-  };
-
-  const handleCancel = () => {
-    setToggleInspect(false);
-  };
-
-  const handlePayment = async () => {
-    setLoading(true);
-    try {
-      const res = await axios.post(
-        `${API_URL}initialize/${tenantid}/${landlordid}/${listingId}`,
-        userData
-      );
-      console.log(res);
-      localStorage.setItem("transactionId", res?.data?.data?.refrence);
-      setLoading(false);
-      toast.success(res?.data?.message);
-      // window.location.href = res?.data?.data?.checkout_url;
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-      toast.error(error?.response?.data?.message);
-    }
-  };
 
   const getProductDetails = async () => {
     try {
@@ -185,21 +142,26 @@ const PropertyDetails = () => {
             <p style={{width: "50%"}}>{productD.description}</p>
           </span>
 
-          <div className="propertyDetailSafeTips">
+          <div className="propertyDetailSafeTips" style={{padding: "20px"}}>
             <h3>Safety Tips</h3>
             <li>
-              Do not make any inspection fee without seeing the agent or
-              Landlord.
+              Only Make Payments Through the App
             </li>
             <li>
-              Only pay Rental fee, Sales fee or any upfront payment after you
-              verify the Landlord.
+              Use in-App Scheduling for Inspections
             </li>
-            <li>Ensure you meet the Agent in an open location.</li>
+            <li>Avoid Sharing Personal Contact Details Prematurely</li>
             <li>
-              The Agent does not represent HavenList and HavenList is not liable
-              for any monetary <br />
-              transaction between you and the Agent.
+              Report Suspicious Behaviour Immediately
+            </li>
+            <li>
+              Meet at the Property Location Only
+            </li>
+            <li>
+              Always Bring a Friend to Inspections
+            </li>
+            <li>
+              Do Not Sign Any Documents Outside the App Process
             </li>
           </div>
           <a
@@ -211,60 +173,7 @@ const PropertyDetails = () => {
         </div>
       </div>
 
-      <Modal
-        open={toggleInspect}
-        onCancel={handleCancel}
-        okButtonProps={{ style: { display: "none" } }}
-        cancelButtonProps={{ style: { display: "none" } }}
-        width={500}
-      >
-        <h2>SCHEDULE FOR INSPECTION</h2>
-        <p style={{ fontWeight: "500" }}>
-          Select a Day and Time you would be available to go for an inspection
-          of the property
-        </p>
-        {scheduleOptions.map((option, index) => (
-          <span
-            key={index}
-            className="inspectText"
-            onClick={() => handleTableClick(index)}
-            style={{
-              backgroundColor: activeTableIndex === index ? "#2F80ED" : "white",
-              color: activeTableIndex === index ? "white" : "#00A5CF",
-              borderRadius: "20px",
-            }}
-          >
-            <h2>{option.day}</h2>
-            <p style={{ fontSize: "16px" }}>{option.time}</p>
-          </span>
-        ))}
-        <button
-          className="inspectBtn"
-          disabled={selectedSchedule === null}
-          onClick={""}
-        >
-          Inspect
-        </button>
-      </Modal>
-
-      <Modal
-        open={openPay}
-        onCancel={handleCancelPay}
-        okButtonProps={{ style: { display: "none" } }}
-        cancelButtonProps={{ style: { display: "none" } }}
-        width={500}
-      >
-        <div className="paymentModal">
-        <h2>Make Payment below</h2>
-        <p>
-        After Making Payment, You Will Be Asked To Select A Day and Time To
-        Go for an Inspection of the property.
-        </p>
-        <button onClick={handlePayment}> { loading ? <HashLoader size={30} color="white"/> : "Pay With Kora"}</button>
-        </div>
-      </Modal>
-
-      <div className="modalpropertyDetailCardMobile">
+      {/* <div className="modalpropertyDetailCardMobile">
         <h2>N{productD.price}</h2>
         <button
           onClick={handleOpenPay}
@@ -272,7 +181,7 @@ const PropertyDetails = () => {
         >
           Rent
         </button>
-      </div>
+      </div> */}
     </>
   );
 };

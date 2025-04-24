@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Modal } from "antd";
 import { HashLoader } from "react-spinners";
+import { IoImageOutline } from "react-icons/io5";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -29,7 +30,6 @@ const TenantPropDetails = () => {
   const landlordid = localStorage.getItem("landlordId");
   const listingId = localStorage.getItem("listingId");
   console.log({ landlordid, listingId });
-
 
   const handlePayment = async () => {
     setLoading(true);
@@ -103,7 +103,10 @@ const TenantPropDetails = () => {
 
           <div className="propertyDetailImageWrapper">
             <span className="propertyDetailImageMain">
-              <img src={productD.listingImage?.[0]?.imageUrl} alt="" />
+              <img
+                src={productD.listingImage?.[0]?.imageUrl}
+                alt={<IoImageOutline />}
+              />
             </span>
             <div className="subImageWrapper">
               <section className="subImage1">
@@ -128,7 +131,7 @@ const TenantPropDetails = () => {
           <div className="propertyDetailImageMobile">
             <FaChevronLeft onClick={prevImage} className="arrowBtn left" />
             <span className="mobileImageHolder">
-              {/* <img src={images[currentImageIndex]} alt="property" / */}
+              {/* <img src={images[currentImageIndex]} alt="property"  */}
             </span>
             <FaChevronRight onClick={nextImage} className="arrowBtn right" />
           </div>
@@ -151,24 +154,29 @@ const TenantPropDetails = () => {
             style={{ display: "flex", flexDirection: "column", gap: "10px" }}
           >
             <h3>About this place</h3>
-            <p style={{width: "50%"}}>{productD.description}</p>
+            <p style={{ width: "50%" }}>{productD.description}</p>
           </span>
 
-          <div className="propertyDetailSafeTips">
+          <div className="propertyDetailSafeTips" style={{padding: "20px"}}>
             <h3>Safety Tips</h3>
             <li>
-              Do not make any inspection fee without seeing the agent or
-              Landlord.
+              Only Make Payments Through the App
             </li>
             <li>
-              Only pay Rental fee, Sales fee or any upfront payment after you
-              verify the Landlord.
+              Use in-App Scheduling for Inspections
             </li>
-            <li>Ensure you meet the Agent in an open location.</li>
+            <li>Avoid Sharing Personal Contact Details Prematurely</li>
             <li>
-              The Agent does not represent HevanList and HevanList is not liable
-              for any monetary <br />
-              transaction between you and the Agent.
+              Report Suspicious Behaviour Immediately
+            </li>
+            <li>
+              Meet at the Property Location Only
+            </li>
+            <li>
+              Always Bring a Friend to Inspections
+            </li>
+            <li>
+              Do Not Sign Any Documents Outside the App Process
             </li>
           </div>
           <a
@@ -180,14 +188,14 @@ const TenantPropDetails = () => {
         </div>
       </div>
 
-      <div className="modalpropertyDetailCard">
+      <div className="modalpropertyDetailCard" style={{padding: "20px"}}>
         <h2>
-          N{productD.price}
+          ₦{Number(productD.price).toLocaleString()}
           <small>per Annum</small>
         </h2>
         <div className="propertyDetailCardDate">
           <div className="dateWrapper">
-            <span className="propertyDetailCheckIn">
+            {/* <span className="propertyDetailCheckIn">
               <p>CHECK-IN</p>
               <p>4/17/2025</p>
             </span>
@@ -195,7 +203,7 @@ const TenantPropDetails = () => {
             <span className="propertyDetailCheckOut">
               <p>CHECK-out</p>
               <p>4/17/2025</p>
-            </span>
+            </span> */}
           </div>
           <section className="propertyDetailCheckOutOption">
             <span>
@@ -247,10 +255,7 @@ const TenantPropDetails = () => {
 
       <div className="modalpropertyDetailCardMobile">
         <h2>N{productD.price}</h2>
-        <button
-          onClick={handleOpenPay}
-          className="propertyDetailRentBtn"
-        >
+        <button onClick={handleOpenPay} className="propertyDetailRentBtn">
           Rent
         </button>
       </div>
