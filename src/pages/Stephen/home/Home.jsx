@@ -12,11 +12,15 @@ import axios from "axios";
 
 const Home = () => {
   const API_URL = import.meta.env.VITE_API_URL;
-  
+
   const [allListings, setAllListings] = useState([]);
   const [details, setDetails] = useState(null);
   const { ref, inView } = useInView({ triggerOnce: true });
   const navigate = useNavigate();
+  // const [data, setData] = useState({
+  //   rentedProperty: "",
+  //   areasCovered: "",
+  // })
 
   const handleDetails = (house) => {
     console.log(house);
@@ -28,16 +32,41 @@ const Home = () => {
 
   const getAllListing = async () => {
     try {
-      const res = await axios.get(`${API_URL}/getAllListings`);
+      const res = await axios.get(`${API_URL}getAllListings`);
       console.log(res.data);
       setAllListings(res.data.data);
+
     } catch (error) {
       console.log(error);
     }
   };
+  // const getAllRentedProperties = async () => {
+  //   try {
+  //     const response = await axios.get(`${API_URL}getAllPropertiesRentedOut`);
+  //     console.log(response);
+  //     setData({ ...data,
+  //       rentedProperty: response?.data?.total
+  //     })
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+  // const getAllAreasCovered = async () => {
+  //   try {
+  //     const response = await axios.get(`${API_URL}getAllAreasCovered`);
+  //     console.log(response);
+  //     setData({ ...data,
+  //       areasCovered: response?.data?.total
+  //     })
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   useEffect(() => {
     getAllListing();
+    // getAllRentedProperties();
+    // getAllAreasCovered();
   }, []);
 
   return (
@@ -62,7 +91,8 @@ const Home = () => {
         <div className="HouseList">
           <div className="houseWrap">
             {allListings?.map((house, index) => {
-              const imageUrl = house.listingImage?.[0]?.imageUrl || "/fallback.jpg";
+              const imageUrl =
+                house.listingImage?.[0]?.imageUrl || "/fallback.jpg";
 
               return (
                 <React.Fragment key={house.id}>
@@ -70,18 +100,24 @@ const Home = () => {
                     <div className="Houses">
                       <div className="houseDet">
                         <div className="imgWrap">
-                          <div className="kingi" onClick={() => handleDetails(house)}>
+                          <div
+                            className="kingi"
+                            onClick={() => handleDetails(house)}
+                          >
                             <img src={imageUrl} alt="listing preview" />
                           </div>
                         </div>
                         <div className="Hdetails">
-                          <h3 onClick={() => handleDetails(house)}>{house.title}</h3>
+                          <h3 onClick={() => handleDetails(house)}>
+                            {house.title}
+                          </h3>
                           <p>
                             {house.area}, {house.state}
                           </p>
                           <p>{house.description}</p>
                           <span>
-                            ₦{Number(house.price).toLocaleString()} <p>per annum</p>
+                            ₦{Number(house.price).toLocaleString()}{" "}
+                            <p>per annum</p>
                           </span>
                           <p>
                             Part Payment: {house.partPayment} — ₦
@@ -91,15 +127,21 @@ const Home = () => {
                       </div>
                       <div className="apart">
                         <div className="bed">
-                          <p><IoBedOutline /></p>
+                          <p>
+                            <IoBedOutline />
+                          </p>
                           <span>{house.bedrooms} Bedrooms</span>
                         </div>
                         <div className="bed">
-                          <p><LuBath /></p>
+                          <p>
+                            <LuBath />
+                          </p>
                           <span>{house.bathrooms} Bathrooms</span>
                         </div>
                         <div className="bed">
-                          <p><PiToiletLight /></p>
+                          <p>
+                            <PiToiletLight />
+                          </p>
                           <span>{house.toilets} Toilets</span>
                         </div>
                         <p className="icon" onClick={() => setDetails(null)}>
@@ -110,12 +152,18 @@ const Home = () => {
                   ) : (
                     <div className="houseCards">
                       <div className="imgWrap">
-                        <div className="Himg" onClick={() => handleDetails(house)}>
+                        <div
+                          className="Himg"
+                          onClick={() => handleDetails(house)}
+                        >
                           <img src={imageUrl} alt={house.title} />
                         </div>
                       </div>
                       <div className="Hdetails">
-                        <h3 onClick={() => handleDetails(house)} style={{ padding: "10px" }}>
+                        <h3
+                          onClick={() => handleDetails(house)}
+                          style={{ padding: "10px" }}
+                        >
                           {house.title}
                         </h3>
                       </div>
@@ -185,15 +233,15 @@ const Home = () => {
 
       <div className="numbers" ref={ref}>
         <div className="num">
-          <h1>{inView && <CountUp end={17813} duration={2} />}</h1>
+          <h1>{inView && <CountUp end={5} duration={2} />}</h1>
           <p>Rented Out</p>
         </div>
         <div className="num">
-          <h1>{inView && <CountUp end={127533} duration={2} />}</h1>
+          <h1>{inView && <CountUp end={20} duration={2} />}</h1>
           <p>Property Listed</p>
         </div>
         <div className="num">
-          <h1>{inView && <CountUp end={304} duration={2} />}</h1>
+          <h1>{inView && <CountUp end={12} duration={3} />}</h1>
           <p>Areas Covered</p>
         </div>
       </div>
