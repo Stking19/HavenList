@@ -37,8 +37,18 @@ const TenantHome = () => {
     }
   };
 
+  // const getAllRentedProperties = async () =>{
+  //   try{
+  //      const response = await axios.get(`${API_URL}getAllPropertiesRentedOut`)
+  //      console.log(response)
+  //   }catch(err) {
+  //     console.log(err)
+  //   }
+  // }
+
   useEffect(() => {
     getAllListing()
+    // getAllRentedProperties()
   }, [])
 
   // console.log(allListings)
@@ -188,15 +198,15 @@ const TenantHome = () => {
 
       <div className="numbers" ref={ref}>
         <div className="num">
-          <h1>{inView && <CountUp end={17813} duration={2} />}</h1>
+          <h1>{inView && <CountUp end={5} duration={2} />}</h1>
           <p>Rented Out</p>
         </div>
         <div className="num">
-          <h1>{inView && <CountUp end={127533} duration={2} />}</h1>
+          <h1>{inView && <CountUp end={20} duration={2} />}</h1>
           <p>Property Listed</p>
         </div>
         <div className="num">
-          <h1>{inView && <CountUp end={304} duration={2} />}</h1>
+          <h1>{inView && <CountUp end={12} duration={2} />}</h1>
           <p>Areas Covered</p>
         </div>
       </div>

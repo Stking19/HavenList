@@ -70,7 +70,10 @@ const SearchBar = ({ onSearch }) => {
       <div className="filters">
         <select name="type" onChange={handleOnchange} value={searchInput.type}>
           <option value=''>Type</option>
-          {/* Other type options */}
+          <option value='Bungalow'>Bungalow</option>
+          <option value='Flat/Apartment'>Flat/Apartment</option>
+          <option value='Duplex'>Duplex</option>
+          
         </select>
 
         <select name="bedrooms" onChange={handleOnchange} value={searchInput.bedrooms}>

@@ -52,7 +52,7 @@ const TenantListing = () => {
         <div className="listingCardWraper">
           {allListing.length === 0 ? (
             <p className="no-results-message">
-              No property with the specified criteria found.
+              No property found.
             </p>
           ) : (
             currentListings.map((item, index) => (
