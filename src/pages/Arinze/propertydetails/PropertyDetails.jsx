@@ -173,60 +173,7 @@ const PropertyDetails = () => {
         </div>
       </div>
 
-      <Modal
-        open={toggleInspect}
-        onCancel={handleCancel}
-        okButtonProps={{ style: { display: "none" } }}
-        cancelButtonProps={{ style: { display: "none" } }}
-        width={500}
-      >
-        <h2>SCHEDULE FOR INSPECTION</h2>
-        <p style={{ fontWeight: "500" }}>
-          Select a Day and Time you would be available to go for an inspection
-          of the property
-        </p>
-        {scheduleOptions.map((option, index) => (
-          <span
-            key={index}
-            className="inspectText"
-            onClick={() => handleTableClick(index)}
-            style={{
-              backgroundColor: activeTableIndex === index ? "#2F80ED" : "white",
-              color: activeTableIndex === index ? "white" : "#00A5CF",
-              borderRadius: "20px",
-            }}
-          >
-            <h2>{option.day}</h2>
-            <p style={{ fontSize: "16px" }}>{option.time}</p>
-          </span>
-        ))}
-        <button
-          className="inspectBtn"
-          disabled={selectedSchedule === null}
-          onClick={""}
-        >
-          Inspect
-        </button>
-      </Modal>
-
-      <Modal
-        open={openPay}
-        onCancel={handleCancelPay}
-        okButtonProps={{ style: { display: "none" } }}
-        cancelButtonProps={{ style: { display: "none" } }}
-        width={500}
-      >
-        <div className="paymentModal">
-        <h2>Make Payment below</h2>
-        <p>
-        After Making Payment, You Will Be Asked To Select A Day and Time To
-        Go for an Inspection of the property.
-        </p>
-        <button onClick={handlePayment}> { loading ? <HashLoader size={30} color="white"/> : "Pay With Kora"}</button>
-        </div>
-      </Modal>
-
-      <div className="modalpropertyDetailCardMobile">
+      {/* <div className="modalpropertyDetailCardMobile">
         <h2>N{productD.price}</h2>
         <button
           onClick={handleOpenPay}
@@ -234,7 +181,7 @@ const PropertyDetails = () => {
         >
           Rent
         </button>
-      </div>
+      </div> */}
     </>
   );
 };
