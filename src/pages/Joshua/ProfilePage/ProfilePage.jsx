@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { createProfile, getProfile, updateProfile } from "../../../config/api";
 import "./profilepage.css";
 import { FiEdit2 } from "react-icons/fi";
+
 import Loadscreen from "../../../loadscreen/Loadscreen";
 
 const dataURLtoBlob = (dataURL) => {

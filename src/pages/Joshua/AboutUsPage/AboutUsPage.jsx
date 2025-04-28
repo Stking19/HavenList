@@ -25,7 +25,7 @@ function AboutUsPage() {
 
         <div className="secondcont">
           <div className="imgcont1">
-            <button className="getstartedbtn" onClick={() => navigate("/home")}>Get started now</button>
+            <button className="getstartedbtn" onClick={() => navigate("/")}>Get started now</button>
            
           </div>
           <div className="textSession">

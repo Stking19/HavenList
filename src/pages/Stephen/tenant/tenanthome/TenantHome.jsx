@@ -9,7 +9,7 @@ import CountUp from "react-countup";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 
-// const API_URL = import.meta.env.VITE_API_URL;
+
 
 
 const TenantHome = () => {
@@ -17,6 +17,9 @@ const TenantHome = () => {
   
 
   const [allListings, setAllListings] = useState([]);
+  const [allProperties, setAllProperties] = useState([]);
+  const [allAreas, setAllAreas] = useState([])
+  const [allListed, setAllListed] = useState([])
   const [details, setDetails] = useState(null);
   const { ref, inView } = useInView({ triggerOnce: true });
   const navigate = useNavigate()
@@ -31,17 +34,53 @@ const TenantHome = () => {
     try {
       const res = await axios.get(`${API_URL}/getAllListings`);
       console.log(res.data);
-      setAllListings(res.data.data);
+      setAllListings(res.data.data.slice(0,6));
     } catch (error) {
       console.log(error);
     }
   };
 
+  const getAllPropertiesRented = async () => {
+    try {
+      const res = await axios.get(`${API_URL}getAllPropertiesRentedOut`);
+      console.log(res);
+      setAllProperties(res?.data?.data || []); 
+    } catch (error) {
+      console.log(error);
+      setAllProperties([]); 
+    }
+  };
+
+  const getAllAreas = async () => {
+    try {
+      const res = await axios.get(`${API_URL}getAllAreasCovered`);
+      console.log(res);
+      setAllAreas(res?.data?.data || []); 
+    } catch (error) {
+      console.log(error);
+      setAllAreas([]); 
+    }
+  };
+
+  const getAllPropertiesList = async () => {
+    try {
+      const res = await axios.get(`${API_URL}getAllAreasCovered`);
+      console.log(res);
+      setAllListed(res?.data?.data || []);
+    } catch (error) {
+      console.log(error);
+      setAllListed([]); 
+    }
+  };
+
   useEffect(() => {
-    getAllListing()
+    getAllListing();
+    getAllPropertiesRented();
+    getAllAreas();
+    getAllPropertiesList();
   }, [])
 
-  // console.log(allListings)
+  
 
   return (
     <div className="home">
@@ -188,15 +227,36 @@ const TenantHome = () => {
 
       <div className="numbers" ref={ref}>
         <div className="num">
-          <h1>{inView && <CountUp end={17813} duration={2} />}</h1>
+        <h1>
+            {inView && (
+              <CountUp
+                end={allProperties.length > 0 ? allProperties.length : 0}
+                duration={2}
+              />
+            )}
+          </h1>
           <p>Rented Out</p>
         </div>
         <div className="num">
-          <h1>{inView && <CountUp end={127533} duration={2} />}</h1>
+        <h1>
+            {inView && (
+              <CountUp
+                end={allListed.length > 0 ? allListed.length : 0}
+                duration={2}
+              />
+            )}
+          </h1>
           <p>Property Listed</p>
         </div>
         <div className="num">
-          <h1>{inView && <CountUp end={304} duration={2} />}</h1>
+        <h1>
+            {inView && (
+              <CountUp
+                end={allAreas.length > 0 ? allAreas.length : 0}
+                duration={2}
+              />
+            )}
+          </h1>
           <p>Areas Covered</p>
         </div>
       </div>

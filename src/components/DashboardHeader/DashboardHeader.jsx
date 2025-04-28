@@ -58,7 +58,9 @@ function DashboardHeader({ setActiveTab }) {
                 alignItems: "center",
                 justifyContent: "center",
                 marginLeft: "100px",
+                
               }}
+
             >
               {mystoredImage ? (
                 <img
